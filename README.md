@@ -1,4 +1,7 @@
-# BeaconsHome
+BeaconsHome
+===========
+
+[![Build Status](https://www.travis-ci.com/3D-Beacons/3d-beacons-front-end.svg?branch=main)](https://www.travis-ci.com/3D-Beacons/3d-beacons-front-end)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.6.
 
