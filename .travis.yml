@@ -7,4 +7,4 @@ addons:
 install:
 - npm install
 script:
-- ng test --code-coverage --watch false -browsers ChromeHeadless
+- ng test --code-coverage --watch false --browsers=ChromeHeadless
