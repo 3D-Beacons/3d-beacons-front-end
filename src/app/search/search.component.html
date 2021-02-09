@@ -1,0 +1,13 @@
+<form [formGroup]="searchForm">
+    <input formControlName="searchTerm" type="search" placeholder="Search by UniProt Accession - e.g.P012345"
+        class="main-search">
+    <button type="button" [disabled]="!searchForm.valid || isFetching" (click)="onSearch()" class="btn btn-primary">
+        <span>Search</span>&nbsp;
+        <span *ngIf="isFetching">
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+        </span>
+    </button>
+    <p>
+        <span *ngIf="error" class="alert">{{ error }}</span>
+    </p>
+</form>
