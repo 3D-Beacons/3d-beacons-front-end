@@ -1,8 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Subscription } from 'rxjs';
 
-import { SummaryResponse } from '../result-section/result-section.model';
+import { SummaryResponse } from './result-section/result-section.model';
 import { SearchService } from './search.service';
 
 @Component({
@@ -10,39 +9,32 @@ import { SearchService } from './search.service';
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css']
 })
-export class SearchComponent implements OnInit, OnDestroy {
+export class SearchComponent implements OnInit {
   searchForm: FormGroup = new FormGroup({
     searchTerm: new FormControl(null, Validators.required)
   });
-  errorSubscription: Subscription;
-  resultSubscription: Subscription;
+
   error: string = null;
   resultData: SummaryResponse;
   isFetching: boolean = false;
 
   constructor(private searchService: SearchService) { }
 
-  ngOnInit(): void {
-    this.errorSubscription = this.searchService.error.subscribe(error => {
-      if (error.status === 404) {
-        this.error = "No data found!";
-      }
-    });
-    this.resultSubscription = this.searchService.result.subscribe(result => {
-      this.resultData = result;
-      this.isFetching = false;
-    });
-  }
+  ngOnInit(): void {}
 
   onSearch() {
     this.isFetching = true;
     this.error = null;
-    this.searchService.getUniProtSummary(this.searchForm.get('searchTerm').value);
-  }
-
-  ngOnDestroy() {
-    this.errorSubscription.unsubscribe();
-    this.resultSubscription.unsubscribe();
-  }
+    this.searchService.getUniProtSummary(this.searchForm.controls.searchTerm.value).subscribe(
+      data => {
+        this.resultData = data;
+        this.isFetching = false;
+      },
+      err => {
+        this.error = 'No data found!';
+        this.isFetching = false;
+      });
+  
+}
 
 }

@@ -11,10 +11,11 @@ export interface Structure {
     model_identifier: string;
     model_url: string;
     provider: string;
-    resolution: number;
+    resolution?: number;
     sequence_identity: number;
     uniprot_end: number;
     uniprot_start: number;
+    qmean_version?: string;
 }
 
 export interface SummaryResponse {

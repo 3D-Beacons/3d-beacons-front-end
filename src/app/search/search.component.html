@@ -1,3 +1,4 @@
+<div id="search">
 <form [formGroup]="searchForm">
     <input formControlName="searchTerm" type="search" placeholder="Search by UniProt Accession - e.g.P012345"
         class="main-search">
@@ -11,3 +12,8 @@
         <span *ngIf="error" class="alert">{{ error }}</span>
     </p>
 </form>
+</div>
+<hr>
+<div id="result">
+    <app-result-section [resultData]="resultData" style="text-align: center;"></app-result-section>
+</div>

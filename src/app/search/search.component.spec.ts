@@ -1,27 +1,75 @@
+import { HttpClient } from '@angular/common/http';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { DebugElement } from '@angular/core';
+import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { ReactiveFormsModule } from '@angular/forms';
+import { By } from '@angular/platform-browser';
+import { VALID_UNIPROT } from 'mock-data/mock-input';
+import { MOCK_SUMMARY_RESPONSE } from 'mock-data/mock-summary-response';
 
 import { SearchComponent } from './search.component';
+import { SearchService } from './search.service';
 
 describe('SearchComponent', () => {
   let component: SearchComponent;
   let fixture: ComponentFixture<SearchComponent>;
+  let searchInput: DebugElement;
+  let searchButton: DebugElement;
+  let searchService: SearchService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SearchComponent ],
-      imports: [ HttpClientTestingModule ]
+      declarations: [SearchComponent],
+      imports: [ReactiveFormsModule, HttpClientTestingModule],
+      providers: [SearchService]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(SearchComponent);
+    searchService = TestBed.inject(SearchService);
     component = fixture.componentInstance;
+    searchInput = fixture.debugElement.query(By.css('input[type="search"]'));
+    searchButton = fixture.debugElement.query(By.css('button'));
     fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should bind search term form control from input field', () => {
+    searchInput.nativeElement.value = VALID_UNIPROT;
+    searchInput.nativeElement.dispatchEvent(new Event('input'));
+    expect(component.searchForm.controls.searchTerm.value).toBe(VALID_UNIPROT);
+  });
+
+  it('should invoke onSearch function on click of search button', fakeAsync(() => {
+    spyOn(component, 'onSearch');
+    searchInput.nativeElement.value = VALID_UNIPROT;
+    searchInput.nativeElement.dispatchEvent(new Event('input'));
+    searchButton.triggerEventHandler('click', null);
+    tick();
+
+    expect(component.onSearch).toHaveBeenCalledTimes(1);
+  }));
+
+  it('should invoke uniprot summary call on click of search button', fakeAsync(() => {
+    spyOn(searchService, 'getUniProtSummary');
+    searchInput.nativeElement.value = VALID_UNIPROT;
+    searchInput.nativeElement.dispatchEvent(new Event('input'));
+    searchButton.triggerEventHandler('click', null);
+    tick();
+
+    // check if the function is invoked
+    expect(searchService.getUniProtSummary).toHaveBeenCalledTimes(1);
+
+    // check is isFetching is true
+    expect(component.isFetching).toBeTruthy();
+
+    // check is isFetching is null
+    expect(component.error).toBeNull();
+  }));
+
 });
