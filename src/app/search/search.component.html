@@ -1,19 +1,22 @@
-<div id="search">
 <form [formGroup]="searchForm">
-    <input formControlName="searchTerm" type="search" placeholder="Search by UniProt Accession - e.g.P012345"
-        class="main-search">
-    <button type="button" [disabled]="!searchForm.valid || isFetching" (click)="onSearch()" class="btn btn-primary">
-        <span>Search</span>&nbsp;
-        <span *ngIf="isFetching">
-            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-        </span>
-    </button>
-    <p>
-        <span *ngIf="error" class="alert">{{ error }}</span>
-    </p>
+    <div class="row">
+        <div class="columns medium-6 main-search">
+            <input formControlName="searchTerm" type="search" placeholder="Search by UniProt Accession - e.g.P012345">
+        </div>
+        <div class="columns medium-6 main-search"><button type="button" [disabled]="!searchForm.valid || isFetching"
+                (click)="onSearch()" class="button">
+                <span>Search</span>&nbsp;
+                <span *ngIf="isFetching">
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                </span>
+            </button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="columns">
+            <span *ngIf="error" class="alert">{{ error }}</span>
+        </div>
+    </div>
 </form>
-</div>
-<hr>
-<div id="result">
-    <app-result-section [resultData]="resultData" style="text-align: center;"></app-result-section>
-</div>
+
+<app-result-section [resultData]="resultData" style="text-align: center;"></app-result-section>

@@ -1,1 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
+
+.masthead {
+    background-color: rgb(87 187 45) !important;
+}
+
+/* .padding-small {
+    padding: .5em 1em;
+    font-size: .8rem;
+    margin-bottom: 5px;
+} */
+
+.main-search {
+    width: 100%;
+    max-width: 600px;
+    margin: 10px;
+}
+
+.button[disabled] {
+    opacity: 50%;
+}

@@ -33,6 +33,7 @@ export class SearchComponent implements OnInit {
       err => {
         this.error = 'No data found!';
         this.isFetching = false;
+        this.resultData = null;
       });
   
 }
