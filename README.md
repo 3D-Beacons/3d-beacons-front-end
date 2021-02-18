@@ -3,6 +3,7 @@ BeaconsHome
 
 [![Build Status](https://www.travis-ci.com/3D-Beacons/3d-beacons-front-end.svg?branch=main)](https://www.travis-ci.com/3D-Beacons/3d-beacons-front-end)
 [![Maintainability](https://api.codeclimate.com/v1/badges/46275f5b160172376c10/maintainability)](https://codeclimate.com/github/3D-Beacons/3d-beacons-front-end/maintainability)
+[![Code Coverage](https://codecov.io/gh/3D-Beacons/3d-beacons-front-end/branch/main/graph/badge.svg?token=3V3SG52F2D)](https://codecov.io/gh/3D-Beacons/3d-beacons-front-end)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.1.3.
 
