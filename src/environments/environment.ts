@@ -3,7 +3,8 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  apiHost: 'https://wwwdev.ebi.ac.uk/pdbe/pdbe-kb/3dbeacons-hub-api'
 };
 
 /*
