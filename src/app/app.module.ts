@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Routes, RouterModule } from '@angular/router';
@@ -11,6 +11,7 @@ import { SummarySectionComponent } from './search/result-section/summary-section
 import { BeaconsInterceptor } from './beacons-interceptor';
 import { CoreModule } from './core/core.module';
 import { HomeComponent } from './home/home.component';
+import { StructuresSectionComponent } from './search/structures-section/structures-section.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -23,7 +24,9 @@ const routes: Routes = [
     SearchComponent,
     ResultSectionComponent,
     SummarySectionComponent,
-    HomeComponent
+    HomeComponent,
+    StructuresSectionComponent,
+    StructuresSectionComponent
   ],
   imports: [
     BrowserModule,
@@ -35,6 +38,7 @@ const routes: Routes = [
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: BeaconsInterceptor, multi: true }
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   exports: [RouterModule],
   bootstrap: [AppComponent]
 })

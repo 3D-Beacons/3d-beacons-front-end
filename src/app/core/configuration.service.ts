@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -16,6 +17,15 @@ export class ConfigurationService {
 
   getUniProtDetailsUrl(): string {
     return this.apiRoot +'/uniprot/';
+  }
+
+  getProviderColor(provider: string): string {
+    switch (provider) {
+      case 'PDBE': return '#085f5c';
+      case 'SWISSMODEL': return '#7474bf';
+      case 'PED': return '#2274a5';
+      default: return 'rgb(255,99,163)';
+    }
   }
 
 }

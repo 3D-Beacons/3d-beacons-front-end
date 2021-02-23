@@ -1,7 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ConfigurationService } from 'src/app/core/configuration.service';
 
-import { SummaryResponse as SummaryResponse } from './result-section.model';
 import { SummaryService } from './summary-section/summary-section.service';
 
 @Component({
@@ -35,7 +33,7 @@ export class ResultSectionComponent implements OnInit {
   prepareSummaryData() {
     let categories = this.summaryService.getCategories();
 
-    this._resultData.structures.map((structure) => {
+    this.resultData.structures.map((structure) => {
       let categoryId = this.summaryService.getProviderCategory(structure.provider);
       let category = categories[categoryId];
 
