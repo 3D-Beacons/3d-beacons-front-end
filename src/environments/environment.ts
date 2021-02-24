@@ -4,8 +4,7 @@
 
 export const environment = {
   production: false,
-  apiHost: 'https://api.com',
-  baseHref: '/'
+  apiHost: 'https://api.com'
 };
 
 /*

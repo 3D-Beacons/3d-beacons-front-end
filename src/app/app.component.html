@@ -1,1 +1,53 @@
-<router-outlet></router-outlet>
+<div>
+    <header id="masthead" class="masthead compact-for-data">
+        <div class="masthead-inner row expanded">
+            <!-- local-title -->
+            <div class="float-left inline-block padding-left-large" id="local-title">
+                <h1><a routerLink="/"><img src="./assets/img/3d-beacons-logo-with-text-transparent.png" alt="Image"
+                            width="200px;"></a></h1>
+            </div>
+            <!-- /local-title -->
+        </div>
+        <div class="row expanded">
+            <!-- local-nav -->
+            <nav class="float-left columns">
+                <ul id="local-nav" class="dropdown menu float-left" data-description="navigational">
+                    <li><a routerLink="/">Home</a></li>
+                    <li><a routerLink="/search">Search</a></li>
+                    <!-- <li><a href="#">Support <i class="icon icon-generic" data-icon="x"></i></a></li> -->
+                </ul>
+            </nav>
+            <!-- /local-nav -->
+        </div>
+    </header>
+</div>
+<div id="content">
+    <!-- Suggested layout containers -->
+    <section id="main-content-area" class="row expanded" role="main">
+        <!-- Your menu structure should make a breadcrumb redundant, but if a breadcrumb is needed uncomment the below -->
+        <!-- <nav aria-label="You are here:" role="navigation">
+        <ul class="breadcrumbs columns">
+          <li><a href="../">EBI Framework</a></li>
+          <li>
+            <span class="show-for-sr">Current: </span> Current page
+          </li>
+        </ul>
+      </nav> -->
+        <!-- <div class="rows"> -->
+        <div class="columns">
+            <section>
+                <router-outlet></router-outlet>
+            </section>
+        </div>
+        <!-- </div> -->
+    </section>
+    <!-- Optional local footer (insert citation / project-specific copyright / etc here -->
+    <!--
+    <footer id="local-footer" class="local-footer" role="local-footer">
+      <div class="row">
+        <span class="reference">How to reference this page: ...</span>
+      </div>
+    </footer>
+    -->
+    <!-- End optional local footer -->
+</div>

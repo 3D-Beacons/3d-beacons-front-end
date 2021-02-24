@@ -12,8 +12,6 @@ import { BeaconsInterceptor } from './beacons-interceptor';
 import { CoreModule } from './core/core.module';
 import { HomeComponent } from './home/home.component';
 import { StructuresSectionComponent } from './search/structures-section/structures-section.component';
-import { APP_BASE_HREF } from '@angular/common';
-import { environment } from 'src/environments/environment';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -38,8 +36,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes)
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: BeaconsInterceptor, multi: true },
-    { provide: APP_BASE_HREF, useValue: environment.baseHref }
+    { provide: HTTP_INTERCEPTORS, useClass: BeaconsInterceptor, multi: true }
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   exports: [RouterModule],
