@@ -84,6 +84,7 @@ export class StructuresSectionComponent implements OnInit {
     tooltip += '<br>Provider: ' + item.provider;
     tooltip += '<br>Category: ' + item.model_category;
     tooltip += item.resolution ? '<br>Resolution: ' + item.resolution : '';
+    tooltip += item.qmean_avg_local_score ? '<br>QMEAN: ' + item.qmean_avg_local_score : '';
 
     return tooltip;
   }
