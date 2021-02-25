@@ -29,6 +29,7 @@ export const MOCK_SUMMARY_RESPONSE_PROTVISTA: SummaryResponse = {
             uniprot_end: 342,
             coverage: 0.76,
             qmean_version: '4.2.0',
+            qmean_avg_local_score: 0.576,
             model_url: 'https://beta.swissmodel.expasy.org/3d-beacons/uniprot/P07550.pdb?range=29-342&template=5d5a.1.A&provider=swissmodel'
         }
     ]

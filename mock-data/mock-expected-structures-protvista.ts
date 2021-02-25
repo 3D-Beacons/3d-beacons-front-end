@@ -41,7 +41,7 @@ export const EXPECTED_STRUCTURE_PROTVISTA: pvFormat.Accession = {
                                 {
                                     start: 29,
                                     end: 342,
-                                    tooltipContent: 'UniProt range: 29-342<br>Provider: SWISSMODEL<br>Category: TEMPLATE-BASED'
+                                    tooltipContent: 'UniProt range: 29-342<br>Provider: SWISSMODEL<br>Category: TEMPLATE-BASED<br>QMEAN: 0.576'
                                 }
                             ]
                         }
