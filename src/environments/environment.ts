@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiHost: 'https://wwwdev.ebi.ac.uk/pdbe/pdbe-kb/3dbeacons-hub-api'
+  apiHost: 'https://api.com'
 };
 
 /*
