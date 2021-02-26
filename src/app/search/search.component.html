@@ -1,23 +1,29 @@
-<form [formGroup]="searchForm">
+<h2 style="color: #47547E">3D-Beacons Search</h2>
+<p>Search for experimentally determined and/or theoretical models for a protein by typing in a UniProt accession and clicking "Search".</p>
+<div class="content">
+  <form [formGroup]="searchForm">
     <div class="row">
-        <div class="columns medium-6 main-search">
-            <input formControlName="searchTerm" type="search" placeholder="Search by UniProt Accession - e.g.P012345">
-        </div>
-        <div class="columns medium-6 main-search"><button type="button" [disabled]="!searchForm.valid || isFetching"
-                (click)="onSearch()" class="button">
-                <span>Search</span>&nbsp;
-                <span *ngIf="isFetching">
+      <div class="columns small-12 medium-10">
+        <input formControlName="searchTerm" type="search" placeholder="Search by UniProt Accession - e.g. Q14676">
+      </div>
+      <div class="columns small-12 medium-2">
+        <button type="button" [disabled]="!searchForm.valid || isFetching"
+                (click)="onSearch()" class="button" style="width: 100%">
+          <span><i class="icon icon-common icon-search"></i> Search</span>&nbsp;
+          <span *ngIf="isFetching">
                     <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                 </span>
-            </button>
-        </div>
+        </button>
+      </div>
     </div>
     <div class="row">
-        <div class="columns">
-            <span *ngIf="error" class="alert">{{ error }}</span>
-        </div>
+      <div class="columns">
+        <span *ngIf="error" class="alert">{{ error }}</span>
+      </div>
     </div>
-</form>
+  </form>
+</div>
+
 
 <app-result-section [resultData]="resultData" style="text-align: center;"></app-result-section>
 <app-structures-section [resultData]="resultData"></app-structures-section>
