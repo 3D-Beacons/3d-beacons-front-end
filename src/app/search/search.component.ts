@@ -17,22 +17,32 @@ export class SearchComponent implements OnInit {
   error: string = null;
   resultData: SummaryResponse;
   isFetching: boolean = false;
+  exampleAccessions: string[] = ['P0DTD1', 'P38398'];
 
   constructor(private searchService: SearchService) { }
 
   ngOnInit(): void {}
 
-  onSearch() {
+  onSearch(query?: string) {
+    if (query == undefined) {
+      query = this.searchForm.controls.searchTerm.value;
+    } else {
+      this.searchForm.controls.searchTerm.setValue(null);
+    }
     this.isFetching = true;
+    this.searchForm.disable()
     this.error = null;
-    this.searchService.getUniProtSummary(this.searchForm.controls.searchTerm.value).subscribe(
+    this.searchService.getUniProtSummary(query).subscribe(
       data => {
+        console.log('Received summary response', data);
         this.resultData = data;
         this.isFetching = false;
+        this.searchForm.enable();
       },
       err => {
         this.error = 'No data found!';
         this.isFetching = false;
+        this.searchForm.enable();
         this.resultData = null;
       });
   

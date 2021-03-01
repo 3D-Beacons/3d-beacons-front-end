@@ -15,6 +15,13 @@
                 </span>
         </button>
       </div>
+      <div class="columns small-12 medium-12">
+        <strong>
+          <p>Examples: 
+            <a id="example-{{e}}" (click)="onSearch(e)" style="margin-left: 15px;" *ngFor="let e of exampleAccessions">{{ e }}</a>
+          </p>
+      </strong>
+      </div>
     </div>
     <div class="row">
       <div class="columns">
