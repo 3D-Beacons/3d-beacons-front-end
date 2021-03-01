@@ -36,12 +36,7 @@ export class StructuresSectionComponent implements OnInit {
   convertToProtvistaFormat(resultData: SummaryResponse): Partial<pvFormat.Accession> {
     let protvistaData: Partial<pvFormat.Accession> = {
       largeLabels: true,
-      tracks: [{
-        labelType: 'text',
-        label: 'Structures (' +resultData.structures.length +')',
-        data: [],
-        overlapping: 'true'
-      }],
+      tracks: [],
       legends: {
         alignment: 'right',
         data: {}
@@ -51,7 +46,17 @@ export class StructuresSectionComponent implements OnInit {
     protvistaData.length = resultData.uniprot_entry.sequence_length;
 
     // prepare tracks
+    let tracks: { [key: string]: pvFormat.Track } = {};
     resultData.structures.map(structure => {
+      if (tracks[structure.model_category] == undefined) {
+        tracks[structure.model_category] = {
+          labelType: 'text',
+          label: structure.model_category,
+          data: [],
+          overlapping: 'true'
+        }
+      }
+
       let trackDataItem: pvFormat.Data = {
         accession: structure.model_identifier,
         labelType: 'text',
@@ -69,9 +74,15 @@ export class StructuresSectionComponent implements OnInit {
           ]
         }]
       }
-      protvistaData.tracks[0].data.push(trackDataItem);
+      tracks[structure.model_category].data.push(trackDataItem);
       this.availableProviders.add(structure.provider);
     });
+     
+    for (let track in tracks) {
+      // set count for each category
+      tracks[track]["label"] += ' (' +tracks[track]["data"].length +')'
+      protvistaData.tracks.push(tracks[track]);
+    }
 
     // prepare legends
     protvistaData.legends = this.prepareLegends(this.availableProviders);
