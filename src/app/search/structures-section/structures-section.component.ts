@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 import { ConfigurationService } from 'src/app/core/configuration.service';
 import * as pvFormat from '../result-section/protvista.model';
@@ -9,7 +9,7 @@ import { Structure, SummaryResponse } from '../result-section/result-section.mod
   templateUrl: './structures-section.component.html',
   styleUrls: ['./structures-section.component.css']
 })
-export class StructuresSectionComponent implements OnInit {
+export class StructuresSectionComponent {
   private _resultData: any;
   haveResults = false;
   protvistaData: Partial<pvFormat.Accession> = null;
@@ -30,8 +30,6 @@ export class StructuresSectionComponent implements OnInit {
   }
 
   constructor(private configService: ConfigurationService) { }
-
-  ngOnInit(): void {}
 
   convertToProtvistaFormat(resultData: SummaryResponse): Partial<pvFormat.Accession> {
     let protvistaData: Partial<pvFormat.Accession> = {

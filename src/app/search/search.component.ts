@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { SummaryResponse } from './result-section/result-section.model';
@@ -9,7 +9,7 @@ import { SearchService } from './search.service';
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css']
 })
-export class SearchComponent implements OnInit {
+export class SearchComponent  {
   searchForm: FormGroup = new FormGroup({
     searchTerm: new FormControl(null, Validators.required)
   });
@@ -21,8 +21,6 @@ export class SearchComponent implements OnInit {
 
   constructor(private searchService: SearchService) { }
 
-  ngOnInit(): void {}
-
   onSearch(query?: string) {
     if (query == undefined) {
       query = this.searchForm.controls.searchTerm.value;
@@ -30,7 +28,7 @@ export class SearchComponent implements OnInit {
       this.searchForm.controls.searchTerm.setValue(null);
     }
     this.isFetching = true;
-    this.searchForm.disable()
+    this.searchForm.disable();
     this.error = null;
     this.searchService.getUniProtSummary(query).subscribe(
       data => {
