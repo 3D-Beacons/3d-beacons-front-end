@@ -12,6 +12,7 @@ import { BeaconsInterceptor } from './beacons-interceptor';
 import { CoreModule } from './core/core.module';
 import { HomeComponent } from './home/home.component';
 import { StructuresSectionComponent } from './search/structures-section/structures-section.component';
+import { SharedModule } from './shared/shared.module';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -33,7 +34,8 @@ const routes: Routes = [
     ReactiveFormsModule,
     HttpClientModule,
     CoreModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    SharedModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: BeaconsInterceptor, multi: true }

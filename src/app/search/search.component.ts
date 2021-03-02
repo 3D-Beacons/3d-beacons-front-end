@@ -9,7 +9,7 @@ import { SearchService } from './search.service';
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css']
 })
-export class SearchComponent  {
+export class SearchComponent {
   searchForm: FormGroup = new FormGroup({
     searchTerm: new FormControl(null, Validators.required)
   });
@@ -43,7 +43,5 @@ export class SearchComponent  {
         this.searchForm.enable();
         this.resultData = null;
       });
-  
-}
-
+  }
 }
