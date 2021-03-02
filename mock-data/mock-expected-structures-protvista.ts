@@ -21,7 +21,8 @@ export const EXPECTED_STRUCTURE_PROTVISTA: pvFormat.Accession = {
                                 {
                                     start: 1,
                                     end: 365,
-                                    tooltipContent: 'UniProt range: 1-365<br>Provider: PDBE<br>Category: EXPERIMENTALLY DETERMINED<br>Resolution: 2.4'
+                                    tooltipContent: 'UniProt range: 1-365<br>Provider: PDBE<br>Category: EXPERIMENTALLY DETERMINED<br>Resolution: 2.4Å<br><a target="_blank" href="https://www.ebi.ac.uk/pdbe/coordinates/2rh1/full?encoding=bcif&lowPrecisionCoords=1"' +
+                                    '>Click to Download <i class="icon icon-common icon-download"></i></a>'
                                 }
                             ]
                         }
@@ -48,7 +49,8 @@ export const EXPECTED_STRUCTURE_PROTVISTA: pvFormat.Accession = {
                                 {
                                     start: 29,
                                     end: 342,
-                                    tooltipContent: 'UniProt range: 29-342<br>Provider: SWISSMODEL<br>Category: TEMPLATE-BASED<br>QMEAN: 0.576'
+                                    tooltipContent: 'UniProt range: 29-342<br>Provider: SWISSMODEL<br>Category: TEMPLATE-BASED<br>QMEAN: 0.576<br><a target="_blank" href="https://beta.swissmodel.expasy.org/3d-beacons/uniprot/P07550.pdb?range=29-342&template=5d5a.1.A&provider=swissmodel"' +
+                                    '>Click to Download <i class="icon icon-common icon-download"></i></a>'
 
                                 }
                             ]
