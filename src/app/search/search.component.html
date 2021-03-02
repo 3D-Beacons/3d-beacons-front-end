@@ -24,8 +24,10 @@
       </div>
     </div>
     <div class="row">
-      <div class="columns">
-        <span *ngIf="error" class="alert">{{ error }}</span>
+      <div *ngIf="error" class="columns small-12 medium-12">
+        <div class="alert alert-danger">
+          <span>{{ error }}</span>
+        </div>
       </div>
     </div>
   </form>

@@ -51,7 +51,10 @@ describe('StructuresSectionComponent', () => {
       coverage: 80.39,
       model_url: 'https://www.ebi.ac.uk/pdbe/coordinates/2rh1/full?encoding=bcif&lowPrecisionCoords=1'
     };
-    const expectedTooltip1 = 'UniProt range: 1-365<br>Provider: PDBE<br>Category: EXPERIMENTALLY DETERMINED<br>Resolution: 2.4';
+    const expectedTooltip1 = 
+      'UniProt range: 1-365<br>Provider: PDBE<br>Category: EXPERIMENTALLY DETERMINED<br>Resolution: 2.4Å' +
+      '<br><a target="_blank" href="https://www.ebi.ac.uk/pdbe/coordinates/2rh1/full?encoding=bcif&lowPrecisionCoords=1"' +
+      '>Click to Download <i class="icon icon-common icon-download"></i></a>';
 
     expect(component.prepareTooltip(structure1)).toEqual(expectedTooltip1);
 
@@ -67,7 +70,9 @@ describe('StructuresSectionComponent', () => {
       coverage: 80.39,
       model_url: 'https://www.ebi.ac.uk/pdbe/coordinates/2rh1/full?encoding=bcif&lowPrecisionCoords=1'
     };
-    const expectedTooltip2 = 'UniProt range: 1-365<br>Provider: PDBE<br>Category: EXPERIMENTALLY DETERMINED';
+    const expectedTooltip2 = 'UniProt range: 1-365<br>Provider: PDBE<br>Category: EXPERIMENTALLY DETERMINED' +
+    '<br><a target="_blank" href="https://www.ebi.ac.uk/pdbe/coordinates/2rh1/full?encoding=bcif&lowPrecisionCoords=1"' +
+    '>Click to Download <i class="icon icon-common icon-download"></i></a>';
 
     expect(component.prepareTooltip(structure2)).toEqual(expectedTooltip2);
   });
@@ -101,7 +106,7 @@ describe('StructuresSectionComponent', () => {
 
     // check length
     expect(convertedProtvistaData.length).toEqual(EXPECTED_STRUCTURE_PROTVISTA.length);
-    
+
     // check tracks
     expect(convertedProtvistaData.tracks[0].data[0]).toEqual(EXPECTED_STRUCTURE_PROTVISTA.tracks[0].data[0]);
     expect(convertedProtvistaData.tracks[0].data[1]).toEqual(EXPECTED_STRUCTURE_PROTVISTA.tracks[0].data[1]);
