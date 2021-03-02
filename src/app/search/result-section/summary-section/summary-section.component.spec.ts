@@ -22,4 +22,9 @@ describe('SummarySectionComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('getIconStyle() should work', () => {
+    expect(component.getIconStyle(0)).toEqual({'font-size': '6rem', 'color': 'lightgrey'});
+    expect(component.getIconStyle(1)).toEqual({'font-size': '6rem', 'color': '#47547E'});
+  });
 });
