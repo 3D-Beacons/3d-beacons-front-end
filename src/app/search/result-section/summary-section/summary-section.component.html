@@ -2,7 +2,7 @@
     <div class="col-sm" *ngFor="let data of summaryData">
         <div class="row">
             <div class="col-sm">
-                <i class="{{ data.icon }}" style="font-size: 6rem; color: #47547E;"></i>
+                <i class="{{ data.icon }}" [ngStyle]="getIconStyle(data.count)"></i>
             </div>
         </div>
         <div class="row">
