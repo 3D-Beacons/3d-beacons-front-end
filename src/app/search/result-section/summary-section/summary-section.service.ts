@@ -8,22 +8,22 @@ export class SummaryService {
     expr: {
       id: 'expr',
       displayName: 'Experimentally Determined Structures',
-      icon: 'bi-basket'
-    },
-    template: {
-      id: 'template',
-      displayName: 'Template-based models',
-      icon: 'bi-basket2'
-    },
-    abinitio: {
-      id: 'abinitio',
-      displayName: 'Ab-initio Models',
-      icon: 'bi-basket'
+      icon: 'icon icon-common icon-analyse-percent_100'
     },
     ensembl: {
       id: 'ensembl',
       displayName: 'Conformational Ensembles',
-      icon: 'bi-basket2'
+      icon: 'icon icon-common icon-analyse-percent_40'
+    },
+    template: {
+      id: 'template',
+      displayName: 'Template-based models',
+      icon: 'icon icon-common icon-systems'
+    },
+    abinitio: {
+      id: 'abinitio',
+      displayName: 'Ab-initio Models',
+      icon: 'icon icon-common icon-systems'
     }
   };
 

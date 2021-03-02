@@ -20,6 +20,11 @@
     opacity: 50%;
 }
 
+.input[disabled] {
+    opacity: 50%;
+}
+
+
 a {
     text-decoration: none !important;
 }

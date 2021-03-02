@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 import { SummaryService } from './summary-section/summary-section.service';
 
@@ -7,7 +7,7 @@ import { SummaryService } from './summary-section/summary-section.service';
   templateUrl: './result-section.component.html',
   styleUrls: ['./result-section.component.css']
 })
-export class ResultSectionComponent implements OnInit {
+export class ResultSectionComponent {
   summaryData: any[];
   private _resultData: any;
   haveResults = false;
@@ -27,8 +27,6 @@ export class ResultSectionComponent implements OnInit {
   }
 
   constructor(private summaryService: SummaryService) { }
-
-  ngOnInit(): void {}
 
   prepareSummaryData() {
     let categories = this.summaryService.getCategories();

@@ -5,7 +5,7 @@ export const EXPECTED_STRUCTURE_PROTVISTA: pvFormat.Accession = {
     tracks: [
         {
             labelType: 'text',
-            label: 'Structures (2)',
+            label: 'EXPERIMENTALLY DETERMINED (1)',
             data: [
                 {
                     accession: '2rh1',
@@ -26,7 +26,14 @@ export const EXPECTED_STRUCTURE_PROTVISTA: pvFormat.Accession = {
                             ]
                         }
                     ]
-                },
+                }
+            ],
+            overlapping: 'true'
+        },
+        {
+            labelType: 'text',
+            label: 'TEMPLATE-BASED (1)',
+            data: [
                 {
                     accession: '60248fbc29ae6a15f7916ed8',
                     labelType: 'text',
