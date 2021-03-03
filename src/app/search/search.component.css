@@ -2,6 +2,3 @@
   color: #ffae00 !important;
 }
 
-button:disabled, input:disabled {
-  opacity: 50%;
-}
