@@ -16,14 +16,9 @@
     margin: 10px;
 }
 
-.button[disabled] {
-    opacity: 50%;
+button:disabled, input:disabled {
+    opacity: 0.5 !important;
 }
-
-.input[disabled] {
-    opacity: 50%;
-}
-
 
 a {
     text-decoration: none !important;
