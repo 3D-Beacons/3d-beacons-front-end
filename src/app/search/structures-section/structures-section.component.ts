@@ -42,6 +42,7 @@ export class StructuresSectionComponent {
     };
 
     protvistaData.length = resultData.uniprot_entry.sequence_length;
+    protvistaData.sequence = resultData.uniprot_entry.sequence;
 
     // prepare tracks
     let tracks: { [key: string]: pvFormat.Track } = {};

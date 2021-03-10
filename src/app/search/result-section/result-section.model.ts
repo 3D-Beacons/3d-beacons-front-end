@@ -2,6 +2,7 @@ export interface UniProtEntry {
     ac: string;
     id: string;
     sequence_length: number;
+    sequence?: string;
 }
 
 export interface Structure {

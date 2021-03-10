@@ -28,4 +28,12 @@ export class ConfigurationService {
     }
   }
 
+  getUniProtApiUrl(): string {
+    return environment.uniprotApiUrl;
+  }
+
+  getExampleAccessions(): string[] {
+    return ['P0DTD1', 'P38398'];
+  }
+
 }
