@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiHost: 'https://api.com'
+  apiHost: 'https://api.com',
+  uniprotApiUrl: 'https://uniprotapi.com'
 };
 
 /*

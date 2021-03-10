@@ -9,7 +9,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Before you start
 
-* Set proper hub API url in `apiHost` in the path `environments/environment.ts`.
+* Set proper hub API url in `apiHost` and `uniprotApiUrl` in the path `environments/environment.ts`.
 
 ## Development server
 
