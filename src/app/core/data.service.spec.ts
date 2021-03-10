@@ -2,6 +2,7 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { TestBed } from '@angular/core/testing';
 import { VALID_UNIPROT } from 'mock-data/mock-input';
 import { MOCK_SUMMARY_RESPONSE } from 'mock-data/mock-summary-response';
+import { MOCK_UNIPROT_RESPONSE } from 'mock-data/mock-uniprot-data-response';
 import { ConfigurationService } from './configuration.service';
 
 import { DataService } from './data.service';
@@ -45,5 +46,35 @@ describe('DataService', () => {
     expect(req.request.method).toEqual('GET');
 
     req.flush(MOCK_SUMMARY_RESPONSE);
+  });
+
+  it('getUniProtSummary should make http client get call for uniprot summary', () => {
+    service.getUniProtSummary(VALID_UNIPROT).subscribe(data => {
+      // check if data is equal
+      expect(data).toEqual(MOCK_SUMMARY_RESPONSE);
+    });
+
+    // get the request and ensure it called proper URL
+    const req = httpTestingController.expectOne(configService.getUniProtSummaryUrl() + VALID_UNIPROT + '.json');
+  
+    // check if it made a GET request
+    expect(req.request.method).toEqual('GET');
+
+    req.flush(MOCK_SUMMARY_RESPONSE);
+  });
+
+  it('getUniProtEntry should make http client get call for uniprot data', () => {
+    service.getUniProtEntry(VALID_UNIPROT).subscribe(data => {
+      // check if data is equal
+      expect(data).toEqual(MOCK_UNIPROT_RESPONSE);
+    });
+
+    // get the request and ensure it called proper URL
+    const req = httpTestingController.expectOne(configService.getUniProtApiUrl() + VALID_UNIPROT);
+  
+    // check if it made a GET request
+    expect(req.request.method).toEqual('GET');
+
+    req.flush(MOCK_UNIPROT_RESPONSE);
   });
 });

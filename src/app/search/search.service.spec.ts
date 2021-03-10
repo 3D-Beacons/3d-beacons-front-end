@@ -33,4 +33,13 @@ describe('SearchService', () => {
     expect(dataService.getUniProtSummary).toHaveBeenCalledWith(VALID_UNIPROT);
   });
 
+  it('getUniProtEntry should invoke getUniProtEntry of DataService', () => {
+    spyOn(dataService, 'getUniProtEntry');
+
+    // call the method
+    service.getUniProtEntry(VALID_UNIPROT);
+
+    expect(dataService.getUniProtEntry).toHaveBeenCalledWith(VALID_UNIPROT);
+  });
+
 });
