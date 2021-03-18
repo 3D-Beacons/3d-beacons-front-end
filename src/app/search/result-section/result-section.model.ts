@@ -18,6 +18,7 @@ export interface Structure {
     uniprot_start: number;
     qmean_version?: string;
     qmean_avg_local_score?: number;
+    model_format?: string;
 }
 
 export interface SummaryResponse {

@@ -24,6 +24,49 @@
   <link rel="stylesheet" href="https://ebi.emblstatic.net/web_guidelines/EBI-Framework/v1.3/css/theme-ebi-industry.css"
     type="text/css" media="all" />
 
+  <!-- Mol* CSS -->
+  <link rel="stylesheet" type="text/css"
+    href="https://www.ebi.ac.uk/pdbe/pdb-component-library/css/pdbe-molstar-1.1.0.css">
+
+  <!-- For Light Theme include this css file instead of the above -->
+  <!--<link rel="stylesheet" type="text/css" href="https://www.ebi.ac.uk/pdbe/pdb-component-library/css/pdbe-molstar-light-1.1.0.css">-->
+  <!--
+  Tip: Set `bgColor` option to white ({r:255,g:255,b:255}) for light theme
+  -->
+  <!-- Mol* JS -->
+  <script type="text/javascript"
+    src="https://www.ebi.ac.uk/pdbe/pdb-component-library/js/pdbe-molstar-plugin-1.1.0.js"></script>
+
+  <script>
+
+    var molstarPlugin = new PDBeMolstarPlugin();
+    var molstarRendered = false;
+
+    function updateMolstar(e) {
+      let modelUrl = e.getAttribute("data-url");
+      let modelFormat = e.getAttribute("data-format");
+
+      //Get element from HTML/Template to place the viewer 
+      var viewerContainer = document.getElementById('molstar-container');
+
+      let data = {
+        customData: {
+          url: modelUrl,
+          format: modelFormat
+        },
+        hideControls: true,
+        subscribeEvents: true
+      }
+      if (!molstarRendered) {
+        //Call render method to display the 3D view
+        molstarPlugin.render(viewerContainer, data);
+        molstarRendered = true;
+      } else {
+        molstarPlugin.visual.update(data);
+      }
+    }
+  </script>
+
   <meta class="foundation-mq">
 </head>
 
@@ -235,7 +278,7 @@
     charset="utf-8"></script>
   <script src="https://cdn.jsdelivr.net/npm/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js"
     charset="utf-8"></script>
-  <script src="https://www.ebi.ac.uk/pdbe/pdb-component-library/js/protvista-pdb-2.0.1.js" charset="utf-8" ></script>
+  <script src="https://www.ebi.ac.uk/pdbe/pdb-component-library/js/protvista-pdb-2.0.1.js" charset="utf-8"></script>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
   <script defer="defer" src="//ebi.emblstatic.net/web_guidelines/EBI-Framework/v1.3/js/script.js"></script>
   <script src="//ebi.emblstatic.net/web_guidelines/EBI-Framework/v1.3/libraries/foundation-6/js/foundation.js"></script>
