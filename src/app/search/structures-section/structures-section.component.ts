@@ -40,7 +40,7 @@ export class StructuresSectionComponent {
         data: {}
       }
     };
-
+    let firstStructure : boolean = true;
     protvistaData.length = resultData.uniprot_entry.sequence_length;
     protvistaData.sequence = resultData.uniprot_entry.sequence;
 
@@ -56,10 +56,16 @@ export class StructuresSectionComponent {
         }
       }
 
+      // display Mol* for the very first structure in the list
+      if (firstStructure) {
+        this.handleMolstar(structure);
+        firstStructure = !firstStructure;
+      }
+
       let trackDataItem: pvFormat.Data = {
         accession: structure.model_identifier,
         labelType: 'text',
-        label: '<strong><a target="_blank" href="' + structure.model_url + '">' + structure.model_identifier + '</a></strong>',
+        label: '<strong><a data-url="' +structure.model_url +'" data-format="' +structure.model_format.toLowerCase() +'" onclick="updateMolstar(this)">' + structure.model_identifier + '</a></strong>',
         color: this.configService.getProviderColor(structure.provider),
         type: 'Structure',
         tooltipContent: 'Structure',
@@ -116,4 +122,26 @@ export class StructuresSectionComponent {
       }
     }
   }
+
+  handleMolstar(structure: Structure) {
+    let molstarPlugin = window["molstarPlugin"]
+    let viewerContainer = document.getElementById('molstar-container');
+    let options = {
+      customData: {
+        url: structure.model_url,
+        format: structure.model_format.toLowerCase()
+      },
+      hideControls: true,
+      subscribeEvents: true
+    }
+
+    // only render molstar for first time, use visual.update function for updates
+    if (!window["molstarRendered"]) {
+      molstarPlugin.render(viewerContainer, options);
+      window["molstarRendered"] = true;
+    } else {
+      molstarPlugin.visual.update(options);
+    }
+  }
+  
 }
