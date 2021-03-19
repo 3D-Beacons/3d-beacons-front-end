@@ -40,6 +40,7 @@ export class StructuresSectionComponent {
         data: {}
       }
     };
+
     let firstStructure: boolean = true;
     protvistaData.length = resultData.uniprot_entry.sequence_length;
     protvistaData.sequence = resultData.uniprot_entry.sequence;
@@ -149,5 +150,4 @@ export class StructuresSectionComponent {
       molstarPlugin.visual.update(options);
     }
   }
-
 }
