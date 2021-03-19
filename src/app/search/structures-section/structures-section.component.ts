@@ -40,7 +40,8 @@ export class StructuresSectionComponent {
         data: {}
       }
     };
-    let firstStructure : boolean = true;
+
+    let firstStructure: boolean = true;
     protvistaData.length = resultData.uniprot_entry.sequence_length;
     protvistaData.sequence = resultData.uniprot_entry.sequence;
 
@@ -65,7 +66,7 @@ export class StructuresSectionComponent {
       let trackDataItem: pvFormat.Data = {
         accession: structure.model_identifier,
         labelType: 'text',
-        label: '<strong><a data-url="' +structure.model_url +'" data-format="' +structure.model_format.toLowerCase() +'" onclick="updateMolstar(this)">' + structure.model_identifier + '</a></strong>',
+        label: this.prepareLabel(structure),
         color: this.configService.getProviderColor(structure.provider),
         type: 'Structure',
         tooltipContent: 'Structure',
@@ -82,10 +83,10 @@ export class StructuresSectionComponent {
       tracks[structure.model_category].data.push(trackDataItem);
       this.availableProviders.add(structure.provider);
     });
-     
+
     for (let track in tracks) {
       // set count for each category
-      tracks[track]["label"] += ' (' +tracks[track]["data"].length +')'
+      tracks[track]["label"] += ' (' + tracks[track]["data"].length + ')'
       protvistaData.tracks.push(tracks[track]);
     }
 
@@ -99,9 +100,9 @@ export class StructuresSectionComponent {
     tooltip += 'UniProt range: ' + item.uniprot_start + '-' + item.uniprot_end;
     tooltip += '<br>Provider: ' + item.provider;
     tooltip += '<br>Category: ' + item.model_category;
-    tooltip += item.resolution ? '<br>Resolution: ' + item.resolution +'Å' : '';
+    tooltip += item.resolution ? '<br>Resolution: ' + item.resolution + 'Å' : '';
     tooltip += item.qmean_avg_local_score ? '<br>QMEAN: ' + item.qmean_avg_local_score : '';
-    tooltip += '<br><a target="_blank" href="' +item.model_url +'">Click to Download <i class="icon icon-common icon-download"></i></a>';
+    tooltip += '<br><a target="_blank" href="' + item.model_url + '">Click to Download <i class="icon icon-common icon-download"></i></a>';
 
     return tooltip;
   }
@@ -123,13 +124,19 @@ export class StructuresSectionComponent {
     }
   }
 
+  prepareLabel(structure: Structure) {
+    return '<strong><a data-url="' + structure.model_url + '" data-format="' +
+      (structure.model_format != undefined ? structure.model_format.toLowerCase() : "") +
+      '" onclick="updateMolstar(this)">' + structure.model_identifier + '</a></strong>'
+  }
+
   handleMolstar(structure: Structure) {
     let molstarPlugin = window["molstarPlugin"]
     let viewerContainer = document.getElementById('molstar-container');
     let options = {
       customData: {
         url: structure.model_url,
-        format: structure.model_format.toLowerCase()
+        format: structure.model_format != undefined ? structure.model_format.toLowerCase() : ""
       },
       hideControls: true,
       subscribeEvents: true
@@ -143,5 +150,4 @@ export class StructuresSectionComponent {
       molstarPlugin.visual.update(options);
     }
   }
-  
 }
