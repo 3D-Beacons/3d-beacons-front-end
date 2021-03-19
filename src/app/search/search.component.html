@@ -39,10 +39,10 @@
 
 <app-result-section [resultData]="resultData" style="text-align: center;"></app-result-section>
 <div class="row viewer-row">
-  <div class="columns small-8 medium-8">
+  <div class="columns small-12 medium-8">
     <app-structures-section [resultData]="resultData"></app-structures-section>
   </div>
-  <div id="molstar-container" class="columns small-4 medium-4 molstar-container"></div>
+  <div id="molstar-container" class="columns small-12 medium-4 molstar-container"></div>
 </div>
 
 <app-loading-dialog *ngIf="isFetching"></app-loading-dialog>
