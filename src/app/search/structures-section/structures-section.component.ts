@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ElementRef, Renderer2 } from '@angular/core';
 
 import { ConfigurationService } from 'src/app/core/configuration.service';
 import * as pvFormat from '../result-section/protvista.model';
@@ -24,12 +24,13 @@ export class StructuresSectionComponent {
     if (data) {
       this.haveResults = true;
       this.protvistaData = this.convertToProtvistaFormat(this.resultData);
+      this.addProtvista()
     } else {
       this.haveResults = false;
     }
   }
 
-  constructor(private configService: ConfigurationService) { }
+  constructor(private elm: ElementRef, private renderer: Renderer2, private configService: ConfigurationService) { }
 
   convertToProtvistaFormat(resultData: SummaryResponse): Partial<pvFormat.Accession> {
     let protvistaData: Partial<pvFormat.Accession> = {
@@ -150,4 +151,21 @@ export class StructuresSectionComponent {
       molstarPlugin.visual.update(options);
     }
   }
+
+  addProtvista() {
+    const pvParentEle = this.elm.nativeElement.querySelectorAll('.appPvContainer')[0];
+
+    if (pvParentEle) {
+
+      const oldPvEle = this.elm.nativeElement.querySelectorAll('.protvista-pdb')[0];
+      if (oldPvEle) {
+        oldPvEle.remove();
+      }
+      const pvEle = this.renderer.createElement('protvista-pdb');
+      this.renderer.setAttribute(pvEle, 'custom-data', 'true');
+      this.renderer.appendChild(pvParentEle, pvEle);
+      this.renderer.setProperty(pvEle, 'viewerdata', this.protvistaData);
+    }
+  }
+
 }
