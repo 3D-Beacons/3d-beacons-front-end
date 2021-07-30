@@ -37,10 +37,10 @@ export class SearchComponent implements OnInit {
     this.error = null;
     this.searchService.getUniProtEntry(query).subscribe(
       entryData => {
-        console.log('Received UniProt entry response', entryData);
+        console.debug('Received UniProt entry response', entryData);
         this.searchService.getUniProtSummary(query).subscribe(
           summaryData => {
-            console.log('Received summary response', summaryData);
+            console.debug('Received summary response', summaryData);
             let tempSummaryData: SummaryResponse = summaryData;
             tempSummaryData.uniprot_entry.sequence_length = entryData.sequence.length;
             tempSummaryData.uniprot_entry.sequence = entryData.sequence.sequence;
