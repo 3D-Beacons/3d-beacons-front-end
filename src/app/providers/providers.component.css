@@ -35,3 +35,9 @@
 .no-left-padding {
   padding-left: 0 !important;
 }
+
+h3 {
+  font-size: 24px;
+  font-weight: normal;
+  padding-top: 25px;
+}

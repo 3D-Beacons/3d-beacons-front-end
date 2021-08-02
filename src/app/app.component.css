@@ -22,7 +22,6 @@
   text-align: right;
 }
 
-/* Screen height of >720 */
 @media screen and (max-width: 39.9375em) {
   #nav-block {
     padding-top: 15px;

@@ -4,10 +4,23 @@
 
 .summary-box {
   float: left !important;
+  height: 265px;
 }
 
 .summary-box i {
   font-size: 6em;
+}
+
+@media screen and (max-width: 39.9375em) {
+  .summary-box i {
+    font-size: 4em;
+  }
+  .summary-box {
+    height: 220px;
+  }
+  .summary-boxes {
+    margin-bottom: 25px;
+  }
 }
 
 .summary-count {

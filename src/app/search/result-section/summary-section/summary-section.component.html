@@ -1,6 +1,6 @@
 <div class="row summary-boxes">
   <div class="large-1 columns">&nbsp;</div>
-  <div *ngFor="let data of summaryData" class="large-2 columns summary-box">
+  <div *ngFor="let data of summaryData" class="large-2 medium-3 small-6 columns summary-box">
     <i class="{{ data.icon }}" [ngStyle]="getIconStyle(data.count)"></i>
     <br>
     <span class="summary-count">{{ data.count ? data.count : 0 }}</span>

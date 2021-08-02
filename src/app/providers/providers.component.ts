@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-providers',
   templateUrl: './providers.component.html',
   styleUrls: ['./providers.component.css']
 })
-export class ProvidersComponent implements OnInit {
+export class ProvidersComponent {
 
   dataProviders: any;
 
@@ -13,32 +13,33 @@ export class ProvidersComponent implements OnInit {
     this.dataProviders = [
       {
         name: 'Protein Data Bank in Europe',
-        url: ''
+        url: 'https://www.ebi.ac.uk/pdbe/'
       },
       {
         name: 'Protein Ensemble Database',
-        url: ''
+        url: 'https://proteinensemble.org/'
       },
       {
         name: 'AlphaFold Protein Structure Database',
-        url: ''
+        url: 'https://www.alphafold.ebi.ac.uk/'
       },
       {
         name: 'SWISS-MODEL',
-        url: ''
+        url: 'https://swissmodel.expasy.org/'
       },
       {
         name: 'Genome3D',
-        url: ''
+        url: 'http://www.genome3d.net/'
       },
       {
         name: 'SASBDB',
-        url: ''
+        url: 'https://www.sasbdb.org/'
       },
+      {
+        name: 'PDBe-KB',
+        url: 'https://pdbe-kb.org'
+      }
     ];
-  }
-
-  ngOnInit(): void {
   }
 
 }
