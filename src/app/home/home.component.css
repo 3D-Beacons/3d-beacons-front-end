@@ -1,4 +1,66 @@
-#background {
- color: #435078;
-  margin-bottom: 30px;
+h2 {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+h3 {
+  font-size: 24px;
+  font-weight: normal;
+  margin-top: 25px;
+}
+
+
+#welcome-text {
+  background-color: #DDE4FC;
+}
+
+.home-row, .welcome-row, .providers-row {
+  max-width: 100%;
+}
+
+.home-row {
+  margin-top: 45px;
+}
+
+#welcome-text p {
+  font-size: 32px;
+  padding-top: 25px;
+  padding-bottom: 15px;
+  text-align: center;
+  font-weight: 300;
+}
+
+.home-text {
+  float: left !important;
+  font-size: 18px;
+}
+
+.providers {
+  float: left !important;
+}
+
+.providers a {
+  font-size: 14px !important;
+}
+
+.provider {
+  margin-bottom: 10px;
+}
+
+.home-text a, .providers a {
+  text-decoration: none;
+  border-bottom: none;
+  color: #47547E;
+  font-weight: bold;
+}
+
+.home-text a:hover, .providers a:hover {
+  border-bottom: #ffae00 1px solid !important;
+  color: #ffae00;
+}
+
+.providers-row {
+  background-color: #FFF3D8;
+  margin-top: 40px;
+  padding-top: 20px;
 }

@@ -1,31 +1,42 @@
 <div>
   <header id="masthead" class="masthead compact-for-data">
     <div class="masthead-inner row expanded">
-      <div class="padding-left-large small-12" id="local-title">
-        <a routerLink="/">
-          <img src="./assets/img/3d-beacons-logo-transparent.png" alt="Image" style="width: 50px; float: left">
-        </a>
-        <h1 id="main-title">3D-Beacons Network</h1>
+      <div class="small-12 medium-10 medium-offset-1 large-8 large-offset-2 columns" id="local-title">
+        <div class="small-12 medium-8 columns">
+          <a routerLink="/">
+            <img src="./assets/img/3d-beacons-logo-transparent.png" alt="Image"  id="logo">
+          </a>
+          <h1 id="main-title"> - Beacons Network</h1>
+        </div>
+        <div class="small-12 medium-4 columns" id="nav-block">
+          <a routerLink="/" class="nav-text">Home</a>
+          <a routerLink="/" class="nav-text">Documentation</a>
+        </div>
       </div>
     </div>
-    <div class="row expanded">
-      <nav class="float-left columns">
-        <ul id="local-nav" class="dropdown menu float-left" data-description="navigational">
-          <li><a routerLink="/">Home <i class="icon icon-common icon-home"></i></a></li>
-          <li><a routerLink="/search">Search <i class="icon icon-common icon-search"></i></a></li>
-          <li><a href="https://github.com/3D-Beacons/3d-beacons-documentation/wiki">
-            Documentation <i class="icon icon-common icon-external-link-alt"></i></a></li>
-        </ul>
-      </nav>
+    <div class="masthead-inner row expanded">
+      <div id="search-row" class="small-12 columns">
+        <div class="small-12 medium-10 medium-offset-1 large-8 large-offset-2 columns no-left-padding" id="header-search">
+          <form>
+              <div class="small-10 columns no-left-padding">
+                <input id="search-input-field" formControlName="searchTerm" type="search" placeholder="Search for UniProt accession">
+              </div>
+              <div class="small-2 columns">
+                <button class="vf-search__button | vf-button vf-button--secondary" id="search-button">
+                  <span class="hide-for-small-only vf-button__text">Search</span>
+                  <svg class="show-for-small-only vf-icon vf-icon--search-btn | vf-button__icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" viewBox="0 0 140 140" width="16" height="16">
+                    <g transform="matrix(5.833333333333333,0,0,5.833333333333333,0,0)">
+                      <path d="M23.414,20.591l-4.645-4.645a10.256,10.256,0,1,0-2.828,2.829l4.645,4.644a2.025,2.025,0,0,0,2.828,0A2,2,0,0,0,23.414,20.591ZM10.25,3.005A7.25,7.25,0,1,1,3,10.255,7.258,7.258,0,0,1,10.25,3.005Z" fill="#3B6FB6" stroke="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="0"></path>
+                    </g>
+                  </svg>
+                </button>
+              </div>
+          </form>
+        </div>
+      </div>
+
     </div>
   </header>
 </div>
-<div id="content">
-  <section id="main-content-area" class="row expanded" role="main">
-    <div class="columns">
-      <section>
-        <router-outlet></router-outlet>
-      </section>
-    </div>
-  </section>
-</div>
+
+<router-outlet></router-outlet>
