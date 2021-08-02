@@ -57,7 +57,7 @@
       let modelUrl = e.getAttribute("data-url");
       let modelFormat = e.getAttribute("data-format");
 
-      //Get element from HTML/Template to place the viewer 
+      //Get element from HTML/Template to place the viewer
       var viewerContainer = document.getElementById('molstar-container');
 
       let data = {
@@ -66,7 +66,9 @@
           format: modelFormat
         },
         hideControls: true,
-        subscribeEvents: true
+        subscribeEvents: true,
+        bgColor: {r: 255, g: 255, b: 255},
+        hideCanvasControls: ['selection', 'animation', 'controlToggle', 'controlInfo']
       }
       if (!molstarRendered) {
         //Call render method to display the 3D view
