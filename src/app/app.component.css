@@ -19,7 +19,7 @@
 #nav-block {
   padding-top: 50px;
   padding-left: 15px;
-  text-align: center;
+  text-align: right;
 }
 
 /* Screen height of >720 */
@@ -54,10 +54,15 @@
   height: 44px;
   font-size: 18px;
   border-width: 2px;
+  /*width: 100%;*/
 }
 
 #content {
   max-width: 1200px;
   margin: auto;
   padding-top: 25px;
+}
+
+.no-left-padding {
+  padding-left: 0 !important;
 }

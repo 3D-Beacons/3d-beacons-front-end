@@ -16,9 +16,9 @@
     </div>
     <div class="masthead-inner row expanded">
       <div id="search-row" class="small-12 columns">
-        <div class="small-12 medium-10 medium-offset-1 large-8 large-offset-2 columns" id="header-search">
+        <div class="small-12 medium-10 medium-offset-1 large-8 large-offset-2 columns no-left-padding" id="header-search">
           <form>
-              <div class="small-10 columns">
+              <div class="small-10 columns no-left-padding">
                 <input id="search-input-field" formControlName="searchTerm" type="search" placeholder="Search for UniProt accession">
               </div>
               <div class="small-2 columns">
@@ -39,12 +39,4 @@
   </header>
 </div>
 
-<div id="content">
-  <section id="main-content-area" class="row expanded" role="main">
-    <div class="columns">
-      <section>
-        <router-outlet></router-outlet>
-      </section>
-    </div>
-  </section>
-</div>
+<router-outlet></router-outlet>
