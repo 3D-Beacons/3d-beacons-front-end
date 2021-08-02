@@ -10,7 +10,7 @@ export const EXPECTED_STRUCTURE_PROTVISTA: pvFormat.Accession = {
                 {
                     accession: '2rh1',
                     labelType: 'text',
-                    label: '<strong><a target=\"_blank\" href=\"https://www.ebi.ac.uk/pdbe/coordinates/2rh1/full?encoding=bcif&lowPrecisionCoords=1\">2rh1</a></strong>',
+                    label: '<strong><a data-url=\"https://www.ebi.ac.uk/pdbe/static/entry/2rh1_updated.cif\" data-format=\"mmcif\" onclick=\"updateMolstar(this)\">2rh1</a></strong>',
                     color: '#085f5c',
                     type: 'Structure',
                     tooltipContent: 'Structure',
@@ -21,7 +21,7 @@ export const EXPECTED_STRUCTURE_PROTVISTA: pvFormat.Accession = {
                                 {
                                     start: 1,
                                     end: 365,
-                                    tooltipContent: 'UniProt range: 1-365<br>Provider: PDBE<br>Category: EXPERIMENTALLY DETERMINED<br>Resolution: 2.4Å<br><a target="_blank" href="https://www.ebi.ac.uk/pdbe/coordinates/2rh1/full?encoding=bcif&lowPrecisionCoords=1"' +
+                                    tooltipContent: 'UniProt range: 1-365<br>Provider: PDBE<br>Category: EXPERIMENTALLY DETERMINED<br>Resolution: 2.4Å<br><a target="_blank" href="https://www.ebi.ac.uk/pdbe/static/entry/2rh1_updated.cif"' +
                                     '>Click to Download <i class="icon icon-common icon-download"></i></a>'
                                 }
                             ]
@@ -38,7 +38,7 @@ export const EXPECTED_STRUCTURE_PROTVISTA: pvFormat.Accession = {
                 {
                     accession: '60248fbc29ae6a15f7916ed8',
                     labelType: 'text',
-                    label: '<strong><a target=\"_blank\" href=\"https://beta.swissmodel.expasy.org/3d-beacons/uniprot/P07550.pdb?range=29-342&template=5d5a.1.A&provider=swissmodel\">60248fbc29ae6a15f7916ed8</a></strong>',
+                    label: '<strong><a data-url=\"https://beta.swissmodel.expasy.org/3d-beacons/uniprot/P07550.pdb?range=29-342&template=5d5a.1.A&provider=swissmodel\" data-format="pdb">60248fbc29ae6a15f7916ed8</a></strong>',
                     color: '#7474bf',
                     type: 'Structure',
                     tooltipContent: 'Structure',

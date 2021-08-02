@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ElementRef, Renderer2 } from '@angular/core';
 
 import { ConfigurationService } from 'src/app/core/configuration.service';
 import * as pvFormat from '../result-section/protvista.model';
@@ -24,12 +24,13 @@ export class StructuresSectionComponent {
     if (data) {
       this.haveResults = true;
       this.protvistaData = this.convertToProtvistaFormat(this.resultData);
+      this.addProtvista()
     } else {
       this.haveResults = false;
     }
   }
 
-  constructor(private configService: ConfigurationService) { }
+  constructor(private elm: ElementRef, private renderer: Renderer2, private configService: ConfigurationService) { }
 
   convertToProtvistaFormat(resultData: SummaryResponse): Partial<pvFormat.Accession> {
     let protvistaData: Partial<pvFormat.Accession> = {
@@ -41,7 +42,9 @@ export class StructuresSectionComponent {
       }
     };
 
+    let firstStructure: boolean = true;
     protvistaData.length = resultData.uniprot_entry.sequence_length;
+    protvistaData.sequence = resultData.uniprot_entry.sequence;
 
     // prepare tracks
     let tracks: { [key: string]: pvFormat.Track } = {};
@@ -55,10 +58,16 @@ export class StructuresSectionComponent {
         }
       }
 
+      // display Mol* for the very first structure in the list
+      if (firstStructure) {
+        this.handleMolstar(structure);
+        firstStructure = !firstStructure;
+      }
+
       let trackDataItem: pvFormat.Data = {
         accession: structure.model_identifier,
         labelType: 'text',
-        label: '<strong><a target="_blank" href="' + structure.model_url + '">' + structure.model_identifier + '</a></strong>',
+        label: this.prepareLabel(structure),
         color: this.configService.getProviderColor(structure.provider),
         type: 'Structure',
         tooltipContent: 'Structure',
@@ -75,10 +84,10 @@ export class StructuresSectionComponent {
       tracks[structure.model_category].data.push(trackDataItem);
       this.availableProviders.add(structure.provider);
     });
-     
+
     for (let track in tracks) {
       // set count for each category
-      tracks[track]["label"] += ' (' +tracks[track]["data"].length +')'
+      tracks[track]["label"] += ' (' + tracks[track]["data"].length + ')'
       protvistaData.tracks.push(tracks[track]);
     }
 
@@ -92,9 +101,9 @@ export class StructuresSectionComponent {
     tooltip += 'UniProt range: ' + item.uniprot_start + '-' + item.uniprot_end;
     tooltip += '<br>Provider: ' + item.provider;
     tooltip += '<br>Category: ' + item.model_category;
-    tooltip += item.resolution ? '<br>Resolution: ' + item.resolution +'Å' : '';
+    tooltip += item.resolution ? '<br>Resolution: ' + item.resolution + 'Å' : '';
     tooltip += item.qmean_avg_local_score ? '<br>QMEAN: ' + item.qmean_avg_local_score : '';
-    tooltip += '<br><a target="_blank" href="' +item.model_url +'">Click to Download <i class="icon icon-common icon-download"></i></a>';
+    tooltip += '<br><a target="_blank" href="' + item.model_url + '">Click to Download <i class="icon icon-common icon-download"></i></a>';
 
     return tooltip;
   }
@@ -115,4 +124,48 @@ export class StructuresSectionComponent {
       }
     }
   }
+
+  prepareLabel(structure: Structure) {
+    return '<strong><a data-url="' + structure.model_url + '" data-format="' +
+      (structure.model_format != undefined ? structure.model_format.toLowerCase() : "") +
+      '" onclick="updateMolstar(this)">' + structure.model_identifier + '</a></strong>'
+  }
+
+  handleMolstar(structure: Structure) {
+    let molstarPlugin = window["molstarPlugin"]
+    let viewerContainer = document.getElementById('molstar-container');
+    let options = {
+      customData: {
+        url: structure.model_url,
+        format: structure.model_format != undefined ? structure.model_format.toLowerCase() : ""
+      },
+      hideControls: true,
+      subscribeEvents: true
+    }
+
+    // only render molstar for first time, use visual.update function for updates
+    if (!window["molstarRendered"]) {
+      molstarPlugin.render(viewerContainer, options);
+      window["molstarRendered"] = true;
+    } else {
+      molstarPlugin.visual.update(options);
+    }
+  }
+
+  addProtvista() {
+    const pvParentEle = this.elm.nativeElement.querySelectorAll('.appPvContainer')[0];
+
+    if (pvParentEle) {
+
+      const oldPvEle = this.elm.nativeElement.querySelectorAll('.protvista-pdb')[0];
+      if (oldPvEle) {
+        oldPvEle.remove();
+      }
+      const pvEle = this.renderer.createElement('protvista-pdb');
+      this.renderer.setAttribute(pvEle, 'custom-data', 'true');
+      this.renderer.appendChild(pvParentEle, pvEle);
+      this.renderer.setProperty(pvEle, 'viewerdata', this.protvistaData);
+    }
+  }
+
 }

@@ -5,7 +5,7 @@ import { Observable } from "rxjs";
 @Injectable()
 export class BeaconsInterceptor implements HttpInterceptor {
     intercept(httpRequest: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        console.log('Sending request', httpRequest);
+        console.debug('Sending request', httpRequest);
         return next.handle(httpRequest);
     }
 }

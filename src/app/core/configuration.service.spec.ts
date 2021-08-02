@@ -35,4 +35,8 @@ describe('ConfigurationService', () => {
     }
   });
 
+  it('should return proper example accessions', () => {
+    expect(service.getExampleAccessions()).toEqual(['P0DTD1', 'P38398']);
+  });
+
 });

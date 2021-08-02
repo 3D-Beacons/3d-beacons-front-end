@@ -57,12 +57,6 @@
   /*width: 100%;*/
 }
 
-#content {
-  max-width: 1200px;
-  margin: auto;
-  padding-top: 25px;
-}
-
 .no-left-padding {
   padding-left: 0 !important;
 }

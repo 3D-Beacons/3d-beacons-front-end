@@ -17,7 +17,8 @@ export const MOCK_SUMMARY_RESPONSE_PROTVISTA: SummaryResponse = {
             uniprot_end: 365,
             resolution: 2.4,
             coverage: 80.39,
-            model_url: 'https://www.ebi.ac.uk/pdbe/coordinates/2rh1/full?encoding=bcif&lowPrecisionCoords=1'
+            model_url: 'https://www.ebi.ac.uk/pdbe/static/entry/2rh1_updated.cif',
+            model_format: 'MMCIF'
         },
         {
             model_identifier: '60248fbc29ae6a15f7916ed8',
@@ -30,7 +31,8 @@ export const MOCK_SUMMARY_RESPONSE_PROTVISTA: SummaryResponse = {
             coverage: 0.76,
             qmean_version: '4.2.0',
             qmean_avg_local_score: 0.576,
-            model_url: 'https://beta.swissmodel.expasy.org/3d-beacons/uniprot/P07550.pdb?range=29-342&template=5d5a.1.A&provider=swissmodel'
+            model_url: 'https://beta.swissmodel.expasy.org/3d-beacons/uniprot/P07550.pdb?range=29-342&template=5d5a.1.A&provider=swissmodel',
+            model_format: 'PDB'
         }
     ]
 }
