@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 
-import { ConfigurationService } from '../core/configuration.service';
-import { SummaryResponse } from './result-section/result-section.model';
-import { SearchService } from './search.service';
+import {ConfigurationService} from '../core/configuration.service';
+import {SummaryResponse} from './result-section/result-section.model';
+import {SearchService} from './search.service';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-search',
@@ -15,14 +16,26 @@ export class SearchComponent implements OnInit {
     searchTerm: new FormControl(null, Validators.required)
   });
 
+  accession: string;
+  private sub: any;
   error: string = null;
   resultData: SummaryResponse = null;
   isFetching: boolean = false;
   exampleAccessions: string[];
 
-  constructor(private searchService: SearchService, private configService: ConfigurationService) { }
+  constructor(
+    private route: ActivatedRoute,
+    private searchService: SearchService,
+    private configService: ConfigurationService) {
+  }
 
   ngOnInit() {
+    this.sub = this.route.params.subscribe(params => {
+      this.accession = params.id;
+      this.onSearch(this.accession);
+    });
+
+
     this.exampleAccessions = this.configService.getExampleAccessions();
     // this.onSearch('P38398');
   }

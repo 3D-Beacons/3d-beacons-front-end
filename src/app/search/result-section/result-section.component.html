@@ -1,5 +1,7 @@
 <div *ngIf="haveResults" style="margin-top:30px;">
-    <h3>Structures available for UniProt accession {{ resultData.uniprot_entry.ac }} ({{ resultData.uniprot_entry.id }}) </h3>
-    <br/>
+    <h3>
+      <span id="sum-count">{{getSum()}}</span>
+      Structures available for UniProt accession {{ resultData.uniprot_entry.ac }} ({{ resultData.uniprot_entry.id }})
+    </h3>
     <app-summary-section [summaryData]="summaryData"></app-summary-section>
 </div>

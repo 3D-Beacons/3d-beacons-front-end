@@ -11,7 +11,7 @@ export class ResultSectionComponent {
   summaryData: any[];
   private _resultData: any;
   haveResults = false;
-  
+
   @Input()
   get resultData(): any {
     return this._resultData;
@@ -28,12 +28,22 @@ export class ResultSectionComponent {
 
   constructor(private summaryService: SummaryService) { }
 
+  getSum(): number {
+    let sum = 0;
+    this.summaryData.forEach(item => {
+      if (item.count) {
+        sum += item.count;
+      }
+    });
+    return sum;
+  }
+
   prepareSummaryData() {
-    let categories = this.summaryService.getCategories();
+    const categories = this.summaryService.getCategories();
 
     this.resultData.structures.map((structure) => {
-      let categoryId = this.summaryService.getProviderCategory(structure.provider);
-      let category = categories[categoryId];
+      const categoryId = this.summaryService.getProviderCategory(structure.provider);
+      const category = categories[categoryId];
 
       if (!category.count) {
         category.count = 0;
@@ -41,10 +51,11 @@ export class ResultSectionComponent {
       category.count++;
     });
 
-    let tempList = [];
+    const tempList = [];
     for (let c in categories) {
       tempList.push(categories[c]);
     }
+
     return tempList;
   }
 

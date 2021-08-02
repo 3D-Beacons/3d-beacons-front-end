@@ -11,9 +11,9 @@ export class SummarySectionComponent {
 
   getIconStyle(count: number) {
     if (count > 0) {
-      return {'font-size': '6rem', 'color': '#47547E'};
+      return {'color': '#47547E'};
     } else {
-      return {'font-size': '6rem', 'color': 'lightgrey'};
+      return {'color': 'lightgrey'};
     }
   }
 

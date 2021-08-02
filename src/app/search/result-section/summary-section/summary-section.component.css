@@ -1,0 +1,20 @@
+.summary-boxes {
+  margin-bottom: 50px;
+}
+
+.summary-box {
+  float: left !important;
+}
+
+.summary-box i {
+  font-size: 6em;
+}
+
+.summary-count {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.summary-label {
+  font-size: 18px;
+}

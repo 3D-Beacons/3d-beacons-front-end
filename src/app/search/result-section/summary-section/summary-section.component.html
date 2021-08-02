@@ -1,19 +1,10 @@
-<div class="row" style="margin-bottom: 30px;">
-    <div class="col-sm" *ngFor="let data of summaryData">
-        <div class="row">
-            <div class="col-sm">
-                <i class="{{ data.icon }}" [ngStyle]="getIconStyle(data.count)"></i>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm">
-                <strong style="font-size: larger;">{{ data.count ? data.count : 0 }}</strong>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm">
-                <strong>{{ data.displayName }}</strong>
-            </div>
-        </div>
-    </div>
+<div class="row summary-boxes">
+  <div class="large-1 columns">&nbsp;</div>
+  <div *ngFor="let data of summaryData" class="large-2 columns summary-box">
+    <i class="{{ data.icon }}" [ngStyle]="getIconStyle(data.count)"></i>
+    <br>
+    <span class="summary-count">{{ data.count ? data.count : 0 }}</span>
+    <br>
+    <span class="summary-label">{{ data.displayName }}</span>
+  </div>
 </div>

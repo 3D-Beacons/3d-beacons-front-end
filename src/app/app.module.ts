@@ -19,7 +19,7 @@ import { ProvidersComponent } from './providers/providers.component';
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'docs', component: DocsComponent },
-  { path: 'search', component: SearchComponent }
+  { path: 'search/:id', component: SearchComponent }
 ];
 
 @NgModule({

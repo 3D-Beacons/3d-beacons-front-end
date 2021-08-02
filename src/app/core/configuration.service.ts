@@ -24,6 +24,7 @@ export class ConfigurationService {
       case 'PDBE': return '#085f5c';
       case 'SWISSMODEL': return '#7474bf';
       case 'PED': return '#2274a5';
+      case 'AlphaFold DB': return '#0053d6';
       default: return 'rgb(255,99,163)';
     }
   }

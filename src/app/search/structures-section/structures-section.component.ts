@@ -33,7 +33,7 @@ export class StructuresSectionComponent {
   constructor(private elm: ElementRef, private renderer: Renderer2, private configService: ConfigurationService) { }
 
   convertToProtvistaFormat(resultData: SummaryResponse): Partial<pvFormat.Accession> {
-    let protvistaData: Partial<pvFormat.Accession> = {
+    const protvistaData: Partial<pvFormat.Accession> = {
       largeLabels: true,
       tracks: [],
       legends: {
@@ -47,15 +47,16 @@ export class StructuresSectionComponent {
     protvistaData.sequence = resultData.uniprot_entry.sequence;
 
     // prepare tracks
-    let tracks: { [key: string]: pvFormat.Track } = {};
+    const tracks: { [key: string]: pvFormat.Track } = {};
     resultData.structures.map(structure => {
-      if (tracks[structure.model_category] == undefined) {
+      if (tracks[structure.model_category] === undefined) {
         tracks[structure.model_category] = {
           labelType: 'text',
-          label: structure.model_category,
+          label: structure.model_category.charAt(0).toUpperCase() + structure.model_category.slice(1).toLowerCase(),
+          labelColor: '#6977A6',
           data: [],
           overlapping: 'true'
-        }
+        };
       }
 
       // display Mol* for the very first structure in the list
@@ -69,6 +70,7 @@ export class StructuresSectionComponent {
         labelType: 'text',
         label: this.prepareLabel(structure),
         color: this.configService.getProviderColor(structure.provider),
+        labelColor: '#dde4fc',
         type: 'Structure',
         tooltipContent: 'Structure',
         labelTooltip: structure.model_identifier + ' (' + structure.provider + ')',
@@ -140,8 +142,11 @@ export class StructuresSectionComponent {
         format: structure.model_format != undefined ? structure.model_format.toLowerCase() : ""
       },
       hideControls: true,
-      subscribeEvents: true
-    }
+      subscribeEvents: true,
+      selectInteraction: false,
+      bgColor: {r: 255, g: 255, b: 255},
+      hideCanvasControls: ['selection', 'animation', 'controlToggle', 'controlInfo']
+    };
 
     // only render molstar for first time, use visual.update function for updates
     if (!window["molstarRendered"]) {

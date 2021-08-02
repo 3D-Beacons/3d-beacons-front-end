@@ -59,3 +59,19 @@
 .no-left-padding {
   padding-left: 0 !important;
 }
+
+#search-examples {
+  float: left;
+  margin-bottom: 15px;
+}
+
+.search-example {
+  margin-left: 15px;
+  border-bottom: none !important;
+  text-decoration: none !important;
+}
+
+.search-example:hover {
+  border-bottom: #ffae00 1px solid !important;
+  color: #ffae00;
+}
