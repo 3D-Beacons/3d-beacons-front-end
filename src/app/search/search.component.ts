@@ -24,6 +24,7 @@ export class SearchComponent implements OnInit {
 
   ngOnInit() {
     this.exampleAccessions = this.configService.getExampleAccessions();
+    // this.onSearch('P38398');
   }
 
   onSearch(query?: string) {

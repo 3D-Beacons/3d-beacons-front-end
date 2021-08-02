@@ -12,11 +12,11 @@ export class ConfigurationService {
   constructor() { }
 
   getUniProtSummaryUrl(): string {
-    return this.apiRoot +'/uniprot/summary/';
+    return this.apiRoot + '/uniprot/summary/';
   }
 
   getUniProtDetailsUrl(): string {
-    return this.apiRoot +'/uniprot/';
+    return this.apiRoot + '/uniprot/';
   }
 
   getProviderColor(provider: string): string {

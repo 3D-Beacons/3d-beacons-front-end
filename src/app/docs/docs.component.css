@@ -1,4 +1,9 @@
 h2 {
+  font-size: 38px;
+  font-weight: bold;
+}
+
+h2 {
   font-size: 24px;
   font-weight: bold;
 }
@@ -9,17 +14,28 @@ h3 {
   margin-top: 25px;
 }
 
+ul {
+  padding-left: 15px;
+}
+
+li {
+  margin-bottom: 10px;
+}
 
 #welcome-text {
   background-color: #DDE4FC;
 }
 
-.home-row, .welcome-row {
+.docs-row, .welcome-row {
   max-width: 100%;
 }
 
-.home-row {
+.docs-row {
   margin-top: 45px;
+}
+
+.docs-text {
+  font-size: 18px;
 }
 
 #welcome-text p {
@@ -30,19 +46,18 @@ h3 {
   font-weight: 300;
 }
 
-.home-text {
+.docs-text {
   float: left !important;
-  font-size: 18px;
 }
 
-.home-text a {
+.docs-text a {
   text-decoration: none;
   border-bottom: none;
   color: #47547E;
   font-weight: bold;
 }
 
-.home-text a:hover {
+.docs-text a:hover {
   border-bottom: #ffae00 1px solid !important;
   color: #ffae00;
 }
