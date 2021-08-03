@@ -32,7 +32,7 @@ describe('StructuresSectionComponent', () => {
 
   it('should set haveResults properly when there is a result data', fakeAsync(() => {
     spyOn(component, 'handleMolstar').and.returnValue();
-    
+
     component.resultData = MOCK_SUMMARY_RESPONSE_PROTVISTA;
     expect(component.haveResults).toBeTruthy();
     component.resultData = null;
@@ -53,8 +53,8 @@ describe('StructuresSectionComponent', () => {
       coverage: 80.39,
       model_url: 'https://www.ebi.ac.uk/pdbe/static/entry/2rh1_updated.cif'
     };
-    const expectedTooltip1 = 
-      'UniProt range: 1-365<br>Provider: PDBE<br>Category: EXPERIMENTALLY DETERMINED<br>Resolution: 2.4Å' +
+    const expectedTooltip1 =
+      'UniProt range: 1-365<br>Provider: PDBE<br>Category: Experimentally determined<br>Resolution: 2.4Å' +
       '<br><a target="_blank" href="https://www.ebi.ac.uk/pdbe/static/entry/2rh1_updated.cif"' +
       '>Click to Download <i class="icon icon-common icon-download"></i></a>';
 
@@ -72,7 +72,7 @@ describe('StructuresSectionComponent', () => {
       coverage: 80.39,
       model_url: 'https://www.ebi.ac.uk/pdbe/static/entry/2rh1_updated.cif'
     };
-    const expectedTooltip2 = 'UniProt range: 1-365<br>Provider: PDBE<br>Category: EXPERIMENTALLY DETERMINED' +
+    const expectedTooltip2 = 'UniProt range: 1-365<br>Provider: PDBE<br>Category: Experimentally determined' +
     '<br><a target="_blank" href="https://www.ebi.ac.uk/pdbe/static/entry/2rh1_updated.cif"' +
     '>Click to Download <i class="icon icon-common icon-download"></i></a>';
 
