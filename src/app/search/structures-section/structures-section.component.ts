@@ -131,18 +131,24 @@ export class StructuresSectionComponent {
   }
 
   prepareLabel(structure: Structure) {
-    return '<strong><a data-url="' + structure.model_url + '" data-format="' +
-      (structure.model_format != undefined ? structure.model_format.toLowerCase() : "") +
-      '" onclick="updateMolstar(this)">' + structure.model_identifier + '</a></strong>'
+    return '' +
+      '<strong>' + structure.model_identifier + '</strong>' +
+      '<a data-url="' + structure.model_url + '" data-format="' +
+      (structure.model_format !== undefined ? structure.model_format.toLowerCase() : "") +
+      '" onclick="updateMolstar(this)" style="border-bottom: none;">' +
+      '<i class="icon icon-common icon-eye" style="padding-left: 10px;"></i></a>' +
+      '<a target="_blank" href="' + structure.model_url + '" style="border-bottom: none;" download>' +
+      '<i class="icon icon-common icon-download" style="padding-left: 5px;"></i>' +
+      '</a>';
   }
 
   handleMolstar(structure: Structure) {
-    let molstarPlugin = window["molstarPlugin"]
+    let molstarPlugin = window['molstarPlugin'];
     let viewerContainer = document.getElementById('molstar-container');
     let options = {
       customData: {
         url: structure.model_url,
-        format: structure.model_format != undefined ? structure.model_format.toLowerCase() : ""
+        format: structure.model_format != undefined ? structure.model_format.toLowerCase() : ''
       },
       hideControls: true,
       subscribeEvents: true,
