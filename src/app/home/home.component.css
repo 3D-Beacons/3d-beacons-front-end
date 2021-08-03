@@ -11,7 +11,7 @@ h3 {
 
 
 #welcome-text {
-  background-color: #DDE4FC;
+  background-color: #C0DCDB;
 }
 
 .home-row, .welcome-row {
@@ -23,8 +23,8 @@ h3 {
 }
 
 #welcome-text p {
-  font-size: 32px;
-  padding-top: 25px;
+  font-size: 30px;
+  padding-top: 20px;
   padding-bottom: 15px;
   text-align: center;
   font-weight: 300;
@@ -38,7 +38,7 @@ h3 {
 .home-text a {
   text-decoration: none;
   border-bottom: none;
-  color: #47547E;
+  color: #085F5C;
   font-weight: bold;
 }
 

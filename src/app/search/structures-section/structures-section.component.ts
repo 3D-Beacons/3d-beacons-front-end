@@ -52,8 +52,11 @@ export class StructuresSectionComponent {
       if (tracks[structure.model_category] === undefined) {
         tracks[structure.model_category] = {
           labelType: 'text',
-          label: structure.model_category.charAt(0).toUpperCase() + structure.model_category.slice(1).toLowerCase(),
-          labelColor: '#6977A6',
+          label: '<span style="color:#fff">'
+            + structure.model_category.charAt(0).toUpperCase()
+            + structure.model_category.slice(1).toLowerCase()
+            + '</span>',
+          labelColor: '#217976',
           data: [],
           overlapping: 'true'
         };
@@ -70,7 +73,7 @@ export class StructuresSectionComponent {
         labelType: 'text',
         label: this.prepareLabel(structure),
         color: this.configService.getProviderColor(structure.provider),
-        labelColor: '#dde4fc',
+        labelColor: '#C0DCDB',
         type: 'Structure',
         tooltipContent: 'Structure',
         labelTooltip: structure.model_identifier + ' (' + structure.provider + ')',
@@ -82,14 +85,14 @@ export class StructuresSectionComponent {
           }
           ]
         }]
-      }
+      };
       tracks[structure.model_category].data.push(trackDataItem);
       this.availableProviders.add(structure.provider);
     });
 
     for (let track in tracks) {
       // set count for each category
-      tracks[track]["label"] += ' (' + tracks[track]["data"].length + ')'
+      tracks[track]['label'] += ' <span style="color:#fff">(' + tracks[track]['data'].length + ')</span>';
       protvistaData.tracks.push(tracks[track]);
     }
 

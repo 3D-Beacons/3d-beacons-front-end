@@ -1,10 +1,14 @@
 #masthead {
-  background-color: #47547E !important;
+  background-color: #085F5C !important;
 }
 
 #logo {
   width: 86px;
   float: left;
+}
+
+#home-link {
+  padding-right: 10px;
 }
 
 #main-title {
@@ -41,7 +45,7 @@
 }
 
 #search-row {
-  background-color: #6977A6;
+  background-color: #217976;
   padding-top: 15px;
 }
 
@@ -53,6 +57,10 @@
   height: 44px;
   font-size: 18px;
   border-width: 2px;
+  border-color: #085F5C;
+  color: #085F5C;
+  --vf-button-shadow-border-color: #0F5C5A;
+  --vf-button-shadow-background-color: #0F5C5A;
 }
 
 .no-left-padding {
