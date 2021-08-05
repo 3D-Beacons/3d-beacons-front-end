@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  apiHost: 'https://wwwdev.ebi.ac.uk/pdbe/pdbe-kb/3dbeacons-hub-api/',
-  uniprotApiUrl: 'https://www.ebi.ac.uk/proteins/api/proteins/'
+  apiHost: 'https://api.com',
+  uniprotApiUrl: 'https://uniprotapi.com'
 };
 
 /*

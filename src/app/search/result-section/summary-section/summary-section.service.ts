@@ -41,6 +41,7 @@ export class SummaryService {
       PED: 'ensembl',
       GENOME3D: 'template',
       'AlphaFold DB': 'deeplearning',
+      SASBDB: 'expr',
     }
     return providerCategories[providerId];
   }
