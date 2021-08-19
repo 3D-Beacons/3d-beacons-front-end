@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -7,10 +9,14 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
-  openSearch(searchTerm: string) {
-    if (searchTerm.trim() === '') {
+  searchTerm = new FormControl('');
+
+  constructor(private router: Router){}
+
+  onSearch() {
+    if (this.searchTerm.value.trim() === '') {
       return;
     }
-    window.location.href = './search/' + searchTerm;
+    this.router.navigate(['/search/', this.searchTerm.value]);
   }
 }
