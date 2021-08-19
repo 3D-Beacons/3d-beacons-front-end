@@ -2,227 +2,125 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <title>3D Beacons Home</title>
+  <meta charset="utf-8" />
+  <title>3D-Beacons</title>
   <base href="/">
-
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="3D-Beacons network front-end" />
+  <meta name="keywords" content="3D-Beacons" />
+  <meta name="author" content="3D-Beacons, Mihaly Varadi, Sreenath Nair" />
+  <meta name="HandheldFriendly" content="true" />
+  <meta name="MobileOptimized" content="width" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#193F90" />
 
   <!-- FavIcons -->
-  <link rel="icon" type="image/png" sizes="32x32" href="./assets/icon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="./src/assets/icon/favicon-32x32.png">
 
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
-    integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://dev.ebi.emblstatic.net/web_guidelines/EBI-Framework/v1.4/images/logos/EMBL-EBI/favicons/apple-icon-114x114.png" /> <!-- For iPhone 4 Retina display (114px) -->
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://dev.ebi.emblstatic.net/web_guidelines/EBI-Framework/v1.4/images/logos/EMBL-EBI/favicons/apple-icon-72x72.png" /> <!-- For iPad (72px) -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://dev.ebi.emblstatic.net/web_guidelines/EBI-Framework/v1.4/images/logos/EMBL-EBI/favicons/apple-icon-144x144.png" /> <!-- For iPad retinat (144px) -->
+  <link rel="apple-touch-icon-precomposed" href="https://dev.ebi.emblstatic.net/web_guidelines/EBI-Framework/v1.4/images/logos/EMBL-EBI/favicons/apple-icon-57x57.png" /> <!-- For iPhone (57px) -->
+  <link rel="mask-icon" href="https://dev.ebi.emblstatic.net/web_guidelines/EBI-Framework/v1.4/images/logos/EMBL-EBI/favicons/safari-pinned-tab.svg" color="#ffffff" /> <!-- Safari icon for pinned tab -->
+  <meta name="msapplication-TileColor" content="#2b5797" /> <!-- MS Icons -->
+  <meta name="msapplication-TileImage" content="//dev.ebi.emblstatic.net/web_guidelines/EBI-Framework/v1.4/images/logos/EMBL-EBI/favicons/mstile-144x144.png" />
 
-  <!-- EBI CSS -->
-  <link rel="stylesheet" href="https://ebi.emblstatic.net/web_guidelines/EBI-Framework/v1.3/css/ebi-global.css"
-    type="text/css" media="all" />
-  <link rel="stylesheet" href="https://ebi.emblstatic.net/web_guidelines/EBI-Icon-fonts/v1.3/fonts.css" type="text/css"
-    media="all" />
-  <link rel="stylesheet" href="https://ebi.emblstatic.net/web_guidelines/EBI-Framework/v1.3/css/theme-ebi-industry.css"
-    type="text/css" media="all" />
+  <!-- CSS: implied media=all -->
+  <!-- CSS concatenated and minified via ant build script-->
+
+  <link rel="stylesheet" href="https://dev.ebi.emblstatic.net/web_guidelines/EBI-Framework/v1.4/css/ebi-global.css" type="text/css" media="all" />
+  <link rel="stylesheet" href="https://assets.emblstatic.net/vf/v2.5.0-beta.2/css/styles.css">
+  <link rel="stylesheet" href="https://dev.ebi.emblstatic.net/web_guidelines/EBI-Icon-fonts/v1.3/fonts.css" type="text/css" media="all" />
+
+
+  <!-- App CSS -->
+  <link rel="stylesheet" type="text/css" href="styles.css">
+
+  <!-- Mol* CSS -->
+  <link rel="stylesheet" type="text/css"
+    href="https://www.ebi.ac.uk/pdbe/pdb-component-library/css/pdbe-molstar-1.1.0.css">
+
+  <!-- For Light Theme include this css file instead of the above -->
+  <!--<link rel="stylesheet" type="text/css" href="https://www.ebi.ac.uk/pdbe/pdb-component-library/css/pdbe-molstar-light-1.1.0.css">-->
+  <!--
+  Tip: Set `bgColor` option to white ({r:255,g:255,b:255}) for light theme
+  -->
+  <!-- Mol* JS -->
+  <script type="text/javascript"
+    src="https://www.ebi.ac.uk/pdbe/pdb-component-library/js/pdbe-molstar-plugin-1.1.0.js"></script>
+
+  <script>
+
+    var molstarPlugin = new PDBeMolstarPlugin();
+    var molstarRendered = false;
+
+    function updateMolstar(e) {
+      let modelUrl = e.getAttribute("data-url");
+      let modelFormat = e.getAttribute("data-format");
+
+      //Get element from HTML/Template to place the viewer
+      var viewerContainer = document.getElementById('molstar-container');
+
+      let data = {
+        customData: {
+          url: modelUrl,
+          format: modelFormat
+        },
+        hideControls: true,
+        subscribeEvents: true,
+        bgColor: {r: 255, g: 255, b: 255},
+        hideCanvasControls: ['selection', 'animation', 'controlToggle', 'controlInfo']
+      }
+      if (!molstarRendered) {
+        //Call render method to display the 3D view
+        molstarPlugin.render(viewerContainer, data);
+        molstarRendered = true;
+      } else {
+        molstarPlugin.visual.update(data);
+      }
+    }
+  </script>
 
   <meta class="foundation-mq">
 </head>
 
-<body class="level2 ebi-black-bar-loaded no-global-search google-analytics-loaded" style="">
+<body class="level2 no-global-search">
 
   <!-- EBI masthead -->
   <header id="masthead-black-bar" class="clearfix masthead-black-bar">
-    <div>
-      <nav id="embl-bar" class="embl-bar global-masthead-interactive-banner">
-        <div class="row padding-bottom-medium">
-          <div class="columns padding-top-medium">
-            <button class="close-button" aria-label="Close alert" type="button"><span
-                aria-hidden="true">×</span></button>
+    <nav class="row">
+      <ul id="global-nav" class="menu">
+        <!-- set active class as appropriate -->
+        <li class="home-mobile"><a href="//www.ebi.ac.uk"></a></li>
+        <li class="home active"><a href="//www.ebi.ac.uk">EMBL-EBI</a></li>
+        <li class="services"><a href="//www.ebi.ac.uk/services">Services</a></li>
+        <li class="research"><a href="//www.ebi.ac.uk/research">Research</a></li>
+        <li class="training"><a href="//www.ebi.ac.uk/training">Training</a></li>
+        <li class="about"><a href="//www.ebi.ac.uk/about">About us</a></li>
+        <li class="search">
+          <a href="#" data-toggle="search-global-dropdown"><span class="show-for-small-only">Search</span></a>
+          <div id="search-global-dropdown" class="dropdown-pane" data-dropdown data-options="closeOnClick:true;">
+            <!-- The dropdown menu will be programatically added by script.js -->
           </div>
-          <div class="columns medium-7">
-            <div class="large-10 medium-12">
-              <div class="margin-bottom-large padding-top-xsmall margin-top-large">
-                <h3 class="no-underline inline" style="line-height: 1rem;"><a href="https://embl.org/">EMBL</a></h3> was
-                set up in 1974 as Europe’s flagship
-                laboratory for the life sciences – an intergovernmental organisation with more than 80
-                independent research groups covering the spectrum of molecular biology:
-              </div>
-            </div>
-            <div class="row large-up-3 medium-up-3 small-up-2 no-underline medium-11">
-              <div class="column padding-bottom-medium"><a class="" href="https://www.embl.de/research/index.php">
-                  <h5 class="inline underline">Research:</h5> perform basic research in molecular biology
-                </a>
-              </div>
-              <div class="column padding-bottom-medium"><a class="" href="https://www.embl.de/services/index.html">
-                  <h5 class="inline underline">Services:</h5> offer vital services to scientists in the member
-                  states
-                </a></div>
-              <div class="column padding-bottom-medium"><a class="" href="https://www.embl.de/training/index.php">
-                  <h5 class="inline underline">Training</h5> scientists, students and visitors at all
-                  levels
-                </a></div>
-              <div class="column padding-bottom-medium"><a class=""
-                  href="https://www.embl.de/research/tech_transfer/index.html">
-                  <h5 class="inline underline">Transfer</h5> and development of technology
-                </a></div>
-              <div class="column padding-bottom-medium">
-                <h5 class="inline underline">Develop</h5> new
-                instruments and methods
-              </div>
-              <div class="column padding-bottom-medium">
-                <h5 class="inline underline">Integrating</h5> life
-                science research in Europe
-              </div>
-            </div>
-            <div class="margin-top-xlarge no-underline">
-              <h3><a href="https://embl.org/" class="readmore">More
-                  about EMBL</a></h3>
-            </div>
-          </div>
-          <div class="columns medium-5">
-            <div class="large-10 medium-12">
-              <h3 class="inline">Six sites</h3>
-              <p>represent EMBL in Europe.</p>
-            </div>
-            <div class="row medium-up-2 small-up-2">
-              <div class="column">
-                <h5 class="inline"><a href="https://www.embl-barcelona.es/">Barcelona</a>
-                </h5>
-                <p class="">Tissue biology and disease modelling</p>
-              </div>
-              <div class="column">
-                <h5 class="inline"><a href="https://www.embl.fr/">Grenoble</a></h5>
-                <p class="">Structural biology</p>
-              </div>
-              <div class="column">
-                <h5 class="inline"><a href="https://www.embl-hamburg.de/">Hamburg</a></h5>
-                <p class="">Structural biology</p>
-              </div>
-              <div class="column">
-                <h5 class="inline"><a href="https://www.embl.de/">Heidelberg</a></h5>
-                <p class="">Main laboratory</p>
-              </div>
-              <div class="column">
-                <h5 class="inline"><a href="https://www.ebi.ac.uk/">Hinxton</a></h5>
-                <p class="margin-bottom-none">EMBL-EBI: European Bioinformatics Institute</p>
-              </div>
-              <div class="column">
-                <h5 class="inline"><a href="https://www.embl.it/">Rome</a></h5>
-                <p class="">Epigenetics and neurobiology</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </nav>
-    </div>
-    <div>
-      <nav class="row">
-        <ul id="global-nav" class="menu global-nav text-right">
-          <li class="home-mobile"><a href="https://www.ebi.ac.uk/"></a></li>
-          <li class="where embl hide"><a href="http://www.embl.org/">EMBL</a></li>
-          <li class="where barcelona hide"><a
-              href="https://www.ebi.ac.uk/style-lab/websites/sample-site/boilerplate/theme.html#">Barcelona</a>
-          </li>
-          <li class="where hamburg hide"><a
-              href="https://www.ebi.ac.uk/style-lab/websites/sample-site/boilerplate/theme.html#">Hamburg</a>
-          </li>
-          <li class="where grenoble hide"><a
-              href="https://www.ebi.ac.uk/style-lab/websites/sample-site/boilerplate/theme.html#">Heidelberg</a>
-          </li>
-          <li class="where grenoble hide"><a
-              href="https://www.ebi.ac.uk/style-lab/websites/sample-site/boilerplate/theme.html#">Grenoble</a>
-          </li>
-          <li class="where rome hide"><a
-              href="https://www.ebi.ac.uk/style-lab/websites/sample-site/boilerplate/theme.html#">Rome</a>
-          </li>
-          <li id="embl-selector" class="float-right show-for-medium embl-selector embl-ebi">
-            <button class="button float-right">&nbsp;</button>
-          </li>
-          <li class="float-right search"><a
-              href="https://www.ebi.ac.uk/style-lab/websites/sample-site/boilerplate/theme.html#"
-              class="inline-block collpased float-left search-toggle"><span
-                class="show-for-small-only">Search</span></a></li>
-          <li class="what about"><a href="https://www.ebi.ac.uk/about">About us</a></li>
-          <li class="what training"><a href="https://www.ebi.ac.uk/training">Training</a></li>
-          <li class="what research"><a href="https://www.ebi.ac.uk/research">Research</a></li>
-          <li class="what services"><a href="https://www.ebi.ac.uk/services">Services</a></li>
-          <li class="where ebi"><a href="https://www.ebi.ac.uk/">EMBL-EBI</a></li>
-        </ul>
-      </nav>
-    </div>
+        </li>
+        <li class="float-right show-for-medium embl-selector">
+          <button class="button float-right" type="button" data-toggle="embl-dropdown">Hinxton</button>
+          <!-- The dropdown menu will be programatically added by script.js -->
+        </li>
+      </ul>
+    </nav>
   </header>
   <!-- End of EBI masthead -->
 
   <app-root></app-root>
 
   <!-- EBI footer -->
-  <footer>
+  <footer style="clear: both;">
     <div id="global-footer" class="global-footer">
       <nav id="global-nav-expanded" class="global-nav-expanded row">
-        <div class="columns small-12">
-          <h4 class="inline-block"><a href="https://www.ebi.ac.uk/" class="no-underline" title="EMBL-EBI">EMBL-EBI</a>
-          </h4><span class="small inline-block padding-left-large"><a class="readmore"
-              href="http://intranet.ebi.ac.uk/"><span class="icon icon-functional" data-icon="L"></span> Intranet for
-              staff</a></span>
-        </div>
-        <div class="medium-up-5 small-up-2">
-          <div class="column">
-            <h5 class="services"><a class="services-color" href="https://www.ebi.ac.uk/services">Services</a></h5>
-            <ul>
-              <li class="first"><a href="https://www.ebi.ac.uk/services">By topic</a></li>
-              <li><a href="https://www.ebi.ac.uk/services/all">By name (A-Z)</a></li>
-              <li class="last"><a href="https://www.ebi.ac.uk/support">Help &amp; Support</a></li>
-            </ul>
-          </div>
-          <div class="column">
-            <h5 class="research"><a class="research-color" href="https://www.ebi.ac.uk/research">Research</a></h5>
-            <ul>
-              <li><a href="https://www.ebi.ac.uk/research/publications">Publications</a></li>
-              <li><a href="https://www.ebi.ac.uk/research/groups">Research groups</a></li>
-              <li class="last"><a href="https://www.ebi.ac.uk/research/postdocs">Postdocs</a> &amp; <a
-                  href="https://www.ebi.ac.uk/research/eipp">PhDs</a></li>
-            </ul>
-          </div>
-          <div class="column">
-            <h5 class="training"><a class="training-color" href="https://www.ebi.ac.uk/training">Training</a></h5>
-            <ul>
-              <li><a href="https://www.ebi.ac.uk/training/handson">Train at EBI</a></li>
-              <li><a href="https://www.ebi.ac.uk/training/roadshow">Train outside EBI</a></li>
-              <li><a href="https://www.ebi.ac.uk/training/online">Train online</a></li>
-              <li class="last"><a href="https://www.ebi.ac.uk/training/contact-us">Contact organisers</a></li>
-            </ul>
-          </div>
-          <div class="column">
-            <h5 class="industry"><a class="industry-color" href="https://www.ebi.ac.uk/industry">Industry</a></h5>
-            <ul>
-              <li><a href="https://www.ebi.ac.uk/industry/private">Members Area</a></li>
-              <li><a href="https://www.ebi.ac.uk/industry/workshops">Workshops</a></li>
-              <li><a href="https://www.ebi.ac.uk/industry/sme-forum"><abbr title="Small Medium Enterprise">SME</abbr>
-                  Forum</a></li>
-              <li class="last"><a href="https://www.ebi.ac.uk/industry/contact">Contact Industry programme</a>
-              </li>
-            </ul>
-          </div>
-          <div class="column">
-            <h5 class="about"><a class="ebi-color" href="https://www.ebi.ac.uk/about">About</a>
-            </h5>
-            <ul>
-              <li><a href="https://www.ebi.ac.uk/about/contact">Contact us</a></li>
-              <li><a href="https://www.ebi.ac.uk/about/events">Events</a></li>
-              <li><a href="https://www.ebi.ac.uk/about/jobs" title="Jobs, postdocs, PhDs...">Jobs</a></li>
-              <li class="first"><a href="https://www.ebi.ac.uk/about/news">News</a></li>
-              <li><a href="https://www.ebi.ac.uk/about/people">People &amp; groups</a></li>
-            </ul>
-          </div>
-        </div>
+        <!-- Footer will be automatically inserted by footer.js -->
       </nav>
       <section id="ebi-footer-meta" class="ebi-footer-meta row">
-        <div class="columns">
-          <p class="address">EMBL-EBI, Wellcome Genome Campus, Hinxton, Cambridgeshire, CB10 1SD,
-            UK. +44 (0)1223 49 44 44</p>
-          <p class="legal">Copyright © EMBL-EBI 2018 | EMBL-EBI is <a href="http://www.embl.org/">part of the
-              European Molecular Biology Laboratory</a> | <a href="https://www.ebi.ac.uk/about/terms-of-use">Terms
-              of use</a></p>
-        </div>
+        <!-- Footer meta will be automatically inserted by footer.js -->
       </section>
     </div>
   </footer>
@@ -235,11 +133,9 @@
     charset="utf-8"></script>
   <script src="https://cdn.jsdelivr.net/npm/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js"
     charset="utf-8"></script>
-  <script src="https://www.ebi.ac.uk/pdbe/pdb-component-library/js/protvista-pdb-2.0.1.js" charset="utf-8" ></script>
+  <script src="https://www.ebi.ac.uk/pdbe/pdb-component-library/js/protvista-pdb-2.0.1.js" charset="utf-8"></script>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-  <script defer="defer" src="//ebi.emblstatic.net/web_guidelines/EBI-Framework/v1.3/js/script.js"></script>
-  <script src="//ebi.emblstatic.net/web_guidelines/EBI-Framework/v1.3/libraries/foundation-6/js/foundation.js"></script>
-  <script src="//ebi.emblstatic.net/web_guidelines/EBI-Framework/v1.3/js/foundationExtendEBI.js"></script>
+  <script defer="defer" src="//dev.ebi.emblstatic.net/web_guidelines/EBI-Framework/v1.4/js/script.js"></script>
 
 </body>
 

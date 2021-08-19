@@ -13,10 +13,13 @@ import { CoreModule } from './core/core.module';
 import { HomeComponent } from './home/home.component';
 import { StructuresSectionComponent } from './search/structures-section/structures-section.component';
 import { SharedModule } from './shared/shared.module';
+import { DocsComponent } from './docs/docs.component';
+import { ProvidersComponent } from './providers/providers.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'search', component: SearchComponent }
+  { path: 'docs', component: DocsComponent },
+  { path: 'search/:id', component: SearchComponent }
 ];
 
 @NgModule({
@@ -27,7 +30,9 @@ const routes: Routes = [
     SummarySectionComponent,
     HomeComponent,
     StructuresSectionComponent,
-    StructuresSectionComponent
+    StructuresSectionComponent,
+    DocsComponent,
+    ProvidersComponent
   ],
   imports: [
     BrowserModule,

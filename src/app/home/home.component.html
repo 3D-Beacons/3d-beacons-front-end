@@ -1,63 +1,43 @@
-<h2 id="background">Welcome to the 3D-Beacons Network!</h2>
-<div class="content">
-  <div class="row">
-    <div class="columns small-12 medium-6">
-      <h3>What is 3D-Beacons?</h3>
-      <p>3D-Beacons is an open collaboration between providers of macromolecular structure models. The goal of this
-        collaboration is to provide model coordinates and meta-information from all the contributing data resources
-        in a standardized data format and on a unified platform.</p>
-      <p>3D-Beacons consists of a Registry, a Hub and Beacons who host Clients.
-        The <a href="https://github.com/3D-Beacons/3d-beacons-registry">3D-Beacons Registry</a> is used by
-        the <a href="https://wwwdev.ebi.ac.uk/pdbe/pdbe-kb/3dbeacons-hub-api/docs#">3D-Beacons Hub</a> to look up
-        which
-        API
-        endpoints are supported by the various <a href="https://github.com/3D-Beacons/3d-beacons-client">3D-Beacon
-          Clients</a>. The Beacons provide data according to
-        the <a href="https://app.swaggerhub.com/apis/3dbeacons/3D-Beacons">3D-Beacons data specifications</a>.
-        The Hub collates the data from the Beacons and expose it via Hub API endpoints.</p>
-    </div>
-    <div class="columns small-12 medium-6">
-      <img
-        src="./assets/img/schematic-overview.png"
-        alt="Image">
-    </div>
-  </div>
-  <div class="row">
-    <div class="columns small-12">
-      <h3 id="quick-start">Quick Start</h3>
-      <p>The current prototype of the 3D-Beacons Hub API is <a
-        href="https://wwwdev.ebi.ac.uk/pdbe/pdbe-kb/3dbeacons-hub-api/docs#">available here</a>. It can be used
-        to
-        retrieve all the experimentally determined or theoretical models for a UniProt accession.</p>
-      <h5 id="examples-">Examples:</h5>
-      <p><a href="https://wwwdev.ebi.ac.uk/pdbe/pdbe-kb/3dbeacons-hub-api/uniprot/summary/P0DTD1.json">&gt; Get all
-        the
-        available structures for the SARS-CoV-2 polyprotein P0DTD1</a></p>
-      <p><a href="https://wwwdev.ebi.ac.uk/pdbe/pdbe-kb/3dbeacons-hub-api/uniprot/summary/P38634.json">&gt; Get all
-        the
-        available structures and structural ensembles for Sic1 protein</a></p>
-      <h3 id="current-3d-beacons">Current 3D-Beacons</h3>
-      <ul>
-        <li><a href="http://foldxsuite.crg.eu/">FoldX</a></li>
-        <li><a href="http://genome3d.eu/">Genome3D</a></li>
-        <li><a href="https://pdbe.org">Protein Data Bank in Europe</a></li>
-        <li><a href="https://pdbe-kb.org">Protein Data Bank in Europe - Knowledge Base</a></li>
-        <li><a href="https://proteinensemble.org/">Protein Ensemble Database</a></li>
-        <li><a href="https://swissmodel.expasy.org/">SWISS-MODEL</a></li>
-      </ul>
-      <h3 id="3d-beacons-github-repositories">3D-Beacons GitHub Repositories</h3>
-      <ul>
-        <li><a href="https://github.com/3D-Beacons/3d-beacons-client">3D-Beacons Client</a></li>
-        <li><a href="https://github.com/3D-Beacons/3d-beacons-registry">3D-Beacons Registry</a></li>
-        <li><a href="https://github.com/3D-Beacons/3d-beacons-hub-api">3D-Beacons Hub API</a></li>
-      </ul>
-      <h4
-        id="-visit-the-wiki-pages-for-detailed-documentation-https-github-com-3d-beacons-3d-beacons-documentation-wiki-">
-        <a href="https://github.com/3D-Beacons/3d-beacons-documentation/wiki">&gt; Visit the Wiki Pages for detailed
-          documentation</a>
-      </h4>
-    </div>
+<div id="welcome-text" class="row welcome-row">
+  <div class="small-12 medium-10 medium-offset-1 large-8 large-offset-2 columns">
+    <p>The 3D-Beacons Network provides unified programmatic access to experimentally determined and predicted structure
+      models.</p>
   </div>
 </div>
 
+<div class="row home-row">
+  <div class="large-3 large-offset-2 medium-offset-1 medium-4 small-12 home-text-title columns">
+    <h2>What are 3D-Beacons?</h2>
+  </div>
+  <div class="large-5 medium-6 small-12 home-text columns">
+    <p>3D-Beacons is an open collaboration between providers of macromolecular structure models. This collaboration aims
+      to provide model coordinates and meta-information from all the contributing data resources in a standardised data
+      format and unified platform.</p>
+  </div>
+</div>
+
+<div class="row home-row">
+  <div class="large-3 large-offset-2 medium-offset-1 medium-4 small-12 home-text-title columns">
+    <h2>How does it work?</h2>
+  </div>
+  <div class="large-5 medium-6 small-12 home-text columns">
+    <p>The 3D-Beacons Network consists of a Registry, a Hub and data providers who host Clients. The
+      <a href="https://github.com/3D-Beacons/3d-beacons-hub-api" target="_blank">3D-Beacons
+      Hub</a> uses the <a href="https://github.com/3D-Beacons/3d-beacons-registry" target="_blank">
+        3D-Beacons Registry</a> to look up which
+      <a href="https://github.com/3D-Beacons/3d-beacons-client" target="_blank">3D-Beacon Client</a>
+      supports what API endpoints. The Beacons provide data according to the
+      <a href="https://app.swaggerhub.com/apis/3dbeacons/3D-Beacons" target="_blank">
+        3D-Beacons data specifications</a>. The Hub collates the data from
+      the Beacons and exposes it via Hub API endpoints.</p>
+  </div>
+</div>
+
+<div class="row home-row">
+  <div class="large-5 large-offset-5 medium-10 medium-offset-1 small-12 columns">
+    <img src="./assets/img/overview.png" alt="overview of the 3d-beacons infrastructure">
+  </div>
+</div>
+
+<app-providers></app-providers>
 

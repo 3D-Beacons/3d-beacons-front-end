@@ -24,7 +24,7 @@ describe('SummarySectionComponent', () => {
   });
 
   it('getIconStyle() should work', () => {
-    expect(component.getIconStyle(0)).toEqual({'font-size': '6rem', 'color': 'lightgrey'});
-    expect(component.getIconStyle(1)).toEqual({'font-size': '6rem', 'color': '#47547E'});
+    expect(component.getIconStyle(0)).toEqual({'color': 'lightgrey'});
+    expect(component.getIconStyle(1)).toEqual({'color': '#085F5C'});
   });
 });

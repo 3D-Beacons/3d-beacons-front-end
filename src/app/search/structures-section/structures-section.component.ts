@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ElementRef, Renderer2 } from '@angular/core';
 
 import { ConfigurationService } from 'src/app/core/configuration.service';
 import * as pvFormat from '../result-section/protvista.model';
@@ -24,15 +24,16 @@ export class StructuresSectionComponent {
     if (data) {
       this.haveResults = true;
       this.protvistaData = this.convertToProtvistaFormat(this.resultData);
+      this.addProtvista()
     } else {
       this.haveResults = false;
     }
   }
 
-  constructor(private configService: ConfigurationService) { }
+  constructor(private elm: ElementRef, private renderer: Renderer2, private configService: ConfigurationService) { }
 
   convertToProtvistaFormat(resultData: SummaryResponse): Partial<pvFormat.Accession> {
-    let protvistaData: Partial<pvFormat.Accession> = {
+    const protvistaData: Partial<pvFormat.Accession> = {
       largeLabels: true,
       tracks: [],
       legends: {
@@ -41,25 +42,38 @@ export class StructuresSectionComponent {
       }
     };
 
+    let firstStructure: boolean = true;
     protvistaData.length = resultData.uniprot_entry.sequence_length;
+    protvistaData.sequence = resultData.uniprot_entry.sequence;
 
     // prepare tracks
-    let tracks: { [key: string]: pvFormat.Track } = {};
+    const tracks: { [key: string]: pvFormat.Track } = {};
     resultData.structures.map(structure => {
-      if (tracks[structure.model_category] == undefined) {
+      if (tracks[structure.model_category] === undefined) {
         tracks[structure.model_category] = {
           labelType: 'text',
-          label: structure.model_category,
+          label: '<span style="color:#fff">'
+            + structure.model_category.charAt(0).toUpperCase()
+            + structure.model_category.slice(1).toLowerCase()
+            + '</span>',
+          labelColor: '#217976',
           data: [],
           overlapping: 'true'
-        }
+        };
+      }
+
+      // display Mol* for the very first structure in the list
+      if (firstStructure) {
+        this.handleMolstar(structure);
+        firstStructure = !firstStructure;
       }
 
       let trackDataItem: pvFormat.Data = {
         accession: structure.model_identifier,
         labelType: 'text',
-        label: '<strong><a target="_blank" href="' + structure.model_url + '">' + structure.model_identifier + '</a></strong>',
+        label: this.prepareLabel(structure),
         color: this.configService.getProviderColor(structure.provider),
+        labelColor: '#C0DCDB',
         type: 'Structure',
         tooltipContent: 'Structure',
         labelTooltip: structure.model_identifier + ' (' + structure.provider + ')',
@@ -71,14 +85,14 @@ export class StructuresSectionComponent {
           }
           ]
         }]
-      }
+      };
       tracks[structure.model_category].data.push(trackDataItem);
       this.availableProviders.add(structure.provider);
     });
-     
+
     for (let track in tracks) {
       // set count for each category
-      tracks[track]["label"] += ' (' +tracks[track]["data"].length +')'
+      tracks[track]['label'] += ' <span style="color:#fff">(' + tracks[track]['data'].length + ')</span>';
       protvistaData.tracks.push(tracks[track]);
     }
 
@@ -91,10 +105,10 @@ export class StructuresSectionComponent {
     let tooltip = '';
     tooltip += 'UniProt range: ' + item.uniprot_start + '-' + item.uniprot_end;
     tooltip += '<br>Provider: ' + item.provider;
-    tooltip += '<br>Category: ' + item.model_category;
-    tooltip += item.resolution ? '<br>Resolution: ' + item.resolution +'Å' : '';
+    tooltip += '<br>Category: ' + item.model_category.charAt(0).toUpperCase() + item.model_category.slice(1).toLowerCase();
+    tooltip += item.resolution ? '<br>Resolution: ' + item.resolution + 'Å' : '';
     tooltip += item.qmean_avg_local_score ? '<br>QMEAN: ' + item.qmean_avg_local_score : '';
-    tooltip += '<br><a target="_blank" href="' +item.model_url +'">Click to Download <i class="icon icon-common icon-download"></i></a>';
+    tooltip += '<br><a target="_blank" href="' + item.model_url + '">Click to Download <i class="icon icon-common icon-download"></i></a>';
 
     return tooltip;
   }
@@ -115,4 +129,57 @@ export class StructuresSectionComponent {
       }
     }
   }
+
+  prepareLabel(structure: Structure) {
+    return '' +
+      '<strong>' + structure.model_identifier + '</strong>' +
+      '<a data-url="' + structure.model_url + '" data-format="' +
+      (structure.model_format !== undefined ? structure.model_format.toLowerCase() : "") +
+      '" onclick="updateMolstar(this)" style="border-bottom: none;">' +
+      '<i class="icon icon-common icon-eye" style="padding-left: 10px;"></i></a>' +
+      '<a target="_blank" href="' + structure.model_url + '" style="border-bottom: none;" download>' +
+      '<i class="icon icon-common icon-download" style="padding-left: 5px;"></i>' +
+      '</a>';
+  }
+
+  handleMolstar(structure: Structure) {
+    let molstarPlugin = window['molstarPlugin'];
+    let viewerContainer = document.getElementById('molstar-container');
+    let options = {
+      customData: {
+        url: structure.model_url,
+        format: structure.model_format != undefined ? structure.model_format.toLowerCase() : ''
+      },
+      hideControls: true,
+      subscribeEvents: true,
+      selectInteraction: false,
+      bgColor: {r: 255, g: 255, b: 255},
+      hideCanvasControls: ['selection', 'animation', 'controlToggle', 'controlInfo']
+    };
+
+    // only render molstar for first time, use visual.update function for updates
+    if (!window["molstarRendered"]) {
+      molstarPlugin.render(viewerContainer, options);
+      window["molstarRendered"] = true;
+    } else {
+      molstarPlugin.visual.update(options);
+    }
+  }
+
+  addProtvista() {
+    const pvParentEle = this.elm.nativeElement.querySelectorAll('.appPvContainer')[0];
+
+    if (pvParentEle) {
+
+      const oldPvEle = this.elm.nativeElement.querySelectorAll('.protvista-pdb')[0];
+      if (oldPvEle) {
+        oldPvEle.remove();
+      }
+      const pvEle = this.renderer.createElement('protvista-pdb');
+      this.renderer.setAttribute(pvEle, 'custom-data', 'true');
+      this.renderer.appendChild(pvParentEle, pvEle);
+      this.renderer.setProperty(pvEle, 'viewerdata', this.protvistaData);
+    }
+  }
+
 }

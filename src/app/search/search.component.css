@@ -2,3 +2,15 @@
   color: #ffae00 !important;
 }
 
+.molstar-container {
+  float: left;
+  /* width: 400px; */
+  height: 500px;
+  position: relative;
+}
+
+.viewer-row {
+  margin-right: 15px !important;
+  margin-left: 15px !important;
+  max-width: unset !important;
+}

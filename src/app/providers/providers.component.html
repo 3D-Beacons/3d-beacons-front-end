@@ -1,0 +1,13 @@
+<div class="row providers-row">
+  <div class="large-3 large-offset-2 medium-offset-1 medium-4 small-12 home-text-title columns">
+    <h3>Data providers</h3>
+  </div>
+  <div class="large-5 medium-6 small-12 providers columns">
+    <div *ngFor="let dataProvider of dataProviders" class="small-12 medium-6 columns provider no-left-padding">
+      <a href="{{dataProvider.url}}" target="_blank">
+        {{dataProvider.name}}
+        <i class="icon icon-common" data-icon="&#xf0a9;"></i>
+      </a>
+    </div>
+  </div>
+</div>
