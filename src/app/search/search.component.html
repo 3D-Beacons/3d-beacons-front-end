@@ -1,5 +1,5 @@
 <app-result-section [resultData]="resultData" style="text-align: center;"></app-result-section>
-<div class="row viewer-row">
+<div class="row viewer-row" *ngIf="resultData">
   <div class="columns small-12 medium-12 large-8">
     <app-structures-section [resultData]="resultData"></app-structures-section>
   </div>
@@ -7,5 +7,10 @@
 </div>
 
 <app-loading-dialog *ngIf="isFetching"></app-loading-dialog>
+
+<div *ngIf="error" class="row error-row">
+  <h2 style="color: rgb(211, 74, 57);">[404 NOT FOUND]</h2>
+  <h3>No UniProt entry found for this accession ID</h3>
+</div>
 
 <app-providers></app-providers>
