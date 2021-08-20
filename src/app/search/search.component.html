@@ -1,10 +1,13 @@
 <app-result-section [resultData]="resultData" style="text-align: center;"></app-result-section>
 
 <div class="row viewer-row" *ngIf="resultData">
-  <div class="columns small-12 medium-12 large-8">
+  <div id="molstar-container" class="columns small-12 medium-12 large-4 molstar-container large-offset-4"></div>
+</div>
+
+<div class="row viewer-row" *ngIf="resultData">
+  <div class="columns small-12 medium-12 large-8 large-offset-2">
     <app-structures-section [resultData]="resultData"></app-structures-section>
   </div>
-  <div id="molstar-container" class="columns small-12 medium-12 large-4 molstar-container"></div>
 </div>
 
 <app-loading-dialog *ngIf="isFetching"></app-loading-dialog>
