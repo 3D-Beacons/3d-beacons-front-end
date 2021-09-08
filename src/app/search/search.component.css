@@ -4,8 +4,8 @@
 
 .molstar-container {
   float: left;
-  /* width: 400px; */
   height: 500px;
+  margin-bottom: 15px;
   position: relative;
 }
 
