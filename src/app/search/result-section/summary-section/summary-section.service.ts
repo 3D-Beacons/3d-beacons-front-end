@@ -36,12 +36,12 @@ export class SummaryService {
 
   getProviderCategory(providerId: string): string {
     let providerCategories = {
-      PDBE: 'expr',
-      SWISSMODEL: 'template',
-      PED: 'ensembl',
-      GENOME3D: 'template',
+      'PDBe': 'expr',
+      'SWISS-MODEL': 'template',
+      'PED': 'ensembl',
+      'GENOME3D': 'template',
       'AlphaFold DB': 'deeplearning',
-      SASBDB: 'expr',
+      'SASBDB': 'expr',
     }
     return providerCategories[providerId];
   }
