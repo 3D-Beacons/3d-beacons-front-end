@@ -10,7 +10,7 @@ export const MOCK_SUMMARY_RESPONSE: SummaryResponse = {
         {
             model_identifier: '2rh1',
             model_category: 'EXPERIMENTALLY DETERMINED',
-            provider: 'PDBE',
+            provider: 'PDBe',
             created: '2007-10-05',
             sequence_identity: 69,
             uniprot_start: 1,
@@ -22,7 +22,7 @@ export const MOCK_SUMMARY_RESPONSE: SummaryResponse = {
         {
             model_identifier: '3d4s',
             model_category: 'EXPERIMENTALLY DETERMINED',
-            provider: 'PDBE',
+            provider: 'PDBe',
             created: '2008-05-14',
             sequence_identity: 68,
             uniprot_start: 1,
@@ -34,7 +34,7 @@ export const MOCK_SUMMARY_RESPONSE: SummaryResponse = {
         {
             model_identifier: '5d5a',
             model_category: 'EXPERIMENTALLY DETERMINED',
-            provider: 'PDBE',
+            provider: 'PDBe',
             created: '2015-08-10',
             sequence_identity: 69,
             uniprot_start: 1,
@@ -46,7 +46,7 @@ export const MOCK_SUMMARY_RESPONSE: SummaryResponse = {
         {
             model_identifier: '5d6l',
             model_category: 'EXPERIMENTALLY DETERMINED',
-            provider: 'PDBE',
+            provider: 'PDBe',
             created: '2015-08-12',
             sequence_identity: 69,
             uniprot_start: 1,
@@ -58,7 +58,7 @@ export const MOCK_SUMMARY_RESPONSE: SummaryResponse = {
         {
             model_identifier: '5x7d',
             model_category: 'EXPERIMENTALLY DETERMINED',
-            provider: 'PDBE',
+            provider: 'PDBe',
             created: '2017-02-25',
             sequence_identity: 69,
             uniprot_start: 1,
@@ -70,7 +70,7 @@ export const MOCK_SUMMARY_RESPONSE: SummaryResponse = {
         {
             model_identifier: '6ps3',
             model_category: 'EXPERIMENTALLY DETERMINED',
-            provider: 'PDBE',
+            provider: 'PDBe',
             created: '2019-07-12',
             sequence_identity: 68,
             uniprot_start: 1,
@@ -82,7 +82,7 @@ export const MOCK_SUMMARY_RESPONSE: SummaryResponse = {
         {
             model_identifier: '3nya',
             model_category: 'EXPERIMENTALLY DETERMINED',
-            provider: 'PDBE',
+            provider: 'PDBe',
             created: '2010-07-14',
             sequence_identity: 68,
             uniprot_start: 1,
@@ -94,7 +94,7 @@ export const MOCK_SUMMARY_RESPONSE: SummaryResponse = {
         {
             model_identifier: '6ps6',
             model_category: 'EXPERIMENTALLY DETERMINED',
-            provider: 'PDBE',
+            provider: 'PDBe',
             created: '2019-07-12',
             sequence_identity: 68,
             uniprot_start: 1,
@@ -106,7 +106,7 @@ export const MOCK_SUMMARY_RESPONSE: SummaryResponse = {
         {
             model_identifier: '6prz',
             model_category: 'EXPERIMENTALLY DETERMINED',
-            provider: 'PDBE',
+            provider: 'PDBe',
             created: '2019-07-12',
             sequence_identity: 68,
             uniprot_start: 1,
@@ -118,7 +118,7 @@ export const MOCK_SUMMARY_RESPONSE: SummaryResponse = {
         {
             model_identifier: '6ps5',
             model_category: 'EXPERIMENTALLY DETERMINED',
-            provider: 'PDBE',
+            provider: 'PDBe',
             created: '2019-07-12',
             sequence_identity: 68,
             uniprot_start: 1,
@@ -130,7 +130,7 @@ export const MOCK_SUMMARY_RESPONSE: SummaryResponse = {
         {
             model_identifier: '6ps2',
             model_category: 'EXPERIMENTALLY DETERMINED',
-            provider: 'PDBE',
+            provider: 'PDBe',
             created: '2019-07-12',
             sequence_identity: 68,
             uniprot_start: 1,
@@ -142,7 +142,7 @@ export const MOCK_SUMMARY_RESPONSE: SummaryResponse = {
         {
             model_identifier: '6oba',
             model_category: 'EXPERIMENTALLY DETERMINED',
-            provider: 'PDBE',
+            provider: 'PDBe',
             created: '2019-03-20',
             sequence_identity: 69,
             uniprot_start: 1,
@@ -154,7 +154,7 @@ export const MOCK_SUMMARY_RESPONSE: SummaryResponse = {
         {
             model_identifier: '6mxt',
             model_category: 'EXPERIMENTALLY DETERMINED',
-            provider: 'PDBE',
+            provider: 'PDBe',
             created: '2018-10-31',
             sequence_identity: 91,
             uniprot_start: 29,
@@ -166,7 +166,7 @@ export const MOCK_SUMMARY_RESPONSE: SummaryResponse = {
         {
             model_identifier: '4qkx',
             model_category: 'EXPERIMENTALLY DETERMINED',
-            provider: 'PDBE',
+            provider: 'PDBe',
             created: '2014-06-10',
             sequence_identity: 90,
             uniprot_start: 29,
@@ -178,7 +178,7 @@ export const MOCK_SUMMARY_RESPONSE: SummaryResponse = {
         {
             model_identifier: '4lde',
             model_category: 'EXPERIMENTALLY DETERMINED',
-            provider: 'PDBE',
+            provider: 'PDBe',
             created: '2013-06-24',
             sequence_identity: 90,
             uniprot_start: 29,
@@ -190,7 +190,7 @@ export const MOCK_SUMMARY_RESPONSE: SummaryResponse = {
         {
             model_identifier: '4ldl',
             model_category: 'EXPERIMENTALLY DETERMINED',
-            provider: 'PDBE',
+            provider: 'PDBe',
             created: '2013-06-24',
             sequence_identity: 90,
             uniprot_start: 29,
@@ -202,7 +202,7 @@ export const MOCK_SUMMARY_RESPONSE: SummaryResponse = {
         {
             model_identifier: '4ldo',
             model_category: 'EXPERIMENTALLY DETERMINED',
-            provider: 'PDBE',
+            provider: 'PDBe',
             created: '2013-06-24',
             sequence_identity: 90,
             uniprot_start: 29,
@@ -214,7 +214,7 @@ export const MOCK_SUMMARY_RESPONSE: SummaryResponse = {
         {
             model_identifier: '6ni3',
             model_category: 'EXPERIMENTALLY DETERMINED',
-            provider: 'PDBE',
+            provider: 'PDBe',
             created: '2018-12-26',
             sequence_identity: 99,
             uniprot_start: 29,
@@ -226,7 +226,7 @@ export const MOCK_SUMMARY_RESPONSE: SummaryResponse = {
         {
             model_identifier: '6n48',
             model_category: 'EXPERIMENTALLY DETERMINED',
-            provider: 'PDBE',
+            provider: 'PDBe',
             created: '2018-11-17',
             sequence_identity: 90,
             uniprot_start: 29,
@@ -238,7 +238,7 @@ export const MOCK_SUMMARY_RESPONSE: SummaryResponse = {
         {
             model_identifier: '5jqh',
             model_category: 'EXPERIMENTALLY DETERMINED',
-            provider: 'PDBE',
+            provider: 'PDBe',
             created: '2016-05-05',
             sequence_identity: 90,
             uniprot_start: 30,
@@ -250,7 +250,7 @@ export const MOCK_SUMMARY_RESPONSE: SummaryResponse = {
         {
             model_identifier: '60248fbc29ae6a15f7916ed8',
             model_category: 'TEMPLATE-BASED',
-            provider: 'SWISSMODEL',
+            provider: 'SWISS-MODEL',
             created: '2021-02-11',
             sequence_identity: 1,
             uniprot_start: 29,
@@ -262,7 +262,7 @@ export const MOCK_SUMMARY_RESPONSE: SummaryResponse = {
         {
             model_identifier: '60248fbc29ae6a15f7916ede',
             model_category: 'TEMPLATE-BASED',
-            provider: 'SWISSMODEL',
+            provider: 'SWISS-MODEL',
             created: '2021-02-11',
             sequence_identity: 1,
             uniprot_start: 221,
@@ -274,7 +274,7 @@ export const MOCK_SUMMARY_RESPONSE: SummaryResponse = {
         {
             model_identifier: '60248fbc29ae6a15f7916ee4',
             model_category: 'TEMPLATE-BASED',
-            provider: 'SWISSMODEL',
+            provider: 'SWISS-MODEL',
             created: '2021-02-11',
             sequence_identity: 1,
             uniprot_start: 29,

@@ -39,7 +39,7 @@ export class SummaryService {
       'PDBe': 'expr',
       'SWISS-MODEL': 'template',
       'PED': 'ensembl',
-      'GENOME3D': 'template',
+      'Genome3D': 'template',
       'AlphaFold DB': 'deeplearning',
       'SASBDB': 'expr',
     }
