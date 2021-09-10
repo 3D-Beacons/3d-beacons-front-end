@@ -31,9 +31,10 @@
             </span>
           </span>
 
-          <span *ngIf="text.source">
+          <span *ngIf="text.source" style="margin-left: 6px;">
             <a target="_blank" href="{{text.source_url}}" class="external-ref">
-              go to {{text.source}} <i class="icon icon-common" data-icon="&#xf35d;"></i>
+              <i class="icon icon-common" data-icon="&#xf35d;"></i>
+              [go to {{text.source}}]
             </a>
           </span>
 

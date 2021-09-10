@@ -29,7 +29,11 @@ h3 {
   margin-bottom: 15px;
 }
 
-.external-ref {
+.showMoreLink {
+  margin-left: 3px;
+}
+
+.external-ref, .showMoreLink{
   font-weight: 500;
   color: #0F5C5A;
   text-decoration: none;
@@ -37,7 +41,7 @@ h3 {
   font-size: smaller;
 }
 
-.external-ref:hover {
+.external-ref:hover, .showMoreLink:hover{
   color: #ffae00;
   border-bottom: 1px solid #ffae00;
 }

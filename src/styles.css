@@ -41,3 +41,16 @@ a {
     width: 25% !important;
   }
 }
+
+.external-ref, .showMoreLink{
+  font-weight: 500;
+  color: #0F5C5A;
+  text-decoration: none;
+  border-bottom: none;
+  font-size: smaller;
+}
+
+.external-ref:hover, .showMoreLink:hover{
+  color: #ffae00;
+  border-bottom: 1px solid #ffae00;
+}

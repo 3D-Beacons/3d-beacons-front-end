@@ -162,7 +162,7 @@ export class ResultSectionComponent {
     if (bioFunction.text !== 'Not available') {
       const pubmed = 'PubMed:([0-9]+)';
       const re = new RegExp(pubmed, 'g');
-      bioFunction.text = bioFunction.text.replace(re, '<a href="https://www.uniprot.org/citations/$1" target="_blank">PubMed:$1</a>');
+      bioFunction.text = bioFunction.text.replace(re, '<a class="external-ref" href="https://www.uniprot.org/citations/$1" target="_blank">PubMed:$1</a>');
     }
     infoText.push(bioFunction);
 
