@@ -23,3 +23,21 @@ button:disabled, input:disabled {
 a {
     text-decoration: none !important;
 }
+
+@media (max-width: 1000px){
+  .protvistaCol1 {
+    width: 30% !important;
+  }
+}
+
+@media (max-width: 1070px){
+  .protvistaCol1 {
+    width: 38% !important;
+  }
+}
+
+@media (min-width: 1200px){
+  .protvistaCol1 {
+    width: 25% !important;
+  }
+}

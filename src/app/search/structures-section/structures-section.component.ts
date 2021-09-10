@@ -133,7 +133,7 @@ export class StructuresSectionComponent {
 
   prepareLabel(structure: Structure) {
     return '' +
-      '<strong>' + structure.model_identifier + '</strong>' +
+      '<strong>' + structure.provider + '</strong>' +
       '<span style="float: right; margin-right: 5px;">' +
       '<a data-url="' + structure.model_url + '" data-format="' +
       (structure.model_format !== undefined ? structure.model_format.toLowerCase() : "") +
@@ -149,10 +149,13 @@ export class StructuresSectionComponent {
     this.displayedEntry = structure.model_identifier + ' from ' + structure.provider;
     let molstarPlugin = window['molstarPlugin'];
     let viewerContainer = document.getElementById('molstar-container');
+    console.log(structure);
+    const url = structure.ensemble_sample_url ? structure.ensemble_sample_url : structure.model_url;
+    const format = structure.ensemble_sample_format ? structure.ensemble_sample_format.toLowerCase() : structure.model_format.toLowerCase();
     let options = {
       customData: {
-        url: structure.ensemble_sample_url ? structure.ensemble_sample_url : structure.model_url,
-        format: structure.model_format != undefined ? structure.model_format.toLowerCase() : 'mmcif'
+        url: url,
+        format: format
       },
       hideControls: true,
       subscribeEvents: true,
