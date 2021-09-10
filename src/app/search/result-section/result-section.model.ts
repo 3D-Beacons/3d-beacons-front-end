@@ -6,6 +6,7 @@ export interface UniProtEntry {
 }
 
 export interface Structure {
+    ensemble_sample_url?: string;
     coverage: number;
     created: string;
     model_category: string;

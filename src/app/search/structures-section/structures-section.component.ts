@@ -151,8 +151,8 @@ export class StructuresSectionComponent {
     let viewerContainer = document.getElementById('molstar-container');
     let options = {
       customData: {
-        url: structure.model_url,
-        format: structure.model_format != undefined ? structure.model_format.toLowerCase() : ''
+        url: structure.ensemble_sample_url ? structure.ensemble_sample_url : structure.model_url,
+        format: structure.model_format != undefined ? structure.model_format.toLowerCase() : 'mmcif'
       },
       hideControls: true,
       subscribeEvents: true,
