@@ -3,5 +3,44 @@
       <span id="sum-count">{{getSum()}}</span>
       Structures available for UniProt accession {{ resultData.uniprot_entry.ac }} ({{ resultData.uniprot_entry.id }})
     </h3>
+    <div class="row" id="info-box-container">
+      <div class="row">
+        <div class="small-11 small-offset-1 columns">
+          <p class="info-box-title">Information</p>
+        </div>
+      </div>
+      <div class="row info-box-row" *ngFor="let text of infoText">
+        <div class="columns small-11 small-offset-1 medium-2 medium-offset-1 info-box-label">{{text.label}}:</div>
+        <div class="columns small-11 small-offset-1 medium-8 info-box-text">
+          <span>
+            <span *ngIf="text.show_long">
+              <span *ngIf="text.italic">
+                <i [innerHTML]="text.text"></i>
+              </span>
+              <span *ngIf="!text.italic">
+                <span [innerHTML]="text.text"></span>
+              </span>
+              <a *ngIf="getShortenedText(text.text) != text.text" class="showMoreLink" (click)="switchText(text)">
+                <i class="icon icon-functional" data-icon="-"></i> [show less]</a>
+            </span>
+            <span *ngIf="!text.show_long">
+              <span [innerHTML]="getShortenedText(text.text)"></span>
+              <a class="showMoreLink" *ngIf="checkIfHasToShowMore(text)" (click)="switchText(text)">
+                <i class="icon icon-functional" data-icon="+"></i> [show more]
+              </a>
+            </span>
+          </span>
+
+          <span *ngIf="text.source" style="margin-left: 6px;">
+            <a target="_blank" href="{{text.source_url}}" class="external-ref">
+              <i class="icon icon-common" data-icon="&#xf35d;"></i>
+              [go to {{text.source}}]
+            </a>
+          </span>
+
+
+        </div>
+      </div>
+    </div>
     <app-summary-section [summaryData]="summaryData"></app-summary-section>
 </div>

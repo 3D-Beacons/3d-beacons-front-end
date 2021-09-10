@@ -6,3 +6,9 @@
 .display-label-text {
   font-weight: bold;
 }
+
+.eye-icon {
+  background-color: #dff1f0;
+  padding: 5px;
+  border: 1px solid black
+}

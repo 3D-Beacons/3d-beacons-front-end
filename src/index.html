@@ -37,7 +37,7 @@
 
   <!-- Mol* CSS -->
   <link rel="stylesheet" type="text/css"
-    href="https://www.ebi.ac.uk/pdbe/pdb-component-library/css/pdbe-molstar-1.1.0.css">
+    href="https://www.ebi.ac.uk/pdbe/pdb-component-library/css/pdbe-molstar-light-1.1.0.css">
 
   <!-- For Light Theme include this css file instead of the above -->
   <!--<link rel="stylesheet" type="text/css" href="https://www.ebi.ac.uk/pdbe/pdb-component-library/css/pdbe-molstar-light-1.1.0.css">-->
@@ -53,12 +53,17 @@
     var molstarPlugin = new PDBeMolstarPlugin();
     var molstarRendered = false;
 
-    function updateMolstar(e) {
+    function updateMolstar(e, model_id, model_provider) {
       let modelUrl = e.getAttribute("data-url");
       let modelFormat = e.getAttribute("data-format");
+      let modelId = e.getAttribute("data-model-identifier");
+      let modelProvider = e.getAttribute("data-model-provider");
 
       //Get element from HTML/Template to place the viewer
       var viewerContainer = document.getElementById('molstar-container');
+
+      const event = new CustomEvent("eye-click", {detail: {modelId: modelId, modelProvider: modelProvider}});
+      document.dispatchEvent(event);
 
       let data = {
         customData: {

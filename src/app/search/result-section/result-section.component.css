@@ -5,3 +5,43 @@ h3 {
 #sum-count {
   font-weight: bold;
 }
+
+#info-box-container {
+  text-align: left;
+  margin-top: 40px;
+  margin-bottom: 30px;
+}
+
+.info-box-title {
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.info-box-label {
+  font-weight: 500;
+}
+
+.info-box-label, .info-box-text {
+  font-size: 18px;
+}
+
+.info-box-row {
+  margin-bottom: 15px;
+}
+
+.showMoreLink {
+  margin-left: 3px;
+}
+
+.external-ref, .showMoreLink{
+  font-weight: 500;
+  color: #0F5C5A;
+  text-decoration: none;
+  border-bottom: none;
+  font-size: smaller;
+}
+
+.external-ref:hover, .showMoreLink:hover{
+  color: #ffae00;
+  border-bottom: 1px solid #ffae00;
+}
