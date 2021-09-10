@@ -5,3 +5,21 @@ h3 {
 #sum-count {
   font-weight: bold;
 }
+
+#info-box-container {
+  text-align: left;
+  margin-top: 40px;
+}
+
+.info-box-title {
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.info-box-label {
+  font-weight: 500;
+}
+
+.info-box-label, .info-box-text {
+  font-size: 18px;
+}

@@ -1,7 +1,42 @@
 <div *ngIf="haveResults" style="margin-top:30px;">
-    <h3>
-      <span id="sum-count">{{getSum()}}</span>
-      Structures available for UniProt accession {{ resultData.uniprot_entry.ac }} ({{ resultData.uniprot_entry.id }})
-    </h3>
-    <app-summary-section [summaryData]="summaryData"></app-summary-section>
+  <h3>
+    <span id="sum-count">{{getSum()}}</span>
+    Structures available for UniProt accession {{ resultData.uniprot_entry.ac }} ({{ resultData.uniprot_entry.id }})
+  </h3>
+  <div id="info-box-container" class="row">
+    <div class="small-12 columns">
+      <p class="info-box-title">Information</p>
+    </div>
+    <div class="small-12 medium-2 columns">
+      <p class="info-box-label">Protein:</p>
+    </div>
+    <div class="small-12 medium-10 columns">
+      <p class="info-box-text">Breast cancer type 1 susceptibility protein</p>
+    </div>
+    <div class="small-12 medium-2 columns">
+      <p class="info-box-label">Gene:</p>
+    </div>
+    <div class="small-12 medium-10 columns">
+      <p class="info-box-text">BRCA1</p>
+    </div>
+    <div class="small-12 medium-2 columns">
+      <p class="info-box-label">Source organism:</p>
+    </div>
+    <div class="small-12 medium-10 columns">
+      <p class="info-box-text"><i>Homo sapiens</i></p>
+    </div>
+    <div class="small-12 medium-2 columns">
+      <p class="info-box-label">Biological function:</p>
+    </div>
+    <div class="small-12 medium-10 columns">
+      <p class="info-box-text">
+        E3 ubiquitin-protein ligase that specifically mediates the formation of 'Lys-6'-linked polyubiquitin chains and
+        plays a central role in DNA repair by facilitating cellular responses to DNA damage (PubMed:12890688,
+        PubMed:14976165, PubMed:16818604, PubMed:17525340, PubMed:12887909, PubMed:10500182, PubMed:19261748). It is
+        unclear whether it also mediates the formation of other types of polyubiquitin chains (PubMed:12890688). The
+        BRCA1-BARD1 heterodimer coordinates...
+      </p>
+    </div>
+  </div>
+  <app-summary-section [summaryData]="summaryData"></app-summary-section>
 </div>
