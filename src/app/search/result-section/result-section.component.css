@@ -9,6 +9,7 @@ h3 {
 #info-box-container {
   text-align: left;
   margin-top: 40px;
+  margin-bottom: 30px;
 }
 
 .info-box-title {
@@ -22,4 +23,21 @@ h3 {
 
 .info-box-label, .info-box-text {
   font-size: 18px;
+}
+
+.info-box-row {
+  margin-bottom: 15px;
+}
+
+.external-ref {
+  font-weight: 500;
+  color: #0F5C5A;
+  text-decoration: none;
+  border-bottom: none;
+  font-size: smaller;
+}
+
+.external-ref:hover {
+  color: #ffae00;
+  border-bottom: 1px solid #ffae00;
 }

@@ -4,15 +4,22 @@
       Structures available for UniProt accession {{ resultData.uniprot_entry.ac }} ({{ resultData.uniprot_entry.id }})
     </h3>
     <div class="row" id="info-box-container">
-      <div class="small-12 columns">
-        <p class="info-box-title">Information</p>
+      <div class="row">
+        <div class="small-12 medium-11 medium-offset-1 columns">
+          <p class="info-box-title">Information</p>
+        </div>
       </div>
-      <div class="row" *ngFor="let text of infoText">
-        <div class="columns small-12 medium-2 info-box-label">{{text.label}}</div>
-        <div class="columns small-12 medium-10 info-box-text">
+      <div class="row info-box-row" *ngFor="let text of infoText">
+        <div class="columns small-12 medium-2 medium-offset-1 info-box-label">{{text.label}}:</div>
+        <div class="columns small-12 medium-9 info-box-text">
           <span>
             <span *ngIf="text.show_long">
-              <span [innerHTML]="text.text"></span>
+              <span *ngIf="text.italic">
+                <i [innerHTML]="text.text"></i>
+              </span>
+              <span *ngIf="!text.italic">
+                <span [innerHTML]="text.text"></span>
+              </span>
               <a *ngIf="getShortenedText(text.text) != text.text" class="showMoreLink" (click)="switchText(text)">
                 <i class="icon icon-functional" data-icon="-"></i> [show less]</a>
             </span>
@@ -23,9 +30,14 @@
               </a>
             </span>
           </span>
-  
-          <a *ngIf="text.source" target="_blank" href="{{text.source_url}}" class="vf-link ext">go to {{text.source}}</a>
-  
+
+          <span *ngIf="text.source">
+            <a target="_blank" href="{{text.source_url}}" class="external-ref">
+              go to {{text.source}} <i class="icon icon-common" data-icon="&#xf35d;"></i>
+            </a>
+          </span>
+
+
         </div>
       </div>
     </div>
