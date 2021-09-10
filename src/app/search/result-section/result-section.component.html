@@ -5,13 +5,13 @@
     </h3>
     <div class="row" id="info-box-container">
       <div class="row">
-        <div class="small-12 medium-11 medium-offset-1 columns">
+        <div class="small-11 small-offset-1 columns">
           <p class="info-box-title">Information</p>
         </div>
       </div>
       <div class="row info-box-row" *ngFor="let text of infoText">
-        <div class="columns small-12 medium-2 medium-offset-1 info-box-label">{{text.label}}:</div>
-        <div class="columns small-12 medium-9 info-box-text">
+        <div class="columns small-11 small-offset-1 medium-2 medium-offset-1 info-box-label">{{text.label}}:</div>
+        <div class="columns small-11 small-offset-1 medium-8 info-box-text">
           <span>
             <span *ngIf="text.show_long">
               <span *ngIf="text.italic">
