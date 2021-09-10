@@ -53,7 +53,7 @@ export class SearchComponent implements OnInit {
     this.error = null;
     this.searchService.getUniProtEntry(query).subscribe(
       entryData => {
-        console.log('Received UniProt entry response', entryData);
+        console.debug('Received UniProt entry response', entryData);
         this.entryData = entryData;
         this.searchService.getUniProtSummary(query).subscribe(
           summaryData => {
