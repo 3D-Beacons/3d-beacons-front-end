@@ -11,7 +11,6 @@ import { Structure, SummaryResponse } from '../result-section/result-section.mod
 })
 export class StructuresSectionComponent {
   private _resultData: any;
-  displayedEntry: string;
   haveResults = false;
   protvistaData: Partial<pvFormat.Accession> = null;
   availableProviders: Set<string> = new Set();
