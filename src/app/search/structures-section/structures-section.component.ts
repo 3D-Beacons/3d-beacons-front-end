@@ -32,10 +32,10 @@ export class StructuresSectionComponent {
   }
 
   constructor(private elm: ElementRef, private renderer: Renderer2, private configService: ConfigurationService) {
-    document.addEventListener('protvista-click', (e: CustomEvent) => {
-      var re = /(.*)\s\((.*)\)/;
-      this.displayedEntry = e.detail.feature.labelTooltip.replace(re, "$1 from $2");
-    });
+    // document.addEventListener('protvista-click', (e: CustomEvent) => {
+    //   var re = /(.*)\s\((.*)\)/;
+    //   this.displayedEntry = e.detail.feature.labelTooltip.replace(re, "$1 from $2");
+    // });
     document.addEventListener('eye-click', (e: CustomEvent) => {
       this.displayedEntry = e.detail.modelId +' from ' +e.detail.modelProvider;
     });
