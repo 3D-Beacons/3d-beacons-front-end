@@ -5,6 +5,7 @@ import {ConfigurationService} from '../core/configuration.service';
 import {SummaryResponse} from './result-section/result-section.model';
 import {SearchService} from './search.service';
 import {ActivatedRoute} from '@angular/router';
+import { UniProtEntry } from './result-section/uniprot-data.model';
 
 @Component({
   selector: 'app-search',
@@ -22,6 +23,7 @@ export class SearchComponent implements OnInit {
   resultData: SummaryResponse = null;
   isFetching: boolean = false;
   exampleAccessions: string[];
+  entryData: UniProtEntry = null;
 
   constructor(
     private route: ActivatedRoute,
@@ -51,7 +53,8 @@ export class SearchComponent implements OnInit {
     this.error = null;
     this.searchService.getUniProtEntry(query).subscribe(
       entryData => {
-        console.debug('Received UniProt entry response', entryData);
+        console.log('Received UniProt entry response', entryData);
+        this.entryData = entryData;
         this.searchService.getUniProtSummary(query).subscribe(
           summaryData => {
             console.debug('Received summary response', summaryData);
