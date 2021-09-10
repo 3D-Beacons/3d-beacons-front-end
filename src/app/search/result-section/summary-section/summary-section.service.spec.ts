@@ -15,8 +15,8 @@ describe('SummaryService', () => {
   });
 
   it('should return a proper category for a provider', () => {
-    const expectedCategories = ['expr', 'template', 'template', 'ensembl', 'deeplearning'];
-    const inputProviders = ['PDBE', 'GENOME3D', 'SWISSMODEL', 'PED', 'AlphaFold DB'];
+    const expectedCategories = ['expr', 'template', 'template', 'ensembl', 'deeplearning', 'expr'];
+    const inputProviders = ['PDBe', 'Genome3D', 'SWISS-MODEL', 'PED', 'AlphaFold DB', 'SASBDB'];
 
     for (let i = 0; i < expectedCategories.length; i++) {
       expect(service.getProviderCategory(inputProviders[i])).toBe(expectedCategories[i]);

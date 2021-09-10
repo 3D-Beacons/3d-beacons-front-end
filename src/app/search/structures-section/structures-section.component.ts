@@ -11,6 +11,7 @@ import { Structure, SummaryResponse } from '../result-section/result-section.mod
 })
 export class StructuresSectionComponent {
   private _resultData: any;
+  displayedEntry: string;
   haveResults = false;
   protvistaData: Partial<pvFormat.Accession> = null;
   availableProviders: Set<string> = new Set();
@@ -133,16 +134,19 @@ export class StructuresSectionComponent {
   prepareLabel(structure: Structure) {
     return '' +
       '<strong>' + structure.model_identifier + '</strong>' +
+      '<span style="float: right; margin-right: 5px;">' +
       '<a data-url="' + structure.model_url + '" data-format="' +
       (structure.model_format !== undefined ? structure.model_format.toLowerCase() : "") +
       '" onclick="updateMolstar(this)" style="border-bottom: none;">' +
-      '<i class="icon icon-common icon-eye" style="padding-left: 10px;"></i></a>' +
+      '<i class="icon icon-common icon-eye" style="margin-left: 10px; background-color: #dff1f0; padding: 5px; border: 1px solid black"></i></a>' +
       '<a target="_blank" href="' + structure.model_url + '" style="border-bottom: none;" download>' +
-      '<i class="icon icon-common icon-download" style="padding-left: 5px;"></i>' +
-      '</a>';
+      '<i class="icon icon-common icon-download" style="margin-left: 10px; background-color: #dff1f0; padding: 5px; border: 1px solid black"></i>' +
+      '</a>' +
+      '</span>';
   }
 
   handleMolstar(structure: Structure) {
+    this.displayedEntry = structure.model_identifier + ' from ' + structure.provider;
     let molstarPlugin = window['molstarPlugin'];
     let viewerContainer = document.getElementById('molstar-container');
     let options = {
