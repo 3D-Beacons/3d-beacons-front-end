@@ -11,10 +11,10 @@ import { Structure, SummaryResponse } from '../result-section/result-section.mod
 })
 export class StructuresSectionComponent {
   private _resultData: any;
-  displayedEntry: string;
   haveResults = false;
   protvistaData: Partial<pvFormat.Accession> = null;
   availableProviders: Set<string> = new Set();
+  displayedEntry: string;
 
   @Input()
   get resultData(): any {
@@ -31,7 +31,15 @@ export class StructuresSectionComponent {
     }
   }
 
-  constructor(private elm: ElementRef, private renderer: Renderer2, private configService: ConfigurationService) { }
+  constructor(private elm: ElementRef, private renderer: Renderer2, private configService: ConfigurationService) {
+    document.addEventListener('protvista-click', (e: CustomEvent) => {
+      var re = /(.*)\s\((.*)\)/;
+      this.displayedEntry = e.detail.feature.labelTooltip.replace(re, "$1 from $2");
+    });
+    document.addEventListener('eye-click', (e: CustomEvent) => {
+      this.displayedEntry = e.detail.modelId +' from ' +e.detail.modelProvider;
+    });
+  }
 
   convertToProtvistaFormat(resultData: SummaryResponse): Partial<pvFormat.Accession> {
     const protvistaData: Partial<pvFormat.Accession> = {
@@ -136,7 +144,8 @@ export class StructuresSectionComponent {
       '<strong>' + structure.provider + '</strong>' +
       '<span style="float: right; margin-right: 5px;">' +
       '<a data-url="' + structure.model_url + '" data-format="' +
-      (structure.model_format !== undefined ? structure.model_format.toLowerCase() : "") +
+      (structure.model_format !== undefined ? structure.model_format.toLowerCase() : "") +'"' +
+      ' data-model-identifier="' + structure.model_identifier + '" data-model-provider="' + structure.provider +
       '" onclick="updateMolstar(this)" style="border-bottom: none;">' +
       '<i class="icon icon-common icon-eye" style="margin-left: 10px; background-color: #dff1f0; padding: 5px; border: 1px solid black"></i></a>' +
       '<a target="_blank" href="' + structure.model_url + '" style="border-bottom: none;" download>' +
