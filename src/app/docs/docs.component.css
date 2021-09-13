@@ -61,3 +61,8 @@ li {
 .no-left-padding {
   padding-left: 0 !important;
 }
+
+.infra-label {
+  font-weight: bold;
+  margin-top: 35px;
+}

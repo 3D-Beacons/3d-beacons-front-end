@@ -57,23 +57,72 @@
         Hub</a> uses the <a href="https://github.com/3D-Beacons/3d-beacons-registry" target="_blank">
         3D-Beacons Registry</a> to look up which
       <a href="https://github.com/3D-Beacons/3d-beacons-client" target="_blank">3D-Beacon Client</a>
-      supports what API endpoints. The Beacons provide data according to the
+      supports what API endpoints. All Beacons APIs as well as the Beacons Hub provide data according to the
       <a href="https://app.swaggerhub.com/apis/3dbeacons/3D-Beacons" target="_blank">
         3D-Beacons data specifications</a>. The Hub collates the data from
       the Beacons and exposes it via Hub API endpoints.</p>
-    <p>Currently, 3D-Beacons provide the following information:</p>
+    <p>Currently, 3D-Beacons Hub provides the following information:</p>
     <ul>
-      <li>URLs to, and description of every protein structure for a UniProt accession, for example,<br>
-        <a href="https://3d-beacons.org/api/uniprot/summary/P0DTD1.json" target="_blank">
-          https://3d-beacons.org/api/uniprot/summary/P0DTD1.json
+      <li>URLs to, and description of every protein structure for a UniProt accession, for example:<br>
+        <a href="https://www.ebi.ac.uk/pdbe/pdbe-kb/3dbeacons/api/uniprot/summary/P0DTD1.json" target="_blank">
+          https://www.ebi.ac.uk/pdbe/pdbe-kb/3dbeacons/api/uniprot/summary/P0DTD1.json
         </a>
       </li>
-      <li>Functional annotations from PDBe-KB for a UniProt accession, for example,<br>
-        <a href="https://3d-beacons.org/api/uniprot/annotations/P0DTD1.json" target="_blank">
-          https://3d-beacons.org/api/uniprot/annotations/P0DTD1.json
-        </a>
-      </li>
+<!--      <li>Functional annotations from PDBe-KB for a UniProt accession, for example,<br>-->
+<!--        <a href="https://3d-beacons.org/api/uniprot/annotations/P0DTD1.json" target="_blank">-->
+<!--          https://3d-beacons.org/api/uniprot/annotations/P0DTD1.json-->
+<!--        </a>-->
+<!--      </li>-->
     </ul>
+    <p>The 3D-Beacons Hub API endpoints, such as shown above, can be used to programmatically access all
+      the available protein structures and models from any members of the 3D-Beacons Network. For example,
+      the API endpoint for the SARS-CoV-2 polyprotein, identified by its UniProt accession
+      <a href="https://www.ebi.ac.uk/pdbe/pdbe-kb/3dbeacons/api/uniprot/summary/P0DTD1.json" target="_blank">
+        P0DTD1
+      </a> provides all the experimentally determined structures from the PDB, as well as theoretical models from
+      SWISS-MODEL and others.</p>
+    <h3>Components of the 3D-Beacons infrastructure</h3>
+    <p class="infra-label">3D-Beacons API specification</p>
+    <p>The main purpose of 3D-Beacons is to provide programmatic access to experimentally determined and
+      theoretical protein structures in a uniform manner. We have created a set of data exchange format
+      specifications to ensure the uniformity of the data provided by all member Beacons.</p>
+    <p>The specification is described on SwaggerHub at
+      <a href="https://app.swaggerhub.com/apis/3dbeacons/3D-Beacons"
+         target="_blank">https://app.swaggerhub.com/apis/3dbeacons/3D-Beacons
+      </a>
+    </p>
+    <p class="infra-label">3D-Beacons Registry</p>
+    <p>The 3D-Beacons Registry contains information on which data providers are members of the 3D-Beacons Network,
+      and which API specifications did they implement. This allows both the 3D-Beacons Hub and any users to find out
+      what API endpoints specific are available from which data providers. For example, if users are only interested
+      in getting data from SASBDB, they can check in the registry which API URLs they should use.</p>
+    <p>The 3D-Beacons Registry is available at
+      <a href="https://github.com/3D-Beacons/3d-beacons-registry" target="_blank">
+        https://github.com/3D-Beacons/3d-beacons-registry
+      </a>
+    </p>
+    <p class="infra-label">3D-Beacons Client</p>
+    <p>The 3D-Beacons Client is a lightweight Python package that allows researchers to link their
+      in-house models to the 3D-Beacons Network. It takes PDB and/or mmCIF files as input and generates
+      the necessary metadata which is then exposed through a set of API endpoints that comply with the
+      <a href="https://app.swaggerhub.com/apis/3dbeacons/3D-Beacons" target="_blank">
+        3D-Beacons data specifications</a>.</p>
+    <p>The 3D-Beacons Client is publicly available at
+      <a href="https://github.com/3D-Beacons/3d-beacons-client" target="_blank">
+        https://github.com/3D-Beacons/3d-beacons-client
+      </a>
+    </p>
+    <p class="infra-label">3D-Beacons Hub</p>
+    <p>The 3D-Beacons Hub acts as an aggregator of data from the various members of the 3D-Beacons Network.
+      It uses the <a href="https://github.com/3D-Beacons/3d-beacons-registry" target="_blank">
+        3D-Beacons Registry
+      </a> to look up which API endpoints are supported by which 3D-Beacons,
+      retrieves the data, and collates it to present the combined metadata programmatically to users.</p>
+    <p>The 3D-Beacons Hub source code is available at
+      <a href="https://github.com/3D-Beacons/3d-beacons-hub-api" target="_blank">
+        https://github.com/3D-Beacons/3d-beacons-hub-api
+      </a>
+    </p>
   </div>
 </div>
 
