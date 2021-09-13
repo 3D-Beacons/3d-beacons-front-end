@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   apiHost: 'https://api.com',
-  uniprotApiUrl: 'https://uniprotapi.com'
+  uniprotApiUrl: 'https://uniprotapi.com',
+  gaTag: 'TEST'
 };
 
 /*
