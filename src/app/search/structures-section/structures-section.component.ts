@@ -141,7 +141,7 @@ export class StructuresSectionComponent {
 
   prepareLabel(structure: Structure) {
     return '' +
-      '<strong>' + structure.provider + '</strong>' +
+      '<strong><a href="' + structure.model_page_url + '" target="_blank">' + structure.provider + '</a></strong>' +
       '<span style="float: right; margin-right: 5px;">' +
       '<a data-url="' + (structure.ensemble_sample_url ? structure.ensemble_sample_url : structure.model_url) + '" data-format="' +
       (structure.ensemble_sample_format ? structure.ensemble_sample_format.toLowerCase() : structure.model_format.toLowerCase()) +'"' +
