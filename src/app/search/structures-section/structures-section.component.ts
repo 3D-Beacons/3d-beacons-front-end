@@ -143,8 +143,8 @@ export class StructuresSectionComponent {
     return '' +
       '<strong>' + structure.provider + '</strong>' +
       '<span style="float: right; margin-right: 5px;">' +
-      '<a data-url="' + structure.model_url + '" data-format="' +
-      (structure.model_format !== undefined ? structure.model_format.toLowerCase() : "") +'"' +
+      '<a data-url="' + (structure.ensemble_sample_url ? structure.ensemble_sample_url : structure.model_url) + '" data-format="' +
+      (structure.ensemble_sample_format ? structure.ensemble_sample_format.toLowerCase() : structure.model_format.toLowerCase()) +'"' +
       ' data-model-identifier="' + structure.model_identifier + '" data-model-provider="' + structure.provider +
       '" onclick="updateMolstar(this)" style="border-bottom: none;">' +
       '<i class="icon icon-common icon-eye" style="margin-left: 10px; background-color: #dff1f0; padding: 5px; border: 1px solid black"></i></a>' +
