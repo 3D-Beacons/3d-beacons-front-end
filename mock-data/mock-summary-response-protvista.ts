@@ -10,7 +10,7 @@ export const MOCK_SUMMARY_RESPONSE_PROTVISTA: SummaryResponse = {
         {
             model_identifier: '2rh1',
             model_category: 'EXPERIMENTALLY DETERMINED',
-            provider: 'PDBE',
+            provider: 'PDBe',
             created: '2007-10-05',
             sequence_identity: 69,
             uniprot_start: 1,
@@ -23,7 +23,7 @@ export const MOCK_SUMMARY_RESPONSE_PROTVISTA: SummaryResponse = {
         {
             model_identifier: '60248fbc29ae6a15f7916ed8',
             model_category: 'TEMPLATE-BASED',
-            provider: 'SWISSMODEL',
+            provider: 'SWISS-MODEL',
             created: '2021-02-11',
             sequence_identity: 1,
             uniprot_start: 29,

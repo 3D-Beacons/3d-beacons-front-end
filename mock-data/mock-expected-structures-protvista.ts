@@ -10,11 +10,11 @@ export const EXPECTED_STRUCTURE_PROTVISTA: pvFormat.Accession = {
         {
           accession: '2rh1',
           labelType: 'text',
-          label: '<strong><a href="undefined" target="_blank">PDBE</a></strong><span style="float: right; margin-right: 5px;"><a data-url="https://www.ebi.ac.uk/pdbe/static/entry/2rh1_updated.cif" data-format="mmcif" data-model-identifier="2rh1" data-model-provider="PDBE" onclick="updateMolstar(this)" style="border-bottom: none;"><i class="icon icon-common icon-eye" style="margin-left: 10px; background-color: #dff1f0; padding: 5px; border: 1px solid black"></i></a><a target="_blank" href="https://www.ebi.ac.uk/pdbe/static/entry/2rh1_updated.cif" style="border-bottom: none;" download><i class="icon icon-common icon-download" style="margin-left: 10px; background-color: #dff1f0; padding: 5px; border: 1px solid black"></i></a></span>',
+          label: '<strong><a href="undefined" target="_blank">PDBe</a></strong><span style="float: right; margin-right: 5px;"><a data-url="https://www.ebi.ac.uk/pdbe/static/entry/2rh1_updated.cif" data-format="mmcif" data-model-identifier="2rh1" data-model-provider="PDBe" onclick="updateMolstar(this)" style="border-bottom: none;"><i class="icon icon-common icon-eye" style="margin-left: 10px; background-color: #dff1f0; padding: 5px; border: 1px solid black"></i></a><a target="_blank" href="https://www.ebi.ac.uk/pdbe/static/entry/2rh1_updated.cif" style="border-bottom: none;" download><i class="icon icon-common icon-download" style="margin-left: 10px; background-color: #dff1f0; padding: 5px; border: 1px solid black"></i></a></span>',
           color: '#085f5c',
           type: 'Structure',
           tooltipContent: 'Structure',
-          labelTooltip: '2rh1 (PDBE)',
+          labelTooltip: '2rh1 (PDBe)',
           labelColor: '#C0DCDB',
           locations: [
             {
@@ -22,7 +22,7 @@ export const EXPECTED_STRUCTURE_PROTVISTA: pvFormat.Accession = {
                 {
                   start: 1,
                   end: 365,
-                  tooltipContent: 'UniProt range: 1-365<br>Provider: PDBE<br>Category: Experimentally determined<br>Resolution: 2.4Å<br><a target="_blank" href="https://www.ebi.ac.uk/pdbe/static/entry/2rh1_updated.cif">Click to Download <i class="icon icon-common icon-download"></i></a>'
+                  tooltipContent: 'UniProt range: 1-365<br>Provider: PDBe<br>Category: Experimentally determined<br>Resolution: 2.4Å<br><a target="_blank" href="https://www.ebi.ac.uk/pdbe/static/entry/2rh1_updated.cif">Click to Download <i class="icon icon-common icon-download"></i></a>'
                 }
               ]
             }
@@ -67,11 +67,11 @@ export const EXPECTED_STRUCTURE_PROTVISTA: pvFormat.Accession = {
       Providers: [
         {
           color: '#7474bf',
-          text: 'SWISSMODEL'
+          text: 'SWISS-MODEL'
         },
         {
           color: '#085f5c',
-          text: 'PDBE'
+          text: 'PDBe'
         }
       ]
     }

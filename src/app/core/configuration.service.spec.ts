@@ -27,9 +27,9 @@ describe('ConfigurationService', () => {
   });
 
   it('should return proper color code for a provider', () => {
-    const expectedCodes = ['#085f5c', '#7474bf', '#2274a5', 'rgb(255,99,163)'];
-    const inProviders = ['PDBE', 'SWISSMODEL', 'PED', 'not a provider'];
-    
+    const expectedCodes = ['#085f5c', '#7474bf', '#2274a5', 'rgb(100,100,100)'];
+    const inProviders = ['PDBe', 'SWISS-MODEL', 'PED', 'not a provider'];
+
     for (let i = 0; i < inProviders.length; i++) {
       expect(service.getProviderColor(inProviders[i])).toEqual(expectedCodes[i]);
     }
