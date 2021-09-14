@@ -21,11 +21,12 @@ export class ConfigurationService {
 
   getProviderColor(provider: string): string {
     switch (provider) {
-      case 'PDBE': return '#085f5c';
-      case 'SWISSMODEL': return '#7474bf';
+      case 'PDBe': return '#085f5c';
+      case 'SWISS-MODEL': return '#7474bf';
       case 'PED': return '#2274a5';
       case 'AlphaFold DB': return '#0053d6';
-      default: return 'rgb(255,99,163)';
+      case 'SASBDB': return 'rgb(255,99,163)';
+      default: return 'rgb(100,100,100)';
     }
   }
 
