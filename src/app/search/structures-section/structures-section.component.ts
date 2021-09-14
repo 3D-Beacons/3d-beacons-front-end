@@ -169,7 +169,9 @@ export class StructuresSectionComponent {
       subscribeEvents: true,
       selectInteraction: false,
       bgColor: {r: 255, g: 255, b: 255},
-      hideCanvasControls: ['selection', 'animation', 'controlToggle', 'controlInfo']
+      hideCanvasControls: ['selection', 'animation', 'controlToggle', 'controlInfo'],
+      hideStructure: ['water'],
+      lighting: 'plastic'
     };
 
     // only render molstar for first time, use visual.update function for updates
