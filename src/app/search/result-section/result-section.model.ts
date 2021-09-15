@@ -19,8 +19,9 @@ export interface Structure {
     sequence_identity: number;
     uniprot_end: number;
     uniprot_start: number;
-    qmean_version?: string;
-    qmean_avg_local_score?: number;
+    confidence_version?: string;
+    confidence_type?: string;
+    confidence_avg_local_score?: number;
     model_format?: string;
 }
 

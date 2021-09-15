@@ -256,7 +256,7 @@ export const MOCK_SUMMARY_RESPONSE: SummaryResponse = {
             uniprot_start: 29,
             uniprot_end: 342,
             coverage: 0.76,
-            qmean_version: '4.2.0',
+            confidence_version: '4.2.0',
             model_url: 'https://beta.swissmodel.expasy.org/3d-beacons/uniprot/P07550.pdb?range=29-342&template=5d5a.1.A&provider=swissmodel'
         },
         {
@@ -268,7 +268,7 @@ export const MOCK_SUMMARY_RESPONSE: SummaryResponse = {
             uniprot_start: 221,
             uniprot_end: 342,
             coverage: 0.295,
-            qmean_version: '4.2.0',
+            confidence_version: '4.2.0',
             model_url: 'https://beta.swissmodel.expasy.org/3d-beacons/uniprot/P07550.pdb?range=221-342&template=5x7d.1.A&provider=swissmodel'
         },
         {
@@ -280,7 +280,7 @@ export const MOCK_SUMMARY_RESPONSE: SummaryResponse = {
             uniprot_start: 29,
             uniprot_end: 276,
             coverage: 0.6,
-            qmean_version: '4.2.0',
+            confidence_version: '4.2.0',
             model_url: 'https://beta.swissmodel.expasy.org/3d-beacons/uniprot/P07550.pdb?range=29-276&template=5d5a.1.A&provider=swissmodel'
         }
     ]

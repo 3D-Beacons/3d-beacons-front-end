@@ -116,7 +116,7 @@ export class StructuresSectionComponent {
     tooltip += '<br>Provider: ' + item.provider;
     tooltip += '<br>Category: ' + item.model_category.charAt(0).toUpperCase() + item.model_category.slice(1).toLowerCase();
     tooltip += item.resolution ? '<br>Resolution: ' + item.resolution + 'Å' : '';
-    tooltip += item.qmean_avg_local_score ? '<br>QMEAN: ' + item.qmean_avg_local_score : '';
+    tooltip += item.confidence_avg_local_score ? '<br>' + item.confidence_type + ' confidence: ' + item.confidence_avg_local_score : '';
     tooltip += '<br><a target="_blank" href="' + item.model_url + '">Click to Download <i class="icon icon-common icon-download"></i></a>';
 
     return tooltip;
