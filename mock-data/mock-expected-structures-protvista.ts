@@ -14,7 +14,7 @@ export const EXPECTED_STRUCTURE_PROTVISTA: pvFormat.Accession = {
           color: '#085f5c',
           type: 'Structure',
           tooltipContent: 'Structure',
-          labelTooltip: '2rh1 (PDBe)',
+          labelTooltip: 'ID: 2rh1 (PDBe)',
           labelColor: '#C0DCDB',
           locations: [
             {
@@ -42,7 +42,7 @@ export const EXPECTED_STRUCTURE_PROTVISTA: pvFormat.Accession = {
           color: '#7474bf',
           type: 'Structure',
           tooltipContent: 'Structure',
-          labelTooltip: '60248fbc29ae6a15f7916ed8 (SWISSMODEL)',
+          labelTooltip: 'ID: 60248fbc29ae6a15f7916ed8 (SWISSMODEL)',
           locations: [
             {
               fragments: [

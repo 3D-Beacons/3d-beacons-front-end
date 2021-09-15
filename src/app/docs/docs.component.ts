@@ -10,7 +10,6 @@ export class DocsComponent implements OnInit {
   constructor() {
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
 }
