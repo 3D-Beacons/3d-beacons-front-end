@@ -1,4 +1,4 @@
-import { Component, Input, ElementRef, Renderer2 } from '@angular/core';
+import { Component, Input, ElementRef, Renderer2, OnDestroy } from '@angular/core';
 
 import { ConfigurationService } from 'src/app/core/configuration.service';
 import * as pvFormat from '../result-section/protvista.model';
@@ -9,7 +9,7 @@ import { Structure, SummaryResponse } from '../result-section/result-section.mod
   templateUrl: './structures-section.component.html',
   styleUrls: ['./structures-section.component.css']
 })
-export class StructuresSectionComponent {
+export class StructuresSectionComponent implements OnDestroy {
   private _resultData: any;
   haveResults = false;
   protvistaData: Partial<pvFormat.Accession> = null;
@@ -39,6 +39,10 @@ export class StructuresSectionComponent {
     document.addEventListener('eye-click', (e: CustomEvent) => {
       this.displayedEntry = e.detail.modelId +' from ' +e.detail.modelProvider;
     });
+  }
+
+  ngOnDestroy(): void {
+    window["molstarRendered"] = false;
   }
 
   convertToProtvistaFormat(resultData: SummaryResponse): Partial<pvFormat.Accession> {

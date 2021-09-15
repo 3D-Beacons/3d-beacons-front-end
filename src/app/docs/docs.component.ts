@@ -10,8 +10,6 @@ export class DocsComponent implements OnInit {
   constructor() {
   }
 
-  ngOnInit(): void {
-    window["molstarRendered"] = false;
-  }
+  ngOnInit(): void {}
 
 }
