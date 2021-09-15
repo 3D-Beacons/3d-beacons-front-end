@@ -85,7 +85,7 @@ export class StructuresSectionComponent {
         labelColor: '#C0DCDB',
         type: 'Structure',
         tooltipContent: 'Structure',
-        labelTooltip: structure.model_identifier + ' (' + structure.provider + ')',
+        labelTooltip: 'ID: ' + structure.model_identifier + ' (' + structure.provider + ')',
         locations: [{
           fragments: [{
             start: structure.uniprot_start,
