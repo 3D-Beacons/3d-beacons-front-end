@@ -14,3 +14,11 @@
   margin-left: 15px !important;
   max-width: unset !important;
 }
+
+.error-row {
+  margin-top: 30px;
+}
+
+.warning-red {
+  color: rgb(211, 74, 57);
+}

@@ -15,6 +15,8 @@ export class StructuresSectionComponent implements OnDestroy {
   protvistaData: Partial<pvFormat.Accession> = null;
   availableProviders: Set<string> = new Set();
   displayedEntry: string;
+  displayedEntryUrl: string;
+  help: boolean;
 
   @Input()
   get resultData(): any {
@@ -38,7 +40,17 @@ export class StructuresSectionComponent implements OnDestroy {
     // });
     document.addEventListener('eye-click', (e: CustomEvent) => {
       this.displayedEntry = e.detail.modelId +' from ' +e.detail.modelProvider;
+      this.displayedEntryUrl = e.detail.modelUrl;
     });
+    this.help = false;
+  }
+
+  toggleHelp() {
+    this.help = !this.help;
+  }
+
+  ngOnDestroy(): void {
+    window["molstarRendered"] = false;
   }
 
   ngOnDestroy(): void {
@@ -164,6 +176,7 @@ export class StructuresSectionComponent implements OnDestroy {
     let viewerContainer = document.getElementById('molstar-container');
     const url = structure.ensemble_sample_url ? structure.ensemble_sample_url : structure.model_url;
     const format = structure.ensemble_sample_format ? structure.ensemble_sample_format.toLowerCase() : structure.model_format.toLowerCase();
+    this.displayedEntryUrl = url;
     let options = {
       customData: {
         url: url,

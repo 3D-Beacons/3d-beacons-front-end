@@ -14,8 +14,15 @@
 <app-loading-dialog *ngIf="isFetching"></app-loading-dialog>
 
 <div *ngIf="error" class="row error-row">
-  <h2 style="color: rgb(211, 74, 57);">[404 NOT FOUND]</h2>
-  <h3>No UniProt entry found for this accession ID</h3>
+  <div class="small-12 columns">
+    <h3 class="warning-red">No results found</h3>
+    <p>Note: 3D-Beacons API currently supports search based on <strong class="warning-red">UniProt accession</strong> only</p>
+    <p>Please try to:</p>
+    <ul>
+      <li>Check if you have entered a valid UniProt accession</li>
+      <li>In case of using a valid UniProt accession, check back later as more models will be provided by the member databases in the future</li>
+    </ul>
+  </div>
 </div>
 
 <app-providers></app-providers>
