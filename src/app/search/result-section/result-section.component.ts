@@ -49,6 +49,10 @@ export class ResultSectionComponent {
   constructor(private summaryService: SummaryService, private configService: ConfigurationService) { }
 
   getSum(): number {
+    /**
+     * Counts the number of models
+     * @returns sum - a number
+     */
     let sum = 0;
     this.summaryData.forEach(item => {
       if (item.count) {
@@ -59,6 +63,10 @@ export class ResultSectionComponent {
   }
 
   prepareSummaryData() {
+    /**
+     * Creates the count of structures per model categories
+     * @returns tempList - A list of category counts
+     */
     const categories = this.summaryService.getCategories();
 
     this.resultData.structures.map((structure) => {
@@ -72,15 +80,22 @@ export class ResultSectionComponent {
     });
 
     const tempList = [];
-    for (let c in categories) {
+
+    Object.keys(categories).forEach(c => {
       tempList.push(categories[c]);
-    }
+    });
 
     return tempList;
   }
 
   prepareInfoText(data) {
-    let infoText = [];
+    /**
+     * Parses the UniProt protein API response JSON, extracts relevant information (e.g. protein name, gene name) and saves it in
+     * an array of dictionaries which powers the summary section of the page
+     * @param data - a response in JSON format from UniProt's protein API
+     * @returns infoText - an array of dictionaries with summary information of a protein
+     */
+    const infoText = [];
 
     if (data.protein.recommendedName) {
       infoText.push(
@@ -108,7 +123,7 @@ export class ResultSectionComponent {
       );
     }
     if (data.organism) {
-      let scientificNames = data.organism.names.filter(name => name.type === 'scientific')
+      const scientificNames = data.organism.names.filter(name => name.type === 'scientific');
       infoText.push(
         {
           label: 'Source organism',
