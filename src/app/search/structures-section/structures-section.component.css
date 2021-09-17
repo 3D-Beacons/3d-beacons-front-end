@@ -7,8 +7,31 @@
   font-weight: bold;
 }
 
-.eye-icon {
+.eye-icon, .functional-download-icon {
   background-color: #dff1f0;
   padding: 5px;
   border: 1px solid black
+}
+
+.example-icon {
+  background-color: #dff1f0;
+  padding: 2px;
+  border: 1px solid black
+}
+
+.functional-download-icon:hover {
+  color: #74b360;
+}
+
+.help-link {
+  font-weight: 500;
+  color: #0F5C5A;
+  text-decoration: none;
+  border-bottom: none;
+  font-size: smaller;
+}
+
+.help-link:hover {
+  color: #ffae00;
+  border-bottom: 1px solid #ffae00;
 }

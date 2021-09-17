@@ -1,14 +1,30 @@
 <div>
     <p id="display-label">
-      Now displaying structure <span class="display-label-text">{{displayedEntry}}</span>. Click here to download this structure: <a download target="_blank" href="{{displayedEntryUrl}}"><i class="icon icon-common icon-download eye-icon" data-icon="&#xf06e;"></i></a>
+      Now displaying structure <span class="display-label-text">{{displayedEntry}}</span>.
+      Click to download: <a download target="_blank" href="{{displayedEntryUrl}}">
+      <i class="icon icon-common icon-download functional-download-icon" data-icon="&#xf06e;"></i></a>
     </p>
-    <p>
-      Please click on the <i class="icon icon-common eye-icon" data-icon="&#xf06e;"></i>
-      eye icon on the sequence feature viewer below to display another structure.
+    <p *ngIf="!help">
+      <a (click)="toggleHelp()" class="help-link">
+        <i class="icon icon-functional" data-icon="+"></i> [show help]
+      </a>
     </p>
-    <p>You can download structures by clicking on the
-      <i class="icon icon-common icon-download eye-icon" data-icon="&#xf06e;"></i> icons.
+    <p *ngIf="help">
+      <a (click)="toggleHelp()" class="help-link">
+        <i class="icon icon-functional" data-icon="-"></i> [hide help]
+      </a>
     </p>
+    <div *ngIf="help">
+      <p>
+        Please click on the <i class="icon icon-common example-icon" data-icon="&#xf06e;"></i>
+        eye icon on the sequence feature viewer below to display another structure.
+      </p>
+      <p>You can also download other structures by clicking on the
+        <i class="icon icon-common icon-download example-icon" data-icon="&#xf06e;"></i> icons
+        on the sequence feature viewer below.
+      </p>
+    </div>
+
     <!-- protvista section -->
     <div class="appPvContainer"></div>
     <!-- protvista section -->
