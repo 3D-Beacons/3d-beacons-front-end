@@ -53,10 +53,6 @@ export class StructuresSectionComponent implements OnDestroy {
     window["molstarRendered"] = false;
   }
 
-  ngOnDestroy(): void {
-    window["molstarRendered"] = false;
-  }
-
   convertToProtvistaFormat(resultData: SummaryResponse): Partial<pvFormat.Accession> {
     const protvistaData: Partial<pvFormat.Accession> = {
       largeLabels: true,
