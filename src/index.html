@@ -62,7 +62,7 @@
       //Get element from HTML/Template to place the viewer
       var viewerContainer = document.getElementById('molstar-container');
 
-      const event = new CustomEvent("eye-click", {detail: {modelId: modelId, modelProvider: modelProvider}});
+      const event = new CustomEvent("eye-click", {detail: {modelId: modelId, modelProvider: modelProvider, modelUrl: modelUrl}});
       document.dispatchEvent(event);
 
       let data = {
