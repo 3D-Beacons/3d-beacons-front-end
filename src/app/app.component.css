@@ -70,11 +70,11 @@
 
 .search-example {
   margin-left: 15px;
-  border-bottom: none !important;
+  border-bottom: #fff 1px solid !important;
   text-decoration: none !important;
 }
 
 .search-example:hover {
-  border-bottom: #ffae00 1px solid !important;
+  border-bottom: #ffae00 2px solid !important;
   color: #ffae00;
 }

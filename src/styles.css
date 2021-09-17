@@ -48,15 +48,15 @@ a {
   }
 }
 
-.external-ref, .showMoreLink{
+.external-ref{
   font-weight: 500;
   color: #0F5C5A;
   text-decoration: none;
-  border-bottom: none;
+  border-bottom: 1px solid #0F5C5A;
   font-size: smaller;
 }
 
-.external-ref:hover, .showMoreLink:hover{
+.external-ref:hover{
   color: #ffae00;
-  border-bottom: 1px solid #ffae00;
+  border-bottom: 2px solid #ffae00;
 }
