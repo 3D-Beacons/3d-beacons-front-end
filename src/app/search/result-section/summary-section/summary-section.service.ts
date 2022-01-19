@@ -42,6 +42,7 @@ export class SummaryService {
       'Genome3D': 'template',
       'AlphaFold DB': 'deeplearning',
       'SASBDB': 'expr',
+      'AlphaFill': 'deeplearning',
     }
     return providerCategories[providerId];
   }
