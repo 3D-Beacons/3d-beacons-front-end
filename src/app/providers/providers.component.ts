@@ -38,6 +38,10 @@ export class ProvidersComponent {
       {
         name: 'PDBe-KB',
         url: 'https://pdbe-kb.org'
+      },
+      {
+        name: 'AlphaFill',
+        url: 'https://alphafill.eu/'
       }
     ];
   }
