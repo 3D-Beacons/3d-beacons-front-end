@@ -42,6 +42,10 @@ export class ProvidersComponent {
       {
         name: 'AlphaFill',
         url: 'https://alphafill.eu/'
+      },
+      {
+        name: 'ModelArchive',
+        url: 'https://modelarchive.org/'
       }
     ];
   }
