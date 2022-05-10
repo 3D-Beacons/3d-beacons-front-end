@@ -68,13 +68,13 @@
   </div>
 </div>
 
-<div class="row home-row">
-  <div class="large-3 large-offset-2 medium-offset-1 medium-4 small-12 home-text-title columns">
-    <h2>Case studies</h2>
+<div class="row home-row" style="padding-top: 20px;">
+  <div class="large-10 large-offset-2 medium-offset-1 medium-11 small-12 home-text-title columns">
+    <h2 style="margin-bottom: 50px;">Case studies of integrating 3D-Beacons</h2>
   </div>
-  <div class="large-5 medium-6 small-12 home-text columns">
+  <div class="large-offset-2 large-4 medium-offset-1 medium-5 small-12 home-text columns case-study-div">
     <a href="https://www.jalview.org/" target="_blank" style="font-size: 1.25em;">JalView</a>
-    <p style="margin-top: 15px;">3D Beacons allows users of the Jalview workbench for multiple sequence alignment and analysis
+    <p class="case-study-p">3D Beacons allows users of the Jalview workbench for multiple sequence alignment and analysis
       (<a href="https://www.jalview.org/" target="_blank">https://www.jalview.org/</a>) to automatically discover
       relevant models for aligned proteins from Uniprot. It also
       provides built in support for visualisation of local model quality scores (including method specific quantities
@@ -83,14 +83,35 @@
         Jalview's 3D Beacons search documentation</a>. Jalview is available as a
       stand alone application for a variety of platforms, and can also be run
       <a href="https://www.jalview.org/jalview-js" target="_blank">in the browser</a>.</p>
+      <div class="small-12 columns">
+        <a href="https://www.jalview.org/" target="_blank">
+          <img src="./assets/img/jalview-example.png" alt="example of how Jalview integrated 3D-Beacons">
+        </a>
+      </div>
   </div>
-</div>
-
-<div class="row home-row">
-  <div class="large-5 large-offset-5 medium-10 medium-offset-1 small-12 columns">
-    <a href="https://www.jalview.org/" target="_blank">
-      <img src="./assets/img/jalview-example.png" alt="example of how Jalview integrated 3D-Beacons">
-    </a>
+  <div class="large-4 medium-5 small-12 home-text columns case-study-div">
+    <a href="https://pdbe-kb.org" target="_blank" style="font-size: 1.25em;">PDBe-KB</a>
+    <p class="case-study-p">
+      The <a href="https://pdbe-kb.org" target="_blank">Protein Data Bank in Europe - Knowledge Base (PDBe-KB)</a> relies on the 3D-Beacons Hub API to display all the experimentally determined and theoretical structures for proteins of interest (<a href="https://www.ebi.ac.uk/pdbe/pdbe-kb/proteins/P38398/structures" target="_blank">example</a>).
+      The sa-called "aggregated views of proteins" pages of PDBe-KB collate all the available structural data from the PDB, and places these structures in the context of functional, biophysical and biochemical annotations, provided by partner data resources. The integration of the 3D-Beacons Hub API allows us to display these annotations in relation to theoretical models, in addition to the experimentally determined structures.
+    </p>
+    <div class="small-12 columns">
+      <a href="https://pdbe-kb.org" target="_blank">
+        <img src="./assets/img/pdbe-kb-example-alt.png" alt="example of how the PDBe-KB integrated 3D-Beacons">
+      </a>
+    </div>
+  </div>
+  <div class="large-offset-2 large-4 medium-offset-1 medium-5 small-12 home-text columns case-study-div">
+    <a href="https://swissmodel.expasy.org/repository" target="_blank" style="font-size: 1.25em;">SWISS-MODEL Repository</a>
+    <p class="case-study-p">
+      The <a href="https://swissmodel.expasy.org/repository" target="_blank">SWISS-MODEL Repository (SMR)</a> takes advantage of the 3D-Beacons API to fetch models from the AlphaFoldDB and ModelArchive for display in addition to homology models from SWISS-MODEL and experimental structures from the PDB (<a href="https://swissmodel.expasy.org/repository/uniprot/P53742?model=ma-bak-cepc-0746" target="_blank">example</a>).
+      Within SMR, the models are displayed with a consistent colouring for model confidence to compare homology with AlphaFold models and structures can be further assessed with <a href="https://swissmodel.expasy.org/assess/help" target="_blank">other metrics</a>. Furthermore, SMR includes sequence based annotations which can be visualised on the structures and enables the <a href="https://swissmodel.expasy.org/comparison/help" target="_blank">comparison of multiple structures</a>.
+    </p>
+    <div class="small-12 columns">
+      <a href="https://swissmodel.expasy.org/repository" target="_blank">
+        <img src="./assets/img/swiss-model-example.png" alt="example of how the SWISS-MODEL Repository integrated 3D-Beacons">
+      </a>
+    </div>
   </div>
 </div>
 
