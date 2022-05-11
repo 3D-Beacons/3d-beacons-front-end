@@ -50,3 +50,12 @@ h3 {
 .no-left-padding {
   padding-left: 0 !important;
 }
+
+.case-study-p {
+  margin-bottom: 50px;
+  margin-top: 15px;
+}
+
+.case-study-div {
+  margin-bottom: 50px;
+}
