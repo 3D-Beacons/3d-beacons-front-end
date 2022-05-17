@@ -5,6 +5,16 @@ export interface UniProtEntry {
     sequence?: string;
 }
 
+
+export interface Entity {
+    entity_type: string;
+    entity_poly_type?: string;
+    identifier: string;
+    identifier_category: string;
+    description: string;
+    chain_ids: string[];
+}
+
 export interface Structure {
     model_page_url?: string;
     ensemble_sample_format?: string;
@@ -23,9 +33,19 @@ export interface Structure {
     confidence_type?: string;
     confidence_avg_local_score?: number;
     model_format?: string;
+    entities: Entity[];
+    experimental_method?: string;
+    model_type?: string;
+    number_of_conformers?: number;
+    oligomeric_state?: string;
+    preferred_assembly_id?: string;
+}
+
+export interface Overview {
+    summary: Structure
 }
 
 export interface SummaryResponse {
     uniprot_entry: UniProtEntry;
-    structures: Structure[]
+    structures: Overview[]
 }
