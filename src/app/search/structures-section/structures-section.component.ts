@@ -182,7 +182,7 @@ export class StructuresSectionComponent implements OnDestroy {
       subscribeEvents: true,
       selectInteraction: false,
       bgColor: {r: 255, g: 255, b: 255},
-      hideCanvasControls: ['selection', 'animation', 'controlToggle', 'controlInfo'],
+      hideCanvasControls: ['selection', 'animation'],
       hideStructure: ['water'],
       lighting: 'plastic'
     };
