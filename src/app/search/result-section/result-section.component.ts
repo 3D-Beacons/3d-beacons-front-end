@@ -70,7 +70,7 @@ export class ResultSectionComponent {
     const categories = this.summaryService.getCategories();
 
     this.resultData.structures.map((structure) => {
-      const categoryId = this.summaryService.getProviderCategory(structure.provider);
+      const categoryId = this.summaryService.getProviderCategory(structure.summary.provider);
       const category = categories[categoryId];
 
       if (!category.count) {
