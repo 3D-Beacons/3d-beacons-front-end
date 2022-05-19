@@ -184,7 +184,8 @@ export class StructuresSectionComponent implements OnDestroy {
       bgColor: {r: 255, g: 255, b: 255},
       hideCanvasControls: ['selection', 'animation'],
       hideStructure: ['water'],
-      lighting: 'plastic'
+      lighting: 'plastic',
+      landscape: true,
     };
 
     // only render molstar for first time, use visual.update function for updates
