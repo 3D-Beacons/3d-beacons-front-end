@@ -24,11 +24,6 @@ export class SummaryService {
       id: 'abinitio',
       displayName: 'Ab-initio Models',
       icon: 'icon icon-common icon-systems'
-    },
-    deeplearning: {
-      id: 'deeplearning',
-      displayName: 'Deep learning',
-      icon: 'icon icon-common icon-systems'
     }
   };
 
