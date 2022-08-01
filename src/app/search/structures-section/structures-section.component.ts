@@ -2,7 +2,7 @@ import { Component, Input, ElementRef, Renderer2, OnDestroy } from '@angular/cor
 
 import { ConfigurationService } from 'src/app/core/configuration.service';
 import * as pvFormat from '../result-section/protvista.model';
-import { Overview, Structure, SummaryResponse } from '../result-section/result-section.model';
+import { Structure, SummaryResponse } from '../result-section/result-section.model';
 
 @Component({
   selector: 'app-structures-section',
@@ -70,12 +70,12 @@ export class StructuresSectionComponent implements OnDestroy {
     // prepare tracks
     const tracks: { [key: string]: pvFormat.Track } = {};
     resultData.structures.map(structure => {
-      if (tracks[structure.summary.model_category] === undefined) {
-        tracks[structure.summary.model_category] = {
+      if (tracks[structure.model_category] === undefined) {
+        tracks[structure.model_category] = {
           labelType: 'text',
           label: '<span style="color:#fff">'
-            + structure.summary.model_category.charAt(0).toUpperCase()
-            + structure.summary.model_category.slice(1).toLowerCase()
+            + structure.model_category.charAt(0).toUpperCase()
+            + structure.model_category.slice(1).toLowerCase()
             + '</span>',
           labelColor: '#217976',
           data: [],
@@ -90,25 +90,25 @@ export class StructuresSectionComponent implements OnDestroy {
       }
 
       let trackDataItem: pvFormat.Data = {
-        accession: structure.summary.model_identifier,
+        accession: structure.model_identifier,
         labelType: 'text',
         label: this.prepareLabel(structure),
-        color: this.configService.getProviderColor(structure.summary.provider),
+        color: this.configService.getProviderColor(structure.provider),
         labelColor: '#C0DCDB',
         type: 'Structure',
         tooltipContent: 'Structure',
-        labelTooltip: 'ID: ' + structure.summary.model_identifier + ' (' + structure.summary.provider + ')',
+        labelTooltip: 'ID: ' + structure.model_identifier + ' (' + structure.provider + ')',
         locations: [{
           fragments: [{
-            start: structure.summary.uniprot_start,
-            end: structure.summary.uniprot_end,
+            start: structure.uniprot_start,
+            end: structure.uniprot_end,
             tooltipContent: this.prepareTooltip(structure)
           }
           ]
         }]
       };
-      tracks[structure.summary.model_category].data.push(trackDataItem);
-      this.availableProviders.add(structure.summary.provider);
+      tracks[structure.model_category].data.push(trackDataItem);
+      this.availableProviders.add(structure.provider);
     });
 
     for (let track in tracks) {
@@ -122,14 +122,14 @@ export class StructuresSectionComponent implements OnDestroy {
     return protvistaData;
   }
 
-  prepareTooltip(item: Overview): string {
+  prepareTooltip(item: Structure): string {
     let tooltip = '';
-    tooltip += 'UniProt range: ' + item.summary.uniprot_start + '-' + item.summary.uniprot_end;
-    tooltip += '<br>Provider: ' + item.summary.provider;
-    tooltip += '<br>Category: ' + item.summary.model_category.charAt(0).toUpperCase() + item.summary.model_category.slice(1).toLowerCase();
-    tooltip += item.summary.resolution ? '<br>Resolution: ' + item.summary.resolution + 'Å' : '';
-    tooltip += item.summary.confidence_avg_local_score ? '<br>' + item.summary.confidence_type + ' confidence: ' + item.summary.confidence_avg_local_score : '';
-    tooltip += '<br><a target="_blank" href="' + item.summary.model_url + '">Click to Download <i class="icon icon-common icon-download"></i></a>';
+    tooltip += 'UniProt range: ' + item.uniprot_start + '-' + item.uniprot_end;
+    tooltip += '<br>Provider: ' + item.provider;
+    tooltip += '<br>Category: ' + item.model_category.charAt(0).toUpperCase() + item.model_category.slice(1).toLowerCase();
+    tooltip += item.resolution ? '<br>Resolution: ' + item.resolution + 'Å' : '';
+    tooltip += item.confidence_avg_local_score ? '<br>' + item.confidence_type + ' confidence: ' + item.confidence_avg_local_score : '';
+    tooltip += '<br><a target="_blank" href="' + item.model_url + '">Click to Download <i class="icon icon-common icon-download"></i></a>';
 
     return tooltip;
   }
@@ -151,27 +151,27 @@ export class StructuresSectionComponent implements OnDestroy {
     }
   }
 
-  prepareLabel(structure: Overview) {
+  prepareLabel(structure: Structure) {
     return '' +
-      '<strong><a href="' + structure.summary.model_page_url + '" target="_blank">' + structure.summary.provider + '</a></strong>' +
+      '<strong><a href="' + structure.model_page_url + '" target="_blank">' + structure.provider + '</a></strong>' +
       '<span style="float: right; margin-right: 5px;">' +
-      '<a data-url="' + (structure.summary.ensemble_sample_url ? structure.summary.ensemble_sample_url : structure.summary.model_url) + '" data-format="' +
-      (structure.summary.ensemble_sample_format ? structure.summary.ensemble_sample_format.toLowerCase() : structure.summary.model_format.toLowerCase()) +'"' +
-      ' data-model-identifier="' + structure.summary.model_identifier + '" data-model-provider="' + structure.summary.provider +
+      '<a data-url="' + (structure.ensemble_sample_url ? structure.ensemble_sample_url : structure.model_url) + '" data-format="' +
+      (structure.ensemble_sample_format ? structure.ensemble_sample_format.toLowerCase() : structure.model_format.toLowerCase()) +'"' +
+      ' data-model-identifier="' + structure.model_identifier + '" data-model-provider="' + structure.provider +
       '" onclick="updateMolstar(this)" style="border-bottom: none;">' +
       '<i class="icon icon-common icon-eye" style="margin-left: 10px; background-color: #dff1f0; padding: 5px; border: 1px solid black"></i></a>' +
-      '<a target="_blank" href="' + structure.summary.model_url + '" style="border-bottom: none;" download>' +
+      '<a target="_blank" href="' + structure.model_url + '" style="border-bottom: none;" download>' +
       '<i class="icon icon-common icon-download" style="margin-left: 10px; background-color: #dff1f0; padding: 5px; border: 1px solid black"></i>' +
       '</a>' +
       '</span>';
   }
 
-  handleMolstar(structure: Overview) {
-    this.displayedEntry = structure.summary.model_identifier + ' from ' + structure.summary.provider;
+  handleMolstar(structure: Structure) {
+    this.displayedEntry = structure.model_identifier + ' from ' + structure.provider;
     let molstarPlugin = window['molstarPlugin'];
     let viewerContainer = document.getElementById('molstar-container');
-    const url = structure.summary.ensemble_sample_url ? structure.summary.ensemble_sample_url : structure.summary.model_url;
-    const format = structure.summary.ensemble_sample_format ? structure.summary.ensemble_sample_format.toLowerCase() : structure.summary.model_format.toLowerCase();
+    const url = structure.ensemble_sample_url ? structure.ensemble_sample_url : structure.model_url;
+    const format = structure.ensemble_sample_format ? structure.ensemble_sample_format.toLowerCase() : structure.model_format.toLowerCase();
     this.displayedEntryUrl = url;
     let options = {
       customData: {
