@@ -30,7 +30,7 @@ describe('ResultSectionComponent', () => {
 
   it('getSum should work fine', () => {
     component.resultData = MOCK_SUMMARY_RESPONSE;
-    expect(component.getSum()).toEqual(2);
+    expect(component.getSum()).toEqual(23);
   });
 
   it('switchText should switch indeed', () => {

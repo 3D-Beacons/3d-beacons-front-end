@@ -15,12 +15,10 @@ import { StructuresSectionComponent } from './search/structures-section/structur
 import { SharedModule } from './shared/shared.module';
 import { DocsComponent } from './docs/docs.component';
 import { ProvidersComponent } from './providers/providers.component';
-import { GuidelinesComponent } from './guidelines/guidelines.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'docs', component: DocsComponent },
-  { path: 'guidelines', component: GuidelinesComponent },
   { path: 'search/:id', component: SearchComponent }
 ];
 
@@ -34,8 +32,7 @@ const routes: Routes = [
     StructuresSectionComponent,
     StructuresSectionComponent,
     DocsComponent,
-    ProvidersComponent,
-    GuidelinesComponent
+    ProvidersComponent
   ],
   imports: [
     BrowserModule,

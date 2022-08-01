@@ -41,63 +41,39 @@ describe('StructuresSectionComponent', () => {
 
   it('should prepare a proper tooltip for a Structure item', () => {
     // with resolution present
-    const structure1: summaryFormat.Overview = {
-      summary: {
-        model_identifier: '4lde',
-        model_category: 'EXPERIMENTALLY DETERMINED',
-        provider: 'PDBE',
-        created: '2013-06-24',
-        sequence_identity: 90,
-        uniprot_start: 29,
-        uniprot_end: 348,
-        resolution: 2.79,
-        coverage: 70.7,
-        model_url: 'https://www.ebi.ac.uk/pdbe/static/entry/4lde_updated.cif',
-        entities: [
-          {
-            entity_type: 'POLYMER',
-            entity_poly_type: 'POLYPEPTIDE(L)',
-            identifier: 'P38398',
-            identifier_category: 'UNIPROT',
-            description: 'Breast cancer type 1 susceptibility protein',
-            chain_ids: ['B','A']
-          }
-        ]
-      }
+    const structure1: summaryFormat.Structure = {
+      model_identifier: '2rh1',
+      model_category: 'EXPERIMENTALLY DETERMINED',
+      provider: 'PDBE',
+      created: '2007-10-05',
+      sequence_identity: 69,
+      uniprot_start: 1,
+      uniprot_end: 365,
+      resolution: 2.4,
+      coverage: 80.39,
+      model_url: 'https://www.ebi.ac.uk/pdbe/static/entry/2rh1_updated.cif'
     };
     const expectedTooltip1 =
-      'UniProt range: 29-348<br>Provider: PDBE<br>Category: Experimentally determined<br>Resolution: 2.79Å' +
-      '<br><a target="_blank" href="https://www.ebi.ac.uk/pdbe/static/entry/4lde_updated.cif"' +
+      'UniProt range: 1-365<br>Provider: PDBE<br>Category: Experimentally determined<br>Resolution: 2.4Å' +
+      '<br><a target="_blank" href="https://www.ebi.ac.uk/pdbe/static/entry/2rh1_updated.cif"' +
       '>Click to Download <i class="icon icon-common icon-download"></i></a>';
 
     expect(component.prepareTooltip(structure1)).toEqual(expectedTooltip1);
 
     // with no resolution
-    const structure2: summaryFormat.Overview = {
-      summary: {
-        model_identifier: '4lde',
-        model_category: 'EXPERIMENTALLY DETERMINED',
-        provider: 'PDBE',
-        created: '2013-06-24',
-        sequence_identity: 90,
-        uniprot_start: 29,
-        uniprot_end: 348,
-        coverage: 70.7,
-        model_url: 'https://www.ebi.ac.uk/pdbe/static/entry/4lde_updated.cif',
-        entities: [
-          {
-            entity_type: 'POLYMER',
-            entity_poly_type: 'POLYPEPTIDE(L)',
-            identifier: 'P38398',
-            identifier_category: 'UNIPROT',
-            description: 'Breast cancer type 1 susceptibility protein',
-            chain_ids: ['B','A']
-          }
-        ]
-      }
+    const structure2: summaryFormat.Structure = {
+      model_identifier: '2rh1',
+      model_category: 'EXPERIMENTALLY DETERMINED',
+      provider: 'PDBE',
+      created: '2007-10-05',
+      sequence_identity: 69,
+      uniprot_start: 1,
+      uniprot_end: 365,
+      coverage: 80.39,
+      model_url: 'https://www.ebi.ac.uk/pdbe/static/entry/2rh1_updated.cif'
     };
-    const expectedTooltip2 = 'UniProt range: 29-348<br>Provider: PDBE<br>Category: Experimentally determined' +
-    '<br><a target="_blank" href="https://www.ebi.ac.uk/pdbe/static/entry/4lde_updated.cif"' +
+    const expectedTooltip2 = 'UniProt range: 1-365<br>Provider: PDBE<br>Category: Experimentally determined' +
+    '<br><a target="_blank" href="https://www.ebi.ac.uk/pdbe/static/entry/2rh1_updated.cif"' +
     '>Click to Download <i class="icon icon-common icon-download"></i></a>';
 
     expect(component.prepareTooltip(structure2)).toEqual(expectedTooltip2);
