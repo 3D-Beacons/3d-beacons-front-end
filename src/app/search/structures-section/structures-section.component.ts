@@ -70,6 +70,9 @@ export class StructuresSectionComponent implements OnDestroy {
     // prepare tracks
     const tracks: { [key: string]: pvFormat.Track } = {};
     resultData.structures.map(structure => {
+      if (structure.model_category === 'DEEP-LEARNING') {
+        structure.model_category = 'AB-INITIO'
+      }
       if (tracks[structure.model_category] === undefined) {
         tracks[structure.model_category] = {
           labelType: 'text',
