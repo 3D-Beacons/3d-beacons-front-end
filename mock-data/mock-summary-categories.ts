@@ -20,10 +20,5 @@ export const MOCK_SUMMARY_CATEGORIES = [
     id: 'abinitio',
     displayName: 'Ab-initio Models',
     icon: 'icon icon-common icon-systems'
-  },
-  {
-    id: 'deeplearning',
-    displayName: 'Deep learning',
-    icon: 'icon icon-common icon-systems'
   }
 ];
