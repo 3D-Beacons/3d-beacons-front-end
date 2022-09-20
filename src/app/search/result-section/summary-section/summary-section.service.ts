@@ -24,11 +24,6 @@ export class SummaryService {
       id: 'abinitio',
       displayName: 'Ab-initio Models',
       icon: 'icon icon-common icon-systems'
-    },
-    deeplearning: {
-      id: 'deeplearning',
-      displayName: 'Deep learning',
-      icon: 'icon icon-common icon-systems'
     }
   };
 
@@ -40,9 +35,9 @@ export class SummaryService {
       'SWISS-MODEL': 'template',
       'PED': 'ensembl',
       'Genome3D': 'template',
-      'AlphaFold DB': 'deeplearning',
+      'AlphaFold DB': 'abinitio',
       'SASBDB': 'expr',
-      'AlphaFill': 'deeplearning',
+      'AlphaFill': 'abinitio',
     }
     return providerCategories[providerId];
   }
