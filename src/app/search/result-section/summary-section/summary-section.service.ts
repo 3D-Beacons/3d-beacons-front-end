@@ -40,6 +40,7 @@ export class SummaryService {
       'AlphaFill': 'abinitio',
       'isoform.io': 'abinitio',
       'HEGELAB': 'abinitio',
+      'ModelArchive': 'abinitio',
     }
     return providerCategories[providerId];
   }
