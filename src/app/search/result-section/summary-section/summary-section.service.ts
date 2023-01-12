@@ -38,6 +38,8 @@ export class SummaryService {
       'AlphaFold DB': 'abinitio',
       'SASBDB': 'expr',
       'AlphaFill': 'abinitio',
+      'isoform.io': 'abinitio',
+      'HEGELAB': 'abinitio',
     }
     return providerCategories[providerId];
   }
