@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -19,5 +19,13 @@ export class DataService {
 
   getUniProtEntry(uniprotAccession: string): Observable<any> {
     return this.httpClient.get<UniProtEntry>(this.configService.getUniProtApiUrl() + uniprotAccession);
+  }
+
+  submitSequenceSearch(sequence: string): Observable<any> {
+    return this.httpClient.post(this.configService.getSequenceSearchUrl(), {"sequence": sequence});
+  }
+
+  getSequenceSearchResult(jobId: string): Observable<any> {
+    return this.httpClient.get(this.configService.getSequenceSearchResultUrl() +'?job_id=' + jobId);
   }
 }

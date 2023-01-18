@@ -15,6 +15,7 @@ import { SearchService } from './search.service';
 import { MOCK_SUMMARY_RESPONSE } from 'mock-data/mock-summary-response';
 import { ConfigurationService } from '../core/configuration.service';
 import {ActivatedRoute} from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('SearchComponent', () => {
   let component: SearchComponent;
@@ -31,7 +32,7 @@ describe('SearchComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [SearchComponent],
-      imports: [ReactiveFormsModule, HttpClientTestingModule],
+      imports: [ReactiveFormsModule, HttpClientTestingModule, RouterTestingModule],
       providers: [
         SearchService,
         {

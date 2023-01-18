@@ -21,7 +21,7 @@
         <div class="small-12 medium-10 medium-offset-1 large-8 large-offset-2 columns no-left-padding" id="header-search">
           <form>
               <div class="small-10 columns no-left-padding">
-                <input [formControl]="searchTerm" id="search-input-field" type="search" placeholder="Search by UniProt accession" (keyup.enter)="onSearch()">
+                <input [formControl]="searchTerm" id="search-input-field" type="search" placeholder="Search by UniProt accession or a protein sequence" (keyup.enter)="onSearch()">
               </div>
               <div class="small-2 columns">
                 <button [disabled]="!searchTerm.value" (click)="onSearch()" class="vf-search__button | vf-button vf-button--secondary" id="search-button">
