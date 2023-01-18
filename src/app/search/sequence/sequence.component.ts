@@ -15,6 +15,7 @@ export class SequenceComponent implements OnInit {
   private sub: any;
   job_id: string;
   error: string = null;
+  waiting: boolean = false;
   resultData: Hit[] = null;
   tableSource: MatTableDataSource<Hit> = new MatTableDataSource<Hit>();
   displayedColumns: string[] = ['accession', 'id', 'description', 'hsp_align_length', 'hsp_identity'];
@@ -35,9 +36,12 @@ export class SequenceComponent implements OnInit {
         response => {
           let message = response.message;
 
-          if (message) {
+          if (message && message.startsWith("Search in progress")) {
+            this.error = message;
+            this.waiting = true;
             this.handleError(message);
           } else {
+            this.waiting = false;
             this.resultData = response;
             this.tableSource = new MatTableDataSource(this.resultData);
             this.tableSource.paginator = this.paginator;
@@ -57,5 +61,6 @@ export class SequenceComponent implements OnInit {
     this.isFetching = false;
     this.error = message;
   }
+
 
 }

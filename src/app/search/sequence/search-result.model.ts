@@ -1,4 +1,4 @@
-import { SummaryResponse } from "../search/result-section/result-section.model";
+import { SummaryResponse } from "../result-section/result-section.model";
 
 
 export interface Hsp {

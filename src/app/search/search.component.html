@@ -13,6 +13,10 @@
 
 <app-loading-dialog *ngIf="isFetching"></app-loading-dialog>
 
+<div *ngIf="isSequenceSearch">
+  <h3 class="warning-red">Submitting the sequence search job, please wait!</h3>
+</div>
+
 <div *ngIf="error" class="row error-row">
   <div class="small-12 columns">
     <h3 class="warning-red">No results found</h3>

@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
 import { SequenceService } from './sequence.service';
-import { DataService } from '../core/data.service';
+import { DataService } from '../../core/data.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('SequenceService', () => {

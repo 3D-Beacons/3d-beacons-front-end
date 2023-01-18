@@ -1,4 +1,8 @@
-<div>
+<div *ngIf="resultData">
+  <h3 class="search-title">Search results for {{job_id}}</h3>
+</div>
+
+<div *ngIf="!error">
   <table mat-table [dataSource]="tableSource" class="mat-elevation-z8">
 
     <ng-container matColumnDef="accession">
@@ -38,5 +42,6 @@
 <div *ngIf="error" class="row error-row">
   <div class="small-12 columns">
     <h3 class="warning-red">{{error}}</h3>
+    <h5 *ngIf="waiting" class="warning-red">Please keep this link to check the results later <a routerLink="/sequence/{{job_id}}" class="search-example">{{job_id}}</a></h5>
   </div>
 </div>

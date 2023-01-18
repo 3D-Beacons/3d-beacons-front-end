@@ -25,6 +25,7 @@ export class SearchComponent implements OnInit {
   exampleAccessions: string[];
   entryData: UniProtEntry = null;
   sequence: string = null;
+  isSequenceSearch: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -39,6 +40,7 @@ export class SearchComponent implements OnInit {
         this.accession = params.id;
         this.doAccessionSearch(this.accession);
       } else {
+        this.isSequenceSearch = true;
         this.sequence = params.id;
         this.doSequenceSearch(this.sequence);
       }      
@@ -78,11 +80,11 @@ export class SearchComponent implements OnInit {
             this.resultData = tempSummaryData;
           },
           err => {
-            this.handleError();
+            this.handleError("No Uniprot summary data found!");
           });
       },
       err => {
-        this.handleError();
+        this.handleError("No Uniprot entry data found!");
       }
     );
   }
@@ -90,18 +92,17 @@ export class SearchComponent implements OnInit {
   doSequenceSearch(query?: string) {
     this.searchService.submitSequenceSearch(query).subscribe(
       response => {
-        console.debug('Received sequence search response', response);
         var jobId = response.job_id;
         this.router.navigate(['/sequence', jobId]);
       },
       err => {
-        this.handleError();
+        this.handleError("No data found!");
       }
     )
   }
 
-  handleError(): void {
-    this.error = 'No data found!';
+  handleError(message: string): void {
+    this.error = message;
     this.isFetching = false;
     this.searchForm.enable();
     this.resultData = null;
