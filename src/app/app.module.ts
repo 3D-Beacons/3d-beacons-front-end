@@ -18,7 +18,7 @@ import { SharedModule } from './shared/shared.module';
 import { DocsComponent } from './docs/docs.component';
 import { ProvidersComponent } from './providers/providers.component';
 import { GuidelinesComponent } from './guidelines/guidelines.component';
-import { SequenceComponent } from './sequence/sequence.component';
+import { SequenceComponent } from './search/sequence/sequence.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatPaginatorModule } from '@angular/material/paginator';
 
