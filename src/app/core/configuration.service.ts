@@ -19,6 +19,14 @@ export class ConfigurationService {
     return this.apiRoot + '/uniprot/';
   }
 
+  getSequenceSearchUrl(): string {
+    return this.apiRoot + '/sequence/search/';
+  }
+
+  getSequenceSearchResultUrl(): string {
+    return this.apiRoot + '/sequence/hits/';
+  }
+
   getProviderColor(provider: string): string {
     switch (provider) {
       case 'PDBe': return '#085f5c';

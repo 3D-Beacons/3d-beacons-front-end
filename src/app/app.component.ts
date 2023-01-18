@@ -31,10 +31,17 @@ export class AppComponent {
     document.head.appendChild(headerScript);
   }
 
+  
+
   onSearch() {
     if (this.searchTerm.value.trim() === '') {
       return;
     }
-    this.router.navigate(['/search/', this.searchTerm.value]);
+    var searchTerm = this.searchTerm.value.toUpperCase();
+    this.router.navigate(['/search/', searchTerm]);
+    
   }
+
+  
+
 }
