@@ -101,6 +101,7 @@ export class SearchComponent implements OnInit {
     )
   }
 
+
   handleError(message: string): void {
     this.error = message;
     this.isFetching = false;
