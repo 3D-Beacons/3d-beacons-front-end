@@ -24,7 +24,7 @@ export class ConfigurationService {
   }
 
   getSequenceSearchResultUrl(): string {
-    return this.apiRoot + '/sequence/hits/';
+    return this.apiRoot + '/sequence/result/';
   }
 
   getProviderColor(provider: string): string {
