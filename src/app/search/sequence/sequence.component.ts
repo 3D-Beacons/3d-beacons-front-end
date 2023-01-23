@@ -18,7 +18,7 @@ export class SequenceComponent implements OnInit {
   waiting: boolean = false;
   resultData: Hit[] = null;
   tableSource: MatTableDataSource<Hit> = new MatTableDataSource<Hit>();
-  displayedColumns: string[] = ['accession', 'id', 'description', 'hsp_align_length', 'hsp_identity'];
+  displayedColumns: string[] = ['accession', 'id', 'description', 'struct_count', 'hsp_align_length', 'hsp_identity'];
   isFetching: boolean = true;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -41,6 +41,7 @@ export class SequenceComponent implements OnInit {
             this.waiting = true;
             this.handleError(message);
           } else {
+            console.log(response);
             this.waiting = false;
             this.resultData = response;
             this.tableSource = new MatTableDataSource(this.resultData);

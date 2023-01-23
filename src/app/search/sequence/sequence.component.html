@@ -20,6 +20,11 @@
       <td mat-cell *matCellDef="let element">{{element.description}}</td>
     </ng-container>
 
+    <ng-container matColumnDef="struct_count">
+      <th mat-header-cell *matHeaderCellDef> Available structures</th>
+      <td mat-cell *matCellDef="let element">{{element.summary.structures.length}}</td>
+    </ng-container>
+
     <ng-container matColumnDef="hsp_align_length">
       <th mat-header-cell *matHeaderCellDef> HSP Align Length</th>
       <td mat-cell *matCellDef="let element">{{element.hit_hsps[0].hsp_align_len}}</td>
