@@ -90,10 +90,17 @@ export class SearchComponent implements OnInit {
   }
 
   doSequenceSearch(query?: string) {
+    if (query == undefined) {
+      query = this.searchForm.controls.searchTerm.value;
+    } else {
+      this.searchForm.controls.searchTerm.setValue(null);
+    }
+    this.searchForm.disable();
     this.searchService.submitSequenceSearch(query).subscribe(
       response => {
         var jobId = response.job_id;
         this.router.navigate(['/sequence', jobId]);
+        return
       },
       err => {
         this.handleError("No data found!");
