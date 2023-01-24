@@ -42,6 +42,7 @@ export class SearchComponent implements OnInit {
       } else {
         this.isSequenceSearch = true;
         this.sequence = params.id;
+        setTimeout(() => {}, 2000);
         this.doSequenceSearch(this.sequence);
       }      
     });
@@ -98,6 +99,7 @@ export class SearchComponent implements OnInit {
     this.searchForm.disable();
     this.searchService.submitSequenceSearch(query).subscribe(
       response => {
+        console.log('Received sequence search response', query, response);
         var jobId = response.job_id;
         this.router.navigate(['/sequence', jobId]);
         return
