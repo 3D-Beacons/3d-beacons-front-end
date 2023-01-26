@@ -2,7 +2,7 @@
   <h3 class="search-title">Search results for {{job_id}}</h3>
 </div>
 
-<div *ngIf="!error">
+<div *ngIf="!message">
   <table mat-table [dataSource]="tableSource" class="mat-elevation-z8">
 
     <ng-container matColumnDef="accession">
@@ -42,11 +42,18 @@
   </mat-paginator>
 </div>
 
-<app-loading-dialog *ngIf="isFetching"></app-loading-dialog>
 
-<div *ngIf="error" class="row error-row">
+<div *ngIf="message" class="row error-row">
   <div class="small-12 columns">
-    <h3 class="warning-red">{{error}}</h3>
-    <h5 *ngIf="waiting" class="warning-red">Please keep this link to check the results later <a routerLink="/sequence/{{job_id}}" class="search-example">{{job_id}}</a></h5>
+    <h3 class="warning-red">{{message}}</h3>
+    <br>
+    <div *ngIf="searching">
+      <h4>Please note the following</h4>
+      <ul>
+        <li>The search usually takes around <b>5-10</b> minutes.</li>
+        <li>The page reloads every <b>30</b> seconds. You may press <b>Shift+Refresh</b> or reload on your browser at any time to check if results are ready.</li>
+        <li class="warning-red">You may keep this link to check the results later <a routerLink="/sequence/{{job_id}}" class="search-example">{{job_id}}</a></li>
+      </ul>
+    </div>
   </div>
 </div>

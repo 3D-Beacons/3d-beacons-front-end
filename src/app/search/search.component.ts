@@ -99,12 +99,11 @@ export class SearchComponent implements OnInit {
     this.searchForm.disable();
     this.searchService.submitSequenceSearch(query).subscribe(
       response => {
-        console.log('Received sequence search response', query, response);
         var jobId = response.job_id;
         this.router.navigate(['/sequence', jobId]);
-        return
       },
       err => {
+        window.location.reload()
         this.handleError("No data found!");
       }
     )

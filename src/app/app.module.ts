@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, Title } from '@angular/platform-browser';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -56,7 +56,8 @@ const routes: Routes = [
     MatPaginatorModule,
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: BeaconsInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: BeaconsInterceptor, multi: true },
+    Title
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   exports: [RouterModule],
