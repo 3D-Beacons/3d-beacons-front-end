@@ -22,12 +22,55 @@ h3 {
   margin-top: 45px;
 }
 
-#welcome-text p {
+.heading1 {
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 42px;
+  line-height: 63px;
+  /* identical to box height, or 150% */
+  display: flex;
+  align-items: center;
+  /* Neutral/900 */
+  color: #1A1C1A;
+}
+
+.text1 {
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 31px;
+  color: #1A1C1A;
+  margin-left: 6px;
+}
+
+.text2 {
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 19px;
+  line-height: 27px;
+  /* or 142% */
+  align-items: center;
+  text-align: justify;
+  color: #000000;
+  margin-left: 6px;
+}
+
+#welcome-text .text-span {
   font-size: 30px;
-  padding-top: 20px;
-  padding-bottom: 15px;
+  padding-top: 48px;
+  padding-bottom: 48px;
   text-align: center;
-  font-weight: 300;
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 500;
+  line-height: 39px;
+  /* or 130% */
+  text-align: center;
+  color: #000000;
+  display: inline-block;
 }
 
 .home-text {

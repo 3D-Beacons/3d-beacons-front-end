@@ -1,0 +1,130 @@
+.masthead {
+  background-color: #085F5C !important;
+  background-image: none;
+}
+
+.header-row {
+  background-color: #085F5C !important
+}
+
+.logo {
+  margin-left:-20px;
+  float: left;
+}
+
+.title-link a:hover {
+  text-decoration: none;
+}
+
+.main-title {
+  color: #ffae00 !important;
+  padding-top: 8px;
+  font-size: 28px;
+  font-weight: bold;
+  position: relative;
+  height:50px
+}
+
+#nav-block {
+  /* padding-top: 50px;
+  padding-left: 15px;
+  text-align: right;
+
+  display: flex;
+  align-items: center; */
+  margin-top: -37px;
+  margin-right: 25px;
+}
+
+.mobile-menu-icon {
+  width: 32px;
+  height: 32px;
+  position: absolute;
+  right: 22px;
+  margin-top: 5px;
+  display: none;
+}
+
+.masthead nav {
+  float: right;
+}
+
+.dropdown.menu li {
+  border-right: none;
+  position: relative;
+  border-bottom: none;
+}
+
+.dropdown.menu > li > a {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 22px;
+  padding: 0;
+  height: 32px;
+  line-height: 29px;
+  margin-left: 35px;
+  color: #FFFFFF;
+  border-bottom: none;
+}
+.dropdown.menu > li:first-child > a {
+  margin-left: 0 !important;
+}
+
+.dropdown.menu > li > a:hover {
+  text-decoration: underline !important;
+  font-weight: 600;
+  border-bottom: none;
+  background-color: unset;
+}
+
+.dropdown.menu > li > a:active {
+  font-weight: 600 !important;
+}
+
+@media screen and (max-width: 39.9375em) {
+  #nav-block {
+    padding-top: 15px;
+    margin:0px;
+  }
+
+  .master-nav {
+    margin-left: -22px;
+  }
+
+  .mobile-menu, .mobile-menu-icon {
+    display: block;
+  }
+
+  .masthead nav {
+    float: left;
+    margin-top: 16px;
+    width: 100%;
+  }
+
+  .masthead nav ul.menu li {
+    border-right: none;
+    display: block;
+    float: none;
+  }
+
+  .masthead nav ul.menu li  a {
+    margin-left: 0;
+    display: block;
+    font-size: 20px;
+    height: 52px;
+    line-height: 52px;
+  }
+}
+
+/* .nav-text {
+  font-size: 22px;
+  margin-right: 10px;
+  border-bottom: none !important;
+  text-decoration: none !important;
+}
+
+.nav-text:hover {
+  border-bottom: #ffae00 1px solid !important;
+  color: #ffae00;
+} */
+  
