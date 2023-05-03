@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 import {ConfigurationService} from '../core/configuration.service';
-import {SummaryResponse} from './result-section/result-section.model';
+import { Overview, Structure, SummaryResponse} from './result-section/result-section.model';
 import {SearchService} from './search.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import { UniProtEntry } from './result-section/uniprot-data.model';
@@ -67,11 +67,9 @@ export class SearchComponent implements OnInit {
     this.error = null;
     this.searchService.getUniProtEntry(query).subscribe(
       entryData => {
-        console.debug('Received UniProt entry response', entryData);
         this.entryData = entryData;
         this.searchService.getUniProtSummary(query).subscribe(
           summaryData => {
-            console.debug('Received summary response', summaryData);
             let tempSummaryData: SummaryResponse = summaryData;
             tempSummaryData.uniprot_entry.sequence_length = entryData.sequence.length;
             tempSummaryData.uniprot_entry.sequence = entryData.sequence.sequence;
@@ -79,12 +77,16 @@ export class SearchComponent implements OnInit {
             this.isFetching = false;
             this.searchForm.enable();
             this.resultData = tempSummaryData;
+            this.isSequenceSearch = false;
           },
           err => {
+            this.isFetching = false;
+            this.isSequenceSearch = false;
             this.handleError("No Uniprot summary data found!");
           });
       },
       err => {
+        this.isFetching = false;
         this.handleError("No Uniprot entry data found!");
       }
     );
@@ -103,15 +105,15 @@ export class SearchComponent implements OnInit {
         this.router.navigate(['/sequence', jobId]);
       },
       err => {
-        window.location.reload()
+       // window.location.reload()
         this.handleError("No data found!");
       }
     )
   }
 
-
   handleError(message: string): void {
     this.error = message;
+    this.isSequenceSearch = false;
     this.isFetching = false;
     this.searchForm.enable();
     this.resultData = null;

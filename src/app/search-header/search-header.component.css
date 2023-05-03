@@ -1,16 +1,10 @@
-.expnaded-inner {
-    max-width: none;
+.header-search-section {
+    background-color: #397F7D;
 }
 
-.search-row {
-    background-color: #397F7D;
-    min-height: 130px;
-}
 .search-column {
     display: inline-flex; 
     margin-top: 32px; 
-    padding-right: 108p; 
-    padding-left: 108px
 }
 
 .search-form {
@@ -18,7 +12,7 @@
 }
 
 .search-input{
-    width: 86%; 
+    width: 91%; 
     padding-right: 0px;
 }
 
@@ -31,7 +25,7 @@
 }
 
 .search-button-wrapper{
-    margin-right: 75px
+    margin-right: 1px
 }
 
 #search-button {
@@ -62,9 +56,12 @@
 
 .search-examples {
     float: left;
-    margin-left: 108px;
     margin-bottom: 32px;
     color: #ffffff;
+}
+
+.last-column{
+    float: none!important;
 }
 
 .search-example {

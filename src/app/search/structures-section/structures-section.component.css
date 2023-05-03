@@ -4,13 +4,26 @@
 }
 
 .display-label-text {
-  font-weight: bold;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 23px;
 }
 
-.eye-icon, .functional-download-icon {
+.name-text{
+  font-weight: bold;;
+}
+
+.eye-icon{
   background-color: #dff1f0;
   padding: 5px;
   border: 1px solid black
+}
+
+.functional-download-icon {
+  color: #056643;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 27px;
 }
 
 .example-icon {
@@ -20,7 +33,12 @@
 }
 
 .functional-download-icon:hover {
-  color: #74b360;
+  color: #056643;
+}
+
+.download-link{
+  text-decoration: none;
+  border-bottom: none;
 }
 
 .help-link {
@@ -34,4 +52,18 @@
 .help-link:hover {
   color: #ffae00;
   border-bottom: 1px solid #ffae00;
+}
+
+.molstar-container {
+  float: left;
+  height: 377px;
+  margin-bottom: 15px;
+  position: relative;
+}
+
+
+.viewer-row {
+  margin-right: 15px !important;
+  margin-left: 104px !important;
+  max-width: unset !important;
 }

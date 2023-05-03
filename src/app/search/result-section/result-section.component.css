@@ -2,11 +2,27 @@ h3 {
   font-weight: normal;
 }
 
+h2,h3,p,div,span,a{
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+}
+
 #sum-count {
   font-weight: bold;
 }
 
-#info-box-container {
+.info-box-container {
+  text-align: left;
+  margin-top: 40px;
+  margin-bottom: 30px;
+}
+
+.container-row{
+  margin-left: 130px;
+}
+
+.title-container{
+  margin-left: 130px;
   text-align: left;
   margin-top: 40px;
   margin-bottom: 30px;
@@ -15,14 +31,23 @@ h3 {
 .info-box-title {
   font-size: 24px;
   font-weight: 500;
-}
-
-.info-box-label {
+  border-bottom: 1px solid #E8E7DF;
+  padding: 16px 0;
   font-weight: 500;
+  font-size: 21px;
+  line-height: 27px;
 }
 
-.info-box-label, .info-box-text {
+.info-box-text {
+  font-weight: 400;
   font-size: 18px;
+  line-height: 23px;
+}
+
+.info-box-label{
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 23px;
 }
 
 .info-box-row {

@@ -54,6 +54,7 @@ export class StructuresSectionComponent implements OnDestroy {
   }
 
   convertToProtvistaFormat(resultData: SummaryResponse): Partial<pvFormat.Accession> {
+    console.log("_resultData :::",this._resultData);
     const protvistaData: Partial<pvFormat.Accession> = {
       largeLabels: true,
       tracks: [],
