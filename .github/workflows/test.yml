@@ -28,7 +28,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: npm install
-    - run: ./node_modules/.bin/ng test --browsers=ChromeHeadlessNoSandbox --codeCoverage=true --watch=false
+    - run: ./node_modules/.bin/ng test --browsers=ChromeHeadlessNoSandbox --code-coverage --watch=false
 
     - name: Codecov
       uses: codecov/codecov-action@v3.1.1
