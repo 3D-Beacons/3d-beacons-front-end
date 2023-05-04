@@ -7,7 +7,7 @@
             placeholder="Find structures by UniProt accession" (keyup.enter)="onSearch()">
         </div>
         <div class="columns small-1 float-right search-button-wrapper">
-          <button class="vf-search__button | vf-button vf-button--secondary" [disabled]="!searchTerm.value" (click)="onSearch()" id="search-button">
+          <button class="vf-search__button | vf-button vf-button--secondary" (click)="onSearch()" id="search-button">
             <span class="hide-for-small-only vf-button__text search-button-text">Find</span>
             <svg class="show-for-small-only vf-icon vf-icon--search-btn | vf-button__icon" aria-hidden="true"
               xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
