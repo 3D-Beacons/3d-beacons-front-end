@@ -23,11 +23,8 @@
   }
 }
 
-.summary-count {
-  font-size: 22px;
-  font-weight: bold;
-}
-
 .summary-label {
-  font-size: 18px;
+  font-weight: 400;
+  font-size: 19px;
+  line-height: 27px;
 }

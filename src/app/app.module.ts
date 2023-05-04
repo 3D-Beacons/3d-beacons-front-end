@@ -21,6 +21,8 @@ import { GuidelinesComponent } from './guidelines/guidelines.component';
 import { SequenceComponent } from './search/sequence/sequence.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { AppHeaderComponent } from './app-header/app-header.component';
+import { SearchHeaderComponent } from './search-header/search-header.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -43,6 +45,8 @@ const routes: Routes = [
     ProvidersComponent,
     GuidelinesComponent,
     SequenceComponent,
+    AppHeaderComponent,
+    SearchHeaderComponent,
   ],
   imports: [
     BrowserModule,
