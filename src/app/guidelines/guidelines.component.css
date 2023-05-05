@@ -126,6 +126,11 @@ li {
   text-decoration: none;
 }
 
+.see-link:hover{
+  color: #0A5032;
+  text-decoration: underline !important;
+}
+
 .docs-text {
   float: left !important;
 }

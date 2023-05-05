@@ -6,7 +6,7 @@ p,div,li,ul,a,span,button,label{
 a{
   text-decoration: none;
   border-bottom: none !important;
-  color:#085F5C;
+  color:#056643;
 }
 
 a:hover {
@@ -77,6 +77,11 @@ a:hover {
   font-size: 19px;
   line-height: 27px;
   color: #056643;
+}
+
+.see-link:hover {
+  color: #0a5032;
+  text-decoration: underline !important;
 }
 
 .button-text {
@@ -173,13 +178,13 @@ a:hover {
 .info-section a, .img-caption a, .faq-link a {
   text-decoration-line: none;
   border-bottom: none;
-  color: #085F5C !important;
+  color: #056643 !important;
 }
 
 .info-section a:hover, .img-caption a:hover, .faq-link a:hover {
   text-decoration-line: underline;
   border-bottom: none;
-  color: #085F5C !important;
+  color: #0A5032 !important;
 }
 
 .info-section-row-2 {
