@@ -30,6 +30,23 @@ ul {
 
 li {
   margin-bottom: 10px;
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 19px;
+  line-height: 27px;
+}
+
+a {
+  text-decoration: none !important;
+  border-bottom:  none !important;
+  color: #056643;
+}
+
+a:hover{
+  text-decoration: underline !important;
+  border-bottom:  none !important;
+  color: #0A5032;
 }
 
 .intro-box {
@@ -88,6 +105,14 @@ li {
   line-height: 31px;
   color: #1A1C1A;
   margin-left: 6px;
+}
+
+.doc-text {
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 19px;
+  line-height: 27px;
 }
 
 .text2 {

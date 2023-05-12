@@ -52,6 +52,14 @@ export class ProvidersComponent {
         {
           name: 'ModelArchive',
           url: 'https://modelarchive.org/'
+        },
+        {
+          name: 'HegelLab.org',
+          url: 'http://www.hegelab.org/'
+        },
+        {
+          name: 'Isoform.io',
+          url: 'https://isoform.io/'
         }
       ]
     ];

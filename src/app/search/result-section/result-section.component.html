@@ -1,13 +1,14 @@
 <div *ngIf="haveResults" style="margin-top:30px;">
     <div class="row title-container">
       <h3>
+        {{ resultData.uniprot_entry.ac }} ({{ resultData.uniprot_entry.id }}) - 
         <span id="sum-count">{{getSum()}}</span>
-        Structures available for UniProt accession {{ resultData.uniprot_entry.ac }} ({{ resultData.uniprot_entry.id }})
+        Structures available
       </h3>
     </div>
     <div class="row" class="info-box-container">
       <div class="row">
-        <div class="small-11 columns">
+        <div class="small-12 columns">
           <p class="info-box-title">Information</p>
         </div>
       </div>
