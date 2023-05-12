@@ -17,7 +17,7 @@ export class AppHeaderComponent {
   homePage: boolean;
   routeSubscribe: Subscription;
   constructor(private router: Router) {
-    this.menuOpen = true;
+    this.menuOpen = false;
     this.homePage = false;
 
     this.routeSubscribe = this.router.events.pipe(

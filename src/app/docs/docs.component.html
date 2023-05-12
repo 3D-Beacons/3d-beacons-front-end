@@ -45,18 +45,18 @@
   </div> 
 </div>
 
-<div class="row docs-row">
+<div class="row docs-row" id="infra">
 
   <div class="small-12 medium-10 large-8 columns" style="display:flex; margin-left:14px; margin-bottom:50px; min-height:63px; border-left:3px solid #085F5C">
-    <h2 class="heading1">Infrastructure</h2>
+    <h2 id="infra" class="heading1" >Infrastructure</h2>
   </div>
 
   <div class="medium-10" style="margin-left:14px; float:left; width:96%">
     <p class="text1">The 3D-Beacons Network consists of a Registry, a Hub and data providers who host Clients. The
-      <a style="color:#056643; border-bottom:none;" href="https://github.com/3D-Beacons/3d-beacons-hub-api" target="_blank">3D-Beacons
-        Hub</a> uses the <a style="color:#056643; border-bottom:none;" href="https://github.com/3D-Beacons/3d-beacons-registry" target="_blank">
+      <a href="https://github.com/3D-Beacons/3d-beacons-hub-api" target="_blank">3D-Beacons
+        Hub</a> uses the <a href="https://github.com/3D-Beacons/3d-beacons-registry" target="_blank">
         3D-Beacons Registry</a> to look up which
-      <a style="color:#056643; border-bottom:none;" href="https://github.com/3D-Beacons/3d-beacons-client" target="_blank">3D-Beacon Client</a>
+      <a href="https://github.com/3D-Beacons/3d-beacons-client" target="_blank">3D-Beacon Client</a>
       supports what API endpoints. All Beacons APIs as well as the Beacons Hub provide data according to the
       <a href="https://github.com/3D-Beacons/3d-beacons-specifications/blob/main/oas3.yaml" target="_blank">
         3D-Beacons data specifications</a>. The Hub collates the data from
@@ -81,7 +81,7 @@
     <p class="text2">The 3D-Beacons Hub API endpoints, such as shown above, can be used to programmatically access all
       the available protein structures and models from any members of the 3D-Beacons Network. For example,
       the API endpoint for the SARS-CoV-2 polyprotein, identified by its UniProt accession
-      <a style="color:#056643; border-bottom:none;" href="https://www.ebi.ac.uk/pdbe/pdbe-kb/3dbeacons/api/uniprot/summary/P0DTD1.json" target="_blank">
+      <a href="https://www.ebi.ac.uk/pdbe/pdbe-kb/3dbeacons/api/uniprot/summary/P0DTD1.json" target="_blank">
         P0DTD1
       </a> provides all the experimentally determined structures from the PDB, as well as theoretical models from
       SWISS-MODEL and others.</p>
@@ -90,9 +90,9 @@
     <p class="text2">The main purpose of 3D-Beacons is to provide programmatic access to experimentally determined and
       theoretical protein structures in a uniform manner. We have created a set of data exchange format
       specifications to ensure the uniformity of the data provided by all member Beacons.</p>
-    <p>The specification is described on GitHub at
+    <p class="text2">The specification is described on GitHub at
       <a href="https://github.com/3D-Beacons/3d-beacons-specifications/blob/main/oas3.yaml"
-         target="_blank">https://github.com/3D-Beacons/3d-beacons-specifications (production branch)
+         target="_blank">https://github.com/3D-Beacons/3d-beacons-specifications (main branch)
       </a>
     </p>
     <p class="infra-label text2">3D-Beacons Registry</p>
@@ -101,7 +101,7 @@
       what API endpoints are available from which data providers. For example, if users are only interested
       in getting data from SASBDB, they can check in the registry which API URLs they should use.</p>
     <p class="text2">The 3D-Beacons Registry is available at
-      <a style="color:#056643; border-bottom:none;" href="https://github.com/3D-Beacons/3d-beacons-registry" target="_blank">
+      <a href="https://github.com/3D-Beacons/3d-beacons-registry" target="_blank">
         https://github.com/3D-Beacons/3d-beacons-registry
       </a>
     </p>
@@ -112,18 +112,18 @@
       <a href="https://github.com/3D-Beacons/3d-beacons-specifications/blob/main/oas3.yaml" target="_blank">
         3D-Beacons data specifications</a>.</p>
     <p class="text2">The 3D-Beacons Client is publicly available at
-      <a style="color:#056643; border-bottom:none;" href="https://github.com/3D-Beacons/3d-beacons-client" target="_blank">
+      <a href="https://github.com/3D-Beacons/3d-beacons-client" target="_blank">
         https://github.com/3D-Beacons/3d-beacons-client
       </a>
     </p>
     <p class="infra-label text2">3D-Beacons Hub</p>
     <p class="text2">The 3D-Beacons Hub acts as an aggregator of data from the various members of the 3D-Beacons Network.
-      It uses the <a style="color:#056643; border-bottom:none;" href="https://github.com/3D-Beacons/3d-beacons-registry" target="_blank">
+      It uses the <a href="https://github.com/3D-Beacons/3d-beacons-registry" target="_blank">
         3D-Beacons Registry
       </a> to look up which API endpoints are supported by which 3D-Beacons,
       retrieves the data, and collates it to present the combined metadata programmatically to users.</p>
     <p class="text2">The 3D-Beacons Hub source code is available at
-      <a style="color:#056643; border-bottom:none;" href="https://github.com/3D-Beacons/3d-beacons-hub-api" target="_blank">
+      <a href="https://github.com/3D-Beacons/3d-beacons-hub-api" target="_blank">
         https://github.com/3D-Beacons/3d-beacons-hub-api
       </a>
     </p>
@@ -137,7 +137,7 @@
  
   <div class="small-14" style="display:flex; margin-left:14px; float:left; margin-bottom:60px;">
     <p style="display:flex;" class="text1">If you have questions regarding the 3D-Beacons Network, please contact us at
-      &nbsp;<a href="mailto:pdbekb_help@ebi.ac.uk?subject=3d-beacons" class="text1" style="color:#056643; border-bottom:none;">pdbekb_help@ebi.ac.uk</a>.
+      <a href="mailto:pdbekb_help@ebi.ac.uk?subject=3d-beacons" class="text1">pdbekb_help@ebi.ac.uk</a>.
     </p>
   </div>
 </div>

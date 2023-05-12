@@ -53,7 +53,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     HttpClientModule,
     CoreModule,
-    RouterModule.forRoot(routes),
+    RouterModule.forRoot(routes, { scrollOffset: [0, 0], scrollPositionRestoration: "top", anchorScrolling: 'enabled' }),
     SharedModule,
     BrowserAnimationsModule,
     MatTableModule,

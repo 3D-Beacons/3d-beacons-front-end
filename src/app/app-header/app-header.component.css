@@ -1,3 +1,13 @@
+a {
+  text-decoration: none !important;
+  border-bottom:  none !important;
+}
+
+a:hover{
+  text-decoration: none !important;
+  border-bottom:  none !important;
+}
+
 .masthead {
   background-color: #085F5C !important;
   background-image: none;
@@ -33,7 +43,7 @@
 }
 
 .main-title {
-  color: #FFAE00;  /* #ffae00 !important; */
+  color: #FFFFFF;  /* #ffae00 !important; */
   padding-top: 8px;
   font-size: 28px;
   font-weight: bold;
@@ -82,20 +92,19 @@
 
 .dropdown.menu > li > a:hover {
   text-decoration: underline !important;
-  font-weight: 600;
+  font-weight: normal;
   border-bottom: none;
   background-color: unset;
 }
 
 .dropdown.menu > li > a:active {
   font-weight: bold !important;
-  /* color: yellow; */
 }
 
-ul li > a:active {
+.active-link{
   font-weight: bold !important;
-  color: red;
 }
+
 
 @media screen and (max-width: 39.9375em) {
   .logo-wrapper{

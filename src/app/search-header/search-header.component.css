@@ -83,5 +83,35 @@
 
 .search-example:hover {
     border-bottom: none !important;
-    color: #ffae00;
+    color: #84BA75;
+}
+
+@media screen and (max-width: 39.9375em) {
+    .search-form {
+        width: 83%;
+    }
+}
+
+
+@media screen and (max-width: 73.2em) {
+    .search-form {
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 64.625em) {
+    .search-form {
+        width: 80%;
+    }
+}   
+@media (min-width: 40em) and ((max-width: 49em) or (max-width: 51.25em)) {
+    .search-form {
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 39.9375em) {
+    .search-form {
+        width: 80%;
+    }
 }
