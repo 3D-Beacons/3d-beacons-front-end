@@ -1,19 +1,24 @@
-<app-result-section [entryData]="entryData" [resultData]="resultData" style="text-align: center;"></app-result-section>
+<app-result-section [entryData]="entryData" [resultData]="resultData"></app-result-section>
 
-<div class="row viewer-row" *ngIf="resultData">
-  <div class="column small-11" style="padding:0;">
+<div class="row title-container">
+  <div class="small-12 columns">
     <p class="info-box-title">Viewer</p>
   </div>
 </div>
 
-<div class="small-12 medium-12 large-8" style="padding-left: 0; padding-right: 0;" *ngIf="resultData">
-  <app-structures-section [resultData]="resultData"></app-structures-section>
+<div class="row last-container">
+  <div class="small-12 medium-12 large-8 columns" *ngIf="resultData">
+    <app-structures-section [resultData]="resultData"></app-structures-section>
+  </div>
 </div>
+
 
 <app-loading-dialog *ngIf="isFetching"></app-loading-dialog>
 
-<div *ngIf="isSequenceSearch && !error">
-  <h3 class="warning-red">Submitting the sequence search job, please wait!</h3>
+<div *ngIf="isSequenceSearch && !error" class="row">
+  <div class="small-12 columns">
+    <h3 class="warning-red">Submitting the sequence search job, please wait!</h3>
+  </div> 
 </div>
 
 <div *ngIf="error" class="row error-row">

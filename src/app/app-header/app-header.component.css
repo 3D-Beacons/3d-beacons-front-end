@@ -34,6 +34,10 @@ a:hover{
   height: 68px;
 }
 
+.pdbe-kb-img {
+  height: 16px;
+}
+
 .logo-title {
   margin-left:16px;
 }
@@ -65,8 +69,9 @@ a:hover{
   display: none;
 }
 
-.masthead nav {
+.masterhead-nav {
   float: right;
+  margin-top: 38px;
 }
 
 .dropdown.menu li {
@@ -111,6 +116,24 @@ a:hover{
     width: 110% !important;
   }
 
+  .logo-img {
+    height: 46px;
+  }
+
+  .pdbe-kb-img {
+    height: 13px;
+  }
+
+
+  .logo-title {
+    margin-left: 4px;
+    margin-top: -4px;
+  }
+
+  .main-title{
+    font-size: 24px;
+    padding-top: 1px;
+  }
   .header-row-col{
     display: inline;
   }
@@ -127,12 +150,9 @@ a:hover{
     margin:0px;
   }
 
-  .master-nav {
-    margin-left: -22px;
-  }
-
   .mobile-menu, .mobile-menu-icon {
     display: block;
+    margin-top: 22px;
   }
 
   .masthead nav {
@@ -158,20 +178,51 @@ a:hover{
 
 
 @media screen and (max-width: 73.2em) {
-  .master-nav {
+  /* .master-nav {
+    margin-left: -50px;
+  } */
+  .masterhead-nav {
     margin-left: -50px;
   }
 }
 
-@media screen and (max-width: 64.625em) {
+@media screen and (max-width: 75rem){
+  .masterhead-nav {
+    margin-left: -26px;
+  }
+
+  .hide-for-small-only {
+    display: none;
+  }
+
+  .mobile-menu, .mobile-menu-icon {
+    display: none;
+    margin-top: 22px;
+  }
+}
+
+@media screen and ((max-width: 64) or (max-width: 64.625em) or (max-width: 75rem)) {
+
+  .hide-for-small-only {
+    display: block;
+  }
+
+  .mobile-menu, .mobile-menu-icon {
+    display: none;
+    margin-top: 22px;
+  }
+
   .masthead-inner {
     padding-top: 30px;
     padding-bottom: 30px;
   }
 
-  .master-nav {
-      margin-left: -60px;
-      margin-right: 34px;
+  .masterhead-nav {
+    margin-left: -26px;
+  }
+
+  .dropdown {
+    padding-left: 0px !important;
   }
 
   #local-title a {
@@ -196,7 +247,9 @@ a:hover{
 }
 
 @media (min-width: 40em) and ((max-width: 49em) or (max-width: 51.25em)) {
-
+  .hide-for-small-only{
+    display: none;
+  }
   .logo-wrapper{
     width: 100% !important;
     display: flex;
@@ -207,11 +260,6 @@ a:hover{
 
   #local-title, #local-title h1 {
     margin-bottom: 20px;
-  }
-
-  .master-nav {
-    margin-left: -85px;
-    margin-right: 25px;
   }
 
   .header-search-section.home-banner {
@@ -239,18 +287,16 @@ a:hover{
     margin:0px;
   }
 
-  .master-nav {
-    margin-left: -22px;
-  }
-
   .mobile-menu, .mobile-menu-icon {
     display: block;
+    margin-top: 22px;
   }
 
   .masthead nav {
     float: left;
     margin-top: 16px;
     width: 100%;
+    margin-left: 5px;
   }
 
   .masthead nav ul.menu li {
@@ -289,18 +335,16 @@ a:hover{
     margin:0px;
   }
 
-  .master-nav {
-    margin-left: -22px;
-  }
-
   .mobile-menu, .mobile-menu-icon {
     display: block;
+    margin-top: 22px;
   }
 
   .masthead nav {
     float: left;
     margin-top: 16px;
     width: 100%;
+    margin-left: 5px;
   }
 
   .masthead nav ul.menu li {

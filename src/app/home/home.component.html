@@ -10,7 +10,7 @@
 </div>
 
 <div class="row home-row">
-  <div class="small-12 medium-10 large-8 columns" style="display:flex; margin-left:30px; margin-bottom:50px; min-height:63px; border-left:3px solid #085F5C">
+  <div class="small-12 medium-10 large-8 columns" style="display:flex; margin-left:30px; margin-bottom:40px; min-height:63px; border-left:3px solid #085F5C">
     <h2 class="heading1">Background</h2>
   </div>
 
@@ -35,7 +35,7 @@
 </div>
 
 <div class="row home-row">
-  <div class="small-12 medium-10 large-8 columns" style="display:flex; margin-left:30px; margin-bottom:60px; min-height:63px; border-left:3px solid #085F5C">
+  <div class="small-12 medium-10 large-8 columns" style="display:flex; margin-left:30px; margin-bottom:40px; min-height:63px; border-left:3px solid #085F5C">
     <h2 class="heading1">How to use it?</h2>
   </div>
   <div class="columns small-12 medium-10" style="display:flex; margin-left:10px;">
@@ -49,8 +49,15 @@
     </p>
   </div>
   <div class="columns small-12 medium-10" style="display:flex; margin-left:15px; float:none;">
+
     <a href="https://www.ebi.ac.uk/pdbe/pdbe-kb/3dbeacons/api/" target="_blank">
-      <button class="api-link" style="margin-top: 4px; margin-bottom:25px;">
+    <button class="vf-button vf-button--secondary">
+      <span class="vf-button__text">See the 3D-Beacons HUB API</span>
+    </button>
+    </a>
+
+    <!-- <a href="https://www.ebi.ac.uk/pdbe/pdbe-kb/3dbeacons/api/" target="_blank">
+      <button class="api-link vf-search__button | vf-button vf-button--secondary" style="margin-top: 4px; margin-bottom:25px;">
         <span class="hide-for-small-only vf-button__text button-text">See the 3D-Beacons HUB API</span>
         <svg class="show-for-small-only vf-icon vf-icon--search-btn | vf-button__icon" aria-hidden="true"
           xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -58,17 +65,17 @@
           <g transform="matrix(5.833333333333333,0,0,5.833333333333333,0,0)">
             <path
               d="M23.414,20.591l-4.645-4.645a10.256,10.256,0,1,0-2.828,2.829l4.645,4.644a2.025,2.025,0,0,0,2.828,0A2,2,0,0,0,23.414,20.591ZM10.25,3.005A7.25,7.25,0,1,1,3,10.255,7.258,7.258,0,0,1,10.25,3.005Z"
-              fill="#3B6FB6" stroke="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="0"></path>
+              fill="#397F7D" stroke="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="0"></path>
           </g>
         </svg>
       </button>
-  </a>
+    </a> -->
   </div>
 </div>
 
 
 <div class="row home-row">
-  <div class="small-12 medium-10 large-8 columns" style="display:flex; margin-left:30px; margin-bottom:60px; min-height:63px; border-left:3px solid #085F5C">
+  <div class="small-12 medium-10 large-8 columns" style="display:flex; margin-left:30px; margin-bottom:40px; min-height:63px; border-left:3px solid #085F5C">
     <h2 class="heading1">How does it work?</h2>
   </div>
   
@@ -86,15 +93,15 @@
     </p>
   </div>
   <div class="columns small-12 medium-10" style="display:flex; margin-left:10px; float:none;">
-    <p style="margin-top: 4px;">
-      <a routerLink="/docs" fragment="infra" class="see-link">
-        See the Documentation page for more details <i class="icon icon-common" data-icon="&#xf0a9;"></i>
+    <p class="small-12 medium-10 vf-section-header__heading--is-link">
+      <a class="see-link" routerLink="/docs" fragment="infra">
+      <span>See the Documentation page for more details</span>
+        <svg aria-hidden="true" class="vf-section-header__icon | vf-icon vf-icon-arrow--inline-end" width="24" height="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M0 12c0 6.627 5.373 12 12 12s12-5.373 12-12S18.627 0 12 0C5.376.008.008 5.376 0 12zm13.707-5.209l4.5 4.5a1 1 0 010 1.414l-4.5 4.5a1 1 0 01-1.414-1.414l2.366-2.367a.25.25 0 00-.177-.424H6a1 1 0 010-2h8.482a.25.25 0 00.177-.427l-2.366-2.368a1 1 0 011.414-1.414z" fill="" fill-rule="nonzero"></path>
+        </svg>
       </a>
     </p>
   </div>
-</div>
-
-<div class="row home-row">
   <div class="columns small-12 medium-10" style="display:flex; margin-left:10px; float:none;">
     <img src="./assets/img/overview.png" alt="overview of the 3d-beacons infrastructure">
   </div>  
@@ -136,7 +143,7 @@
           <a href="https://pdbe-kb.org" target="_blank">PDBe-KB</a>
         </div>
         
-        <div class="columns medium-6 medium-push-6 info-content">
+        <div class="columns medium-push-6 medium-6 info-content">
           <p class="case-study-p">
             The <a href="https://pdbe-kb.org" target="_blank">Protein Data Bank in Europe - Knowledge Base (PDBe-KB)</a>
             relies on the 3D-Beacons Hub API to display all the experimentally determined and theoretical structures for
@@ -148,7 +155,7 @@
           </p>
         </div>
 
-        <div class="columns medium-6 medium-pull-6 info-content" style="text-align: center;">
+        <div class="columns medium-pull-6 medium-6" style="text-align: center;">
           <a href="https://pdbe-kb.org" target="_blank">
             <img src="./assets/img/pdbe-kb-example-alt.png" alt="example of how the PDBe-KB integrated 3D-Beacons">
           </a>

@@ -16,7 +16,8 @@ a:hover {
 }
 
 .home-row {
-  margin-top: 45px;
+  margin-top: 40px;
+  margin-bottom: 80px;
 }
 
 .intro-box {
@@ -72,10 +73,34 @@ a:hover {
   padding: 8px 16px;
 }
 
+.vf-button--secondary {
+  height: 39px;
+  background: #397F7D;
+  padding: 5px 16px 8px 16px;
+  border: 1px solid #397F7D;
+  color: #ffffff;
+  --vf-button-shadow-border-color: #0F5C5A;
+  --vf-button-shadow-background-color: #0F5C5A;
+}
+
+.vf-button__text{
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 23px;
+  color: #FFFFFF;
+}
+
 .see-link {
+  font-family: IBM Plex Sans;
+  font-style: normal;
   font-weight: 500;
   font-size: 19px;
-  line-height: 27px;
+  line-height: 28px;
+  display: flex;
+  align-items: center;
+  text-align: justify;
   color: #056643;
 }
 
@@ -151,7 +176,7 @@ a:hover {
   padding-left: 16px;
   font-weight: bold;
   font-size: 42px;
-  margin:0 0 60px 0;
+  margin:0 0 40px 0;
 }
 
 .info-section .large-text {
@@ -189,8 +214,33 @@ a:hover {
 
 .info-section-row-2 {
   margin-top: 40px;
+  margin-bottom: 40px;
 }
 
 .ex-img {
   margin-bottom: 15px;
+}
+
+@media screen and (max-width: 39.9375em) {
+  .home-row {
+    margin-top: 30px;
+    margin-bottom: 60px;
+  }
+}
+
+@media (min-width: 40em) and ((max-width: 49em) or (max-width: 51.25em)) {
+  .info-content{
+    width: 100%;
+  }
+  .medium-push-6{
+    position: inherit;
+    left: 0;
+  }
+  .medium-pull-6 {
+    position: inherit;
+    float: none !important;
+  }
+  .medium-6 {
+    width: 98%;
+  }
 }

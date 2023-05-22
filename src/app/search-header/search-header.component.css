@@ -28,18 +28,26 @@
     margin-right: 1px
 }
 
-#search-button {
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    padding: 0px;
-    /* padding: 0px; 8px 16px; */
-    width: 70px;
+
+.vf-button--secondary {
     height: 39px;
     background: #FFFFFF;
     border: 2px solid #217976;
-    box-shadow: 10px 10px 0px #0F5C5A;
-}
+    padding: 5px 16px 8px 16px;
+    color: #ffffff;
+    --vf-button-shadow-border-color: #0F5C5A;
+    --vf-button-shadow-background-color: #0F5C5A;
+  }
+  
+  .vf-button__text{
+    font-family: 'IBM Plex Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 23px;
+    color: #217976;
+  }
+
 
 .search-button-text{
     font-family: 'IBM Plex Sans';
@@ -48,6 +56,7 @@
     font-size: 18px;
     line-height: 23px;
     color: #217976;
+    padding-top: 4px;
 }
 
 .no-left-padding {
@@ -90,6 +99,9 @@
     .search-form {
         width: 83%;
     }
+    .examples-chip {
+        line-height: 40px;;
+    }
 }
 
 
@@ -101,9 +113,16 @@
 
 @media screen and (max-width: 64.625em) {
     .search-form {
-        width: 80%;
+        width: 98%;
     }
 }   
+
+@media screen and (max-width: 75em) {
+    .search-form {
+        width: 98%;
+    }
+}   
+
 @media (min-width: 40em) and ((max-width: 49em) or (max-width: 51.25em)) {
     .search-form {
         width: 90%;
@@ -112,6 +131,15 @@
 
 @media screen and (max-width: 39.9375em) {
     .search-form {
-        width: 80%;
+        width: 88%;
     }
+
+    .vf-button--secondary {
+        padding: 3px 12px 7px;
+    }
+
+    .vf-button__text{
+        font-size: 15px;
+      }
+    
 }

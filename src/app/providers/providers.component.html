@@ -1,11 +1,13 @@
 <div class="providers-row">
   <div class="row first-row">
-    <h3>Data providers</h3>
+    <div class="column">
+     <h3>Data providers</h3>
+    </div>
   </div> 
   
   <div class="row second-row">
-    <div class="medium-6 providers" *ngFor="let dataRec of dataProviders" style="padding-bottom:80px">
-      <span *ngFor="let dataProvider of dataRec">
+    <div class="column medium-6 providers last-provider" *ngFor="let dataRec of dataProviders">
+      <span *ngFor="let dataProvider of dataRec" class="provider-name">
         <a href="{{dataProvider.url}}" target="_blank" style="text-decoration:none !important;">
           {{dataProvider.name}}
           <i class="icon icon-common" data-icon="&#xf0a9;"></i>

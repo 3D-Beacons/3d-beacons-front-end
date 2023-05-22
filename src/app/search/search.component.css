@@ -20,8 +20,15 @@
 }
 .viewer-row {
   margin-right: 15px !important;
-  margin-left: 138px !important;
   max-width: unset !important;
+}
+
+.title-container{
+  text-align: left;
+}
+
+.last-container{
+  margin-bottom: 52px;
 }
 
 .error-row {

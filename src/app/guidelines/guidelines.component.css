@@ -1,26 +1,21 @@
-h2 {
-  font-size: 38px;
-  font-weight: bold;
+p,div,li,ul,a,span,button,label{
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
 }
 
 h2 {
-  font-size: 24px;
+  font-size: 42px;
   font-weight: bold;
 }
 
 h3 {
-  font-family: 'IBM Plex Sans';
-  font-style: normal;
   font-weight: 500;
   font-size: 30px;
   line-height: 39px;
   /* identical to box height, or 130% */
-
   display: flex;
   align-items: center;
-
   /* Neutral/900 */
-
   color: #1A1C1A;
 }
 
@@ -58,22 +53,36 @@ a:hover{
   padding-top: 48px;
   padding-bottom: 48px;
   text-align: center;
-  font-family: 'IBM Plex Sans';
-  font-style: normal;
   font-weight: 500;
   line-height: 39px;
   /* or 130% */
-  text-align: center;
   color: #000000;
   display: inline-block;
 }
 
 .docs-row {
-  margin-top: 45px;
+  margin-top: 40px;
+  margin-bottom: 80px;
 }
 
 .docs-text {
   font-size: 18px;
+}
+
+.title {
+  border-left:3px solid #085F5C;
+}
+.docs-row-cols {
+  display: flex; 
+  margin-left: 14px; 
+  margin-bottom: 40px;
+}
+
+.docs-row-last-cols {
+  display: flex; 
+  margin-left: 14px; 
+  min-height: 63px; 
+  border-left: 3px solid #085F5C;
 }
 
 #welcome-text p {
@@ -85,8 +94,6 @@ a:hover{
 }
 
 .heading1 {
-  font-family: 'IBM Plex Sans';
-  font-style: normal;
   font-weight: 700;
   font-size: 42px;
   line-height: 63px;
@@ -98,8 +105,6 @@ a:hover{
 }
 
 .text1 {
-  font-family: 'IBM Plex Sans';
-  font-style: normal;
   font-weight: 500;
   font-size: 24px;
   line-height: 31px;
@@ -108,16 +113,12 @@ a:hover{
 }
 
 .doc-text {
-  font-family: 'IBM Plex Sans';
-  font-style: normal;
   font-weight: 400;
   font-size: 19px;
   line-height: 27px;
 }
 
 .text2 {
-  font-family: 'IBM Plex Sans';
-  font-style: normal;
   font-weight: 400;
   font-size: 19px;
   line-height: 27px;
@@ -136,8 +137,6 @@ a:hover{
 }
 
 .see-link {
-  font-family: 'IBM Plex Sans';
-  font-style: normal;
   font-weight: 500;
   font-size: 19px;
   line-height: 28px;
@@ -168,8 +167,8 @@ a:hover{
 }
 
 .docs-text a:hover {
-  border-bottom: #ffae00 2px solid !important;
-  color: #ffae00;
+  border-bottom: #0A5032 2px solid !important;
+  color: #0A5032;
 }
 
 .no-left-padding {
@@ -180,3 +179,12 @@ a:hover{
   font-weight: bold;
   margin-top: 35px;
 }
+
+
+@media screen and (max-width: 39.9375em) {
+  .docs-row {
+    margin-top: 30px;
+    margin-bottom: 60px;
+  }
+}
+
