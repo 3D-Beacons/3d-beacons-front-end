@@ -2,23 +2,23 @@
   <div class="row header-row">
     <div class="columns header-row-col">
       <div class="columns small-7 logo-wrapper">
-        <img src="./assets/img/3D-Beacons-logo 2.png" alt="Image" class="logo-img" height="68px">
-        <div class="logo-title" style="margin-left:16px;">
-          <a routerLink="/"><img src="./assets/img/PDBe-KB-logo.png" alt="Image" height="16px"></a>
+        <img src="./assets/img/3D-Beacons-logo 2.png" alt="Image" class="logo-img">
+        <div class="logo-title">
+          <a href="https://www.ebi.ac.uk/pdbe/pdbe-kb/" target="_blank"><img src="./assets/img/PDBe-KB-logo.png" alt="Image" class="pdbe-kb-img" height="16px"></a>
           <a routerLink="/"><h1 class="main-title"> 3D - Beacons Network</h1></a>
         </div>
       
         <svg class="mobile-menu-icon" viewBox="0 0 24 24" *ngIf="!menuOpen" (click)="toggleMenu()">
-          <path fill="currentColor" d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
+          <path fill="#FFFFFF" d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
         </svg>
 
         <svg class="mobile-menu-icon" viewBox="0 0 24 24" *ngIf="menuOpen" (click)="toggleMenu()">
-          <path fill="currentColor" d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" />
+          <path fill="#FFFFFF" d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" />
         </svg>
       </div>
      
-      <div class="columns small-7 mobile-wrapper hide-for-small-only">
-        <nav style="margin-top:38px">
+      <div class="columns small-7 hide-for-small-only">
+        <nav class="masterhead-nav">
           <ul class="dropdown menu float-left" data-description="navigational">
             <li><a [routerLink]="['/']" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active-link" id="home-link">Home</a></li>
             <li><a href="https://www.ebi.ac.uk/pdbe/pdbe-kb/3dbeacons/api/" target="_blank" class="nav-text">API</a></li>
@@ -29,7 +29,7 @@
       </div>
 
       <div class="columns small-7 mobile-wrapper" *ngIf="menuOpen">
-        <nav style="Margin-top:38px">
+        <nav class="masterhead-nav">
           <ul class="dropdown menu float-left" data-description="navigational">
             <li><a [routerLink]="['/']" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active" id="home-link">Home</a></li>
             <li><a href="https://www.ebi.ac.uk/pdbe/pdbe-kb/3dbeacons/api/" target="_blank" class="nav-text">API</a></li>

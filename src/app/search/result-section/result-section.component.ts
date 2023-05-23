@@ -104,8 +104,8 @@ export class ResultSectionComponent {
           text: data.protein.recommendedName.fullName.value,
           italic: false,
           show_long: true,
-          source: '',
-          source_url: ''
+          source: 'UniProt',
+          source_url: 'https://www.uniprot.org/uniprot/' + data.accession
         }
       );
     }
@@ -154,8 +154,8 @@ export class ResultSectionComponent {
       text: 'Not available',
       italic: false,
       show_long: false,
-      source: 'UniProt',
-      source_url: 'https://www.uniprot.org/uniprot/'
+      source: '',
+      source_url: ''
     };
     let catalyticActivity: string;
     // Set biological function and catalytic activity
@@ -170,7 +170,7 @@ export class ResultSectionComponent {
       });
       bioFunction.text += '.';
     }
-    bioFunction.source_url += data.accession;
+    //bioFunction.source_url += data.accession;
     if (bioFunction.text === 'Not available' && catalyticActivity !== '') {
       bioFunction.text = 'Catalytic activity: ' + catalyticActivity;
     }

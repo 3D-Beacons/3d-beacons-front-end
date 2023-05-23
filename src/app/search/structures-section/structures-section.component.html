@@ -1,9 +1,9 @@
-<div class="row viewer-row" *ngIf="resultData">
+<div class="viewer-row" *ngIf="resultData">
     <p class="display-label-text">
       Structure <span class="name-text">{{displayedEntry}}</span>
     </p>
     <p class="functional-download-icon">
-      Download mmCIF <a download target="_blank" href="{{displayedEntryUrl}}" class="download-link">
+      <a download target="_blank" href="{{displayedEntryUrl}}" class="download-link functional-download-icon"> Download mmCIF 
       <i class="icon icon-common icon-download-alt functional-download-icon" data-icon="&#xf06e;"></i></a>
     </p>
     <!-- <p id="display-label">
@@ -23,7 +23,7 @@
     </div>
 </div>
 
-<div class="row viewer-row">
+<div class="viewer-row">
     <div id="molstar-container" class="small-12 medium-12 molstar-container"></div>
     <div class="appPvContainer pvc-container"></div>
 </div>

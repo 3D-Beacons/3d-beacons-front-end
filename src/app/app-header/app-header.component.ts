@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs/operators';
@@ -32,5 +32,8 @@ export class AppHeaderComponent {
   toggleMenu() {
     this.menuOpen = !this.menuOpen;
   }
-  
+
+  // ngOnInit(): void {
+  //   this.toggleMenu();
+  // }
 }
