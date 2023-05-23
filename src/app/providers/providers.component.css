@@ -33,12 +33,6 @@
   border-bottom-style: none;
 }
 
-.providers span a:hover {
-  border-bottom-style: solid;
-  color:#0A5032;
-  text-decoration: underline;
-}
-
 .no-left-padding {
   padding-left: 0 !important;
 }
