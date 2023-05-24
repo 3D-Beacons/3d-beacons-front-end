@@ -26,7 +26,7 @@
                 <span [innerHTML]="text.text"></span>
               </span>
               <a *ngIf="getShortenedText(text.text) != text.text" class="showMoreLink" (click)="switchText(text)">
-                Show Less 
+                Show less 
                 <svg class="showicon" viewBox="0 0 25 25">
                   <path fill="currentColor"
                     d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"/>
@@ -36,7 +36,7 @@
             <span *ngIf="!text.show_long">
               <span [innerHTML]="getShortenedText(text.text)"></span>
               <a class="showMoreLink" *ngIf="checkIfHasToShowMore(text)" (click)="switchText(text)">
-                Show More 
+                Show more 
                 <svg class="showicon" viewBox="0 0 25 25">
                   <path fill="currentColor"
                     d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"/>
@@ -46,9 +46,9 @@
           </span>
 
           <span *ngIf="text.source" style="margin-left: 6px;">
+            <br />
             <a target="_blank" href="{{text.source_url}}" class="external-ref">
-             
-              Go To {{text.source}} &nbsp;<i class="icon icon-common" data-icon="&#xf35d;"></i>
+              Go to {{text.source}} &nbsp;<i class="icon icon-common" data-icon="&#xf35d;"></i>
             </a>
           </span>
 
