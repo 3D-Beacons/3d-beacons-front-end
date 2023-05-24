@@ -92,6 +92,9 @@ h2,h3,p,div,span,a{
   color: #0A5032;
 }
 
+.break-line {
+  display: none;
+}
 
 @media screen and (max-width: 39.9375em) {
   .start-info {
@@ -112,5 +115,10 @@ h2,h3,p,div,span,a{
   .info-box-text{
     width: 50%;
   }
+}
 
+@media (min-width: 40em) and ((max-width: 49em) or (max-width: 51.25em)) {
+  .break-line {
+    display: block;
+  }
 }
