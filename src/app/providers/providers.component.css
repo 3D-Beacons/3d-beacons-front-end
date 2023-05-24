@@ -33,6 +33,11 @@
   border-bottom-style: none;
 }
 
+.vf-section-header__heading--is-link:hover {
+  color: #0A5032;
+  text-decoration: underline !important;
+}
+
 .no-left-padding {
   padding-left: 0 !important;
 }
