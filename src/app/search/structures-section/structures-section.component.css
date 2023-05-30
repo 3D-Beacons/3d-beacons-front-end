@@ -71,6 +71,11 @@ a:hover {
   height: 377px;
   margin-bottom: 15px;
   position: relative;
+  width:100%
+}
+
+.pvc-container {
+  width:100%
 }
 
 .viewer-row {
