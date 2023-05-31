@@ -16,7 +16,7 @@ export class ResultSectionComponent {
   haveResults = false;
   private _entryData: UniProtEntry;
   infoText: any[];
-  textLimit = 30;
+  textLimit = 26;
 
   @Input()
   get resultData(): any {
@@ -177,6 +177,7 @@ export class ResultSectionComponent {
     if (bioFunction.text !== 'Not available') {
       const pubmed = 'PubMed:([0-9]+)';
       const re = new RegExp(pubmed, 'g');
+      console.log("bioFunction.text ::",bioFunction.text);
       bioFunction.text = bioFunction.text.replace(re, '<a class="external-ref" href="https://www.uniprot.org/citations/$1" target="_blank">PubMed:$1</a>');
     }
     infoText.push(bioFunction);
