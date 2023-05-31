@@ -25,6 +25,7 @@
               <span *ngIf="!text.italic">
                 <span [innerHTML]="text.text"></span>
               </span>
+              <h3 class="break-line"></h3>
               <a *ngIf="getShortenedText(text.text) != text.text" class="showMoreLink" (click)="switchText(text)">
                 Show less 
                 <svg class="showicon" viewBox="0 0 25 25">
@@ -35,6 +36,7 @@
             </span>
             <span *ngIf="!text.show_long">
               <span [innerHTML]="getShortenedText(text.text)"></span>
+              <h3 class="break-line"></h3>
               <a class="showMoreLink" *ngIf="checkIfHasToShowMore(text)" (click)="switchText(text)">
                 Show more 
                 <svg class="showicon" viewBox="0 0 25 25">
@@ -45,7 +47,7 @@
             </span>
           </span>
 
-          <span *ngIf="text.source" style="margin-left: 6px;">
+          <span *ngIf="text.source">
             <h3 class="break-line"></h3>
             <a target="_blank" href="{{text.source_url}}" class="external-ref">
               Go to {{text.source}} &nbsp;<i class="icon icon-common" data-icon="&#xf35d;"></i>

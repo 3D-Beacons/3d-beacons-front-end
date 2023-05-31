@@ -59,7 +59,7 @@ h2,h3,p,div,span,a{
   font-weight: 400;
   font-size: 18px;
   line-height: 23px;
-  width: 60%;
+  width: 55%;
   display: inline-block;;
 }
 
@@ -97,6 +97,9 @@ h2,h3,p,div,span,a{
 }
 
 @media screen and (max-width: 39.9375em) {
+  .break-line {
+    display: block;
+  }
   .start-info {
     margin-bottom: 60px;
   }
@@ -114,6 +117,15 @@ h2,h3,p,div,span,a{
   
   .info-box-text{
     width: 50%;
+  }
+}
+
+@media screen and (max-width: 17.500em) {
+  .break-line {
+    display: block;
+  }
+  .external-ref {
+    font-size: 15px;
   }
 }
 
