@@ -20,5 +20,10 @@ export const MOCK_SUMMARY_CATEGORIES = [
     displayName: 'Ab-initio Models',
     icon: 'icon icon-common icon-systems',
     count: 1
+  },
+  {
+    id: 'deeplearning',
+    displayName: 'Deep learning',
+    icon: 'icon icon-common icon-systems'
   }
 ];
