@@ -1,7 +1,7 @@
 <app-result-section [entryData]="entryData" [resultData]="resultData"></app-result-section>
 
 <div class="row title-container">
-  <div class="small-12 columns">
+  <div class="small-12 columns" *ngIf="resultData">
     <p class="info-box-title">Viewer</p>
   </div>
 </div>
