@@ -1,8 +1,10 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, Title } from '@angular/platform-browser';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Routes, RouterModule } from '@angular/router';
+import { MatTableModule } from '@angular/material/table';
+
 
 import { AppComponent } from './app.component';
 import { SearchComponent } from './search/search.component';
@@ -16,12 +18,18 @@ import { SharedModule } from './shared/shared.module';
 import { DocsComponent } from './docs/docs.component';
 import { ProvidersComponent } from './providers/providers.component';
 import { GuidelinesComponent } from './guidelines/guidelines.component';
+import { SequenceComponent } from './search/sequence/sequence.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { AppHeaderComponent } from './app-header/app-header.component';
+import { SearchHeaderComponent } from './search-header/search-header.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'docs', component: DocsComponent },
   { path: 'guidelines', component: GuidelinesComponent },
-  { path: 'search/:id', component: SearchComponent }
+  { path: 'search/:id', component: SearchComponent },
+  { path: 'sequence/:id', component: SequenceComponent },
 ];
 
 @NgModule({
@@ -35,18 +43,25 @@ const routes: Routes = [
     StructuresSectionComponent,
     DocsComponent,
     ProvidersComponent,
-    GuidelinesComponent
+    GuidelinesComponent,
+    SequenceComponent,
+    AppHeaderComponent,
+    SearchHeaderComponent,
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
     HttpClientModule,
     CoreModule,
-    RouterModule.forRoot(routes),
-    SharedModule
+    RouterModule.forRoot(routes, { scrollOffset: [0, 0], scrollPositionRestoration: "top", anchorScrolling: 'enabled' }),
+    SharedModule,
+    BrowserAnimationsModule,
+    MatTableModule,
+    MatPaginatorModule,
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: BeaconsInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: BeaconsInterceptor, multi: true },
+    Title
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   exports: [RouterModule],

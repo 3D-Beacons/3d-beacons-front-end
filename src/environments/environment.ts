@@ -2,10 +2,17 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+// export const environment = {
+//   production: false,
+//   apiHost: 'https://api.com',
+//   uniprotApiUrl: 'https://uniprotapi.com',
+//   gaTag: 'TEST'
+// };
+
 export const environment = {
   production: false,
-  apiHost: 'https://api.com',
-  uniprotApiUrl: 'https://uniprotapi.com',
+  apiHost: 'https://www.ebi.ac.uk/pdbe/pdbe-kb/3dbeacons/api',
+  uniprotApiUrl: 'https://www.ebi.ac.uk/proteins/api/proteins/',
   gaTag: 'TEST'
 };
 

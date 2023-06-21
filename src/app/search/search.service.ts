@@ -18,4 +18,8 @@ export class SearchService {
   getUniProtEntry(uniprotAccession: string): Observable<UniProtEntry> {
     return this.dataService.getUniProtEntry(uniprotAccession);
   }
+
+  submitSequenceSearch(sequence: string): Observable<any> {
+    return this.dataService.submitSequenceSearch(sequence);
+  }
 }

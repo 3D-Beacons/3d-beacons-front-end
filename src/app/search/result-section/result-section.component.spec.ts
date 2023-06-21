@@ -65,10 +65,10 @@ describe('ResultSectionComponent', () => {
   it('should create the infoText array', () => {
     const infoText = component.prepareInfoText(MOCK_UNIPROT_RESPONSE);
     const expectedInfoText = [
-      { label: 'Protein', text: 'Beta-2 adrenergic receptor', italic: false, show_long: true, source: '', source_url: '' },
+      { label: 'Protein', text: 'Beta-2 adrenergic receptor', italic: false, show_long: true, source: 'UniProt', source_url: 'https://www.uniprot.org/uniprot/P07550' },
       { label: 'Gene', text: 'ADRB2', italic: false, show_long: true, source: '', source_url: '' },
       { label: 'Source organism', text: 'Homo sapiens', italic: true, show_long: true, source: '', source_url: '' },
-      { label: 'Biological function', text: 'Beta-adrenergic receptors mediate the catecholamine-induced activation of adenylate cyclase through the action of G proteins. The beta-2-adrenergic receptor binds epinephrine with an approximately 30-fold greater affinity than it does norepinephrine.', italic: false, show_long: false, source: 'UniProt', source_url: 'https://www.uniprot.org/uniprot/P07550' }
+      { label: 'Biological function', text: 'Beta-adrenergic receptors mediate the catecholamine-induced activation of adenylate cyclase through the action of G proteins. The beta-2-adrenergic receptor binds epinephrine with an approximately 30-fold greater affinity than it does norepinephrine.', italic: false, show_long: false, source: '', source_url: '' }
     ];
     expect(infoText).toEqual(expectedInfoText);
   });

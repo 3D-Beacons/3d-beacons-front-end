@@ -16,7 +16,7 @@ export class ResultSectionComponent {
   haveResults = false;
   private _entryData: UniProtEntry;
   infoText: any[];
-  textLimit = 30;
+  textLimit = 26;
 
   @Input()
   get resultData(): any {
@@ -104,8 +104,8 @@ export class ResultSectionComponent {
           text: data.protein.recommendedName.fullName.value,
           italic: false,
           show_long: true,
-          source: '',
-          source_url: ''
+          source: 'UniProt',
+          source_url: 'https://www.uniprot.org/uniprot/' + data.accession
         }
       );
     }
@@ -154,8 +154,8 @@ export class ResultSectionComponent {
       text: 'Not available',
       italic: false,
       show_long: false,
-      source: 'UniProt',
-      source_url: 'https://www.uniprot.org/uniprot/'
+      source: '',
+      source_url: ''
     };
     let catalyticActivity: string;
     // Set biological function and catalytic activity
@@ -170,13 +170,14 @@ export class ResultSectionComponent {
       });
       bioFunction.text += '.';
     }
-    bioFunction.source_url += data.accession;
+    //bioFunction.source_url += data.accession;
     if (bioFunction.text === 'Not available' && catalyticActivity !== '') {
       bioFunction.text = 'Catalytic activity: ' + catalyticActivity;
     }
     if (bioFunction.text !== 'Not available') {
       const pubmed = 'PubMed:([0-9]+)';
       const re = new RegExp(pubmed, 'g');
+      console.log("bioFunction.text ::",bioFunction.text);
       bioFunction.text = bioFunction.text.replace(re, '<a class="external-ref" href="https://www.uniprot.org/citations/$1" target="_blank">PubMed:$1</a>');
     }
     infoText.push(bioFunction);

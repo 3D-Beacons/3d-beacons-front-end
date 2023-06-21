@@ -1,28 +1,72 @@
 h3 {
-  font-weight: normal;
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 39px;
+}
+
+h2,h3,p,div,span,a{
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
 }
 
 #sum-count {
-  font-weight: bold;
+  font-weight: 500;
 }
 
-#info-box-container {
+.start-info {
+  margin-bottom: 80px;
+}
+
+.info-box-container {
   text-align: left;
+  margin-bottom: 40px;
+}
+
+.container-row{
+  margin-left: 130px;
+}
+
+.title-container{
   margin-top: 40px;
-  margin-bottom: 30px;
+  margin-bottom: 28px;
+  text-align: left;
 }
 
 .info-box-title {
   font-size: 24px;
   font-weight: 500;
-}
-
-.info-box-label {
+  border-bottom: 1px solid #E8E7DF;
+  padding-bottom: 16px;
   font-weight: 500;
+  font-size: 21px;
+  line-height: 27px;
 }
 
-.info-box-label, .info-box-text {
+.showicon {
+  width: 25px;
+  height: 25px;
+  vertical-align: bottom;
+  margin-left: -4px;
+}
+
+.columns:last-child:not(:first-child) {
+  float: none !important;
+} 
+
+.info-box-text {
+  font-weight: 400;
   font-size: 18px;
+  line-height: 23px;
+  width: 55%;
+  display: inline-block;;
+}
+
+.info-box-label{
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 23px;
 }
 
 .info-box-row {
@@ -34,14 +78,59 @@ h3 {
 }
 
 .external-ref, .showMoreLink{
-  font-weight: 500;
-  color: #0F5C5A;
+  color: #056643;
   text-decoration: none;
   border-bottom: none;
-  font-size: smaller;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 27px;
 }
 
 .external-ref:hover, .showMoreLink:hover{
-  color: #ffae00;
-  border-bottom: 1px solid #ffae00;
+  text-decoration: underline !important;
+  border-bottom:  none !important;
+  color: #0A5032;
+}
+
+.break-line {
+  display: none;
+}
+
+@media screen and (max-width: 39.9375em) {
+  .break-line {
+    display: block;
+  }
+  .start-info {
+    margin-bottom: 60px;
+  }
+
+  .info-box-container {
+    text-align: left;
+    margin-bottom: 20px;
+  }
+
+  .title-container{
+    margin-top: 30px;
+    margin-bottom: 28px;
+    text-align: left;
+  }
+  
+  .info-box-text{
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 17.500em) {
+  .break-line {
+    display: block;
+  }
+  .external-ref {
+    font-size: 15px;
+  }
+}
+
+@media (min-width: 40em) and ((max-width: 49em) or (max-width: 51.25em)) {
+  .break-line {
+    display: block;
+  }
 }

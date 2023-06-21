@@ -1,0 +1,145 @@
+.header-search-section {
+    background-color: #397F7D;
+}
+
+.search-column {
+    display: inline-flex; 
+    margin-top: 32px; 
+}
+
+.search-form {
+    width: 100%;
+}
+
+.search-input{
+    width: 91%; 
+    padding-right: 0px;
+}
+
+.search-input-field {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 8px 16px;
+    height: 44px;
+}
+
+.search-button-wrapper{
+    margin-right: 1px
+}
+
+
+.vf-button--secondary {
+    height: 39px;
+    background: #FFFFFF;
+    border: 2px solid #217976;
+    padding: 5px 16px 8px 16px;
+    color: #ffffff;
+    --vf-button-shadow-border-color: #0F5C5A;
+    --vf-button-shadow-background-color: #0F5C5A;
+  }
+  
+  .vf-button__text{
+    font-family: 'IBM Plex Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 23px;
+    color: #217976;
+  }
+
+
+.search-button-text{
+    font-family: 'IBM Plex Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 23px;
+    color: #217976;
+    padding-top: 4px;
+}
+
+.no-left-padding {
+    padding-left: 0 !important;
+}
+
+.search-examples {
+    float: left;
+    margin-bottom: 32px;
+    color: #ffffff;
+}
+
+.last-column{
+    float: none!important;
+}
+
+.search-example {
+    margin-left: 15px;
+    border-bottom: none !important;
+    border-style: none !important;
+    text-decoration: none !important;
+    display: inline-flex;
+    padding: 0px 10px;
+    background: rgba(121, 172, 170, 0.3);
+    border-radius: 7px;
+    height: 28px;
+    font-family: 'IBM Plex Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 28px;
+}
+
+.search-example:hover {
+    border-bottom: none !important;
+    color: #84BA75;
+}
+
+@media screen and (max-width: 39.9375em) {
+    .search-form {
+        width: 83%;
+    }
+    .examples-chip {
+        line-height: 40px;;
+    }
+}
+
+
+@media screen and (max-width: 73.2em) {
+    .search-form {
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 64.625em) {
+    .search-form {
+        width: 98%;
+    }
+}   
+
+@media screen and (max-width: 75em) {
+    .search-form {
+        width: 98%;
+    }
+}   
+
+@media (min-width: 40em) and ((max-width: 49em) or (max-width: 51.25em)) {
+    .search-form {
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 39.9375em) {
+    .search-form {
+        width: 88%;
+    }
+
+    .vf-button--secondary {
+        padding: 3px 12px 7px;
+    }
+
+    .vf-button__text{
+        font-size: 15px;
+      }
+    
+}

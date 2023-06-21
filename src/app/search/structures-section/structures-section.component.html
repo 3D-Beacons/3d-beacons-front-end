@@ -1,19 +1,16 @@
-<div>
-    <p id="display-label">
+<div class="viewer-row" *ngIf="resultData">
+    <p class="display-label-text">
+      Structure <span class="name-text">{{displayedEntry}}</span>
+    </p>
+    <p class="functional-download-icon">
+      <a download target="_blank" href="{{displayedEntryUrl}}" class="download-link functional-download-icon"> Download mmCIF 
+      <i class="icon icon-common icon-download-alt functional-download-icon" data-icon="&#xf06e;"></i></a>
+    </p>
+    <!-- <p id="display-label">
       Now displaying structure <span class="display-label-text">{{displayedEntry}}</span>.
       Click to download: <a download target="_blank" href="{{displayedEntryUrl}}">
       <i class="icon icon-common icon-download functional-download-icon" data-icon="&#xf06e;"></i></a>
-    </p>
-    <p *ngIf="!help">
-      <a (click)="toggleHelp()" class="help-link">
-        <i class="icon icon-functional" data-icon="+"></i> [show help]
-      </a>
-    </p>
-    <p *ngIf="help">
-      <a (click)="toggleHelp()" class="help-link">
-        <i class="icon icon-functional" data-icon="-"></i> [hide help]
-      </a>
-    </p>
+    </p> -->
     <div *ngIf="help">
       <p>
         Please click on the <i class="icon icon-common example-icon" data-icon="&#xf06e;"></i>
@@ -24,8 +21,10 @@
         on the sequence feature viewer below.
       </p>
     </div>
-
-    <!-- protvista section -->
-    <div class="appPvContainer"></div>
-    <!-- protvista section -->
 </div>
+
+<div class="viewer-row">
+    <div id="molstar-container" class="small-12 medium-12 large-8 molstar-container"></div>
+    <div class="appPvContainer pvc-container small-12 medium-12 large-8"></div>
+</div>
+

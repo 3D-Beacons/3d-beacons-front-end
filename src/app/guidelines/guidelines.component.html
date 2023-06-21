@@ -1,76 +1,83 @@
-<div class="row docs-row">
-  <div class="large-8 large-offset-2 medium-offset-1 medium-8 small-12 docs-text-title columns">
-    <h1>Guidelines for Collaborating</h1>
+<div class="intro-box">
+  <div class="row">
+    <div class="columns small-12 medium-10 medium-offset-1">
+      <div class="intro-content">
+        The 3D-Beacons Network provides unified programmatic access to experimentally determined and predicted structure models.
+      </div>
+    </div>
   </div>
 </div>
 
 <div class="row docs-row">
-  <div class="large-3 large-offset-2 medium-offset-1 medium-4 small-12 docs-text-title columns">
-    <h2>Introduction</h2>
+  <div class="small-12 medium-10 large-8 columns docs-row-cols title">
+    <h2 class="heading1">Terms of collaboration</h2>
   </div>
-  <div class="large-5 medium-6 small-12 docs-text columns">
-    <p>3D-Beacons is an open collaboration between providers of macromolecular structure models. This collaboration aims
-      to provide model coordinates and meta-information from all the contributing data resources in a standardised data
-      format on a unified platform.</p>
-  </div>
-</div>
 
-<div class="row docs-row">
-  <div class="large-3 large-offset-2 medium-offset-1 medium-4 small-12 docs-text-title columns">
-    <h2>Terms of Collaboration</h2>
+   <!-- display: flex; 
+  margin-left: 14px; 
+  margin-bottom: 40px; 
+  border-left: 3px solid #085F5C; -->
+  <div class="small-12 medium-10" style="margin-left:10px; float:left; display:flex; margin-bottom:40px;">
+    <p class="text1">The terms below set out the guidelines for the collaboration between data providers of 3D-Beacons. The terms will be reviewed annually at the Annual General Meetings.</p>
   </div>
-  <div class="large-5 medium-6 small-12 docs-text columns">
-    <p>The terms below set out the guidelines for the collaboration between data providers of 3D-Beacons.
-      The terms will be reviewed annually at the Annual General Meetings.</p>
-  </div>
-</div>
 
-<div class="row docs-row">
-  <div class="large-3 large-offset-2 medium-offset-1 medium-4 small-12 docs-text-title columns">
+  <div class="small-12 medium-10 large-8" style="display:flex; margin-left:20px; margin-bottom:40px;">
     <h3>3D-Beacons Hub</h3>
   </div>
-  <div class="large-5 medium-6 small-12 docs-text columns">
+  <div class="small-12 medium-10 large-8 doc-text" style="margin-left:10px; margin-bottom:40px;">
     <ul>
-      <li>The Velankar team will maintain the 3D-Beacons Hub API infrastructure for data aggregation and programmatic
-        access at EMBL-EBI.
+      <li>PDBe-KB will maintain data exchange format schema(s)</li>
+      <li>The schema will evolve in consultation with partner data resources</li>
+      <li>PDBe-KB will support the infrastructure for the 3D-Beacons Hub and Registry</li>
+      <li>The 3D-Beacons Hub will provide programmatic access to models of partner data resources</li>
+      <li>
+        The 3D-Beacons Hub will link back to the partner data resources,
+        transparently attributing credit for their contributions
       </li>
       <li>The Velankar team will maintain data exchange format schema(s) in a public repository on GitHub.</li>
       <li>The schema will evolve in consultation with collaborating partners.</li>
       <li>The 3D-Beacons Hub will provide programmatic access to expose data from all the collaborating partner
         resources.
       </li>
-      <li>3D-Beacons Consortium will always clearly attribute credit for the contributions of data providers.</li>
-      <li>The 3D-Beacons Hub will perform periodic checks to see which 3D-Beacons are online. It will notify those who
-        are inaccessible through a predefined email address.
-      </li>
     </ul>
   </div>
-</div>
 
-<div class="row docs-row">
-  <div class="large-3 large-offset-2 medium-offset-1 medium-4 small-12 docs-text-title columns">
+  <div class="small-12 medium-10 large-8" style="display:flex; margin-left:20px; margin-bottom:40px;">
     <h3>Collaborating partners</h3>
   </div>
-  <div class="large-5 medium-6 small-12 docs-text columns">
+  <div class="small-12 medium-10 large-8 doc-text" style="margin-left:10px;">
     <ul>
-      <li>The data provided will be freely available for academic and commercial use under Creative Commons Attribution
-        4.0 (CC-BY 4.0) license terms.
-      </li>
-      <li>Data providers are responsible for the quality of the data they contribute and should provide quality metrics
-        as part of their data. For theoretical models, a confidence measure is required according to the types supported
-        in the API specification (can be extended in accordance with the 3D-Beacons Consortium).
-      </li>
-      <li>Data providers must provide an email address as the contact point. The 3D-Beacons Hub will send a notification
-        to this email address in case of problems with data access.
-      </li>
-      <li>Data providers must provide metainformation for their models, including but not limited to the date of
-        creation and the version of the underlying protein sequence.
-      </li>
-      <li>Data providers must provide example accessions (e.g. UniProt accessions) which will always point to existing
-        models.
-      </li>
-      <li>Data providers must ensure that their API endpoints, if serving pregenerated data, have response rates lower
-        than 10 seconds.
+      <li>The data provided will be freely available for academic and commercial use under Creative Commons Attribution 4.0 (CC-BY 4.0) license terms.</li>
+
+      <li>Data providers are responsible for the quality of the data they contribute and should provide quality metrics as part of their data. For theoretical models, a confidence measure is required according to the types supported in the API specification (can be extended in accordance with the 3D-Beacons Consortium).</li>
+
+      <li>Data providers must provide an email address as the contact point. The 3D-Beacons Hub will send a notification to this email address in case of problems with data access.</li>
+
+      <li>Data providers must provide metainformation for their models, including but not limited to the date of creation and the version of the underlying protein sequence.</li>
+
+      <li>Data providers must provide example accessions (e.g. UniProt accessions) which will always point to existing models.</li>
+
+      <li>Data providers must ensure that their API endpoints, if serving pregenerated data, have response rates lower than 10 seconds.</li>
+
+      <li>Data providers are encouraged to indicate at their services that they are parts of the 3D-Beacons Network, either by displaying the logo or a URL https://3d-beacons.org</li>
+
+      <li>Active data providers are required to attend annual 3D-Beacons Network meetings.</li>
+
+      <li>The protocols for model or structure generation must have associated peer-reviewed publications.</li>
+
+      <li>In the case of databases, the database must have a corresponding peer-reviewed publication.</li>
+
+      <li>In the case of models generated as part of a study, it is strongly encouraged to have a peer-reviewed publication that describes both the methodology and the usage.</li>
+
+      <li>The 3D-Beacons Network will remove inaccessible 3D-Beacons after six months of inaccessibility.</li>
+
+      <li>Data providers can settle any potential disputes through direct communication with the leaders of 3D-Beacons or by bringing the dispute to the annual general meeting.</li>
+
+
+      <li>The data contributed to 3D-Beacons by collaborating partners will be free from any restrictions on
+        distribution and re-use under the
+        <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a> license or
+        <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank">CC BY SA 4.0</a>.
       </li>
       <li>Data providers are encouraged to indicate at their services that they are parts of the 3D-Beacons Network,
         either by displaying the logo or a URL https://3d-beacons.org
@@ -81,35 +88,34 @@
       <li>In the case of models generated as part of a study, it is strongly encouraged to have a peer-reviewed
         publication that describes both the methodology and the usage.
       </li>
-      <li>The 3D-Beacons Network will remove inaccessible 3D-Beacons after six months of inaccessibility.</li>
-      <li>Data providers can settle any potential disputes through direct communication with the leaders of 3D-Beacons
-        or by bringing the dispute to the annual general meeting.
-      </li>
     </ul>
+  </div>
+</div>    
+
+<div class="row docs-row">
+  <div class="small-12 medium-10 columns" style="display:flex; margin-left:10px; margin-bottom:40px; min-height:63px; border-left:3px solid #085F5C">
+    <h2 class="heading1">General Data Protection Regulation (GDPR) notice</h2>
+  </div>
+  <div class="small-12 medium-10" style="margin-left:10px; float:left;">
+    <p class="text1"> The 3D-Beacons Network collects no personal data from the contributing data providers, except for nominated email addresses that will serve the sole purpose of contact points in case of technical issues (e.g. when a 3D-Beacon server is inaccessible). Contributing data providers are responsible for implementing and following their own GDPR policies. </p>
+    <p class="text2"> The 3D-Beacons Hub API endpoints, such as shown above, can be used to programmatically access all the available protein structures and models from any members of the 3D-Beacons Network. For example, the API endpoint for the SARS-CoV-2 polyprotein, identified by its UniProt accession P0DTD1 provides all the experimentally determined structures from the PDB, as well as theoretical models from SWISS-MODEL and others.</p>
   </div>
 </div>
 
 <div class="row docs-row">
-  <div class="large-3 large-offset-2 medium-offset-1 medium-4 small-12 docs-text-title columns">
-    <h2>General Data Protection Regulation (GDPR) notice</h2>
+  <div class="small-12 medium-10 large-8 columns" style="display:flex; margin-left:10px; margin-bottom:40px; min-height:63px; border-left:3px solid #085F5C">
+    <h2 class="heading1">Technical details</h2>
   </div>
-  <div class="large-5 medium-6 small-12 docs-text columns">
-    <p>The 3D-Beacons Network collects no personal data from the contributing data providers, except for nominated email
-      addresses that will serve the sole purpose of contact points in case of technical issues (e.g. when a 3D-Beacon
-      server is inaccessible).
-      Contributing data providers are responsible for implementing and following their own GDPR policies.
+  <div class="small-12 medium-10" style="margin-left:10px; float:left;">
+    <p class="small-12 medium-10 vf-section-header__heading--is-link">
+      <a class="see-link" routerLink="/docs" fragment="infra">
+      <span> See the Documentation page for the technical description of the infrastructure</span>
+          <svg aria-hidden="true" class="vf-section-header__icon | vf-icon vf-icon-arrow--inline-end" width="24" height="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M0 12c0 6.627 5.373 12 12 12s12-5.373 12-12S18.627 0 12 0C5.376.008.008 5.376 0 12zm13.707-5.209l4.5 4.5a1 1 0 010 1.414l-4.5 4.5a1 1 0 01-1.414-1.414l2.366-2.367a.25.25 0 00-.177-.424H6a1 1 0 010-2h8.482a.25.25 0 00.177-.427l-2.366-2.368a1 1 0 011.414-1.414z" fill="" fill-rule="nonzero"></path>
+          </svg>
+      </a>
     </p>
   </div>
 </div>
 
-<div class="row docs-row">
-  <div class="large-3 large-offset-2 medium-offset-1 medium-4 small-12 docs-text-title columns">
-    <h2>Technical details</h2>
-  </div>
-  <div class="large-5 medium-6 small-12 docs-text columns">
-    <p>See <a routerLink="/docs">the Documentation</a> page for the technical description of the infrastructure</p>
-  </div>
-</div>
-
-<app-providers></app-providers>
 

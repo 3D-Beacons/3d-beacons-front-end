@@ -2,9 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 import {ConfigurationService} from '../core/configuration.service';
-import {SummaryResponse} from './result-section/result-section.model';
+import { Overview, Structure, SummaryResponse} from './result-section/result-section.model';
 import {SearchService} from './search.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import { UniProtEntry } from './result-section/uniprot-data.model';
 
 @Component({
@@ -24,17 +24,20 @@ export class SearchComponent implements OnInit {
   isFetching: boolean = false;
   exampleAccessions: string[];
   entryData: UniProtEntry = null;
+  sequence: string = null;
+  isSequenceSearch: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
     private searchService: SearchService,
-    private configService: ConfigurationService) {
+    private configService: ConfigurationService,
+    private router: Router) {
   }
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
       this.accession = params.id;
-      this.onSearch(this.accession);
+      this.doAccessionSearch(this.accession);
     });
 
 
@@ -42,7 +45,11 @@ export class SearchComponent implements OnInit {
     // this.onSearch('P38398');
   }
 
-  onSearch(query?: string) {
+  isUniprotAccession(term: string): boolean {
+    return RegExp('^[OPQ][0-9][A-Z0-9]{3}[0-9]|[A-NR-Z][0-9]([A-Z][A-Z0-9]{2}[0-9]){1,2}$').test(term);
+  }
+
+  doAccessionSearch(query?: string) {
     if (query == undefined) {
       query = this.searchForm.controls.searchTerm.value;
     } else {
@@ -53,11 +60,9 @@ export class SearchComponent implements OnInit {
     this.error = null;
     this.searchService.getUniProtEntry(query).subscribe(
       entryData => {
-        console.debug('Received UniProt entry response', entryData);
         this.entryData = entryData;
         this.searchService.getUniProtSummary(query).subscribe(
           summaryData => {
-            console.debug('Received summary response', summaryData);
             let tempSummaryData: SummaryResponse = summaryData;
             tempSummaryData.uniprot_entry.sequence_length = entryData.sequence.length;
             tempSummaryData.uniprot_entry.sequence = entryData.sequence.sequence;
@@ -65,19 +70,43 @@ export class SearchComponent implements OnInit {
             this.isFetching = false;
             this.searchForm.enable();
             this.resultData = tempSummaryData;
+            this.isSequenceSearch = false;
           },
           err => {
-            this.handleError();
+            this.isFetching = false;
+            this.isSequenceSearch = false;
+            this.handleError("No Uniprot summary data found!");
           });
       },
       err => {
-        this.handleError();
+        this.isFetching = false;
+        this.handleError("No Uniprot entry data found!");
       }
     );
   }
 
-  handleError(): void {
-    this.error = 'No data found!';
+  doSequenceSearch(query?: string) {
+    if (query == undefined) {
+      query = this.searchForm.controls.searchTerm.value;
+    } else {
+      this.searchForm.controls.searchTerm.setValue(null);
+    }
+    this.searchForm.disable();
+    this.searchService.submitSequenceSearch(query).subscribe(
+      response => {
+        var jobId = response.job_id;
+        this.router.navigate(['/sequence', jobId]);
+      },
+      err => {
+       // window.location.reload()
+        this.handleError("No data found!");
+      }
+    )
+  }
+
+  handleError(message: string): void {
+    this.error = message;
+    this.isSequenceSearch = false;
     this.isFetching = false;
     this.searchForm.enable();
     this.resultData = null;

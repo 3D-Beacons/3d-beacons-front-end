@@ -3,16 +3,15 @@ import { FormControl } from '@angular/forms';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { AppHeaderComponent } from 'src/app/app-header/app-header.component';
 
 declare var gtag;
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: 'app-search-header',
+  templateUrl: './search-header.component.html',
+  styleUrls: ['./search-header.component.css']
 })
-export class AppComponent {
+export class SearchHeaderComponent {
 
   searchTerm = new FormControl('');
 

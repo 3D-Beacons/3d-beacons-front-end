@@ -1,17 +1,25 @@
-<app-result-section [entryData]="entryData" [resultData]="resultData" style="text-align: center;"></app-result-section>
+<app-result-section [entryData]="entryData" [resultData]="resultData"></app-result-section>
 
-<div class="row viewer-row" *ngIf="resultData">
-
-  <div id="molstar-container" class="columns small-12 medium-12 large-8 large-offset-2 molstar-container"></div>
+<div class="row title-container">
+  <div class="small-12 columns">
+    <p class="info-box-title">Viewer</p>
+  </div>
 </div>
 
-<div class="row viewer-row" *ngIf="resultData">
-  <div class="columns small-12 medium-12 large-8 large-offset-2" style="padding-left: 0; padding-right: 0;">
+<div class="row last-container">
+  <div class="small-12 medium-12 columns" *ngIf="resultData">
     <app-structures-section [resultData]="resultData"></app-structures-section>
   </div>
 </div>
 
+
 <app-loading-dialog *ngIf="isFetching"></app-loading-dialog>
+
+<div *ngIf="isSequenceSearch && !error" class="row">
+  <div class="small-12 columns">
+    <h3 class="warning-red">Submitting the sequence search job, please wait!</h3>
+  </div> 
+</div>
 
 <div *ngIf="error" class="row error-row">
   <div class="small-12 columns">
@@ -26,3 +34,4 @@
 </div>
 
 <app-providers></app-providers>
+

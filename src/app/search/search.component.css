@@ -9,10 +9,26 @@
   position: relative;
 }
 
+.info-box-title {
+  font-size: 24px;
+  font-weight: 500;
+  border-bottom: 1px solid #E8E7DF;
+  padding: 16px 0;
+  font-weight: 500;
+  font-size: 21px;
+  line-height: 27px;
+}
 .viewer-row {
   margin-right: 15px !important;
-  margin-left: 15px !important;
   max-width: unset !important;
+}
+
+.title-container{
+  text-align: left;
+}
+
+.last-container{
+  margin-bottom: 52px;
 }
 
 .error-row {

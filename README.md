@@ -14,7 +14,9 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.1.3.
 
-### Before you start
+
+## Before you start
+
 
 * Set proper hub API url in `apiHost` and `uniprotApiUrl` in the path `environments/environment.ts`.
 

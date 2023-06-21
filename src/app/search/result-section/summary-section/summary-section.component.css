@@ -1,10 +1,8 @@
-.summary-boxes {
-  margin-bottom: 50px;
-}
 
 .summary-box {
   float: left !important;
-  height: 265px;
+  width: 19.66% !important;
+  text-align: center;
 }
 
 .summary-box i {
@@ -21,13 +19,23 @@
   .summary-boxes {
     margin-bottom: 25px;
   }
+  .summary-box {
+    width: 50% !important;
+  }
 }
 
-.summary-count {
-  font-size: 22px;
-  font-weight: bold;
+@media print, screen and (min-width: 40em){
+  .summary-box {
+    width: 35% !important;
+  }
+
+  .summary-boxes {
+    display: flex;
+  }
 }
 
 .summary-label {
-  font-size: 18px;
+  font-weight: 400;
+  font-size: 19px;
+  line-height: 27px;
 }
