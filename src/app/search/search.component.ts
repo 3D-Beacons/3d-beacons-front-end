@@ -36,15 +36,8 @@ export class SearchComponent implements OnInit {
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
-      if (this.isUniprotAccession(params.id)) {
-        this.accession = params.id;
-        this.doAccessionSearch(this.accession);
-      } else {
-        this.isSequenceSearch = true;
-        this.sequence = params.id;
-        setTimeout(() => {}, 2000);
-        this.doSequenceSearch(this.sequence);
-      }      
+      this.accession = params.id;
+      this.doAccessionSearch(this.accession);
     });
 
 
