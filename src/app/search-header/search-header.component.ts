@@ -14,6 +14,7 @@ declare var gtag;
 export class SearchHeaderComponent {
 
   searchTerm = new FormControl('');
+  searchBy = new FormControl('Sequence search');
 
   constructor(private router: Router) {
     const navEndEvent$ = router.events.pipe(
@@ -32,11 +33,22 @@ export class SearchHeaderComponent {
   }
 
   onSearch() {
+    console.log("this.searchTerm.value :: ",this.searchTerm.value);
+    console.log("this.searchBy.value :: ",this.searchBy.value);
+
     if (this.searchTerm.value.trim() === '') {
       return;
     }
     var searchTerm = this.searchTerm.value.toUpperCase();
     this.router.navigate(['/search/', searchTerm]);
+
+    // // accession:
+    // this.router.navigate(['/search/', searchTerm]);
+    // this.doAccessionSearch(this.accession);
+
+    // //seequence
+    // this.router.navigate(['/sequence/', searchTerm]);
+    // this.doSequenceSearch(this.accession);
     
   }
 

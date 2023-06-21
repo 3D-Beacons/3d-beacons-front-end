@@ -12,7 +12,7 @@
 }
 
 .search-input{
-    width: 91%; 
+    width: 72%; 
     padding-right: 0px;
 }
 
@@ -30,7 +30,7 @@
 
 
 .vf-button--secondary {
-    height: 39px;
+    height: 44px;
     background: #FFFFFF;
     border: 2px solid #217976;
     padding: 5px 16px 8px 16px;
@@ -93,6 +93,24 @@
 .search-example:hover {
     border-bottom: none !important;
     color: #84BA75;
+}
+
+.category-select-container {
+    display: inline-block;
+    float: left;
+    width: 19%;
+}
+
+
+.vf-form__select {
+    height: 45px !important;
+    font-family: 'IBM Plex Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 27px;
+    color: #0A5032;
+    border: 2px solid #217976;
 }
 
 @media screen and (max-width: 39.9375em) {
