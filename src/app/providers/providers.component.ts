@@ -50,7 +50,7 @@ export class ProvidersComponent {
       ],
       [
         {
-          name: 'HegelLab.org',
+          name: 'HegeLab.org',
           url: 'http://www.hegelab.org/'
         },
         {
