@@ -11,9 +11,14 @@ describe('SearchPaginationComponent', () => {
       declarations: [ SearchPaginationComponent ]
     })
     .compileComponents();
+  });
 
+  beforeEach(() => {
     fixture = TestBed.createComponent(SearchPaginationComponent);
     component = fixture.componentInstance;
+    component.paginationData = {
+        perPage: 20, currentPage: 1, totalPages: 5, pages: [], totalRecords: 100
+    }
     fixture.detectChanges();
   });
 
