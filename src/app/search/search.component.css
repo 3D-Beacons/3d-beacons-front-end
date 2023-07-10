@@ -38,3 +38,58 @@
 .warning-red {
   color: rgb(211, 74, 57);
 }
+
+.progress-text1 {
+  font-size: 19px;
+  font-weight: 400;
+  line-height: 26.6px;
+}
+
+.progress-text2 {
+  margin-top: 38px;
+  font-size: 21px;
+  font-weight: 500;
+  line-height: 27.3px;
+}
+
+.progress-text3 {
+  display: flex;
+  word-break: break-all;
+  margin-top: 12px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 26.6px;
+}
+
+.progress-text4 {
+  word-break: break-all;
+  margin-top: 12px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 26.6px;
+}
+
+.progress-text5 {
+  word-break: break-all;
+  margin-top: 12px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 26.6px;
+}
+
+.subtitle-heading {
+  font-style: normal;
+  font-weight: 400;
+  line-height: 27.2px;
+  font-size: 16px;
+}
+
+.error-container {
+  margin-top: 32px;
+  margin-bottom: 83px;
+}
+
+.mobile-view-copy{
+  float:right;
+  display:none;
+}

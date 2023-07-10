@@ -24,7 +24,7 @@
 
 <div *ngIf="message && is_noresult" class="row error-container">
   <div class="small-12 columns">
-    <h3>
+    <h3 class="progress_tile">
       {{message}} 
     </h3>
     <p class="progress-text1">We ran the search with BLASTP and couldn’t find any matches in UniProt KB. 
@@ -32,15 +32,15 @@
     <h4 class="progress-text2">Search details</h4>
     <p class="progress-text4">
       <span>Sequence query:</span>
-      <span class="mobile-view-copy"><a (click)="copyToClipboard(searchTerm)">Copy sequence <i class="icon icon-common icon-copy"></i></a></span>
+      <span class="mobile-view-copy"><a (click)="copyToClipboard(searchTermValue)">Copy sequence <i class="icon icon-common icon-copy"></i></a></span>
     </p>
     <p class="progress-text3">
         <span>
-          {{searchTerm}}
+          {{searchTermValue}}
         </span>
     </p>
     <p class="mobile-view-second">
-      <a (click)="copyToClipboard(searchTerm)">
+      <a (click)="copyToClipboard(searchTermValue)">
       Copy sequence
       <i class="icon icon-common icon-copy"></i>
       </a>
@@ -56,23 +56,24 @@
 
 <div *ngIf="message && is_searchprogress" class="row error-container">
   <div class="small-12 columns">
-    <h3>
-      {{message}} 
+    <h3 class="progress_tile">
+      {{message}}  
+      <img src="assets/img/Loader-ALPHA.gif" width="30px" height="30px">
     </h3>
     <p class="progress-text1">It usually takes 5-10 minutes to run a sequence search, please come back later. 
       <br/> <a (click)="copyLink()">Copy the link to results <i class="icon icon-common icon-copy"></i></a> to save it and view the results at a convenient time.</p>
     <h4 class="progress-text2">Search details</h4>
     <p class="progress-text4">
       <span>Sequence query:</span>
-      <span class="mobile-view-copy"><a (click)="copyToClipboard(searchTerm)">Copy sequence <i class="icon icon-common icon-copy"></i></a></span>
+      <span class="mobile-view-copy"><a (click)="copyToClipboard(searchTermValue)">Copy sequence <i class="icon icon-common icon-copy"></i></a></span>
     </p>
     <p class="progress-text3">
         <span>
-          {{searchTerm}} 
+          {{searchTermValue}} 
         </span>
     </p>
     <p class="mobile-view-second">
-      <a (click)="copyToClipboard(searchTerm)">
+      <a (click)="copyToClipboard(searchTermValue)">
       Copy sequence
       <i class="icon icon-common icon-copy"></i>
       </a>
