@@ -1,0 +1,39 @@
+<div class="columns no-pad-left no-pad-right">
+
+    <nav class="vf-pagination" aria-label="Pagination"  *ngIf="paginationData.totalPages > 1">
+      <ul class="vf-pagination__list">
+        <li class="vf-pagination__item vf-pagination__item--previous-page">
+          <a href="JavaScript:void(0);" class="vf-pagination__link" (click)="paginateTo(-1, 'arrow')"
+          [ngClass]="paginationData.currentPage === 1 ? 'vf-pagination__link--disabled' : ''">
+            Previous
+          </a>
+        </li>
+  
+        <li class="vf-pagination__item" *ngFor="let pgi of paginationData.pages; index as pageRecIndex;"
+          [ngClass]="pgi == paginationData.currentPage? 'vf-pagination__item--is-active' : ''">
+          
+          <a href="JavaScript:void(0);" 
+            class="vf-pagination__link" 
+            *ngIf="pgi !== -1 && pgi !== paginationData.currentPage" 
+            (click)="paginateTo(pgi, 'btn')">
+            {{pgi}}
+          </a>
+  
+          <span class="vf-pagination__label" aria-current="page" *ngIf="pgi !== -1 && pgi === paginationData.currentPage" >
+            {{pgi}}
+          </span>
+  
+          <span *ngIf="pgi === -1"><strong>...</strong></span>
+  
+        </li>
+        
+        <li class="vf-pagination__item vf-pagination__item--next-page">
+          <a href="JavaScript:void(0);" class="vf-pagination__link" (click)="paginateTo(1, 'arrow')"
+          [ngClass]="paginationData.currentPage === paginationData.totalPages ? 'vf-pagination__link--disabled' : ''">
+            Next
+          </a>
+        </li>
+      </ul>
+    </nav>
+  
+  </div>

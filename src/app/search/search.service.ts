@@ -9,7 +9,25 @@ import { UniProtEntry } from './result-section/uniprot-data.model';
   providedIn: 'root'
 })
 export class SearchService {
+
+  searchTermValue: string = '';
+  searchByValue: string = '';
+
   constructor(private dataService: DataService) { }
+
+  getSearchTermValue(){
+    return this.searchTermValue;
+  }
+  setSearchTermValue(searchterm){
+    this.searchTermValue = searchterm;
+  }
+
+  getSearchByValue(){
+    return this.searchByValue;
+  }
+  setSearchByValue(searchby){
+    this.searchByValue = searchby;
+  }
 
   getUniProtSummary(uniprotAccession: string): Observable<SummaryResponse> {
     return this.dataService.getUniProtSummary(uniprotAccession);
@@ -20,6 +38,10 @@ export class SearchService {
   }
 
   submitSequenceSearch(sequence: string): Observable<any> {
-    return this.dataService.submitSequenceSearch(sequence);
+    return this.dataService.submitSequenceSearch(sequence);;
+  }
+
+  submitEnsemblSearch(ensmblid: string): Observable<UniProtEntry> {
+    return this.dataService.getEnsemblSearchResult(ensmblid);
   }
 }

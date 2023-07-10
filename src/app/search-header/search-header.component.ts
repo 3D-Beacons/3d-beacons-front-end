@@ -1,8 +1,14 @@
-import { Component } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { NavigationEnd, Router } from '@angular/router';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { ConfigurationService } from '../core/configuration.service';
+import { SummaryResponse } from '../search/result-section/result-section.model';
+import { SearchService } from '../search/search.service';
+import { UniProtEntry } from '../search//result-section/uniprot-data.model';
+import { SearchComponent } from '../search/search.component';
+import { SequenceService } from '../search/sequence/sequence.service';
 
 declare var gtag;
 
@@ -11,12 +17,28 @@ declare var gtag;
   templateUrl: './search-header.component.html',
   styleUrls: ['./search-header.component.css']
 })
-export class SearchHeaderComponent {
+export class SearchHeaderComponent implements OnInit  {
 
-  searchTerm = new FormControl('');
-  searchBy = new FormControl('Sequence search');
+  searchTerm = new FormControl(null, Validators.required)
+  searchBy = 'uniprotaccession';
 
-  constructor(private router: Router) {
+  accession: string;
+  private sub: any;
+  error: string = null;
+  resultData: SummaryResponse = null;
+  isFetching: boolean = false;
+  exampleAccessions: string[];
+  entryData: UniProtEntry = null;
+  sequence: string = null;
+  isSequenceSearch: boolean = false;
+  
+  constructor(
+    private router: Router, 
+    private searchService: SearchService,
+    private route: ActivatedRoute,
+    private configService: ConfigurationService,
+    private sequenceService: SequenceService,
+  ) {
     const navEndEvent$ = router.events.pipe(
       filter(e => e instanceof NavigationEnd)
     );
@@ -32,24 +54,39 @@ export class SearchHeaderComponent {
     document.head.appendChild(headerScript);
   }
 
-  onSearch() {
-    console.log("this.searchTerm.value :: ",this.searchTerm.value);
-    console.log("this.searchBy.value :: ",this.searchBy.value);
+  ngOnInit() {
+    // this.onSearch('P38398');
+  }
+
+  onSearch(e) {
+    e.preventDefault();
+    const searchComponent = new SearchComponent(this.route, this.searchService, this.sequenceService, this.configService, this.router);
+    this.searchService.setSearchTermValue(this.searchTerm.value);
+    this.searchService.setSearchByValue(this.searchBy);
 
     if (this.searchTerm.value.trim() === '') {
       return;
     }
+
+    this.router.navigate(['/search/', this.searchTerm.value]);
+
     var searchTerm = this.searchTerm.value.toUpperCase();
-    this.router.navigate(['/search/', searchTerm]);
-
-    // // accession:
-    // this.router.navigate(['/search/', searchTerm]);
-    // this.doAccessionSearch(this.accession);
-
-    // //seequence
-    // this.router.navigate(['/sequence/', searchTerm]);
-    // this.doSequenceSearch(this.accession);
-    
+    if(this.searchBy == "sequencesearch"){
+      searchComponent.doSequenceSearch(searchTerm);
+    }else if(this.searchBy === "ensemblesearch"){
+      this.sequenceService.setSearchTermValue(this.searchTerm.value);
+      this.router.navigate(['/ensembl/', searchTerm]);
+    }
+    else{
+      this.router.navigate(['/search/', searchTerm]);
+    }
   }
 
+  handleError(message: string): void {
+    this.error = message;
+    this.isSequenceSearch = false;
+    this.isFetching = false;
+    //this.searchForm.enable();
+    this.resultData = null;
+  }
 }

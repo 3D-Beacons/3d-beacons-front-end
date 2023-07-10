@@ -1,0 +1,96 @@
+<div class="row title-container" *ngIf="cardData">
+  <div class="small-12 columns">
+    <h3>
+      Search results for Ensembl ID  {{ensembl_id}}
+    </h3>
+    <h4 class="subtitle-heading">{{card_data_length}} results</h4>
+  </div>
+</div>
+  
+<div *ngIf="!message && cardData">
+  <div *ngFor="let res of cardDataChunk; let indexOfelement=index;">
+      <div class="row">
+          <div class="small-12 columns">
+              <h3 class="card_title"><a target="_blank" routerLink="/search/{{res.accession}}">{{res.title}}</a></h3>
+              <h4 class="card_subtitle">{{res.subtitle}}</h4>
+          </div>
+      </div>
+      <div class="row middle_row" [ngClass]="indexOfelement < card_data_length-1 ? '' : 'lastcard'">
+          <!-- <div class="columns small-5 medium-2 info-box-label">Description</div>
+          <div class="columns small-7 medium-10 info-box-value">{{res.description}}</div> -->
+          <div class="columns small-5 medium-2 info-box-label">Ensembl transcript</div>
+          <div class="columns small-7 medium-10 info-box-value">{{res.ensemblTranscript}}</div>
+          <div class="columns small-5 medium-2 info-box-label">Source organism</div>
+          <div class="columns small-7 medium-10 info-box-value">{{res.sourceOrganism}}</div>
+          <div class="columns small-5 medium-2 info-box-label">Available structures</div>
+          <div class="columns small-7 medium-10 info-box-value">{{res.availableStructure}}</div>
+      </div>
+      <div class="row">
+        <div class="small-12"  *ngIf="indexOfelement < card_data_length-1">
+            <hr class="cardhr">
+        </div>
+      </div>
+  </div>
+  <div class="medium-5 columns paginatelast">
+    <app-search-pagination [(paginationData)]="paginationData" (selectedPage)="paginateTo($event)"
+    (resPerPage)="updatePerPageVal($event)"></app-search-pagination>
+  </div>
+</div>
+  
+<div *ngIf="is_noresult" class="row error-container">
+  <div class="small-12 columns">
+    <h3>
+      {{message}} 
+    </h3>
+    <p class="progress-text1">We ran the search with <a href="" target="_blank">BLASTP</a> and couldn’t find any matches in UniProt KB. 
+    
+    <h4 class="progress-text2">Search details</h4>
+    <p class="progress-text4">
+      <span>Sequence query:</span>
+      <span class="mobile-view-copy"><a (click)="copyToClipboard('{{searchTerm}}')">Copy sequence <i class="icon icon-common icon-copy"></i></a></span>
+    </p>
+    <p class="progress-text3">
+        <span>
+          {{searchTerm}}
+        </span>
+    </p>
+    <p class="mobile-view-second">
+      <a (click)="copyToClipboard('{{searchTerm}}')">
+      Copy sequence
+      <i class="icon icon-common icon-copy"></i>
+      </a>
+    </p>
+    <p class="progress-text5">
+        For more information on the search parameters, please visit the  
+        <a href="" target="_blank">
+          EBI sequence similarity search page.
+        </a>
+    </p>
+  </div>
+</div>
+  
+<div *ngIf="is_searchprogress" class="row error-container">
+  <div class="small-12 columns">
+    <h3>
+      {{message}} 
+    </h3>
+    <p class="progress-text1">It usually takes 5-10 minutes to run a Ensembl search, please come back later. 
+      <br/> <a (click)="copyLink()">Copy the link to results <i class="icon icon-common icon-copy"></i></a> to save it and view the results at a convenient time.</p>
+    <h4 class="progress-text2">Search details</h4>
+    <p class="progress-text4">
+      <span>Ensembl ID:</span>
+      <span class="mobile-view-copy"><a (click)="copyToClipboard(searchTerm)">Copy sequence <i class="icon icon-common icon-copy"></i></a></span>
+    </p>
+    <p class="progress-text3">
+        <span>
+          {{searchTerm}}
+        </span>
+    </p>
+    <p class="mobile-view-second">
+      <a (click)="copyToClipboard(searchTerm)">
+      Copy sequence
+      <i class="icon icon-common icon-copy"></i>
+      </a>
+    </p>
+  </div>
+</div>

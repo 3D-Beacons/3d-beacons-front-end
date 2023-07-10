@@ -1,13 +1,33 @@
 h3 {
-    font-weight: 500;
+    font-weight: 700;
     font-size: 30px;
     line-height: 39px;
 }
-  
 h2,h3,p,div,span,a{
     font-family: 'IBM Plex Sans';
     font-style: normal;
 }
+.viewer-row {
+    margin-right: 15px !important;
+    max-width: unset !important;
+}
+
+.title-container{
+    text-align: left;
+}
+
+.last-container{
+    margin-bottom: 52px;
+}
+
+.error-row {
+    margin-top: 30px;
+}
+
+.warning-red {
+    color: rgb(211, 74, 57);
+}
+
 
 a {
     color: #056643; 
@@ -80,19 +100,50 @@ a:hover{
     display:none;
 }
 
-.lastcard {
-    padding-bottom: 32px;
-}
-
 .cardhr {
     margin-left: 16px;
     padding-top: 16px;
     padding-bottom: 16px;
 }
 
+.lastcard {
+    padding-bottom: 32px;
+}
+
 .paginatelast {
     padding-bottom: 80px;
     margin-right:-20px;
+}
+
+.card_title {
+    color: #056643;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 31.2px;
+    padding-top: 16px;
+}
+.card_subtitle{
+    color: #54585A;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 27.2px;
+}
+
+.info-box-label {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 27.2px;
+}
+
+.info-box-value {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 27.2px;
+}
+
+.middle_row {
+    padding-top:16px;
+    margin-bottom: 16px;
 }
 
 @media screen and (max-width: 39.9375em) {

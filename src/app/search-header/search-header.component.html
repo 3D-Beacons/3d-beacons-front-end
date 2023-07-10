@@ -4,20 +4,20 @@
       <form class="search-form">
 
         <div class="vf-form__item category-select-container">
-          <select name="searchBy" id="searchBy" [formControl]="searchBy" class="category-select vf-form__select">
+          <select name="searchBy" id="searchBy" [(ngModel)]="searchBy" class="category-select vf-form__select">
             <option value="uniprotaccession">UniProt accession</option>
             <option value="sequencesearch">Sequence search</option>
+            <option value="ensemblesearch">ENSEMBL search</option>
           </select>
         </div>  
-        
 
         <div class="columns small-10 no-left-padding float-left search-input">
           <input [formControl]="searchTerm" class="search-input-field" type="search"
-            placeholder="Find structures by sequence" (keyup.enter)="onSearch()">
+            placeholder="Find structures by sequence" (keyup.enter)="onSearch($event)">
         </div>
 
         <div class="columns small-1 float-right search-button-wrapper">
-          <button class="vf-search__button | vf-button vf-button--secondary" (click)="onSearch()" id="search-button">
+          <button class="vf-search__button | vf-button vf-button--secondary" (click)="onSearch($event)" id="search-button">
             <span class="vf-button__text search-button-text">Find</span>
           </button>
         </div>  
@@ -26,6 +26,7 @@
     </div>
     <div class="small-12 medium-10 large-8 columns search-examples last-column">
       <span class="examples-chip">UniProt accessions example:
+        <a routerLink="/ensembl/ENSG00000288864" class="search-example">ENSG00000288864</a>
         <a routerLink="/search/P38398" class="search-example">P38398</a>
         <a routerLink="/search/P01308" class="search-example">P01308</a>
         <a routerLink="/search/MNMLVINGTPRKHGRTRIAASYIAALYHTA" class="search-example">Sequence: MNMLVIN...</a>
