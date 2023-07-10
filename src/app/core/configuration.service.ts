@@ -27,6 +27,10 @@ export class ConfigurationService {
     return this.apiRoot + '/sequence/result/';
   }
 
+  getEnsemblSearchResultUrl(): string {
+    return this.apiRoot + '/ensembl/summary/';
+  }
+
   getProviderColor(provider: string): string {
     switch (provider) {
       case 'PDBe': return '#085f5c';

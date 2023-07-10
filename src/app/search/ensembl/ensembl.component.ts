@@ -1,96 +1,83 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { ActivatedRoute, Router } from '@angular/router';
-import { SequenceService } from './sequence.service';
-import { SequenceDataFormatterService } from './sequence-data-formatter.service';
+import { ActivatedRoute } from '@angular/router';
+import { SearchService } from '../search.service';
+import { SequenceService } from '../sequence/sequence.service';
+import { EnsemblDataFormatterService } from './ensembl-data-formatter.service';
+import { SequenceCardsComponent } from '../sequence/sequence-cards/sequence-cards.component'
 
-import { Hit } from './search-result.model';
 import { MatPaginator } from '@angular/material/paginator';
 import { Title } from '@angular/platform-browser';
-import { SearchService } from '../search.service';
 
 @Component({
-  selector: 'app-sequence',
-  templateUrl: './sequence.component.html',
-  styleUrls: ['./sequence.component.css']
+  selector: 'app-ensembl',
+  templateUrl: './ensembl.component.html',
+  styleUrls: ['./ensembl.component.css']
 })
-export class SequenceComponent implements OnInit {
-
+export class EnsemblComponent {
   private sub: any;
-  job_id: string;
+  ensembl_id: string;
+  message: string = null;
   is_searchprogress: boolean = false;
   is_noresult: boolean = false;
-  message: string = null;
   searching: boolean = false;
-  resultData: Hit[] = null;
+  ensembl_results = null;
+  ensembl_results_length = 0;
   cardData = null;
   card_data_length = 0;
-  tableSource: MatTableDataSource<Hit> = new MatTableDataSource<Hit>();
-  displayedColumns: string[] = ['accession', 'id', 'description', 'struct_count', 'hsp_align_length', 'hsp_identity'];
-
+  
   searchTerm: string;
   paginationData: any  = {
-    perPage: 10, currentPage: 1, totalPages: 0, pages: [], totalRecords: 0
+    perPage: 10, currentPage: 1, totalPages: 3, pages: [], totalRecords: 3
   };
+
   cardDataChunk: [];
-  
+
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(
     private route: ActivatedRoute,
-    private searchService: SearchService,
     private sequenceService: SequenceService,
-    private sequenceDataFormatterService: SequenceDataFormatterService,
-    private titleService: Title
+    private searchService: SearchService,
+    private ensemblDataFormatterService: EnsemblDataFormatterService,
+    private titleService: Title,
   ) { }
 
   ngOnInit(): void {
     this.searchTerm = this.searchService.searchTermValue;
+    this.is_searchprogress = true;
+
+    this.message = "Search in progress";
+
     this.paginationData.pages = this.visiblePageNumbers();
     this.sub = this.route.params.subscribe(params => {
-      this.job_id = params.id;
+      this.ensembl_id = params.id;
       this.searchTerm = params.id;
-      this.sequenceService.getSequenceSearchResult(this.job_id).subscribe(
-  
+      this.searchService.submitEnsemblSearch(this.ensembl_id).subscribe(
         response => {
-          let message = response.message;
-          if (message && message.startsWith("Search in progress")) {
-            this.message = "Search in progress";
-            this.is_searchprogress = true;
-            this.is_noresult = false;
-            this.titleService.setTitle("Search in progress");
-            this.searching = true;
-            setTimeout(() => {window.location.reload();}, 30000);
-          } else {
-            this.searching = false;
-            this.is_searchprogress = false;
-            this.is_noresult = false;
-            this.titleService.setTitle("3D-Beacons");
-            this.cardData = this.sequenceDataFormatterService.formatData(response);
-            this.cardDataChunk = this.getSlice(this.paginationData.currentPage)
-            this.card_data_length = this.cardData.length;
+          this.searching = false;
+          this.is_searchprogress = false;
+          this.message = '';
+          this.is_noresult = false;
+          this.titleService.setTitle("3D-Beacons");
 
-            this.paginationData.totalPages = Math.ceil(this.card_data_length / this.paginationData.perPage);
-            this.paginationData.totalRecords = this.card_data_length;
-            this.paginationData.pages = this.visiblePageNumbers();
-            this.paginationData = Object.assign({}, this.paginationData);
-          }
+          this.cardData = this.ensemblDataFormatterService.formatData(response);
+          this.cardDataChunk = this.getSlice(this.paginationData.currentPage);
+          this.card_data_length = this.cardData.length;
+
+          this.paginationData.totalPages = Math.ceil(this.card_data_length / this.paginationData.perPage);
+          this.paginationData.totalRecords = this.card_data_length;
+          this.paginationData.pages = this.visiblePageNumbers();
+          this.paginationData = Object.assign({}, this.paginationData);
         },
         err => {
           this.searching = false;
           this.is_searchprogress = false;
           this.is_noresult = true;
-          this.message = "No results found for this sequence!";
+          this.message = "No results found for this ENSEMBL id!";
         }
-      );
-
+      )
     });
-  }
-
-  getSlice(currentPage){
-    const start = currentPage * this.paginationData.perPage - this.paginationData.perPage;
-    const end = currentPage * this.paginationData.perPage;
-    return this.cardData.slice(start,end);
   }
   
   copyToClipboard(item) {
@@ -112,6 +99,11 @@ export class SequenceComponent implements OnInit {
     document.execCommand('copy');
   }
 
+  getSlice(currentPage){
+    const start = currentPage * this.paginationData.perPage - this.paginationData.perPage;
+    const end = currentPage * this.paginationData.perPage;
+    return this.cardData.slice(start,end);
+  }
 
   visiblePageNumbers(): any[] {
     const innerWindow = 1;
@@ -176,39 +168,25 @@ export class SequenceComponent implements OnInit {
     if (paginate.source == 'arrow'){
      if (paginate.pageIndex == -1 && this.paginationData.currentPage == 1) { return; }
       if (paginate.pageIndex == 1 && this.paginationData.currentPage == this.paginationData.totalPages) { return; }
-
       this.paginationData.currentPage = this.paginationData.currentPage + paginate.pageIndex;
-
     }else{
       if (this.paginationData.currentPage == paginate.pageIndex) { return; }
       this.paginationData.currentPage = paginate.pageIndex;
     }
-
     this.paginationData.pages = this.visiblePageNumbers();
     this.paginationData = Object.assign({}, this.paginationData);
-    this.cardDataChunk = this.getSlice(this.paginationData.currentPage)
-    // this.makeSolrRequest('main');
-    // // push url path to maintain broweser history
-    // const urlAndParamData = this.getUrlAndParams();
-    // urlAndParamData.queryParams['page'] = this.paginationData.currentPage;
-    // this.router.navigate([urlAndParamData.locPath], { queryParams: urlAndParamData.queryParams, queryParamsHandling: 'merge' });
-
+    this.cardDataChunk = this.getSlice(this.paginationData.currentPage);
   }
 
   updatePerPageVal(ppgSelected: any): void {
-
     // Reset to page 1
     this.paginationData.currentPage = 1;
     this.paginationData.perPage = ppgSelected.ppgValue;
     this.paginationData.pages = this.visiblePageNumbers();
     this.paginationData = Object.assign({}, this.paginationData);
-
-    // Make solr request
-    //this.makeSolrRequest('main');
   }
 
   getResultCountText(): string{
-
     let title = '0 results';
     if (this.paginationData.totalRecords > 0) {
       const ppVal = this.paginationData.perPage;
@@ -221,5 +199,4 @@ export class SequenceComponent implements OnInit {
     }
     return title;
   }
-
 }

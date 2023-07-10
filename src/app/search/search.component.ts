@@ -6,6 +6,8 @@ import { Overview, Structure, SummaryResponse} from './result-section/result-sec
 import {SearchService} from './search.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import { UniProtEntry } from './result-section/uniprot-data.model';
+import { SearchHeaderComponent } from '../search-header/search-header.component';
+import { SequenceService } from './sequence/sequence.service';
 
 @Component({
   selector: 'app-search',
@@ -16,6 +18,7 @@ export class SearchComponent implements OnInit {
   searchForm: FormGroup = new FormGroup({
     searchTerm: new FormControl(null, Validators.required)
   });
+  searchBy: string;;
 
   accession: string;
   private sub: any;
@@ -26,15 +29,19 @@ export class SearchComponent implements OnInit {
   entryData: UniProtEntry = null;
   sequence: string = null;
   isSequenceSearch: boolean = false;
+  isEnsembl: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
     private searchService: SearchService,
+    private sequenceService: SequenceService,
     private configService: ConfigurationService,
     private router: Router) {
   }
 
   ngOnInit() {
+    this.sequenceService.setSearchTermValue(this.searchForm.controls.searchTerm.value);
+    this.searchBy = this.searchService.getSearchByValue();
     this.sub = this.route.params.subscribe(params => {
       if (this.isUniprotAccession(params.id)) {
         this.accession = params.id;
@@ -42,12 +49,10 @@ export class SearchComponent implements OnInit {
       } else {
         this.isSequenceSearch = true;
         this.sequence = params.id;
-        setTimeout(() => {}, 2000);
+        //setTimeout(() => {}, 2000);
         this.doSequenceSearch(this.sequence);
-      }      
+      }     
     });
-
-
     this.exampleAccessions = this.configService.getExampleAccessions();
     // this.onSearch('P38398');
   }
@@ -93,16 +98,29 @@ export class SearchComponent implements OnInit {
   }
 
   doSequenceSearch(query?: string) {
-    if (query == undefined) {
-      query = this.searchForm.controls.searchTerm.value;
-    } else {
-      this.searchForm.controls.searchTerm.setValue(null);
-    }
+    this.isSequenceSearch = true;
+    //this.sequence = params.id;
+    setTimeout(() => {}, 2000);
     this.searchForm.disable();
+    this.sequenceService.setSearchTermValue(this.searchForm.controls.searchTerm.value);
     this.searchService.submitSequenceSearch(query).subscribe(
       response => {
         var jobId = response.job_id;
         this.router.navigate(['/sequence', jobId]);
+      },
+      err => {
+       // window.location.reload()
+        this.handleError("No data found!");
+      }
+    )
+  }
+
+  doEnsemblSearch(query?: string) {
+    this.searchForm.disable();
+    this.searchService.setSearchTermValue(this.searchForm.controls.searchTerm.value);
+    this.searchService.submitEnsemblSearch(query).subscribe(
+      response => {
+        this.router.navigate(['/ensembl', response]);
       },
       err => {
        // window.location.reload()

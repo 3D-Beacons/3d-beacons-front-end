@@ -2,19 +2,31 @@
   <div class="row">
     <div class="columns small-12 search-column">
       <form class="search-form">
+
+        <div class="vf-form__item category-select-container">
+          <select name="searchBy" id="searchBy" [(ngModel)]="searchBy" class="category-select vf-form__select">
+            <option value="uniprotaccession">UniProt accession</option>
+            <option value="sequencesearch">Sequence search</option>
+            <option value="ensemblesearch">ENSEMBL search</option>
+          </select>
+        </div>  
+
         <div class="columns small-10 no-left-padding float-left search-input">
           <input [formControl]="searchTerm" class="search-input-field" type="search"
-            placeholder="Find structures by UniProt accession" (keyup.enter)="onSearch()">
+            placeholder="Find structures by sequence" (keyup.enter)="onSearch($event)">
         </div>
+
         <div class="columns small-1 float-right search-button-wrapper">
-          <button class="vf-search__button | vf-button vf-button--secondary" (click)="onSearch()" id="search-button">
+          <button class="vf-search__button | vf-button vf-button--secondary" (click)="onSearch($event)" id="search-button">
             <span class="vf-button__text search-button-text">Find</span>
           </button>
         </div>  
+
       </form>
     </div>
     <div class="small-12 medium-10 large-8 columns search-examples last-column">
       <span class="examples-chip">UniProt accessions example:
+        <a routerLink="/ensembl/ENSG00000288864" class="search-example">ENSG00000288864</a>
         <a routerLink="/search/P38398" class="search-example">P38398</a>
         <a routerLink="/search/P01308" class="search-example">P01308</a>
         <a routerLink="/search/MNMLVINGTPRKHGRTRIAASYIAALYHTA" class="search-example">Sequence: MNMLVIN...</a>
@@ -22,37 +34,3 @@
     </div>
   </div>
 </div>
-
-<!-- <div class="row expanded">
-    <div class="columns search-row">
-      <div class="columns search-column">
-        <form class="search-form">
-          <div class="columns small-10 no-left-padding float-left search-input">
-            <input [formControl]="searchTerm" class="search-input-field" type="search"
-              placeholder="Find structures by UniProt accession" (keyup.enter)="onSearch()">
-          </div>
-          <div class="columns small-1 float-right search-button-wrapper">
-            <button class="vf-search__button | vf-button vf-button--secondary" [disabled]="!searchTerm.value" (click)="onSearch()" id="search-button">
-              <span class="hide-for-small-only vf-button__text search-button-text">Find</span>
-              <svg class="show-for-small-only vf-icon vf-icon--search-btn | vf-button__icon" aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
-                xmlns:svgjs="http://svgjs.com/svgjs" viewBox="0 0 140 140" width="16" height="16">
-                <g transform="matrix(5.833333333333333,0,0,5.833333333333333,0,0)">
-                  <path
-                    d="M23.414,20.591l-4.645-4.645a10.256,10.256,0,1,0-2.828,2.829l4.645,4.644a2.025,2.025,0,0,0,2.828,0A2,2,0,0,0,23.414,20.591ZM10.25,3.005A7.25,7.25,0,1,1,3,10.255,7.258,7.258,0,0,1,10.25,3.005Z"
-                    fill="#3B6FB6" stroke="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="0"></path>
-                </g>
-              </svg>
-            </button>
-          </div>  
-        </form>
-      </div>
-      <div class="small-12 medium-10 medium-offset-1 large-8 columns search-examples">
-        <span>UniProt accessions example:
-          <a routerLink="/search/P38398" class="search-example">P38398</a>
-          <a routerLink="/search/P01308" class="search-example">P01308</a>
-          <a routerLink="/search/MNMLVINGTPRKHGRTRIAASYIAALYHTA" class="search-example">Sequence: MNMLVIN...</a>
-        </span>
-      </div>
-    </div>
-  </div> -->

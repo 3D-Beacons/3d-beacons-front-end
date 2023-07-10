@@ -1,0 +1,49 @@
+button{
+  min-width: auto;
+  line-height: 26px;
+}
+
+.paginationTitle{
+  font-size:16px;
+  line-height: 32px;
+  float:left;
+  word-break: keep-all;
+}
+
+.paginationTitleMobile{
+  font-size:16px;
+  line-height: 32px;
+  text-align: center;
+  word-break: keep-all;
+}
+
+.paginationButtons{
+  box-shadow: none !important;
+  border: 1px solid #999;
+}
+
+.vf-pagination__list {
+  margin: 0 0 15px 0;
+}
+
+.vf-pagination__label, .vf-pagination__link {
+  border: none;
+  text-decoration: none;
+  border-bottom: none !important;
+}
+
+.vf-pagination__link--disabled {
+  color: #999;
+  cursor: default;
+  border-bottom: none !important;
+}
+
+.vf-pagination__link--disabled:hover {
+  background-color: #fff;
+  border-bottom: none !important;
+}
+
+.vf-pagination__link--disabled:focus {
+  box-shadow: none;
+  border-bottom: none !important;
+}

@@ -1,0 +1,137 @@
+<div class="row ">
+    <div class="small-12 columns">
+        <h3 class="card_title"><a target="_blank" routerLink="/search/{{res.accession}}">{{res.title}}</a></h3>
+        <h4 class="card_subtitle">{{res.subtitle}}</h4>
+    </div>
+</div>
+<div class="row middle_row">
+    <div class="columns small-5 medium-2 info-box-label">Description</div>
+    <div class="columns small-7 medium-10 info-box-value">{{res.description}}</div>
+    <div class="columns small-5 medium-2 info-box-label">Source organism</div>
+    <div class="columns small-7 medium-10 info-box-value">{{res.source_organism}}</div>
+    <div class="columns small-5 medium-2 info-box-label">Available structures</div>
+    <div class="columns small-7 medium-10 info-box-value">{{res.available_structure}}</div>
+</div>
+<div class="row">
+    <div class="columns sequence_row ">
+        <div class="columns stats_container">
+            <div class="columns small-5 medium-2 sequence_match_lable_first">Sequence match</div>
+            <div class="columns small-5 medium-2 sequence_match_lable"><span>Identity:</span> {{getLabelValue('Identity', res.match_stats)}}%</div>
+            <div class="columns small-5 medium-2 sequence_match_lable"><span>HSP score:</span> {{getLabelValue('HSP score', res.match_stats)}}</div> 
+            <div class="columns small-5 medium-2 sequence_match_lable_last"><span>E-value: </span>{{getLabelValue('E-value', res.match_stats)}}</div> 
+            <!-- <div class="columns small-5 medium-2 sequence_match_lable_last"><span>Query coverage:</span> {{getLabelValue('Query coverage', res.match_stats)}}</div>  -->
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="columns sequence_row_second">
+        <div class="columns sequence_right" style="display:inline-block; padding-left:0px;">
+            <div *ngIf="!greaterThanLimit(res.query_sequence.length) && !isShowingAll" class="columns sequence_container">
+                <div style="display: flex;">
+                    <div class="small-5 medium-2 sequence_stat_query">Your query</div>
+                    <div class="small-5 medium-2 sequence_stat_num">1</div>
+                    <div class="small-5 medium-2 sequence_query">
+                        <span style="word-wrap: break-word;">
+                            {{ res.query_sequence | slice:0:60 }}
+                        </span>
+                    </div>
+                    <div class="small-5 medium-2 sequence_query_length">{{res.query_sequence.length}}</div>
+                </div>
+
+                <div style="display: flex;">
+                    <div class="small-5 medium-2 sequence_stat_query">Match</div>
+                    <div class="small-5 medium-2 sequence_stat_num"></div>
+                    <div class="small-5 medium-2 sequence_query"><span style="word-wrap: break-word;">{{ res.match_sequence | slice:0:60 }}</span></div>
+                    <div class="small-5 medium-2 sequence_query_length">{{res.query_sequence.length}}</div>
+                </div>
+
+                <div style="display: flex; margin-bottom:12px">
+                    <div class="small-5 medium-2 sequence_stat_query">{{res.accession}}</div>
+                    <div class="small-5 medium-2 sequence_stat_num">1</div>
+                    <div class="small-5 medium-2 sequence_query"><span style="word-wrap: break-word;">{{ res.match_accession | slice:0:60 }}</span></div>
+                    <div class="small-5 medium-2 sequence_query_length">{{res.match_accession.length}}</div>
+                </div>
+            </div>
+
+            <div *ngIf="greaterThanLimit(res.query_sequence.length) && canShowSingle">
+                <div style="display: flex;">
+                    <div class="small-5 medium-2 sequence_stat_query">Your query</div>
+                    <div class="small-5 medium-2 sequence_stat_num">1</div>
+                    <div class="small-5 medium-2 sequence_query">
+                        <span style="word-wrap: break-word;">
+                            {{ res.query_sequence | slice:0:60 }}
+                        </span>
+                    </div>
+                    <div class="small-5 medium-2 sequence_query_length">60</div>
+                </div>
+
+                <div style="display: flex;">
+                    <div class="small-5 medium-2 sequence_stat_query">Match</div>
+                    <div class="small-5 medium-2 sequence_stat_num"></div>
+                    <div class="small-5 medium-2 sequence_query"><span style="word-wrap: break-word;">{{ res.match_sequence | slice:0:60 }}</span></div>
+                    <div class="small-5 medium-2 sequence_query_length">60</div>
+                </div>
+
+                <div style="display: flex; margin-bottom:12px">
+                    <div class="small-5 medium-2 sequence_stat_query">{{res.accession}}</div>
+                    <div class="small-5 medium-2 sequence_stat_num">1</div>
+                    <div class="small-5 medium-2 sequence_query"><span style="word-wrap: break-word;">{{ res.match_accession | slice:0:60 }}</span></div>
+                    <div class="small-5 medium-2 sequence_query_length">60</div>
+                </div>
+            </div>
+
+
+            <div *ngIf="greaterThanLimit(res.query_sequence.length) && canShowAll">
+                <div *ngFor="let querystring of getStringsChunks(res.query_sequence)" class="columns sequence_container">
+                    <div style="display: flex;">
+                        <div class="small-5 medium-2 sequence_stat_query">Your query</div>
+                        <div class="small-5 medium-2 sequence_stat_num">{{querystring.start}}</div>
+                        <div class="small-5 medium-2 sequence_query">
+                            <span style="word-wrap: break-word;">
+                                {{ querystring.query_chunk }}
+                            </span>
+                        </div>
+                        <div class="small-5 medium-2 sequence_query_length">{{querystring.counttoshow}}</div>
+                    </div>
+
+                    <div style="display: flex;">
+                        <div class="small-5 medium-2 sequence_stat_query">Match</div>
+                        <div class="small-5 medium-2 sequence_stat_num"></div>
+                        <div class="small-5 medium-2 sequence_query"><span style="word-wrap: break-word;"> {{ res.match_sequence | slice: querystring.start-1:querystring.counttoshow-1 }}</span></div>
+                        <div class="small-5 medium-2 sequence_query_length">{{querystring.counttoshow}}</div>
+                    </div>
+
+                    <div style="display: flex; margin-bottom:12px">
+                        <div class="small-5 medium-2 sequence_stat_query">{{res.accession}}</div>
+                        <div class="small-5 medium-2 sequence_stat_num">{{querystring.start}}</div>
+                        <div class="small-5 medium-2 sequence_query"><span style="word-wrap: break-word;">{{ res.match_accession | slice: querystring.start-1:querystring.counttoshow-1 }}</span></div>
+                        <div class="small-5 medium-2 sequence_query_length">{{querystring.counttoshow}}</div>
+                    </div>
+                </div>
+            </div>
+
+            <div *ngIf="greaterThanLimit(res.query_sequence)" style="float:right">
+                <a *ngIf="isShowingAll" class="showMoreLink" (click)="switchTexttoFull(text)">Show full alignment
+                    <svg class="showicon" viewBox="0 0 25 25">
+                    <path fill="currentColor"
+                        d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"/>
+                    </svg>
+                </a>
+                <a *ngIf="!isShowingAll" class="showMoreLink" (click)="switchTexttoLess(text)">Show less
+                    <svg class="showicon" viewBox="0 0 25 25">
+                    <path fill="currentColor"
+                        d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"/>
+                    </svg>  
+                </a>
+            </div>
+
+        </div>
+            
+        <div class="columns sequence_stats_container">
+            <div class="columns small-5 medium-2 sequence_stat_lable"><span>Query length:</span> {{getLabelValue('Query length', res.sequence_stats)}}</div>
+            <div class="columns small-5 medium-2 sequence_stat_lable"><span>Align length:</span> {{getLabelValue('Align length', res.sequence_stats)}}</div>
+            <div class="columns small-5 medium-2 sequence_stat_lable"><span>Target length:</span> {{getLabelValue('Target length', res.sequence_stats)}}</div>
+        </div>
+    </div>
+</div>
