@@ -48,7 +48,8 @@ export class SequenceDataFormatterService {
         structures.forEach((struct) => {
             providers.push(struct.summary.provider);
         });
-        availableString = providers.join(", ");
+        let uniqueProvider = [...new Set(providers)];
+        availableString = uniqueProvider.join(", ");
         }
         const structuresLength = structures ? structures.length : 0;
         return structuresLength ? `${structuresLength} structures from ${availableString}` : "";
