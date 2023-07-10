@@ -33,6 +33,7 @@ export class SequenceComponent implements OnInit {
     perPage: 10, currentPage: 1, totalPages: 0, pages: [], totalRecords: 0
   };
   cardDataChunk: [];
+  searchTermValue: string;
   
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -41,17 +42,18 @@ export class SequenceComponent implements OnInit {
     private searchService: SearchService,
     private sequenceService: SequenceService,
     private sequenceDataFormatterService: SequenceDataFormatterService,
-    private titleService: Title
+    private titleService: Title,
+   
   ) { }
 
   ngOnInit(): void {
-    this.searchTerm = this.searchService.searchTermValue;
+    this.searchTermValue = this.searchService.searchTermValue;
+  
     this.paginationData.pages = this.visiblePageNumbers();
     this.sub = this.route.params.subscribe(params => {
       this.job_id = params.id;
       this.searchTerm = params.id;
       this.sequenceService.getSequenceSearchResult(this.job_id).subscribe(
-  
         response => {
           let message = response.message;
           if (message && message.startsWith("Search in progress")) {

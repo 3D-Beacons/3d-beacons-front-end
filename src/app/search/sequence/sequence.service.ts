@@ -19,7 +19,6 @@ export class SequenceService {
   }
 
   getSequenceSearchResult(jobId: string): Observable<any> {
-    const seuenceResult = this.dataService.getSequenceSearchResult(jobId);
-    return seuenceResult;
+    return this.dataService.getSequenceSearchResult(jobId);
   }
 }
