@@ -98,14 +98,14 @@
                     <div style="display: flex;">
                         <div class="small-5 medium-2 sequence_stat_query">Match</div>
                         <div class="small-5 medium-2 sequence_stat_num"></div>
-                        <div class="small-5 medium-2 sequence_query"><span style="word-wrap: break-word;"> {{ res.match_sequence | slice: querystring.start-1:querystring.counttoshow-1 }}</span></div>
+                        <div class="small-5 medium-2 sequence_query"><span style="word-wrap: break-word;"> {{ res.match_sequence | slice: querystring.start-1:querystring.counttoshow }}</span></div>
                         <div class="small-5 medium-2 sequence_query_length">{{querystring.counttoshow}}</div>
                     </div>
 
                     <div style="display: flex; margin-bottom:12px">
                         <div class="small-5 medium-2 sequence_stat_query">{{res.accession}}</div>
                         <div class="small-5 medium-2 sequence_stat_num">{{querystring.start}}</div>
-                        <div class="small-5 medium-2 sequence_query"><span style="word-wrap: break-word;">{{ res.match_accession | slice: querystring.start-1:querystring.counttoshow-1 }}</span></div>
+                        <div class="small-5 medium-2 sequence_query"><span style="word-wrap: break-word;">{{ res.match_accession | slice: querystring.start-1:querystring.counttoshow }}</span></div>
                         <div class="small-5 medium-2 sequence_query_length">{{querystring.counttoshow}}</div>
                     </div>
                 </div>
