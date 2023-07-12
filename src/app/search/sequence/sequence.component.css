@@ -81,6 +81,7 @@ a:hover{
     font-weight: 400;
     line-height: 27.2px;
     font-size: 16px;
+    color: #54585A;
 }
 
 .error-container {
@@ -101,11 +102,13 @@ a:hover{
     margin-left: 16px;
     padding-top: 16px;
     padding-bottom: 16px;
+    border-bottom: 1px solid #D0D0CE;
 }
 
 .paginatelast {
-    padding-bottom: 80px;
-    margin-right:-20px;
+    padding-bottom: 50px;
+    margin-left:20px;
+    float:left !important;
 }
 
 @media screen and (max-width: 39.9375em) {

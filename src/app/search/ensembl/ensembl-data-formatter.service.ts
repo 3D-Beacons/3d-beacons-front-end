@@ -10,9 +10,8 @@ export class EnsemblDataFormatterService {
 
     formatData = (ensemblResponse): Array<EnsemblResult> => {
         const apiResult =[];
-       
         ensemblResponse.uniprot_mappings.forEach((element) => {
-            const subtitle = element.uniprot_accession.uniprot_entry.ac + "(" + element.uniprot_accession.uniprot_entry.id +")";
+            const subtitle = element.uniprot_accession.uniprot_entry.ac + " (" + element.uniprot_accession.uniprot_entry.id +")";
             
             apiResult.push({ 
                 accession: element.uniprot_accession.uniprot_entry.ac,
@@ -31,23 +30,24 @@ export class EnsemblDataFormatterService {
     getSourceOrganisms(hit_uni_os, hit_com_os){
         let source = hit_uni_os;
         if(hit_com_os && hit_com_os !== hit_uni_os){
-            source = hit_uni_os + "(" + hit_com_os + ")";
+            source = hit_uni_os + " (" + hit_com_os + ")";
         }
         return source
     }
 
     getAvailableStructure = (structures) => {
         const providers = [];
-        let availableString = "";
-    
+        let availableStructures = "";
+       
         if (structures) {
-        structures.forEach((struct) => {
-            providers.push(struct.summary.provider);
-        });
-        availableString = providers.join(", ");
+            structures.forEach((struct) => {
+                providers.push(struct.summary.provider);
+            });
+            availableStructures = providers.join(", ");
         }
         const structuresLength = structures ? structures.length : 0;
-        return structuresLength ? `${structuresLength} structures from ${availableString}` : "";
+
+        return `${structuresLength} ${structuresLength === 1 ? "structure" : "structures"} from ${availableStructures}`;
     };
   
 }

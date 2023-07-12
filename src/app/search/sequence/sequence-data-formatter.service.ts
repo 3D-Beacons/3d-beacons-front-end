@@ -35,7 +35,7 @@ export class SequenceDataFormatterService {
     getSourceOrganisms(hit_uni_os, hit_com_os){
         let source = hit_uni_os;
         if(hit_com_os && hit_com_os !== hit_uni_os){
-            source = hit_uni_os + "(" + hit_com_os + ")";
+            source = hit_uni_os + " (" + hit_com_os + ")";
         }
         return source
     }
@@ -52,7 +52,7 @@ export class SequenceDataFormatterService {
         availableString = uniqueProvider.join(", ");
         }
         const structuresLength = structures ? structures.length : 0;
-        return structuresLength ? `${structuresLength} structures from ${availableString}` : "";
+        return `${structuresLength} ${structuresLength === 1 ? "structure" : "structures"} from ${availableString}`;
     };
   
     getQueryCoverage(hitLength, queryLength) {
