@@ -10,7 +10,6 @@ export class EnsemblDataFormatterService {
 
     formatData = (ensemblResponse): Array<EnsemblResult> => {
         const apiResult =[];
-       console.log(" ensemblResponse :",ensemblResponse);
         ensemblResponse.uniprot_mappings.forEach((element) => {
             const subtitle = element.uniprot_accession.uniprot_entry.ac + " (" + element.uniprot_accession.uniprot_entry.id +")";
             
