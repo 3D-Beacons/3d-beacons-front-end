@@ -70,9 +70,14 @@ export class SequenceCardsComponent implements OnInit {
   }
 
   greaterThanLimit(query){
+    let isGreater
     if(query.length < 60){
-      return false
-    } else return true
+      isGreater = false
+    } else 
+    isGreater = true
+    console.log("query.length :: ",query.length);
+    console.log("isGreater :: ",isGreater);
+    return isGreater;
   }
 
   getStringsChunks(query, chunk_size = 60) {

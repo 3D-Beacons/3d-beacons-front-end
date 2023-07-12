@@ -1,9 +1,10 @@
 <div class="row title-container" *ngIf="cardData">
   <div class="small-12 columns">
     <h3>
-      Search results for Ensembl ID  {{ensembl_id}}
+      Search results for Ensembl identifier  {{ensembl_id}}
     </h3>
-    <h4 class="subtitle-heading">{{card_data_length}} results</h4>
+    <h4 *ngIf="card_data_length > 1" class="subtitle-heading">{{card_data_length}} results</h4>
+    <h4 *ngIf="card_data_length === 1" class="subtitle-heading">{{card_data_length}} result</h4>
   </div>
 </div>
   
@@ -18,7 +19,7 @@
       <div class="row middle_row" [ngClass]="indexOfelement < card_data_length-1 ? '' : 'lastcard'">
           <!-- <div class="columns small-5 medium-2 info-box-label">Description</div>
           <div class="columns small-7 medium-10 info-box-value">{{res.description}}</div> -->
-          <div class="columns small-5 medium-2 info-box-label">Ensembl transcript</div>
+          <div class="columns small-5 medium-2 info-box-label">Ensembl transcript ID</div>
           <div class="columns small-7 medium-10 info-box-value">{{res.ensemblTranscript}}</div>
           <div class="columns small-5 medium-2 info-box-label">Source organism</div>
           <div class="columns small-7 medium-10 info-box-value">{{res.sourceOrganism}}</div>
@@ -31,7 +32,7 @@
         </div>
       </div>
   </div>
-  <div class="medium-5 columns paginatelast">
+  <div class="paginatelast medium-10">
     <app-search-pagination [(paginationData)]="paginationData" (selectedPage)="paginateTo($event)"
     (resPerPage)="updatePerPageVal($event)"></app-search-pagination>
   </div>
