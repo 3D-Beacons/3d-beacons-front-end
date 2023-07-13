@@ -28,6 +28,7 @@ export class SequenceComponent implements OnInit {
   tableSource: MatTableDataSource<Hit> = new MatTableDataSource<Hit>();
   displayedColumns: string[] = ['accession', 'id', 'description', 'struct_count', 'hsp_align_length', 'hsp_identity'];
 
+  localStorageSearchTerm: string;
   searchTerm: string;
   paginationData: any  = {
     perPage: 10, currentPage: 1, totalPages: 0, pages: [], totalRecords: 0
@@ -53,6 +54,7 @@ export class SequenceComponent implements OnInit {
     this.sub = this.route.params.subscribe(params => {
       this.job_id = params.id;
       this.searchTerm = params.id;
+      this.localStorageSearchTerm = localStorage[this.job_id];
       this.sequenceService.getSequenceSearchResult(this.job_id).subscribe(
         response => {
           let message = response.message;

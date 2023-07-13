@@ -18,7 +18,7 @@ export class SequenceDataFormatterService {
             return {
                 accession: resp.accession,
                 title: resp.title,
-                subtitle: resp.accession + "(" + resp.id + ")",
+                subtitle: resp.accession + " (" + resp.id + ")",
                 description: resp.description,
                 source_organism,
                 available_structure,
@@ -87,18 +87,31 @@ export class SequenceDataFormatterService {
     };
   
     getSequenceStats = (hsp) => {
+        const lettersToRemove = [" ","+"];
+        let match;
+        if(hsp.hsp_mseq){
+            match = hsp.hsp_mseq
+            lettersToRemove.forEach(function(letter){
+                match = match.replaceAll(letter, '');
+            });
+        }
+
+        const queryLength = hsp.hsp_qseq !== "" ? hsp.hsp_qseq.replace(/-/g, '').length : 0;
+        const alignLength = match.length;
+        const targetLength =hsp.hsp_hseq !== "" ? hsp.hsp_hseq.replace(/-/g, '').length : 0;
+
         const sequenceStats = [
             {
                 label: "Query length",
-                value: hsp.hsp_qseq !== "" ? hsp.hsp_qseq.length : 0,
+                value: queryLength
             },
             {
                 label: "Align length",
-                value: hsp.hsp_hseq !== "" ? hsp.hsp_hseq.length : 0,
+                value: alignLength
             },
             {
                 label: "Target length",
-                value: hsp.hsp_hseq !== "" ? hsp.hsp_hseq.length : 0,
+                value: targetLength 
             }
         ];
         return sequenceStats;

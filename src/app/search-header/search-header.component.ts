@@ -19,7 +19,7 @@ declare var gtag;
 })
 export class SearchHeaderComponent implements OnInit  {
 
-  searchTerm = new FormControl(null, Validators.required)
+  searchTerm = new FormControl(null, Validators.required);
   searchBy = 'uniprotaccession';
 
   accession: string;
@@ -67,19 +67,40 @@ export class SearchHeaderComponent implements OnInit  {
     if (this.searchTerm.value.trim() === '') {
       return;
     }
-
-    this.router.navigate(['/search/', this.searchTerm.value]);
-
+    // this.router.navigate(['/search/', this.searchTerm.value]);
     var searchTerm = this.searchTerm.value.toUpperCase();
     if(this.searchBy == "sequencesearch"){
-      searchComponent.doSequenceSearch(searchTerm);
+      this.doSequenceSearch(searchTerm);
     }else if(this.searchBy === "ensemblesearch"){
-      this.sequenceService.setSearchTermValue(this.searchTerm.value);
+      //this.sequenceService.setSearchTermValue(this.searchTerm.value);
       this.router.navigate(['/ensembl/', searchTerm]);
     }
     else{
       this.router.navigate(['/search/', searchTerm]);
     }
+  }
+
+  doSequenceSearch(query?: string) {
+    this.isFetching = true;
+    this.isSequenceSearch = true;
+    //this.sequence = params.id;
+    setTimeout(() => {}, 2000);
+    //this.searchForm.disable();
+    this.sequenceService.setSearchTermValue(query);
+
+    this.searchService.submitSequenceSearch(query).subscribe(
+      response => {
+        var jobId = response.job_id;
+        localStorage[jobId] = query;
+        this.isFetching = false;
+        this.router.navigate(['sequence', jobId]);
+      },
+      err => {
+        this.isFetching = false;
+       // window.location.reload()
+        this.handleError("No data found!");
+      }
+    )
   }
 
   handleError(message: string): void {

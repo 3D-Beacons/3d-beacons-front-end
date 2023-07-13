@@ -1,8 +1,8 @@
+
 <div class="header-search-section">
   <div class="row">
     <div class="columns small-12 search-column">
       <form class="search-form">
-
         <div class="vf-form__item category-select-container">
           <select name="searchBy" id="searchBy" [(ngModel)]="searchBy" class="category-select vf-form__select">
             <option value="uniprotaccession">UniProt accession</option>
@@ -28,7 +28,7 @@
       <span class="examples-chip">Examples:
         <a routerLink="/search/P38398" class="search-example">UniProt: P38398</a>
         <a routerLink="/ensembl/ENSG00000288864" class="search-example">Ensembl: ENSG00000288864</a>
-        <a routerLink="/search/MNMLVINGTPRKHGRTRIAASYIAALYHTA" class="search-example">Sequence: MNMLVIN...</a>
+        <a (click)="doSequenceSearch('MNMLVINGTPRKHGRTRIAASYIAALYHTA')" class="search-example">Sequence: MNMLVIN...</a>
       </span>
     </div>
   </div>

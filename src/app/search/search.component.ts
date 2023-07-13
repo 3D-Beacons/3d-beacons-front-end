@@ -18,7 +18,8 @@ export class SearchComponent implements OnInit {
   searchForm: FormGroup = new FormGroup({
     searchTerm: new FormControl(null, Validators.required)
   });
-  searchBy: string;;
+  searchBy: string;
+  searchTermValue: string;
 
   accession: string;
   private sub: any;
@@ -43,15 +44,12 @@ export class SearchComponent implements OnInit {
     this.sequenceService.setSearchTermValue(this.searchForm.controls.searchTerm.value);
     this.searchBy = this.searchService.getSearchByValue();
     this.sub = this.route.params.subscribe(params => {
-      if (this.isUniprotAccession(params.id)) {
+      if(params.id){
         this.accession = params.id;
         this.doAccessionSearch(this.accession);
-      } else {
-        this.isSequenceSearch = true;
-        this.sequence = params.id;
-        //setTimeout(() => {}, 2000);
-        this.doSequenceSearch(this.sequence);
-      }     
+      }else{
+        return;
+      }
     });
     this.exampleAccessions = this.configService.getExampleAccessions();
     // this.onSearch('P38398');
@@ -62,6 +60,7 @@ export class SearchComponent implements OnInit {
   }
 
   doAccessionSearch(query?: string) {
+    this.searchTermValue = query;
     if (query == undefined) {
       query = this.searchForm.controls.searchTerm.value;
     } else {
@@ -95,38 +94,6 @@ export class SearchComponent implements OnInit {
         this.handleError("No Uniprot entry data found!");
       }
     );
-  }
-
-  doSequenceSearch(query?: string) {
-    this.isSequenceSearch = true;
-    //this.sequence = params.id;
-    setTimeout(() => {}, 2000);
-    this.searchForm.disable();
-    this.sequenceService.setSearchTermValue(this.searchForm.controls.searchTerm.value);
-    this.searchService.submitSequenceSearch(query).subscribe(
-      response => {
-        var jobId = response.job_id;
-        this.router.navigate(['/sequence', jobId]);
-      },
-      err => {
-       // window.location.reload()
-        this.handleError("No data found!");
-      }
-    )
-  }
-
-  doEnsemblSearch(query?: string) {
-    this.searchForm.disable();
-    this.searchService.setSearchTermValue(this.searchForm.controls.searchTerm.value);
-    this.searchService.submitEnsemblSearch(query).subscribe(
-      response => {
-        this.router.navigate(['/ensembl', response]);
-      },
-      err => {
-       // window.location.reload()
-        this.handleError("No data found!");
-      }
-    )
   }
 
   handleError(message: string): void {

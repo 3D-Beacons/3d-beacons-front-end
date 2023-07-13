@@ -1,4 +1,4 @@
-h2,h3,p,div,span,a{
+h2,h3,a{
     font-family: 'IBM Plex Sans';
     font-style: normal;
 }
@@ -56,7 +56,7 @@ a:hover{
     padding-bottom: 16px;
     margin-left: 16px;
     background-color: #F3F3F3;
-    width: 80%;
+    width: 950px;
 }
 .sequence_match_lable_first{
     color: #1A1C1A;
@@ -64,6 +64,8 @@ a:hover{
     font-weight: 500;
     line-height: 27.2px;
     padding-left: 0px;
+    margin-right: 7px;
+    width:18%;
 }
 .sequence_match_lable {
     color: #1A1C1A;
@@ -80,6 +82,8 @@ a:hover{
     line-height: 27.2px;
     width:100%;
     padding-bottom:3px;
+    font-family: 'IBM Plex Sans';
+    font-style: normal;
 }
 .sequence_match_lable span{
     font-weight: 500;
@@ -122,7 +126,7 @@ a:hover{
     padding-bottom:16px;
     margin-left:16px;
     background-color: #F3F3F3;
-    width: 80%;
+    width: 950px;
     display: flex;
 }
 
@@ -131,25 +135,30 @@ a:hover{
     font-size: 14px;
     font-weight: 400;
     line-height: 27.2px;
-    padding-bottom:3px;
-    min-width: 14%;
+    padding-bottom: 3px;
+    width: 89px;
+    margin-right:12px;
 }
 .sequence_stat_num{
-    min-width: 4%;
-    width: 8%;
+    width: 39px;
     font-size: 14px;
     font-weight: 400;
+    margin-right: 12px;
+    text-align: right;
 }
 .sequence_query{
-    min-width:80%;
     padding-right:10px;
     font-size: 14px;
     font-weight: 400;
+    font-family: 'IBM Plex Mono' !important;
+    font-style: normal;
+    display: flex;
 }
 .sequence_query_length{
-    min-width:3%;
     font-size: 14px;
     font-weight: 400;
+    margin-left: 12px;
+    width: 39px;
 }
 
 .showMoreLink{
