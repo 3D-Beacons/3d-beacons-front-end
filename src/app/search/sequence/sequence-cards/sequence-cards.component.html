@@ -15,9 +15,9 @@
 <div class="row">
     <div class="columns sequence_row ">
         <div class="columns stats_container">
-            <div class="columns small-5 medium-2 sequence_match_lable_first">Sequence match</div>
+            <div class="medium-3 sequence_match_lable_first">Sequence match</div>
             <div class="columns small-5 medium-2 sequence_match_lable"><span>Identity:</span> {{getLabelValue('Identity', res.match_stats)}}%</div>
-            <div class="columns small-5 medium-2 sequence_match_lable"><span>HSP score:</span> {{getLabelValue('HSP score', res.match_stats)}}</div> 
+            <div class="medium-3 sequence_match_lable"><span>HSP score:</span> {{getLabelValue('HSP score', res.match_stats)}}</div> 
             <div class="columns small-5 medium-2 sequence_match_lable_last"><span>E-value: </span>{{getLabelValue('E-value', res.match_stats)}}</div> 
             <!-- <div class="columns small-5 medium-2 sequence_match_lable_last"><span>Query coverage:</span> {{getLabelValue('Query coverage', res.match_stats)}}</div>  -->
         </div>
@@ -29,55 +29,62 @@
         <div class="columns sequence_right" style="display:inline-block; padding-left:0px;">
             <div *ngIf="!greaterThanLimit(res.query_sequence)" class="columns sequence_container">
                 <div style="display: flex;">
-                    <div class="small-5 medium-2 sequence_stat_query">Your query</div>
-                    <div class="small-5 medium-2 sequence_stat_num">1</div>
-                    <div class="small-5 medium-2 sequence_query">
-                        <span style="word-wrap: break-word;">
-                            {{ res.query_sequence | slice:0:60 }}
-                        </span>
+                    <div class="small-2 sequence_stat_query">Your query</div>
+                    <div class="small-10 sequence_query">
+                        <span class="sequence_stat_num">1</span>
+                        <span>{{ res.query_sequence | slice:0:60 }}</span>
+                        <span class="sequence_query_length">{{res.query_sequence.length}}</span>
                     </div>
-                    <div class="small-5 medium-2 sequence_query_length">{{res.query_sequence.length}}</div>
                 </div>
 
                 <div style="display: flex;">
-                    <div class="small-5 medium-2 sequence_stat_query">Match</div>
-                    <div class="small-5 medium-2 sequence_stat_num"></div>
-                    <div class="small-5 medium-2 sequence_query"><span style="word-wrap: break-word;">{{ res.match_sequence | slice:0:60 }}</span></div>
-                    <div class="small-5 medium-2 sequence_query_length">{{res.query_sequence.length}}</div>
+                    <div class="small-2 sequence_stat_query">Match</div>
+                    <div class="small-10 sequence_query">
+                        <span class="sequence_stat_num"> &nbsp;</span>
+                        <span>{{ res.match_sequence | slice:0:60 }}</span>
+                        <span class="sequence_query_length">&nbsp;</span>
+                    </div>
                 </div>
 
                 <div style="display: flex; margin-bottom:12px">
-                    <div class="small-5 medium-2 sequence_stat_query">{{res.accession}}</div>
-                    <div class="small-5 medium-2 sequence_stat_num">1</div>
-                    <div class="small-5 medium-2 sequence_query"><span style="word-wrap: break-word;">{{ res.match_accession | slice:0:60 }}</span></div>
-                    <div class="small-5 medium-2 sequence_query_length">{{res.match_accession.length}}</div>
+                    <div class="small-2 sequence_stat_query">{{res.accession}}</div>
+                    <div class="small-10 sequence_query">
+                        <span class="sequence_stat_num">1</span>
+                        <span>{{ res.match_accession | slice:0:60 }}</span>
+                        <span class="sequence_query_length">{{res.match_accession.length}}</span>
+                    </div>
                 </div>
             </div>
 
-            <div *ngIf="greaterThanLimit(res.query_sequence) && canShowSingle">
+            <div *ngIf="greaterThanLimit(res.query_sequence) && canShowSingle" class="columns sequence_container">
                 <div style="display: flex;">
-                    <div class="small-5 medium-2 sequence_stat_query">Your query</div>
-                    <div class="small-5 medium-2 sequence_stat_num">1</div>
-                    <div class="small-5 medium-2 sequence_query">
-                        <span style="word-wrap: break-word;">
-                            {{ res.query_sequence | slice:0:60 }}
-                        </span>
+                    <div class="small-2 sequence_stat_query">Your query</div>
+                    <span class="sequence_stat_num">1</span>
+                    <div class="small-10 sequence_query">
+                       
+                        <p>{{ res.query_sequence | slice:0:60 }}</p>
+                        <span class="sequence_query_length">60</span>
                     </div>
-                    <div class="small-5 medium-2 sequence_query_length">60</div>
                 </div>
 
                 <div style="display: flex;">
-                    <div class="small-5 medium-2 sequence_stat_query">Match</div>
-                    <div class="small-5 medium-2 sequence_stat_num"></div>
-                    <div class="small-5 medium-2 sequence_query"><span style="word-wrap: break-word;">{{ res.match_sequence | slice:0:60 }}</span></div>
-                    <div class="small-5 medium-2 sequence_query_length">60</div>
+                    <div class="small-2 sequence_stat_query">Match</div>
+                    <span class="sequence_stat_num"></span>
+                    <div class="small-10 sequence_query">
+                       
+                        <p>{{ res.match_sequence | slice:0:60 }}</p>
+                        <span class="sequence_query_length">&nbsp;</span>
+                    </div>
                 </div>
 
                 <div style="display: flex; margin-bottom:12px">
-                    <div class="small-5 medium-2 sequence_stat_query">{{res.accession}}</div>
-                    <div class="small-5 medium-2 sequence_stat_num">1</div>
-                    <div class="small-5 medium-2 sequence_query"><span style="word-wrap: break-word;">{{ res.match_accession | slice:0:60 }}</span></div>
-                    <div class="small-5 medium-2 sequence_query_length">60</div>
+                    <div class="small-2 sequence_stat_query">{{res.accession}}</div>
+                    <span class="sequence_stat_num">1</span>
+                    <div class="small-10 sequence_query">
+                        
+                        <p>{{ res.match_accession | slice:0:60 }}</p>
+                        <span class="sequence_query_length">60</span>
+                    </div>
                 </div>
             </div>
 
@@ -85,28 +92,30 @@
             <div *ngIf="greaterThanLimit(res.query_sequence) && canShowAll">
                 <div *ngFor="let querystring of getStringsChunks(res.query_sequence)" class="columns sequence_container">
                     <div style="display: flex;">
-                        <div class="small-5 medium-2 sequence_stat_query">Your query</div>
-                        <div class="small-5 medium-2 sequence_stat_num">{{querystring.start}}</div>
-                        <div class="small-5 medium-2 sequence_query">
-                            <span style="word-wrap: break-word;">
-                                {{ querystring.query_chunk }}
-                            </span>
+                        <div class="small-2 sequence_stat_query">Your query</div>
+                        <span class="small-1 sequence_stat_num">{{querystring.start}}</span>
+                        <div class="small-10 sequence_query">
+                            <p>{{ querystring.query_chunk }}</p>
+                            <span class="sequence_query_length">{{querystring.counttoshow}}</span>
                         </div>
-                        <div class="small-5 medium-2 sequence_query_length">{{querystring.counttoshow}}</div>
                     </div>
 
                     <div style="display: flex;">
-                        <div class="small-5 medium-2 sequence_stat_query">Match</div>
-                        <div class="small-5 medium-2 sequence_stat_num"></div>
-                        <div class="small-5 medium-2 sequence_query"><span style="word-wrap: break-word;"> {{ res.match_sequence | slice: querystring.start-1:querystring.counttoshow }}</span></div>
-                        <div class="small-5 medium-2 sequence_query_length">{{querystring.counttoshow}}</div>
+                        <div class="small-2 sequence_stat_query">Match</div>
+                        <span class="sequence_stat_num"></span>
+                        <div class="small-10 sequence_query">
+                            <p>{{ res.match_sequence | slice: querystring.start-1:querystring.counttoshow }}</p>
+                            <span class="sequence_query_length">&nbsp;</span>
+                        </div>
                     </div>
 
                     <div style="display: flex; margin-bottom:12px">
-                        <div class="small-5 medium-2 sequence_stat_query">{{res.accession}}</div>
-                        <div class="small-5 medium-2 sequence_stat_num">{{querystring.start}}</div>
-                        <div class="small-5 medium-2 sequence_query"><span style="word-wrap: break-word;">{{ res.match_accession | slice: querystring.start-1:querystring.counttoshow }}</span></div>
-                        <div class="small-5 medium-2 sequence_query_length">{{querystring.counttoshow}}</div>
+                        <div class="small-2 sequence_stat_query">{{res.accession}}</div>
+                        <span class="sequence_stat_num">{{querystring.start}}</span>
+                        <div class="small-10 sequence_query">
+                            <p>{{ res.match_accession | slice: querystring.start-1:querystring.counttoshow }}</p>
+                            <span class="sequence_query_length">{{querystring.counttoshow}}</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -129,9 +138,9 @@
         </div>
             
         <div class="columns sequence_stats_container">
-            <div class="columns small-5 medium-2 sequence_stat_lable"><span>Query length:</span> {{getLabelValue('Query length', res.sequence_stats)}}</div>
-            <div class="columns small-5 medium-2 sequence_stat_lable"><span>Align length:</span> {{getLabelValue('Align length', res.sequence_stats)}}</div>
-            <div class="columns small-5 medium-2 sequence_stat_lable"><span>Target length:</span> {{getLabelValue('Target length', res.sequence_stats)}}</div>
+            <div class="sequence_stat_lable"><span>Query length:</span> {{getLabelValue('Query length', res.sequence_stats)}}</div>
+            <div class="sequence_stat_lable"><span>Align length:</span> {{getLabelValue('Align length', res.sequence_stats)}}</div>
+            <div class="sequence_stat_lable"><span>Target length:</span> {{getLabelValue('Target length', res.sequence_stats)}}</div>
         </div>
     </div>
 </div>

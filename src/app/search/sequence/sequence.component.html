@@ -1,4 +1,4 @@
-<div class="row title-container" *ngIf="cardData">
+<div class="row title-container" *ngIf="!is_searchprogress && cardData">
   <div class="small-12 columns">
     <h3>
       Search results for job ID  {{job_id}}
@@ -33,15 +33,15 @@
     <h4 class="progress-text2">Search details</h4>
     <p class="progress-text4">
       <span>Sequence query:</span>
-      <span class="mobile-view-copy"><a (click)="copyToClipboard(searchTermValue)">Copy sequence <i class="icon icon-common icon-copy"></i></a></span>
+      <span class="mobile-view-copy"><a (click)="copyToClipboard(localStorageSearchTerm)">Copy sequence <i class="icon icon-common icon-copy"></i></a></span>
     </p>
     <p class="progress-text3">
         <span>
-          {{searchTermValue}}
+          {{localStorageSearchTerm}}
         </span>
     </p>
     <p class="mobile-view-second">
-      <a (click)="copyToClipboard(searchTermValue)">
+      <a (click)="copyToClipboard(localStorageSearchTerm)">
       Copy sequence
       <i class="icon icon-common icon-copy"></i>
       </a>
@@ -66,15 +66,15 @@
     <h4 class="progress-text2">Search details</h4>
     <p class="progress-text4">
       <span>Sequence query:</span>
-      <span class="mobile-view-copy"><a (click)="copyToClipboard(searchTermValue)">Copy sequence <i class="icon icon-common icon-copy"></i></a></span>
+      <span class="mobile-view-copy"><a (click)="copyToClipboard(localStorageSearchTerm)">Copy sequence <i class="icon icon-common icon-copy"></i></a></span>
     </p>
     <p class="progress-text3">
         <span>
-          {{searchTermValue}} 
+          {{localStorageSearchTerm}} 
         </span>
     </p>
     <p class="mobile-view-second">
-      <a (click)="copyToClipboard(searchTermValue)">
+      <a (click)="copyToClipboard(localStorageSearchTerm)">
       Copy sequence
       <i class="icon icon-common icon-copy"></i>
       </a>

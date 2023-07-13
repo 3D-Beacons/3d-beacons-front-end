@@ -1,4 +1,7 @@
-<div class="row title-container" *ngIf="cardData">
+
+<app-loading-dialog *ngIf="isFetching"></app-loading-dialog>
+  
+<div class="row title-container" *ngIf="!is_noresult && cardData">
   <div class="small-12 columns">
     <h3>
       Search results for Ensembl identifier  {{ensembl_id}}
@@ -7,7 +10,7 @@
     <h4 *ngIf="card_data_length === 1" class="subtitle-heading">{{card_data_length}} result</h4>
   </div>
 </div>
-  
+
 <div *ngIf="!message && cardData">
   <div *ngFor="let res of cardDataChunk; let indexOfelement=index;">
       <div class="row">
@@ -40,58 +43,16 @@
   
 <div *ngIf="is_noresult" class="row error-container">
   <div class="small-12 columns">
-    <h3>
-      {{message}} 
-    </h3>
-    <p class="progress-text1">We ran the search with <a href="" target="_blank">BLASTP</a> and couldn’t find any matches in UniProt KB. 
-    
-    <h4 class="progress-text2">Search details</h4>
-    <p class="progress-text4">
-      <span>Sequence query:</span>
-      <span class="mobile-view-copy"><a (click)="copyToClipboard('{{searchTerm}}')">Copy sequence <i class="icon icon-common icon-copy"></i></a></span>
+    <h3 class="message-title">No results found</h3>
+    <p class="progress-text1">
+      The Ensembl identifier you were searching with - {{searchTerm}} - doesn't have any models.
     </p>
-    <p class="progress-text3">
-        <span>
-          {{searchTerm}}
-        </span>
-    </p>
-    <p class="mobile-view-second">
-      <a (click)="copyToClipboard('{{searchTerm}}')">
-      Copy sequence
-      <i class="icon icon-common icon-copy"></i>
-      </a>
-    </p>
-    <p class="progress-text5">
-        For more information on the search parameters, please visit the  
-        <a href="" target="_blank">
-          EBI sequence similarity search page.
-        </a>
-    </p>
+    <p class="progress-text1">Suggestions:</p>
+    <ul class="msg_bullets">
+      <li>Please check if you have entered a valid Ensembl identifier.</li>
+      <li>Try again later as more models will be provided in the future.</li>
+    </ul>
   </div>
 </div>
-  
-<div *ngIf="is_searchprogress" class="row error-container">
-  <div class="small-12 columns">
-    <h3>
-      {{message}} 
-    </h3>
-    <p class="progress-text1">It usually takes 5-10 minutes to run a Ensembl search, please come back later. 
-      <br/> <a (click)="copyLink()">Copy the link to results <i class="icon icon-common icon-copy"></i></a> to save it and view the results at a convenient time.</p>
-    <h4 class="progress-text2">Search details</h4>
-    <p class="progress-text4">
-      <span>Ensembl ID:</span>
-      <span class="mobile-view-copy"><a (click)="copyToClipboard(searchTerm)">Copy sequence <i class="icon icon-common icon-copy"></i></a></span>
-    </p>
-    <p class="progress-text3">
-        <span>
-          {{searchTerm}}
-        </span>
-    </p>
-    <p class="mobile-view-second">
-      <a (click)="copyToClipboard(searchTerm)">
-      Copy sequence
-      <i class="icon icon-common icon-copy"></i>
-      </a>
-    </p>
-  </div>
-</div>
+
+

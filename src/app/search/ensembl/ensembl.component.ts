@@ -25,6 +25,7 @@ export class EnsemblComponent {
   ensembl_results_length = 0;
   cardData = null;
   card_data_length = 0;
+  isFetching: boolean = false;
   
   searchTerm: string;
   paginationData: any  = {
@@ -46,9 +47,8 @@ export class EnsemblComponent {
   ngOnInit(): void {
     this.searchTerm = this.searchService.searchTermValue;
     this.is_searchprogress = true;
-
+    this.isFetching = true;
     this.message = "Search in progress";
-
     this.paginationData.pages = this.visiblePageNumbers();
     this.sub = this.route.params.subscribe(params => {
       this.ensembl_id = params.id;
@@ -57,6 +57,7 @@ export class EnsemblComponent {
         response => {
           this.searching = false;
           this.is_searchprogress = false;
+          this.isFetching = false;
           this.message = '';
           this.is_noresult = false;
           this.titleService.setTitle("3D-Beacons");
@@ -71,6 +72,7 @@ export class EnsemblComponent {
           this.paginationData = Object.assign({}, this.paginationData);
         },
         err => {
+          this.isFetching = false;
           this.searching = false;
           this.is_searchprogress = false;
           this.is_noresult = true;

@@ -1,34 +1,30 @@
 <app-result-section [entryData]="entryData" [resultData]="resultData"></app-result-section>
 
-<div class="row title-container">
-  <div class="small-12 columns" *ngIf="resultData">
+<div class="row title-container" *ngIf="resultData">
+  <div class="small-12 columns">
     <p class="info-box-title">Viewer</p>
   </div>
 </div>
 
-<div class="row last-container">
-  <div class="small-12 medium-12 columns" *ngIf="resultData">
+<div class="row last-container" *ngIf="resultData">
+  <div class="small-12 medium-12 columns">
     <app-structures-section [resultData]="resultData"></app-structures-section>
   </div>
 </div>
 
-
 <app-loading-dialog *ngIf="isFetching"></app-loading-dialog>
 
-<!-- <div *ngIf="isSequenceSearch && !error" class="row">
-  <div class="small-12 columns" style="display:block">
-    <h3 class="warning-red">Submitting the sequence search job, please wait!</h3>
-  </div> 
-</div> -->
-
-<div *ngIf="error" class="row error-row">
+<div *ngIf="error" class="row error-container">
   <div class="small-12 columns">
-    <h3 class="warning-red">No results found</h3>
-    <p>Note: 3D-Beacons API currently supports search based on <strong class="warning-red">UniProt accession</strong> only</p>
-    <p>Please try to:</p>
-    <ul>
-      <li>Check if you have entered a valid UniProt accession</li>
-      <li>In case of using a valid UniProt accession, check back later as more models will be provided by the member databases in the future</li>
+    <h3 class="message-title">No results found</h3>
+    <p class="progress-text1">
+      The Uniprot accession you were searching with - {{searchTermValue}} - doesn't have any models.
+    </p>
+    <p class="progress-text1">Suggestions:</p>
+    <ul class="msg_bullets">
+      <li>Please check if you have entered a valid UniProt accession.</li>
+      <li>Try again later as more models will be provided in the future.</li>
     </ul>
   </div>
 </div>
+
