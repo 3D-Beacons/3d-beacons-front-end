@@ -71,6 +71,7 @@ export class SequenceComponent implements OnInit {
             this.is_noresult = false;
             this.titleService.setTitle("3D-Beacons");
             this.cardData = this.sequenceDataFormatterService.formatData(response);
+            console.log("cardData :",this.cardData);
             this.cardDataChunk = this.getSlice(this.paginationData.currentPage)
             this.card_data_length = this.cardData.length;
 
@@ -191,24 +192,15 @@ export class SequenceComponent implements OnInit {
     this.paginationData.pages = this.visiblePageNumbers();
     this.paginationData = Object.assign({}, this.paginationData);
     this.cardDataChunk = this.getSlice(this.paginationData.currentPage)
-    // this.makeSolrRequest('main');
-    // // push url path to maintain broweser history
-    // const urlAndParamData = this.getUrlAndParams();
-    // urlAndParamData.queryParams['page'] = this.paginationData.currentPage;
-    // this.router.navigate([urlAndParamData.locPath], { queryParams: urlAndParamData.queryParams, queryParamsHandling: 'merge' });
-
   }
 
   updatePerPageVal(ppgSelected: any): void {
-
     // Reset to page 1
     this.paginationData.currentPage = 1;
     this.paginationData.perPage = ppgSelected.ppgValue;
     this.paginationData.pages = this.visiblePageNumbers();
     this.paginationData = Object.assign({}, this.paginationData);
 
-    // Make solr request
-    //this.makeSolrRequest('main');
   }
 
   getResultCountText(): string{

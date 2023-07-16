@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Routes, RouterModule } from '@angular/router';
 import { MatTableModule } from '@angular/material/table';
+import { MatSelectModule } from '@angular/material/select';
 
 import { AppComponent } from './app.component';
 import { SearchComponent } from './search/search.component';
@@ -25,7 +26,6 @@ import { SearchHeaderComponent } from './search-header/search-header.component';
 import { SequenceCardsComponent } from './search/sequence/sequence-cards/sequence-cards.component';
 import { EnsemblComponent } from './search/ensembl/ensembl.component';
 import { SearchPaginationComponent } from './search/search-pagination/search-pagination.component';
-
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'docs', component: DocsComponent },
@@ -64,7 +64,8 @@ const routes: Routes = [
     SharedModule,
     BrowserAnimationsModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatSelectModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: BeaconsInterceptor, multi: true },

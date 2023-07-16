@@ -155,6 +155,7 @@ a:hover{
     display: flex;
 }
 .sequence_query_length{
+    font-family: "IBM Plex Sans";
     font-size: 14px;
     font-weight: 400;
     margin-left: 12px;
