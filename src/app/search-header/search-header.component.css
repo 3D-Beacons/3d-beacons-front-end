@@ -160,3 +160,87 @@
       }
     
 }
+
+::ng-deep .mat-mdc-select-arrow {
+    border-left: 15px solid transparent !important;
+    border-right: none !important;
+    border-top: 15px solid transparent !important;
+    border-image-source: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cpath d='M70 110.236a17.332 17.332 0 01-12.306-5.096L2.884 47.502A10.502 10.502 0 1118.116 33.04l49.35 51.968a3.486 3.486 0 005.068 0l49.35-51.968a10.502 10.502 0 1115.232 14.462L82.6 105a17.766 17.766 0 01-12.6 5.236z' fill='%23056643'/%3E%3C/svg%3E") !important;
+    border-image-repeat: stretch !important;
+}
+
+::ng-deep .mat-mdc-select-arrow svg {
+    display:none;
+}
+
+::ng-deep .mat-mdc-select-value-text{
+    font-family: 'IBM Plex Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 23px;
+    color: #0A5032;
+}
+
+::ng-deep .mdc-text-field--no-label:not(.mdc-text-field--outlined):not(.mdc-text-field--textarea) .mat-mdc-form-field-infix{
+    padding-top: 8px;
+    padding-bottom: 12px;
+}
+
+::ng-deep .mat-mdc-form-field-infix {
+    min-height: 42px;
+    flex: auto;
+    min-width: 0;
+    width: 208px !important;
+    position: relative;
+    box-sizing: border-box;
+}
+
+::ng-deep .mdc-text-field {
+    border-top-left-radius: 0!important;
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+::ng-deep .mdc-menu-surface.mat-mdc-select-panel{
+    padding: 0px !important;
+}
+
+::ng-deep .mat-mdc-option .mdc-list-item__primary-text{
+    font-family: 'IBM Plex Sans' !important;
+    font-style: normal !important;
+    font-weight: 400 !important;
+    font-size: 16px !important;
+    line-height: 23px !important;
+    color: #1A1C1A !important;
+}
+
+::ng-deep .mat-mdc-option.mat-mdc-option-active, .mat-mdc-option.mdc-list-item--selected{
+    background:rgba(121, 172, 170, 0.30) !important;
+    font-style: normal !important;
+    font-weight: 400 !important;
+    font-size: 16px !important;
+    line-height: 23px !important;
+    color: #1A1C1A !important;
+}
+
+::ng-deep .mat-mdc-option:hover{
+    background: rgba(121, 172, 170, 0.30) !important;
+    color: #1A1C1A;
+}
+::ng-deep .mat-pseudo-checkbox {
+    display: none !important;
+}
+
+::ng-deep .mat-primary .mat-mdc-option.mdc-list-item--selected:not(.mdc-list-item--disabled) .mdc-list-item__primary-text{
+    color: #1A1C1A !important;
+}
+
+::ng-deep .my-form-field .mat-form-field-wrapper {
+    margin-bottom: -1.25em;
+}
+.cdk-overlay-pane:not(.mat-mdc-select-panel-above) .mdc-menu-surface.mat-mdc-select-panel{
+    border-top: transparent !important;
+    border-bottom-right-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+}

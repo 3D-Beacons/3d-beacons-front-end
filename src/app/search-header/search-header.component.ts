@@ -20,7 +20,7 @@ declare var gtag;
 export class SearchHeaderComponent implements OnInit  {
 
   searchTerm = new FormControl(null, Validators.required);
-  searchBy = 'uniprotaccession';
+  searchBy = 'UniProt accession';
 
   accession: string;
   private sub: any;
@@ -37,7 +37,7 @@ export class SearchHeaderComponent implements OnInit  {
     private searchService: SearchService,
     private route: ActivatedRoute,
     private configService: ConfigurationService,
-    private sequenceService: SequenceService,
+    private sequenceService: SequenceService
   ) {
     const navEndEvent$ = router.events.pipe(
       filter(e => e instanceof NavigationEnd)
@@ -63,16 +63,17 @@ export class SearchHeaderComponent implements OnInit  {
     const searchComponent = new SearchComponent(this.route, this.searchService, this.sequenceService, this.configService, this.router);
     this.searchService.setSearchTermValue(this.searchTerm.value);
     this.searchService.setSearchByValue(this.searchBy);
-
-    if (this.searchTerm.value.trim() === '') {
+    
+    if (!this.searchTerm.value || this.searchTerm.value.trim() === '') {
       return;
     }
-    // this.router.navigate(['/search/', this.searchTerm.value]);
     var searchTerm = this.searchTerm.value.toUpperCase();
-    if(this.searchBy == "sequencesearch"){
+    const mapSearch = this.searchBy.replace(/\W/g, '').toLowerCase(); 
+
+    if(mapSearch == "sequence"){
       this.doSequenceSearch(searchTerm);
-    }else if(this.searchBy === "ensemblesearch"){
-      //this.sequenceService.setSearchTermValue(this.searchTerm.value);
+    }else if(mapSearch === "ensemblidentifier"){
+
       this.router.navigate(['/ensembl/', searchTerm]);
     }
     else{

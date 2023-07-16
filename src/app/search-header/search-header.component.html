@@ -4,16 +4,18 @@
     <div class="columns small-12 search-column">
       <form class="search-form">
         <div class="vf-form__item category-select-container">
-          <select name="searchBy" id="searchBy" [(ngModel)]="searchBy" class="category-select vf-form__select">
-            <option value="uniprotaccession">UniProt accession</option>
-            <option value="sequencesearch">Sequence search</option>
-            <option value="ensemblesearch">Ensembl identifier</option>
-          </select>
+          <mat-form-field>
+            <mat-select [(value)]="searchBy" class="category-select">
+              <mat-option value="UniProt accession">UniProt accession</mat-option>
+              <mat-option value="sequence">Sequence search</mat-option>
+              <mat-option value="Ensembl identifier">Ensembl identifier</mat-option>
+            </mat-select>
+          </mat-form-field>
         </div>  
 
         <div class="columns small-10 no-left-padding float-left search-input">
           <input [formControl]="searchTerm" class="search-input-field" type="search"
-            placeholder="Find structures by sequence" (keyup.enter)="onSearch($event)">
+            placeholder="Find structures by {{searchBy}}" (keyup.enter)="onSearch($event)">
         </div>
 
         <div class="columns small-1 float-right search-button-wrapper">
