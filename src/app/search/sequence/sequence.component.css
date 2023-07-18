@@ -119,5 +119,8 @@ a:hover{
     .mobile-view-second{
         display:none;
     }
+    h3 {
+        width: 94%;
+        word-wrap: break-word;
+    }
 }
-
