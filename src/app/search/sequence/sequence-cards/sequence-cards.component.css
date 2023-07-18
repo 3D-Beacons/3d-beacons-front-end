@@ -45,18 +45,35 @@ a:hover{
     font-weight: 400;
     line-height: 27.2px;
 }
+.containerRow{
+    width: 750px;
+    margin-left: 97px;
+}
+.containerIn{
+    max-width: 81.25em;
+    margin-right: auto;
+    margin-left: auto;
+}
 
-.middle_row {
+.middle_row_one{
     padding-top:16px;
+}
+.middle_row_last{
     margin-bottom: 16px;
 }
 
-.sequence_row{
+.stats_one{
     padding-top: 16px;
+    padding-bottom: 5pxpx;
+    margin-left: 16px;
+    background-color: #F3F3F3;
+    width: 750px;
+}
+.stats_two {
     padding-bottom: 16px;
     margin-left: 16px;
     background-color: #F3F3F3;
-    width: 950px;
+    width: 750px;
 }
 .sequence_match_lable_first{
     color: #1A1C1A;
@@ -65,14 +82,36 @@ a:hover{
     line-height: 27.2px;
     padding-left: 0px;
     margin-right: 7px;
-    width:18%;
+    width: 129px;
 }
 .sequence_match_lable {
     color: #1A1C1A;
     font-size: 14px;
     font-weight: 400;
     line-height: 27.2px;
-    width:19%
+    width: 30%
+}
+.sequence_match_lable_hsp {
+    color: #1A1C1A;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 27.2px;
+    width: 20%
+}
+.sequence_match_lable_hsp span{
+    font-weight: 500;
+}
+
+.sequence_match_lable_postives {
+    color: #1A1C1A;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 27.2px;
+    width:26%;
+    margin-left: 14px;
+} 
+.sequence_match_lable_postives span{
+    font-weight: 500;
 }
 
 .sequence_stat_lable {
@@ -94,7 +133,7 @@ a:hover{
     font-size: 14px;
     font-weight: 400;
     line-height: 27.2px;
-    width: 25%
+    width: 31%
 }
 .sequence_match_lable_last span{
     font-weight: 500;
@@ -102,7 +141,7 @@ a:hover{
 
 .stats_container {
     display:flex;
-    width: 80%;
+    width: 100%;
     padding-left: 2px !important;
 }
 
@@ -110,11 +149,7 @@ a:hover{
     width: 100%;
     padding-left: 2px;
     background-color: #F3F3F3;
-}
-
-.sequence_right {
-    border-right: 1px solid #D0D0CE;
-    padding-right: 20px;
+    padding-right: 0px!important;
 }
 
 .sequence_stats_container {
@@ -126,7 +161,7 @@ a:hover{
     padding-bottom:16px;
     margin-left:16px;
     background-color: #F3F3F3;
-    width: 950px;
+    width: 750px;
     display: flex;
 }
 
@@ -147,7 +182,7 @@ a:hover{
     text-align: right;
 }
 .sequence_query{
-    padding-right:10px;
+    /* padding-right:10px; */
     font-size: 14px;
     font-weight: 400;
     font-family: 'IBM Plex Mono' !important;
@@ -187,4 +222,75 @@ a:hover{
 
 .columns:last-child:not(:first-child) {
     float: left;
+}
+
+@media screen and (max-width: 39.9375em) {
+    .containerIn{
+        margin-left: 0px;
+        overflow-x: scroll;
+    }
+    .middle_row {
+        padding-bottom: 12px;
+    }
+    .middle_row_one {
+        padding-bottom: 12px;
+    }
+    .middle_row_last {
+        padding-bottom: 12px;
+    }
+    .info-box-label {
+        width: 50%;
+    }
+    .info-box-value {
+        width: 92%;
+    } 
+} 
+@media print, screen and (min-width: 40em){
+    .containerRow{
+        margin-left: 5px;
+    }
+    .middle_row {
+        padding-bottom: 12px;
+    }
+    .middle_row_one {
+        padding-bottom: 12px;
+    }
+    .middle_row_last {
+        padding-bottom: 12px;
+    } 
+    .info-box-label {
+        width: 24%;
+    }
+    .info-box-value {
+        width: 74%;
+    }      
+}
+
+@media screen and (min-width: 40em) and ((max-width: 49em) or (max-width: 51.25em)) {
+    .containerRow {
+        margin-left: -5px;
+    }
+    .middle_row {
+        padding-bottom: 12px;
+    }
+    .middle_row_one {
+        padding-bottom: 12px;
+    }
+    .middle_row_last {
+        padding-bottom: 12px;
+    }
+    .info-box-label {
+        width: 24%;
+    }
+    .info-box-value {
+        width: 74%;
+    }   
+} 
+@media (min-width:1281px){
+    .info-box-label {
+        width: 17%;
+    }
+    .info-box-value {
+        width: 44%;
+    }   
 }

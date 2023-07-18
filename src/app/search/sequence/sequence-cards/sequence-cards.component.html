@@ -4,29 +4,41 @@
         <h4 class="card_subtitle">{{res.subtitle}}</h4>
     </div>
 </div>
-<div class="row middle_row">
+<div class="row middle_row_one">
     <div class="columns small-5 medium-2 info-box-label">Description</div>
-    <div class="columns small-7 medium-10 info-box-value">{{res.description}}</div>
-    <div class="columns small-5 medium-2 info-box-label">Source organism</div>
-    <div class="columns small-7 medium-10 info-box-value">{{res.source_organism}}</div>
-    <div class="columns small-5 medium-2 info-box-label">Available structures</div>
-    <div class="columns small-7 medium-10 info-box-value">{{res.available_structure}}</div>
+    <div class="columns medium-5 info-box-value">{{res.description}}</div>
 </div>
-<div class="row">
-    <div class="columns sequence_row ">
+<div class="row middle_row"> 
+    <div class="columns small-5 medium-2 info-box-label">Source organism</div>
+    <div class="columns medium-5 info-box-value">{{res.source_organism}}
+    </div>
+</div>
+<div class="row middle_row_last">
+    <div class="columns small-5 medium-2 info-box-label">Available structures</div>
+    <div class="columns medium-5 info-box-value">{{res.available_structure}}</div>
+</div>
+    
+<div class="row containerIn">
+    <div class="columns stats_one">
         <div class="columns stats_container">
             <div class="medium-3 sequence_match_lable_first">Sequence match</div>
-            <div class="columns small-5 medium-2 sequence_match_lable"><span>Identity:</span> {{getLabelValue('Identity', res.match_stats)}}%</div>
-            <div class="medium-3 sequence_match_lable"><span>HSP score:</span> {{getLabelValue('HSP score', res.match_stats)}}</div> 
+            <div class="columns small-5 medium-2 sequence_match_lable_hsp"><span>HSP score:</span> {{getLabelValue('HSP score', res.match_stats)}}</div>
+            
             <div class="columns small-5 medium-2 sequence_match_lable_last"><span>E-value: </span>{{getLabelValue('E-value', res.match_stats)}}</div> 
             <!-- <div class="columns small-5 medium-2 sequence_match_lable_last"><span>Query coverage:</span> {{getLabelValue('Query coverage', res.match_stats)}}</div>  -->
         </div>
     </div>
-</div>
-
-<div class="row">
+    <div class="columns stats_two">
+        <div class="columns stats_container">
+            <div class="medium-3 sequence_match_lable_first">&nbsp;</div>
+            <div class="columns  small-5  medium-2 sequence_match_lable_hsp"><span>Identity:</span> {{getLabelValue('Identity', res.match_stats)}}</div>
+            <div class="sequence_match_lable_postives"><span>Positives:</span> {{getLabelValue('Positives', res.match_stats)}}</div> 
+            <div class="columns medium-2 sequence_match_lable_last"><span>Gaps: </span>{{getLabelValue('Gaps', res.match_stats)}}</div> 
+            <!-- <div class="columns small-5 medium-2 sequence_match_lable_last"><span>Query coverage:</span> {{getLabelValue('Query coverage', res.match_stats)}}</div>  -->
+        </div>
+    </div>
     <div class="columns sequence_row_second">
-        <div class="columns sequence_right" style="display:inline-block; padding-left:0px;">
+        <div class="columns" style="display:inline-block; padding-left:0px;">
             <div *ngIf="!greaterThanLimit(res.query_sequence)" class="columns sequence_container">
                 <div style="display: flex;">
                     <div class="small-2 sequence_stat_query">Your query</div>
@@ -61,7 +73,7 @@
                     <div class="small-2 sequence_stat_query">Your query</div>
                     <span class="sequence_stat_num">1</span>
                     <div class="small-10 sequence_query">
-                       
+                        
                         <p>{{ res.query_sequence | slice:0:60 }}</p>
                         <span class="sequence_query_length">60</span>
                     </div>
@@ -71,7 +83,7 @@
                     <div class="small-2 sequence_stat_query">Match</div>
                     <span class="sequence_stat_num"></span>
                     <div class="small-10 sequence_query">
-                       
+                        
                         <p>{{ res.match_sequence | slice:0:60 }}</p>
                         <span class="sequence_query_length">&nbsp;</span>
                     </div>
@@ -136,11 +148,6 @@
             </div>
 
         </div>
-            
-        <div class="columns sequence_stats_container">
-            <div class="sequence_stat_lable"><span>Query length:</span> {{getLabelValue('Query length', res.sequence_stats)}}</div>
-            <div class="sequence_stat_lable"><span>Align length:</span> {{getLabelValue('Align length', res.sequence_stats)}}</div>
-            <div class="sequence_stat_lable"><span>Target length:</span> {{getLabelValue('Target length', res.sequence_stats)}}</div>
-        </div>
     </div>
 </div>
+    

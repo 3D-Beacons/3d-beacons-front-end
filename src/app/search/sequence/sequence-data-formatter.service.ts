@@ -68,7 +68,7 @@ export class SequenceDataFormatterService {
         const matchStats = [
             {
                 label: "Identity",
-                value: hsp ? hsp.hsp_identity : "",
+                value: this.getIdentities(hsp.hsp_qseq, hsp.hsp_mseq) //hsp ? hsp.hsp_identity : "",
             },
             {
                 label: "HSP score",
@@ -81,10 +81,73 @@ export class SequenceDataFormatterService {
             {
                 label: "Query coverage",
                 value: this.getQueryCoverage(hit_length, hsp.hsp_qseq.length)
+            },
+            {
+                label: "Positives",
+                value: this.getPositives(hsp.hsp_qseq, hsp.hsp_mseq)
+            },
+            {
+                label: "Gaps",
+                value: this.getGaps(hsp.hsp_qseq, hsp.hsp_hseq)
             }
         ];
         return matchStats;
     };
+
+    getIdentities(query,match){
+        const queryLength = query !== "" ? query.replace(/-/g, '').length : 0;
+        const exactMatch = this.removeSpacesAndPlusSigns(match);
+        const identities = exactMatch.length;
+        const percentage = Math.round((identities / queryLength) * 100) //(100 * identities) / queryLength;
+        
+        //return identities + "/" + queryLength + " (" + percentage + "%)"; 
+        return percentage + "%";
+    }
+
+    removeSpacesAndPlusSigns(match) {
+        let clearmatch = "";
+        for (let i = 0; i < match.length; i++) {
+          let character = match[i];
+          if (character !== " " && character !== "+") {
+            clearmatch += character;
+          }
+        }
+        return clearmatch;
+    }
+
+    countDashes(hit) {
+        let dashCount = 0;
+        for (let i = 0; i < hit.length; i++) {
+          let character = hit[i];
+          if (character === "-") {
+            dashCount++;
+          }
+        }
+        return dashCount;
+    }
+
+    getPositives(query,match){
+        const queryLength = query !== "" ? query.replace(/-/g, '').length : 0;
+        let positiveMatch = "";
+        for (let i = 0; i < match.length; i++) {
+          let character = match[i];
+          if (character !== " ") {
+            positiveMatch += character;
+          }
+        }
+        const positives = positiveMatch.length;
+        const percentage = Math.round((positives / queryLength) * 100) //(100 * positives) / queryLength;
+        return positives + "/" + queryLength+ " (" + percentage + "%)"; 
+    }
+
+    getGaps(query,hit){
+        const queryLength = query !== "" ? query.replace(/-/g, '').length : 0;
+        const hitGaps = this.countDashes(hit);
+        const queryGaps = this.countDashes(query);
+        const gaps = hitGaps + queryGaps;
+        const percentage = Math.round((gaps / queryLength) * 100) //(100 * gaps) / queryLength;
+        return gaps + "/" + queryLength+ " (" + percentage + "%)";
+    }
   
     getSequenceStats = (hsp) => {
         const lettersToRemove = [" ","+"];
