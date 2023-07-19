@@ -8,11 +8,11 @@ import { SequenceResult } from './sequence.model'
 export class SequenceDataFormatterService {
 
   constructor() { }
-
+  
     formatData = (sequenceResponse) : Array<SequenceResult> => {
         const sequencesResult = sequenceResponse.map((resp) => {
             const available_structure = this.getAvailableStructure(resp.summary.structures);
-            const match_stats = this.getMatchStats(resp.hit_length, resp.hit_hsps[0]);
+            const match_stats = this.getMatchStats(resp.hit_hsps[0]);
             const sequence_stats = this.getSequenceStats(resp.hit_hsps[0]);
             const source_organism = this.getSourceOrganisms(resp.hit_uni_os, resp.hit_com_os);
             return {
@@ -54,17 +54,8 @@ export class SequenceDataFormatterService {
         const structuresLength = structures ? structures.length : 0;
         return `${structuresLength} ${structuresLength === 1 ? "structure" : "structures"} from ${availableString}`;
     };
-  
-    getQueryCoverage(hitLength, queryLength) {
-        // Check if the hit length is greater than the query length
-        if (hitLength > queryLength) {
-            return 100;
-        } else {
-            return (hitLength / queryLength) * 100;
-        }
-    }
       
-    getMatchStats = (hit_length, hsp) => {
+    getMatchStats = (hsp) => {
         const matchStats = [
             {
                 label: "Identity",
@@ -77,10 +68,6 @@ export class SequenceDataFormatterService {
             {
                 label: "E-value",
                 value: hsp ? hsp.hsp_expect : "",
-            },
-            {
-                label: "Query coverage",
-                value: this.getQueryCoverage(hit_length, hsp.hsp_qseq.length)
             },
             {
                 label: "Positives",
