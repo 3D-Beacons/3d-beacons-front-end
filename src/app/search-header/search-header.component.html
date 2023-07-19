@@ -8,7 +8,7 @@
             <mat-select [(value)]="searchBy" class="category-select">
               <mat-option value="UniProt accession">UniProt accession</mat-option>
               <mat-option value="sequence">Sequence search</mat-option>
-              <mat-option value="Ensembl identifier">Ensembl identifier</mat-option>
+              <!-- <mat-option value="Ensembl identifier">Ensembl identifier</mat-option> -->
             </mat-select>
           </mat-form-field>
         </div>  
@@ -29,7 +29,7 @@
     <div class="small-12 medium-10 large-8 columns search-examples last-column">
       <span class="examples-chip">Examples: <br class="mobileviewbreak" />
         <a routerLink="/search/P38398" class="search-example">UniProt: P38398</a>
-        <a routerLink="/ensembl/ENSG00000288864" class="search-example">Ensembl: ENSG00000288864</a>
+        <!-- <a routerLink="/ensembl/ENSG00000288864" class="search-example">Ensembl: ENSG00000288864</a> -->
         <a (click)="doSequenceSearch('MNMLVINGTPRKHGRTRIAASYIAALYHTA')" class="search-example">Sequence: MNMLVIN...</a>
       </span>
     </div>
