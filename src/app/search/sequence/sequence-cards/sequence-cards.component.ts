@@ -70,7 +70,7 @@ export class SequenceCardsComponent implements OnInit {
   }
 
   greaterThanLimit(query){
-    const isGreater = query.length < 60 ? false : true;
+    const isGreater = query.length <= 60 ? false : true;
     return isGreater;
 
   }
