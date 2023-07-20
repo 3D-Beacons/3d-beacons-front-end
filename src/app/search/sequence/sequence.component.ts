@@ -71,7 +71,6 @@ export class SequenceComponent implements OnInit {
             this.is_noresult = false;
             this.titleService.setTitle("3D-Beacons");
             this.cardData = this.sequenceDataFormatterService.formatData(response);
-            console.log("cardData :",this.cardData);
             this.cardDataChunk = this.getSlice(this.paginationData.currentPage)
             this.card_data_length = this.cardData.length;
 

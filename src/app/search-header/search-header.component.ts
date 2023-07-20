@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { FormControl, Validators } from '@angular/forms';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { ConfigurationService } from '../core/configuration.service';
 import { SummaryResponse } from '../search/result-section/result-section.model';
 import { SearchService } from '../search/search.service';
 import { UniProtEntry } from '../search//result-section/uniprot-data.model';
-import { SearchComponent } from '../search/search.component';
 import { SequenceService } from '../search/sequence/sequence.service';
 
 declare var gtag;
@@ -35,8 +34,6 @@ export class SearchHeaderComponent implements OnInit  {
   constructor(
     private router: Router, 
     private searchService: SearchService,
-    private route: ActivatedRoute,
-    private configService: ConfigurationService,
     private sequenceService: SequenceService
   ) {
     const navEndEvent$ = router.events.pipe(
@@ -60,7 +57,6 @@ export class SearchHeaderComponent implements OnInit  {
 
   onSearch(e) {
     e.preventDefault();
-    const searchComponent = new SearchComponent(this.route, this.searchService, this.sequenceService, this.configService, this.router);
     this.searchService.setSearchTermValue(this.searchTerm.value);
     this.searchService.setSearchByValue(this.searchBy);
     
