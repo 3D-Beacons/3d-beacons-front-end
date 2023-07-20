@@ -6,6 +6,8 @@ import { Overview, Structure, SummaryResponse} from './result-section/result-sec
 import {SearchService} from './search.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import { UniProtEntry } from './result-section/uniprot-data.model';
+import { SearchHeaderComponent } from '../search-header/search-header.component';
+import { SequenceService } from './sequence/sequence.service';
 
 @Component({
   selector: 'app-search',
@@ -16,6 +18,8 @@ export class SearchComponent implements OnInit {
   searchForm: FormGroup = new FormGroup({
     searchTerm: new FormControl(null, Validators.required)
   });
+  searchBy: string;
+  searchTermValue: string;
 
   accession: string;
   private sub: any;
@@ -26,21 +30,27 @@ export class SearchComponent implements OnInit {
   entryData: UniProtEntry = null;
   sequence: string = null;
   isSequenceSearch: boolean = false;
+  isEnsembl: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
     private searchService: SearchService,
+    private sequenceService: SequenceService,
     private configService: ConfigurationService,
     private router: Router) {
   }
 
   ngOnInit() {
+    this.sequenceService.setSearchTermValue(this.searchForm.controls.searchTerm.value);
+    this.searchBy = this.searchService.getSearchByValue();
     this.sub = this.route.params.subscribe(params => {
-      this.accession = params.id;
-      this.doAccessionSearch(this.accession);
+      if(params.id){
+        this.accession = params.id;
+        this.doAccessionSearch(this.accession);
+      }else{
+        return;
+      }
     });
-
-
     this.exampleAccessions = this.configService.getExampleAccessions();
     // this.onSearch('P38398');
   }
@@ -50,6 +60,7 @@ export class SearchComponent implements OnInit {
   }
 
   doAccessionSearch(query?: string) {
+    this.searchTermValue = query;
     if (query == undefined) {
       query = this.searchForm.controls.searchTerm.value;
     } else {
@@ -83,25 +94,6 @@ export class SearchComponent implements OnInit {
         this.handleError("No Uniprot entry data found!");
       }
     );
-  }
-
-  doSequenceSearch(query?: string) {
-    if (query == undefined) {
-      query = this.searchForm.controls.searchTerm.value;
-    } else {
-      this.searchForm.controls.searchTerm.setValue(null);
-    }
-    this.searchForm.disable();
-    this.searchService.submitSequenceSearch(query).subscribe(
-      response => {
-        var jobId = response.job_id;
-        this.router.navigate(['/sequence', jobId]);
-      },
-      err => {
-       // window.location.reload()
-        this.handleError("No data found!");
-      }
-    )
   }
 
   handleError(message: string): void {

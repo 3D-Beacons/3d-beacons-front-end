@@ -1,59 +1,83 @@
-<div *ngIf="resultData">
-  <h3 class="search-title">Search results for {{job_id}}</h3>
+<div class="row title-container" *ngIf="!is_searchprogress && cardData">
+  <div class="small-12 columns">
+    <h3>
+      Search results for job ID  {{job_id}}
+    </h3>
+    <h4 *ngIf="card_data_length > 1" class="subtitle-heading">BLASTP - {{card_data_length}} results found in UniProtKB</h4>
+    <h4 *ngIf="card_data_length === 1" class="subtitle-heading">BLASTP - {{card_data_length}} result found in UniProtKB</h4>
+  </div>
 </div>
 
 <div *ngIf="!message">
-  <table mat-table [dataSource]="tableSource" class="mat-elevation-z8">
-
-    <ng-container matColumnDef="accession">
-      <th mat-header-cell *matHeaderCellDef> Accession</th>
-      <td mat-cell *matCellDef="let element"><a target="_blank" routerLink="/search/{{element.accession}}">{{element.accession}}</a></td>
-    </ng-container>
-
-    <ng-container matColumnDef="id">
-      <th mat-header-cell *matHeaderCellDef> ID</th>
-      <td mat-cell *matCellDef="let element">{{element.id}}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="description">
-      <th mat-header-cell *matHeaderCellDef> Description</th>
-      <td mat-cell *matCellDef="let element">{{element.description}}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="struct_count">
-      <th mat-header-cell *matHeaderCellDef> Available structures</th>
-      <td mat-cell *matCellDef="let element">{{element.summary.structures.length}}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="hsp_align_length">
-      <th mat-header-cell *matHeaderCellDef> HSP Align Length</th>
-      <td mat-cell *matCellDef="let element">{{element.hit_hsps[0].hsp_align_len}}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="hsp_identity">
-      <th mat-header-cell *matHeaderCellDef> HSP Identity</th>
-      <td mat-cell *matCellDef="let element">{{element.hit_hsps[0].hsp_identity}}</td>
-    </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
-  <mat-paginator [pageSize]="10" [pageSizeOptions]="[10, 20, 50]" aria-label="Select page">
-  </mat-paginator>
+  <div *ngFor="let card of cardDataChunk; let indexOfelement=index;">
+    <app-sequence-cards [res]="card"></app-sequence-cards>
+    <div class="row" [ngClass]="indexOfelement < cardDataChunk.length - 1 ? '' : 'lastcard'">
+      <div class="small-12" *ngIf="indexOfelement < cardDataChunk.length - 1">
+          <hr class="cardhr">
+      </div>
+    </div>
+  </div>
+  <div class="paginatelast medium-10">
+    <app-search-pagination [(paginationData)]="paginationData" (selectedPage)="paginateTo($event)"
+    (resPerPage)="updatePerPageVal($event)"></app-search-pagination>
+  </div>
 </div>
 
-
-<div *ngIf="message" class="row error-row">
+<div *ngIf="message && is_noresult" class="row error-container">
   <div class="small-12 columns">
-    <h3 class="warning-red">{{message}}</h3>
-    <br>
-    <div *ngIf="searching">
-      <h4>Please note the following</h4>
-      <ul>
-        <li>The search usually takes around <b>5-10</b> minutes.</li>
-        <li>The page reloads every <b>30</b> seconds. You may press <b>Shift+Refresh</b> or reload on your browser at any time to check if results are ready.</li>
-        <li class="warning-red">You may keep this link to check the results later <a routerLink="/sequence/{{job_id}}" class="search-example">{{job_id}}</a></li>
-      </ul>
-    </div>
+    <h3 class="progress_tile">
+      {{message}} 
+    </h3>
+    <p class="progress-text1">We ran the search with BLASTP and couldn’t find any matches in UniProt KB. 
+     
+    <h4 class="progress-text2">Search details</h4>
+    <p class="progress-text4">
+      <span>Sequence query:</span>
+      <span class="mobile-view-copy"><a (click)="copyToClipboard(localStorageSearchTerm)">Copy sequence <i class="icon icon-common icon-copy"></i></a></span>
+    </p>
+    <p class="progress-text3">
+        <span>
+          {{localStorageSearchTerm}}
+        </span>
+    </p>
+    <p class="mobile-view-second">
+      <a (click)="copyToClipboard(localStorageSearchTerm)">
+      Copy sequence
+      <i class="icon icon-common icon-copy"></i>
+      </a>
+    </p>
+    <p class="progress-text5">
+        For more information on the search parameters, please visit the  
+        <a href="" target="_blank">
+          EBI sequence similarity search page.
+        </a>
+    </p>
+  </div>
+</div>
+
+<div *ngIf="message && is_searchprogress" class="row error-container">
+  <div class="small-12 columns">
+    <h3 class="progress_tile">
+      {{message}}  
+      <img src="assets/img/Loader-ALPHA.gif" width="30px" height="30px">
+    </h3>
+    <p class="progress-text1">It usually takes 5-10 minutes to run a sequence search, please come back later. 
+      <br/> <a (click)="copyLink()">Copy the link to results <i class="icon icon-common icon-copy"></i></a> to save it and view the results at a convenient time.</p>
+    <h4 class="progress-text2">Search details</h4>
+    <p class="progress-text4">
+      <span>Sequence query:</span>
+      <span class="mobile-view-copy"><a (click)="copyToClipboard(localStorageSearchTerm)">Copy sequence <i class="icon icon-common icon-copy"></i></a></span>
+    </p>
+    <p class="progress-text3">
+        <span>
+          {{localStorageSearchTerm}} 
+        </span>
+    </p>
+    <p class="mobile-view-second">
+      <a (click)="copyToClipboard(localStorageSearchTerm)">
+      Copy sequence
+      <i class="icon icon-common icon-copy"></i>
+      </a>
+    </p>
   </div>
 </div>

@@ -1,10 +1,10 @@
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Routes, RouterModule } from '@angular/router';
 import { MatTableModule } from '@angular/material/table';
-
+import { MatSelectModule } from '@angular/material/select';
 
 import { AppComponent } from './app.component';
 import { SearchComponent } from './search/search.component';
@@ -23,13 +23,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { AppHeaderComponent } from './app-header/app-header.component';
 import { SearchHeaderComponent } from './search-header/search-header.component';
-
+import { SequenceCardsComponent } from './search/sequence/sequence-cards/sequence-cards.component';
+import { EnsemblComponent } from './search/ensembl/ensembl.component';
+import { SearchPaginationComponent } from './search/search-pagination/search-pagination.component';
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'docs', component: DocsComponent },
   { path: 'guidelines', component: GuidelinesComponent },
   { path: 'search/:id', component: SearchComponent },
   { path: 'sequence/:id', component: SequenceComponent },
+  { path: 'ensembl/:id', component: EnsemblComponent }
 ];
 
 @NgModule({
@@ -47,9 +50,13 @@ const routes: Routes = [
     SequenceComponent,
     AppHeaderComponent,
     SearchHeaderComponent,
+    SequenceCardsComponent,
+    EnsemblComponent,
+    SearchPaginationComponent
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
     CoreModule,
@@ -58,6 +65,7 @@ const routes: Routes = [
     BrowserAnimationsModule,
     MatTableModule,
     MatPaginatorModule,
+    MatSelectModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: BeaconsInterceptor, multi: true },

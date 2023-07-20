@@ -3,11 +3,31 @@ h3 {
     font-size: 30px;
     line-height: 39px;
 }
-  
 h2,h3,p,div,span,a{
     font-family: 'IBM Plex Sans';
     font-style: normal;
 }
+.viewer-row {
+    margin-right: 15px !important;
+    max-width: unset !important;
+}
+
+.title-container{
+    text-align: left;
+}
+
+.last-container{
+    margin-bottom: 52px;
+}
+
+.error-row {
+    margin-top: 30px;
+}
+
+.warning-red {
+    color: rgb(211, 74, 57);
+}
+
 
 a {
     color: #056643; 
@@ -25,55 +45,23 @@ a:hover{
     text-align: left;
 }
 
-.progress_tile {
-    font-size: 42px;
-    font-weight: 700;
-    line-height: 63px;
-}
-
 .progress-text1 {
     font-size: 19px;
     font-weight: 400;
     line-height: 26.6px;
 }
 
-.progress-text1 a{
+.msg_bullets {
     font-size: 19px;
     font-weight: 400;
     line-height: 26.6px;
-}
-  
-  
-.progress-text2 {
-    margin-top: 38px;
-    font-size: 21px;
-    font-weight: 500;
-    line-height: 27.3px;
+    margin-left: 30px;
 }
 
-.progress-text3 {
-    display: flex;
-    word-break: break-all;
-    margin-top: 12px;
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 26.6px;
-}
-
-.progress-text4 {
-    word-break: break-all;
-    margin-top: 12px;
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 26.6px;
-}
-
-.progress-text5 {
-    word-break: break-all;
-    margin-top: 12px;
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 26.6px;
+.message-title {
+    font-size: 42px;
+    font-weight: 700;
+    line-height: 63px;
 }
 
 .subtitle-heading {
@@ -94,10 +82,6 @@ a:hover{
     display:none;
 }
 
-.lastcard {
-    padding-bottom: 32px;
-}
-
 .cardhr {
     margin-left: 16px;
     padding-top: 16px;
@@ -105,10 +89,45 @@ a:hover{
     border-bottom: 1px solid #D0D0CE;
 }
 
+.lastcard {
+    padding-bottom: 32px;
+}
+
 .paginatelast {
     padding-bottom: 50px;
     margin-left:20px;
     float:left !important;
+}
+
+.card_title {
+    color: #056643;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 31.2px;
+    padding-top: 16px;
+}
+.card_subtitle{
+    color: #54585A;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 27.2px;
+}
+
+.info-box-label {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 27.2px;
+}
+
+.info-box-value {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 27.2px;
+}
+
+.middle_row {
+    padding-top:16px;
+    margin-bottom: 16px;
 }
 
 @media screen and (max-width: 39.9375em) {
@@ -119,8 +138,5 @@ a:hover{
     .mobile-view-second{
         display:none;
     }
-    h3 {
-        width: 94%;
-        word-wrap: break-word;
-    }
 }
+

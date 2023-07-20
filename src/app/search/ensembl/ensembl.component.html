@@ -1,0 +1,58 @@
+
+<app-loading-dialog *ngIf="isFetching"></app-loading-dialog>
+  
+<div class="row title-container" *ngIf="!is_noresult && cardData">
+  <div class="small-12 columns">
+    <h3>
+      Search results for Ensembl identifier  {{ensembl_id}}
+    </h3>
+    <h4 *ngIf="card_data_length > 1" class="subtitle-heading">{{card_data_length}} results</h4>
+    <h4 *ngIf="card_data_length === 1" class="subtitle-heading">{{card_data_length}} result</h4>
+  </div>
+</div>
+
+<div *ngIf="!message && cardData">
+  <div *ngFor="let res of cardDataChunk; let indexOfelement=index;">
+      <div class="row">
+          <div class="small-12 columns">
+              <h3 class="card_title"><a target="_blank" routerLink="/search/{{res.accession}}">{{res.title}}</a></h3>
+              <h4 class="card_subtitle">{{res.subtitle}}</h4>
+          </div>
+      </div>
+      <div class="row middle_row" [ngClass]="indexOfelement < card_data_length-1 ? '' : 'lastcard'">
+          <!-- <div class="columns small-5 medium-2 info-box-label">Description</div>
+          <div class="columns small-7 medium-10 info-box-value">{{res.description}}</div> -->
+          <div class="columns small-5 medium-2 info-box-label">Ensembl transcript ID</div>
+          <div class="columns small-7 medium-10 info-box-value">{{res.ensemblTranscript}}</div>
+          <div class="columns small-5 medium-2 info-box-label">Source organism</div>
+          <div class="columns small-7 medium-10 info-box-value">{{res.sourceOrganism}}</div>
+          <div class="columns small-5 medium-2 info-box-label">Available structures</div>
+          <div class="columns small-7 medium-10 info-box-value">{{res.availableStructure}}</div>
+      </div>
+      <div class="row">
+        <div class="small-12"  *ngIf="indexOfelement < card_data_length-1">
+            <hr class="cardhr">
+        </div>
+      </div>
+  </div>
+  <div class="paginatelast medium-10">
+    <app-search-pagination [(paginationData)]="paginationData" (selectedPage)="paginateTo($event)"
+    (resPerPage)="updatePerPageVal($event)"></app-search-pagination>
+  </div>
+</div>
+  
+<div *ngIf="is_noresult" class="row error-container">
+  <div class="small-12 columns">
+    <h3 class="message-title">No results found</h3>
+    <p class="progress-text1">
+      The Ensembl identifier you were searching with - {{searchTerm}} - doesn't have any models.
+    </p>
+    <p class="progress-text1">Suggestions:</p>
+    <ul class="msg_bullets">
+      <li>Please check if you have entered a valid Ensembl identifier.</li>
+      <li>Try again later as more models will be provided in the future.</li>
+    </ul>
+  </div>
+</div>
+
+
