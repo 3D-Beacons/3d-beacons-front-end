@@ -7,7 +7,6 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
 import { SearchService } from '../search/search.service';
 import { SequenceService } from '../search/sequence/sequence.service';
-
 import { SearchHeaderComponent } from './search-header.component';
 
 describe('SearchHeaderComponent', () => {
