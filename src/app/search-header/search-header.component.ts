@@ -26,6 +26,7 @@ export class SearchHeaderComponent implements OnInit  {
   exampleAccessions: string[];
   entryData: UniProtEntry = null;
   sequence: string = null;
+  totalTry: number = 0
 
   constructor(
     private router: Router, 
@@ -76,17 +77,30 @@ export class SearchHeaderComponent implements OnInit  {
     this.showLoader = true;
     setTimeout(() => {}, 2000);
     this.sequenceService.setSearchTermValue(query);
-    this.searchService.submitSequenceSearch(query).subscribe(
-      response => {
-        const jobId = response.job_id;
-        localStorage[jobId] = query;
-        this.showLoader = false;
-        this.changeDetectorRef.markForCheck();
-        this.router.navigate(['sequence', jobId]);
-      },
-      err => {
-        this.showLoader = false;
-      }
-    )
+      this.searchService.submitSequenceSearch(query).subscribe(
+        response => {
+          this.totalTry = 0;
+          const jobId = response.job_id;
+          localStorage[jobId] = query;
+          this.showLoader = false;
+          this.changeDetectorRef.markForCheck();
+          this.router.navigate(['sequence', jobId]);
+        },
+        err => {
+          this.totalTry++;
+          if(this.totalTry < 3){
+            this.showLoader = false;
+            this.changeDetectorRef.markForCheck();
+            this.doSequenceSearch(query);
+          }
+          else{
+            this.totalTry = 0;
+            this.showLoader = false;
+            this.changeDetectorRef.markForCheck();
+            this.router.navigate(['sequence']); 
+          }
+         
+        }
+      )
   }
 }
