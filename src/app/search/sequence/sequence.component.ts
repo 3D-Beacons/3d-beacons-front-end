@@ -20,6 +20,7 @@ export class SequenceComponent implements OnInit {
   job_id: string;
   is_searchprogress: boolean = false;
   is_noresult: boolean = false;
+  showErrorNoJobid: boolean = false;
   message: string = null;
   searching: boolean = false;
   resultData: Hit[] = null;
@@ -51,11 +52,18 @@ export class SequenceComponent implements OnInit {
     this.searchTermValue = this.searchService.searchTermValue;
     this.paginationData.pages = this.visiblePageNumbers();
     this.sub = this.route.params.subscribe(params => {
-      this.job_id = params.id;
-      this.searchTerm = params.id;
-      this.localStorageSearchTerm = localStorage[this.job_id];
-      this.is_searchprogress = true;
-      this.getSequenceData(this.job_id);
+      if(params.id === "" || params.id === undefined || params.id === null){
+        this.message = "Error in submitting the job, please retry after sometime!";
+        this.showErrorNoJobid = true;
+        return;
+      }else{
+        this.showErrorNoJobid = false;
+        this.job_id = params.id;
+        this.searchTerm = params.id;
+        this.localStorageSearchTerm = localStorage[this.job_id];
+        this.is_searchprogress = true;
+        this.getSequenceData(this.job_id);
+      }
     });
   }
 

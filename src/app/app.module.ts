@@ -32,6 +32,7 @@ const routes: Routes = [
   { path: 'guidelines', component: GuidelinesComponent },
   { path: 'search/:id', component: SearchComponent },
   { path: 'sequence/:id', component: SequenceComponent },
+  { path: 'sequence', component: SequenceComponent },
   { path: 'ensembl/:id', component: EnsemblComponent }
 ];
 
