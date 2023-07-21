@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { NavigationEnd, Router } from '@angular/router';
@@ -20,21 +20,18 @@ export class SearchHeaderComponent implements OnInit  {
 
   searchTerm = new FormControl(null, Validators.required);
   searchBy = 'UniProt accession';
-
   accession: string;
   private sub: any;
-  error: string = null;
-  resultData: SummaryResponse = null;
-  isFetching: boolean = false;
+  showLoader: boolean = false;
   exampleAccessions: string[];
   entryData: UniProtEntry = null;
   sequence: string = null;
-  isSequenceSearch: boolean = false;
-  
+
   constructor(
     private router: Router, 
     private searchService: SearchService,
-    private sequenceService: SequenceService
+    private sequenceService: SequenceService,
+    private changeDetectorRef: ChangeDetectorRef,
   ) {
     const navEndEvent$ = router.events.pipe(
       filter(e => e instanceof NavigationEnd)
@@ -65,11 +62,9 @@ export class SearchHeaderComponent implements OnInit  {
     }
     var searchTerm = this.searchTerm.value.toUpperCase();
     const mapSearch = this.searchBy.replace(/\W/g, '').toLowerCase(); 
-
     if(mapSearch == "sequence"){
       this.doSequenceSearch(searchTerm);
     }else if(mapSearch === "ensemblidentifier"){
-
       this.router.navigate(['/ensembl/', searchTerm]);
     }
     else{
@@ -78,33 +73,20 @@ export class SearchHeaderComponent implements OnInit  {
   }
 
   doSequenceSearch(query?: string) {
-    this.isFetching = true;
-    this.isSequenceSearch = true;
-    //this.sequence = params.id;
+    this.showLoader = true;
     setTimeout(() => {}, 2000);
-    //this.searchForm.disable();
     this.sequenceService.setSearchTermValue(query);
-
     this.searchService.submitSequenceSearch(query).subscribe(
       response => {
-        var jobId = response.job_id;
+        const jobId = response.job_id;
         localStorage[jobId] = query;
-        this.isFetching = false;
+        this.showLoader = false;
+        this.changeDetectorRef.markForCheck();
         this.router.navigate(['sequence', jobId]);
       },
       err => {
-        this.isFetching = false;
-       // window.location.reload()
-        this.handleError("No data found!");
+        this.showLoader = false;
       }
     )
-  }
-
-  handleError(message: string): void {
-    this.error = message;
-    this.isSequenceSearch = false;
-    this.isFetching = false;
-    //this.searchForm.enable();
-    this.resultData = null;
   }
 }
