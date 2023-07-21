@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SequenceService } from './sequence.service';
@@ -44,17 +44,17 @@ export class SequenceComponent implements OnInit {
     private sequenceService: SequenceService,
     private sequenceDataFormatterService: SequenceDataFormatterService,
     private titleService: Title,
-   
+    private changeDetectorRef: ChangeDetectorRef,
   ) { }
 
   ngOnInit(): void {
     this.searchTermValue = this.searchService.searchTermValue;
-  
     this.paginationData.pages = this.visiblePageNumbers();
     this.sub = this.route.params.subscribe(params => {
       this.job_id = params.id;
       this.searchTerm = params.id;
       this.localStorageSearchTerm = localStorage[this.job_id];
+      this.is_searchprogress = true;
       this.sequenceService.getSequenceSearchResult(this.job_id).subscribe(
         response => {
           let message = response.message;
@@ -67,9 +67,10 @@ export class SequenceComponent implements OnInit {
             setTimeout(() => {window.location.reload();}, 30000);
           } else {
             this.searching = false;
-            this.is_searchprogress = false;
             this.is_noresult = false;
             this.titleService.setTitle("3D-Beacons");
+            this.is_searchprogress = false;
+            this.changeDetectorRef.markForCheck();
             this.cardData = this.sequenceDataFormatterService.formatData(response);
             this.cardDataChunk = this.getSlice(this.paginationData.currentPage)
             this.card_data_length = this.cardData.length;
