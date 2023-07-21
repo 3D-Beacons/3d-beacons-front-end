@@ -55,41 +55,45 @@ export class SequenceComponent implements OnInit {
       this.searchTerm = params.id;
       this.localStorageSearchTerm = localStorage[this.job_id];
       this.is_searchprogress = true;
-      this.sequenceService.getSequenceSearchResult(this.job_id).subscribe(
-        response => {
-          let message = response.message;
-          if (message && message.startsWith("Search in progress")) {
-            this.message = "Search in progress";
-            this.is_searchprogress = true;
-            this.is_noresult = false;
-            this.titleService.setTitle("Search in progress");
-            this.searching = true;
-            setTimeout(() => {window.location.reload();}, 30000);
-          } else {
-            this.searching = false;
-            this.is_noresult = false;
-            this.titleService.setTitle("3D-Beacons");
-            this.is_searchprogress = false;
-            this.changeDetectorRef.markForCheck();
-            this.cardData = this.sequenceDataFormatterService.formatData(response);
-            this.cardDataChunk = this.getSlice(this.paginationData.currentPage)
-            this.card_data_length = this.cardData.length;
-
-            this.paginationData.totalPages = Math.ceil(this.card_data_length / this.paginationData.perPage);
-            this.paginationData.totalRecords = this.card_data_length;
-            this.paginationData.pages = this.visiblePageNumbers();
-            this.paginationData = Object.assign({}, this.paginationData);
-          }
-        },
-        err => {
-          this.searching = false;
-          this.is_searchprogress = false;
-          this.is_noresult = true;
-          this.message = "No results found for this sequence!";
-        }
-      );
-
+      this.getSequenceData(this.job_id);
     });
+  }
+
+  getSequenceData(jobId){
+    console.log("in getSequenceData");
+    this.sequenceService.getSequenceSearchResult(jobId).subscribe(
+      response => {
+        let message = response.message;
+        if (message && message.startsWith("Search in progress")) {
+          this.message = "Search in progress";
+          this.is_searchprogress = true;
+          this.is_noresult = false;
+          this.titleService.setTitle("Search in progress");
+          this.searching = true;
+          setTimeout(() => {this.getSequenceData(this.job_id);}, 30000);
+        } else {
+          this.searching = false;
+          this.is_noresult = false;
+          this.titleService.setTitle("3D-Beacons");
+          this.is_searchprogress = false;
+          this.changeDetectorRef.markForCheck();
+          this.cardData = this.sequenceDataFormatterService.formatData(response);
+          this.cardDataChunk = this.getSlice(this.paginationData.currentPage)
+          this.card_data_length = this.cardData.length;
+
+          this.paginationData.totalPages = Math.ceil(this.card_data_length / this.paginationData.perPage);
+          this.paginationData.totalRecords = this.card_data_length;
+          this.paginationData.pages = this.visiblePageNumbers();
+          this.paginationData = Object.assign({}, this.paginationData);
+        }
+      },
+      err => {
+        this.searching = false;
+        this.is_searchprogress = false;
+        this.is_noresult = true;
+        this.message = "No results found for this sequence!";
+      }
+    );
   }
 
   getSlice(currentPage){
