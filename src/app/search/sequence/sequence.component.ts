@@ -60,7 +60,6 @@ export class SequenceComponent implements OnInit {
   }
 
   getSequenceData(jobId){
-    console.log("in getSequenceData");
     this.sequenceService.getSequenceSearchResult(jobId).subscribe(
       response => {
         let message = response.message;
