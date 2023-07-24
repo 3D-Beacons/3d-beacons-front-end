@@ -34,15 +34,21 @@ describe('SearchHeaderComponent', () => {
   });
 
   beforeEach(() => {
+    (<any>window).gtag=function() {}
     fixture = TestBed.createComponent(SearchHeaderComponent);
     searchService = TestBed.inject(SearchService);
     sequenceService = TestBed.inject(SequenceService);
+
     component = fixture.componentInstance;
     fixture.detectChanges()
   });
 
   it('should create', () => {
-    //expect(component).toBeTruthy();
-    expect(component).not.toEqual(null);
+    expect(component).toBeTruthy();
+  });
+
+  it('should do sequence search', () => {
+    component.doSequenceSearch("GICPQDITSTLHHLRMLDFRSDQFVIIRREKLIQDHMAKLQLNLRPVDVDPECLRWTPVI")
+    expect(component.showLoader).toBeTrue();
   });
 });

@@ -15,9 +15,6 @@ export class SearchService {
 
   constructor(private dataService: DataService) { }
 
-  getSearchTermValue(){
-    return this.searchTermValue;
-  }
   setSearchTermValue(searchterm){
     this.searchTermValue = searchterm;
   }

@@ -30,6 +30,12 @@ describe('StructuresSectionComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('should toggle menu', () => {
+    const previousState = component.help = true;
+    component.toggleHelp();
+    expect(component.help).toEqual(!previousState);
+  });
+
   it('should set haveResults properly when there is a result data', fakeAsync(() => {
     spyOn(component, 'handleMolstar').and.returnValue();
 

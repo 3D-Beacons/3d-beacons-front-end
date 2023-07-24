@@ -55,9 +55,9 @@ export class SearchComponent implements OnInit {
     // this.onSearch('P38398');
   }
 
-  isUniprotAccession(term: string): boolean {
-    return RegExp('^[OPQ][0-9][A-Z0-9]{3}[0-9]|[A-NR-Z][0-9]([A-Z][A-Z0-9]{2}[0-9]){1,2}$').test(term);
-  }
+  // isUniprotAccession(term: string): boolean {
+  //   return RegExp('^[OPQ][0-9][A-Z0-9]{3}[0-9]|[A-NR-Z][0-9]([A-Z][A-Z0-9]{2}[0-9]){1,2}$').test(term);
+  // }
 
   doAccessionSearch(query?: string) {
     this.searchTermValue = query;

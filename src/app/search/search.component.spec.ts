@@ -61,6 +61,18 @@ describe('SearchComponent', () => {
     summaryData = MOCK_SUMMARY_RESPONSE;
   });
 
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+
+  it('should handle error', () => {
+    component.handleError("No results found");
+    expect(component.error).toContain('No results found');
+    expect(component.isFetching).toBeFalsy();
+    expect(component.isSequenceSearch).toBeFalsy();
+    expect(component.resultData).toBeNull();
+  });
+
   /**
    * Shared function to run tests in case of valid responses from API
    */
@@ -104,9 +116,7 @@ describe('SearchComponent', () => {
   //   }
   // }
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+ 
   //
   // it('should bind search term form control from input field', () => {
   //   searchInput.nativeElement.value = VALID_UNIPROT;
