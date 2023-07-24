@@ -1,8 +1,15 @@
 import { TestBed, waitForAsync } from '@angular/core/testing';
 import { RouterTestingModule } from "@angular/router/testing";
 import { AppComponent } from './app.component';
-
+import { NavigationEnd, Router } from '@angular/router';
+import { of } from 'rxjs';
+class MockRouteServices {
+  public events = of( new NavigationEnd(0, '/', '/'));
+}
 describe('AppComponent', () => {
+  let app: AppComponent;
+  let router: Router;
+ 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [
@@ -10,13 +17,18 @@ describe('AppComponent', () => {
       ],
       imports: [
         RouterTestingModule
+      ], 
+      providers: [
+        { provide: Router, useClass: MockRouteServices },
       ]
     }).compileComponents();
-  }));
-
-  it('should create the app', () => {
+    (<any>window).gtag=function() {}
     const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
+    app = fixture.componentInstance;
+    router = fixture.debugElement.injector.get( Router);
+    fixture.detectChanges();
+  }));
+  it('should create', () => {
     expect(app).toBeTruthy();
   });
 
