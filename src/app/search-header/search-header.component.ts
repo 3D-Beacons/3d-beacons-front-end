@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef, ElementRef, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, ElementRef } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { NavigationEnd, Router, RoutesRecognized } from '@angular/router';
@@ -15,8 +15,7 @@ declare var gtag;
 @Component({
   selector: 'app-search-header',
   templateUrl: './search-header.component.html',
-  styleUrls: ['./search-header.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./search-header.component.css']
 })
 export class SearchHeaderComponent implements OnInit  {
 
