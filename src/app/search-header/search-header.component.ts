@@ -1,13 +1,14 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, ElementRef } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { NavigationEnd, Router } from '@angular/router';
+import { NavigationEnd, Router, RoutesRecognized } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { SummaryResponse } from '../search/result-section/result-section.model';
 import { SearchService } from '../search/search.service';
 import { UniProtEntry } from '../search//result-section/uniprot-data.model';
 import { SequenceService } from '../search/sequence/sequence.service';
+import { Subscription } from 'rxjs';
 
 declare var gtag;
 
@@ -26,13 +27,15 @@ export class SearchHeaderComponent implements OnInit  {
   exampleAccessions: string[];
   entryData: UniProtEntry = null;
   sequence: string = null;
-  totalTry: number = 0
-
+  totalTry: number = 0;
+  routeSubscriber: Subscription;
+  
   constructor(
     private router: Router, 
     private searchService: SearchService,
     private sequenceService: SequenceService,
     private changeDetectorRef: ChangeDetectorRef,
+    private el:ElementRef,
   ) {
     const navEndEvent$ = router.events.pipe(
       filter(e => e instanceof NavigationEnd)
@@ -50,7 +53,25 @@ export class SearchHeaderComponent implements OnInit  {
   }
 
   ngOnInit() {
-    // this.onSearch('P38398');
+    this.routeSubscriber = this.router.events.subscribe(val => {
+      if (val instanceof RoutesRecognized) {
+        const currentParams = val.state.root.firstChild.params;
+        const paramLength = Object.keys(currentParams).length;
+        const currentUrl = window.location.pathname;
+        if(currentUrl.includes("/sequence") && paramLength === 1){
+          this.el.nativeElement.querySelector('.search-input-field').value = localStorage[currentParams.id];
+          this.el.nativeElement.querySelector('.category-select').value = 'sequence';
+          this.searchBy = 'sequence';
+          this.changeDetectorRef.detectChanges();
+        }
+        if(paramLength === 0) {
+          this.el.nativeElement.querySelector('.search-input-field').value = '';
+          this.el.nativeElement.querySelector('.category-select').value = 'UniProt accession';
+          this.searchBy = 'UniProt accession';
+          this.changeDetectorRef.detectChanges();
+        }
+      }
+    });
   }
 
   onSearch(e) {
