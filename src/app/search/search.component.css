@@ -53,9 +53,19 @@
 }
 
 .progress-text1 {
+  word-break: break-all;
   font-size: 19px;
   font-weight: 400;
   line-height: 26.6px;
+  margin-bottom: 16px;
+}
+
+.progress-suggestions {
+  word-break: break-all;
+  font-size: 19px;
+  font-weight: 400;
+  line-height: 26.6px;
+  margin-bottom: 8px;
 }
 
 .progress-text2 {

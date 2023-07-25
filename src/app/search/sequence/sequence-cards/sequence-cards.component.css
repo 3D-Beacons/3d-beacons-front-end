@@ -58,6 +58,11 @@ a:hover{
 .middle_row_one{
     padding-top:16px;
 }
+
+.middle_row {
+    padding-bottom: 4px;
+}
+
 .middle_row_last{
     margin-bottom: 16px;
 }
@@ -68,6 +73,8 @@ a:hover{
     margin-left: 16px;
     background-color: #F3F3F3;
     width: 750px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
 }
 .stats_two {
     padding-bottom: 16px;
@@ -163,6 +170,8 @@ a:hover{
     background-color: #F3F3F3;
     width: 750px;
     display: flex;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
 }
 
 .sequence_stat_query {
@@ -230,13 +239,13 @@ a:hover{
         overflow-x: scroll;
     }
     .middle_row {
-        padding-bottom: 12px;
+        padding-bottom: 4px;
     }
     .middle_row_one {
-        padding-bottom: 12px;
+        padding-bottom: 4px;
     }
     .middle_row_last {
-        padding-bottom: 12px;
+        padding-bottom: 4px;
     }
     .info-box-label {
         width: 50%;
@@ -250,13 +259,13 @@ a:hover{
         margin-left: 5px;
     }
     .middle_row {
-        padding-bottom: 12px;
+        padding-bottom: 4px;
     }
     .middle_row_one {
-        padding-bottom: 12px;
+        padding-bottom: 4px;
     }
     .middle_row_last {
-        padding-bottom: 12px;
+        padding-bottom: 4px;
     } 
     .info-box-label {
         width: 24%;
