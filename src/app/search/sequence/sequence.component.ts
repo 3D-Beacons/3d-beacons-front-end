@@ -8,7 +8,7 @@ import { Hit } from './search-result.model';
 import { MatPaginator } from '@angular/material/paginator';
 import { Title } from '@angular/platform-browser';
 import { SearchService } from '../search.service';
-import { Subscription } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-sequence',
@@ -31,7 +31,7 @@ export class SequenceComponent implements OnInit, OnDestroy {
   displayedColumns: string[] = ['accession', 'id', 'description', 'struct_count', 'hsp_align_length', 'hsp_identity'];
   subTimeout:any;
   seqResultsRequest: Subscription;
-
+ 
   localStorageSearchTerm: string;
   searchTerm: string;
   paginationData: any  = {
@@ -73,43 +73,42 @@ export class SequenceComponent implements OnInit, OnDestroy {
 
   getSequenceData(jobId){
     if(jobId){
-      this.seqResultsRequest = this.sequenceService.getSequenceSearchResult(jobId).subscribe(
-        response => {
-          let message = response.message;
-          if (message && message.startsWith("Search in progress")) {
-            this.message = "Search in progress";
-            this.is_searchprogress = true;
-            this.is_noresult = false;
-            this.titleService.setTitle("Search in progress");
-            this.searching = true;
-            this.subTimeout = setTimeout(() => {this.getSequenceData(this.job_id);}, 30000);
-          } else {
+        this.seqResultsRequest = this.sequenceService.getSequenceSearchResult(jobId).subscribe(
+          response => {
+            let message = response.message;
+            if (message && message.startsWith("Search in progress")) {
+              this.message = "Search in progress";
+              this.is_searchprogress = true;
+              this.is_noresult = false;
+              this.titleService.setTitle("Search in progress");
+              this.searching = true;
+              this.subTimeout = setTimeout(() => {this.getSequenceData(this.job_id);}, 30000);
+            } else {
+              this.searching = false;
+              this.is_noresult = false;
+              this.titleService.setTitle("3D-Beacons");
+              this.is_searchprogress = false;
+              this.changeDetectorRef.markForCheck();
+              this.cardData = this.sequenceDataFormatterService.formatData(response);
+              this.cardDataChunk = this.getSlice(this.paginationData.currentPage)
+              this.card_data_length = this.cardData.length;
+    
+              this.paginationData.totalPages = Math.ceil(this.card_data_length / this.paginationData.perPage);
+              this.paginationData.totalRecords = this.card_data_length;
+              this.paginationData.pages = this.visiblePageNumbers();
+              this.paginationData = Object.assign({}, this.paginationData);
+            }
+          },
+          err => {
             this.searching = false;
-            this.is_noresult = false;
-            this.titleService.setTitle("3D-Beacons");
             this.is_searchprogress = false;
-            this.changeDetectorRef.markForCheck();
-            this.cardData = this.sequenceDataFormatterService.formatData(response);
-            this.cardDataChunk = this.getSlice(this.paginationData.currentPage)
-            this.card_data_length = this.cardData.length;
-  
-            this.paginationData.totalPages = Math.ceil(this.card_data_length / this.paginationData.perPage);
-            this.paginationData.totalRecords = this.card_data_length;
-            this.paginationData.pages = this.visiblePageNumbers();
-            this.paginationData = Object.assign({}, this.paginationData);
+            this.is_noresult = true;
+            this.message = "No results found for this sequence!";
           }
-        },
-        err => {
-          this.searching = false;
-          this.is_searchprogress = false;
-          this.is_noresult = true;
-          this.message = "No results found for this sequence!";
-        }
-      );
+        );
     }else{
       return;
     }
-    
   }
 
   getSlice(currentPage){
@@ -238,7 +237,7 @@ export class SequenceComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.job_id = "";
-    this.sub.unsubscribe();
-    this.seqResultsRequest.unsubscribe();
+    // this.sub.unsubscribe();
+    // this.seqResultsRequest.unsubscribe();
   }
 }
