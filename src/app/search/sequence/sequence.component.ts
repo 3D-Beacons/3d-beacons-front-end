@@ -8,7 +8,7 @@ import { Hit } from './search-result.model';
 import { MatPaginator } from '@angular/material/paginator';
 import { Title } from '@angular/platform-browser';
 import { SearchService } from '../search.service';
-import { Subject, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-sequence',
@@ -59,8 +59,10 @@ export class SequenceComponent implements OnInit, OnDestroy {
         this.job_id = "";
         this.message = "Error in submitting the job, please retry after sometime!";
         this.showErrorNoJobid = true;
+        this.is_noresult = false;
         return;
       }else{
+        this.is_noresult = false;
         this.showErrorNoJobid = false;
         this.job_id = params.id;
         this.searchTerm = params.id;
@@ -73,6 +75,7 @@ export class SequenceComponent implements OnInit, OnDestroy {
 
   getSequenceData(jobId){
     if(jobId){
+        this.is_noresult = false;
         this.seqResultsRequest = this.sequenceService.getSequenceSearchResult(jobId).subscribe(
           response => {
             let message = response.message;
@@ -92,7 +95,7 @@ export class SequenceComponent implements OnInit, OnDestroy {
               this.cardData = this.sequenceDataFormatterService.formatData(response);
               this.cardDataChunk = this.getSlice(this.paginationData.currentPage)
               this.card_data_length = this.cardData.length;
-    
+
               this.paginationData.totalPages = Math.ceil(this.card_data_length / this.paginationData.perPage);
               this.paginationData.totalRecords = this.card_data_length;
               this.paginationData.pages = this.visiblePageNumbers();
@@ -103,6 +106,7 @@ export class SequenceComponent implements OnInit, OnDestroy {
             this.searching = false;
             this.is_searchprogress = false;
             this.is_noresult = true;
+            this.cardData = null;
             this.message = "No results found for this sequence!";
           }
         );
@@ -237,7 +241,8 @@ export class SequenceComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.job_id = "";
-    // this.sub.unsubscribe();
-    // this.seqResultsRequest.unsubscribe();
+    this.cardData = null;
+    this.is_noresult = false;
+    this.is_searchprogress = false;
   }
 }
