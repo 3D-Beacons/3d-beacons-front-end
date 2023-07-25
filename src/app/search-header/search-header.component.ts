@@ -64,6 +64,13 @@ export class SearchHeaderComponent implements OnInit  {
           this.searchBy = 'sequence';
           this.changeDetectorRef.detectChanges();
         }
+        // if(currentUrl.includes("/search") && paramLength === 1) {
+        //   const urlAccession = currentUrl?.split("/");
+        //   this.el.nativeElement.querySelector('.search-input-field').value = urlAccession[2];
+        //   this.el.nativeElement.querySelector('.category-select').value = 'UniProt accession';
+        //   this.searchBy = 'UniProt accession';
+        //   this.changeDetectorRef.detectChanges();
+        // }
         if(paramLength === 0) {
           this.el.nativeElement.querySelector('.search-input-field').value = '';
           this.el.nativeElement.querySelector('.category-select').value = 'UniProt accession';
