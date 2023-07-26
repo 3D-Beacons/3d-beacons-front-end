@@ -57,7 +57,7 @@ export class SequenceComponent implements OnInit, OnDestroy {
     this.sub = this.route.params.subscribe(params => {
       if(params.id === "" || params.id === undefined || params.id === null){
         this.job_id = "";
-        this.message = "Error in submitting the job, please retry after sometime!";
+        this.message = "Error in submitting the job";
         this.showErrorNoJobid = true;
         this.is_noresult = false;
         return;

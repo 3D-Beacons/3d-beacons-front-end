@@ -294,6 +294,7 @@
         min-width: 0;
         text-align: left;
         width: 302px;
+        padding-bottom: 12px;
     }
     .search-input {
         width: 89%;
