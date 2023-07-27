@@ -37,7 +37,7 @@ export class SummaryService {
       'Genome3D': 'template',
       'AlphaFold DB': 'abinitio',
       'SASBDB': 'expr',
-      'AlphaFill': 'abinitio',
+      'AlphaFill': 'template',
       'isoform.io': 'abinitio',
       'HEGELAB': 'abinitio',
       'ModelArchive': 'abinitio',
