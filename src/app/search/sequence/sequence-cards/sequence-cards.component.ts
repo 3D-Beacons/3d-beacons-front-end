@@ -37,16 +37,6 @@ export class SequenceCardsComponent implements OnInit {
     return valueoflable;
   }
 
-  switchText(){
-    this.isLinkedClicked ? this.isLinkedClicked = false : this.isLinkedClicked = true;
-    this.canShowSingle = false;
-    if(this.isShowingAll) {
-      this.isShowingAll = false;
-    }else{
-      this.isShowingAll = true;
-    }
-  }
-
   switchTexttoFull(){
     this.isLinkedClicked ? this.isLinkedClicked = false : this.isLinkedClicked = true;
     this.canShowSingle = false;
@@ -70,7 +60,7 @@ export class SequenceCardsComponent implements OnInit {
   }
 
   greaterThanLimit(query){
-    const isGreater = query.length < 60 ? false : true;
+    const isGreater = query.length <= 60 ? false : true;
     return isGreater;
 
   }

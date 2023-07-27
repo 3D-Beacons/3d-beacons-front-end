@@ -41,10 +41,8 @@ export class ResultSectionComponent {
     if (data) {
       this.infoText = this.prepareInfoText(data);
     } else {
-
     }
   }
-
 
   constructor(private summaryService: SummaryService, private configService: ConfigurationService) { }
 
@@ -84,7 +82,6 @@ export class ResultSectionComponent {
     Object.keys(categories).forEach(c => {
       tempList.push(categories[c]);
     });
-
     return tempList;
   }
 
@@ -97,11 +94,12 @@ export class ResultSectionComponent {
      */
     const infoText = [];
 
-    if (data.protein.recommendedName) {
+    if (data.protein) {
+      let proteinName = data.protein.recommendedName?.fullName.value || data.protein.submittedName[0]?.fullName.value;
       infoText.push(
         {
           label: 'Protein',
-          text: data.protein.recommendedName.fullName.value,
+          text: proteinName,
           italic: false,
           show_long: true,
           source: 'UniProt',
@@ -110,7 +108,8 @@ export class ResultSectionComponent {
       );
     }
     if (data.id) {
-      const geneName = data.gene ? data.gene[0].name.value : 'Not available';
+      let geneName = data.gene[0].name?.value || data.gene[0].orfNames[0]?.value;
+      
       infoText.push(
         {
           label: 'Gene',
@@ -148,42 +147,41 @@ export class ResultSectionComponent {
       );
     }
 
-    // Default biological function text
-    const bioFunction: InfoText = {
-      label: 'Biological function',
-      text: 'Not available',
-      italic: false,
-      show_long: false,
-      source: '',
-      source_url: ''
-    };
-    let catalyticActivity: string;
-    // Set biological function and catalytic activity
     if (data.comments) {
-      data.comments.forEach(comment => {
-        if (comment.type === 'FUNCTION') {
-          bioFunction.text = comment.text[0].value;
-        }
-        if (comment.type === 'CATALYTIC_ACTIVITY') {
-          catalyticActivity = comment.reaction.name;
-        }
-      });
-      bioFunction.text += '.';
-    }
-    //bioFunction.source_url += data.accession;
-    if (bioFunction.text === 'Not available' && catalyticActivity !== '') {
-      bioFunction.text = 'Catalytic activity: ' + catalyticActivity;
-    }
-    if (bioFunction.text !== 'Not available') {
-      const pubmed = 'PubMed:([0-9]+)';
-      const re = new RegExp(pubmed, 'g');
-      console.log("bioFunction.text ::",bioFunction.text);
-      bioFunction.text = bioFunction.text.replace(re, '<a class="external-ref" href="https://www.uniprot.org/citations/$1" target="_blank">PubMed:$1</a>');
-    }
-    infoText.push(bioFunction);
-
+      // Default biological function text
+      const bioFunction: InfoText = {
+        label: 'Biological function',
+        text: 'Not available',
+        italic: false,
+        show_long: false,
+        source: '',
+        source_url: ''
+      };
+      let catalyticActivity: string;
+      // Set biological function and catalytic activity
+      if (data.comments) {
+        data.comments.forEach(comment => {
+          if (comment.type === 'FUNCTION') {
+            bioFunction.text = comment.text[0].value;
+          }
+          if (comment.type === 'CATALYTIC_ACTIVITY') {
+            catalyticActivity = comment.reaction.name;
+          }
+        });
+        bioFunction.text += '.';
+      }
+      //bioFunction.source_url += data.accession;
+      if (bioFunction.text === 'Not available' && catalyticActivity !== '') {
+        bioFunction.text = 'Catalytic activity: ' + catalyticActivity;
+      }
+      if (bioFunction.text !== 'Not available') {
+        const pubmed = 'PubMed:([0-9]+)';
+        const re = new RegExp(pubmed, 'g');
+        bioFunction.text = bioFunction.text.replace(re, '<a class="external-ref" href="https://www.uniprot.org/citations/$1" target="_blank">PubMed:$1</a>');
+      }
+      infoText.push(bioFunction);
+    } 
     return infoText;
-
   }
 
   /**

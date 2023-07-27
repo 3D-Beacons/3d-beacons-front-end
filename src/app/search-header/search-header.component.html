@@ -1,3 +1,6 @@
+
+<app-loading-dialog *ngIf="showLoader"></app-loading-dialog>
+
 <div class="header-search-section">
   <div class="row">
     <div class="columns small-12 search-column">
@@ -26,11 +29,18 @@
       </form>
     </div>
     <div class="small-12 medium-10 large-8 columns search-examples last-column">
-      <span class="examples-chip">Examples: <br class="mobileviewbreak" />
-        <a routerLink="/search/P38398" class="search-example">UniProt: P38398</a>
-        <!-- <a routerLink="/ensembl/ENSG00000288864" class="search-example">Ensembl: ENSG00000288864</a> -->
-        <a (click)="doSequenceSearch('MNMLVINGTPRKHGRTRIAASYIAALYHTA')" class="search-example">Sequence: MNMLVIN...</a>
-      </span>
+      <span *ngIf="searchBy === 'UniProt accession' " class="examples-chip">UniProt accession examples: <br class="mobileviewbreak" />
+        <a routerLink="/search/P38398" class="search-example">P38398</a>
+        <a routerLink="/search/P01308" class="search-example">P01308</a>
+       </span>
+
+       <!-- <span *ngIf="searchBy === 'Ensembl identifier' " class="examples-chip">Ensembl identifier example: <br class="mobileviewbreak" />
+        <a routerLink="/ensembl/ENSG00000288864" class="search-example">ENSG00000288864</a>
+       </span> -->
+
+      <span  *ngIf="searchBy === 'sequence' " class="examples-chip">Sequence example: <br class="mobileviewbreak" />
+        <a (click)="doSequenceSearch('MNMLVINGTPRKHGRTRIAASYIAALYHTA')" class="search-example">MNMLVINGTPRKHGR...</a>
+       </span>
     </div>
   </div>
 </div>

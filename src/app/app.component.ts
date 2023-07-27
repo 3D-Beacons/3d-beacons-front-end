@@ -32,13 +32,4 @@ export class AppComponent {
     document.head.appendChild(headerScript);
   }
 
-  onSearch() {
-    if (this.searchTerm.value.trim() === '') {
-      return;
-    }
-    var searchTerm = this.searchTerm.value.toUpperCase();
-    this.router.navigate(['/search/', searchTerm]);
-    
-  }
-
 }

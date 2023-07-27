@@ -1,4 +1,4 @@
-<div class="row title-container" *ngIf="!is_searchprogress && cardData">
+<div class="row title-container" *ngIf="!is_searchprogress && !is_noresult && !showErrorNoJobid && job_id">
   <div class="small-12 columns">
     <h3>
       Search results for job ID  {{job_id}}
@@ -8,7 +8,7 @@
   </div>
 </div>
 
-<div *ngIf="!message">
+<div *ngIf="!is_searchprogress && cardData">
   <div *ngFor="let card of cardDataChunk; let indexOfelement=index;">
     <app-sequence-cards [res]="card"></app-sequence-cards>
     <div class="row" [ngClass]="indexOfelement < cardDataChunk.length - 1 ? '' : 'lastcard'">
@@ -55,10 +55,10 @@
   </div>
 </div>
 
-<div *ngIf="message && is_searchprogress" class="row error-container">
+<div *ngIf="is_searchprogress" class="row error-container">
   <div class="small-12 columns">
     <h3 class="progress_tile">
-      {{message}}  
+      Search in progress
       <img src="assets/img/Loader-ALPHA.gif" width="30px" height="30px">
     </h3>
     <p class="progress-text1">It usually takes 5-10 minutes to run a sequence search, please come back later. 
@@ -79,5 +79,19 @@
       <i class="icon icon-common icon-copy"></i>
       </a>
     </p>
+  </div>
+</div>
+
+<div *ngIf="message && showErrorNoJobid" class="row error-container">
+  <div class="small-12 columns">
+    <h3 class="progress_tile">
+      {{message}}
+    </h3>
+    <p class="progress-text1">Something went wrong on our side. We are sorry for the inconvenience it may have caused. </p>
+    <p class="progress-suggestions">Suggestions:</p>
+    <ul class="msg_bullets">
+      <li>Please wait and try again later.</li>
+      <li>Check your Internet connection.</li>
+    </ul>
   </div>
 </div>
