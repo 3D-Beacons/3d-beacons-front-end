@@ -1,13 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, ElementRef } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { NavigationEnd, Router } from '@angular/router';
+import { NavigationEnd, Router, RoutesRecognized } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { SummaryResponse } from '../search/result-section/result-section.model';
 import { SearchService } from '../search/search.service';
 import { UniProtEntry } from '../search//result-section/uniprot-data.model';
 import { SequenceService } from '../search/sequence/sequence.service';
+import { Subscription } from 'rxjs';
 
 declare var gtag;
 
@@ -20,21 +21,21 @@ export class SearchHeaderComponent implements OnInit  {
 
   searchTerm = new FormControl(null, Validators.required);
   searchBy = 'UniProt accession';
-
   accession: string;
   private sub: any;
-  error: string = null;
-  resultData: SummaryResponse = null;
-  isFetching: boolean = false;
+  showLoader: boolean = false;
   exampleAccessions: string[];
   entryData: UniProtEntry = null;
   sequence: string = null;
-  isSequenceSearch: boolean = false;
+  totalTry: number = 0;
+  routeSubscriber: Subscription;
   
   constructor(
     private router: Router, 
     private searchService: SearchService,
-    private sequenceService: SequenceService
+    private sequenceService: SequenceService,
+    private changeDetectorRef: ChangeDetectorRef,
+    private el:ElementRef,
   ) {
     const navEndEvent$ = router.events.pipe(
       filter(e => e instanceof NavigationEnd)
@@ -52,7 +53,32 @@ export class SearchHeaderComponent implements OnInit  {
   }
 
   ngOnInit() {
-    // this.onSearch('P38398');
+    this.routeSubscriber = this.router.events.subscribe(val => {
+      if (val instanceof RoutesRecognized) {
+        const currentParams = val.state.root.firstChild.params;
+        const paramLength = Object.keys(currentParams).length;
+        const currentUrl = window.location.pathname;
+        if(currentUrl.includes("/sequence") && paramLength === 1){
+          this.el.nativeElement.querySelector('.search-input-field').value = localStorage[currentParams.id];
+          this.el.nativeElement.querySelector('.category-select').value = 'sequence';
+          this.searchBy = 'sequence';
+          this.changeDetectorRef.detectChanges();
+        }
+        // if(currentUrl.includes("/search") && paramLength === 1) {
+        //   const urlAccession = currentUrl?.split("/");
+        //   this.el.nativeElement.querySelector('.search-input-field').value = urlAccession[2];
+        //   this.el.nativeElement.querySelector('.category-select').value = 'UniProt accession';
+        //   this.searchBy = 'UniProt accession';
+        //   this.changeDetectorRef.detectChanges();
+        // }
+        if(paramLength === 0) {
+          this.el.nativeElement.querySelector('.search-input-field').value = '';
+          this.el.nativeElement.querySelector('.category-select').value = 'UniProt accession';
+          this.searchBy = 'UniProt accession';
+          this.changeDetectorRef.detectChanges();
+        }
+      }
+    });
   }
 
   onSearch(e) {
@@ -65,11 +91,9 @@ export class SearchHeaderComponent implements OnInit  {
     }
     var searchTerm = this.searchTerm.value.toUpperCase();
     const mapSearch = this.searchBy.replace(/\W/g, '').toLowerCase(); 
-
     if(mapSearch == "sequence"){
       this.doSequenceSearch(searchTerm);
     }else if(mapSearch === "ensemblidentifier"){
-
       this.router.navigate(['/ensembl/', searchTerm]);
     }
     else{
@@ -78,33 +102,33 @@ export class SearchHeaderComponent implements OnInit  {
   }
 
   doSequenceSearch(query?: string) {
-    this.isFetching = true;
-    this.isSequenceSearch = true;
-    //this.sequence = params.id;
+    this.showLoader = true;
     setTimeout(() => {}, 2000);
-    //this.searchForm.disable();
     this.sequenceService.setSearchTermValue(query);
-
-    this.searchService.submitSequenceSearch(query).subscribe(
-      response => {
-        var jobId = response.job_id;
-        localStorage[jobId] = query;
-        this.isFetching = false;
-        this.router.navigate(['sequence', jobId]);
-      },
-      err => {
-        this.isFetching = false;
-       // window.location.reload()
-        this.handleError("No data found!");
-      }
-    )
-  }
-
-  handleError(message: string): void {
-    this.error = message;
-    this.isSequenceSearch = false;
-    this.isFetching = false;
-    //this.searchForm.enable();
-    this.resultData = null;
+      this.searchService.submitSequenceSearch(query).subscribe(
+        response => {
+          this.totalTry = 0;
+          const jobId = response.job_id;
+          localStorage[jobId] = query;
+          this.showLoader = false;
+          this.changeDetectorRef.markForCheck();
+          this.router.navigate(['sequence', jobId]);
+        },
+        err => {
+          this.totalTry++;
+          if(this.totalTry < 3){
+            this.showLoader = false;
+            this.changeDetectorRef.markForCheck();
+            this.doSequenceSearch(query);
+          }
+          else{
+            this.totalTry = 0;
+            this.showLoader = false;
+            this.changeDetectorRef.markForCheck();
+            this.router.navigate(['sequence']); 
+          }
+         
+        }
+      )
   }
 }

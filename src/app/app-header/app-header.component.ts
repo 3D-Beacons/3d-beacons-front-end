@@ -20,9 +20,9 @@ export class AppHeaderComponent {
     this.menuOpen = false;
     this.homePage = false;
 
-    this.routeSubscribe = this.router.events.pipe(
-      filter((e): e is NavigationEnd => e instanceof NavigationEnd)
-    ).subscribe(e => {
+      this.routeSubscribe = this.router.events.pipe(
+        filter((e): e is NavigationEnd => e instanceof NavigationEnd)
+      ).subscribe(e => {
       this.homePage = false;
       if(e.url && e.url === '/') this.homePage = true;
     });
@@ -32,8 +32,4 @@ export class AppHeaderComponent {
   toggleMenu() {
     this.menuOpen = !this.menuOpen;
   }
-
-  // ngOnInit(): void {
-  //   this.toggleMenu();
-  // }
 }
