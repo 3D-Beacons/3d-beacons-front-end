@@ -33,7 +33,14 @@
     <h4 class="progress-text2">Search details</h4>
     <p class="progress-text4">
       <span>Sequence query:</span>
-      <span class="mobile-view-copy"><a (click)="copyToClipboard(localStorageSearchTerm)">Copy sequence <i class="icon icon-common icon-copy"></i></a></span>
+      <span class="mobile-view-copy"><a (click)="copySequence(localStorageSearchTerm)">Copy sequence <i class="icon icon-common icon-copy"></i></a>
+        <div class="label-tooltip" style="display: inline;">
+          <span *ngIf="isCopySequence" class="label-tooltip-text">
+            Sequence copied
+          </span>
+        </div>
+      </span>
+      
     </p>
     <p class="progress-text3">
         <span>
@@ -41,14 +48,20 @@
         </span>
     </p>
     <p class="mobile-view-second">
-      <a (click)="copyToClipboard(localStorageSearchTerm)">
+      <a (click)="copySequence(localStorageSearchTerm)">
       Copy sequence
       <i class="icon icon-common icon-copy"></i>
       </a>
     </p>
+    <div class="label-tooltip" style="display: inline;">
+      <span *ngIf="isCopySequence" class="label-tooltip-text">
+        Sequence copied
+      </span>
+    </div>
+
     <p class="progress-text5">
         For more information on the search parameters, please visit the  
-        <a href="" target="_blank">
+        <a href="https://www.ebi.ac.uk/Tools/sss/ncbiblast/" target="_blank">
           EBI sequence similarity search page.
         </a>
     </p>
@@ -61,24 +74,52 @@
       Search in progress
       <img src="assets/img/Loader-ALPHA.gif" width="30px" height="30px">
     </h3>
-    <p class="progress-text1">It usually takes 5-10 minutes to run a sequence search, please come back later. 
-      <br/> <a (click)="copyLink()">Copy the link to results <i class="icon icon-common icon-copy"></i></a> to save it and view the results at a convenient time.</p>
+   
+    <p class="progress-text1">It usually takes 5-10 minutes to run a sequence search, please come back later.
+    <br/> <a (click)="copyLink()">Click to copy the link to results <i class="icon icon-common icon-copy"></i></a> to save it and view the results at a convenient time.</p>
+    <div class="label-tooltip-link" style="display: inline;">
+      <span *ngIf="isCopyLink" class="label-tooltip-link-text">
+        Link copied
+      </span>
+    </div>
+    
     <h4 class="progress-text2">Search details</h4>
     <p class="progress-text4">
       <span>Sequence query:</span>
-      <span class="mobile-view-copy"><a (click)="copyToClipboard(localStorageSearchTerm)">Copy sequence <i class="icon icon-common icon-copy"></i></a></span>
+      <span class="mobile-view-copy">
+        <a (click)="copySequence(localStorageSearchTerm)">Copy sequence <i class="icon icon-common icon-copy"></i></a>
+        <div class="label-tooltip-seq" style="display: inline;">
+          <span *ngIf="isCopySequence" class="label-tooltip-seq-text">
+            Sequence copied
+          </span>
+        </div>
+      </span>
     </p>
     <p class="progress-text3">
         <span>
           {{localStorageSearchTerm}} 
         </span>
     </p>
+
     <p class="mobile-view-second">
+      <a (click)="copySequence(localStorageSearchTerm)">
+        Copy sequence
+        <i class="icon icon-common icon-copy"></i>
+      </a>
+    </p>
+    
+    <div class="label-tooltip-seq" style="display: inline;">
+      <span *ngIf="isCopySequence" class="label-tooltip-seq-text">
+        Sequence copied
+      </span>
+    </div>
+
+    <!-- <p class="mobile-view-second">
       <a (click)="copyToClipboard(localStorageSearchTerm)">
       Copy sequence
       <i class="icon icon-common icon-copy"></i>
       </a>
-    </p>
+    </p> -->
   </div>
 </div>
 
