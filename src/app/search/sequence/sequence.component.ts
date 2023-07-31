@@ -20,6 +20,8 @@ export class SequenceComponent implements OnInit, OnDestroy {
   private sub: Subscription;
   job_id: string;
   is_searchprogress: boolean = false;
+  isCopySequence: boolean = false;
+  isCopyLink: boolean = false;
   is_noresult: boolean = false;
   showErrorNoJobid: boolean = false;
   message: string = null;
@@ -121,23 +123,17 @@ export class SequenceComponent implements OnInit, OnDestroy {
     return this.cardData.slice(start,end);
   }
   
-  copyToClipboard(item) {
-    document.addEventListener('copy', (e: ClipboardEvent) => {
-      e.clipboardData.setData('text/plain', (item));
-      e.preventDefault();
-      document.removeEventListener('copy', null);
-    });
-    document.execCommand('copy');
+  copySequence(sequence) {
+    navigator.clipboard.writeText(sequence);
+    this.isCopySequence = true;
+    setTimeout(() => {this.isCopySequence = false;}, 5000);
   }
 
   copyLink() {
     const link = window.location.href;
-    document.addEventListener('copy', (e: ClipboardEvent) => {
-      e.clipboardData.setData('text/plain', (link));
-      e.preventDefault();
-      document.removeEventListener('copy', null);
-    });
-    document.execCommand('copy');
+    navigator.clipboard.writeText(link);
+    this.isCopyLink = true;
+    setTimeout(() => {this.isCopyLink = false;}, 5000);   
   }
 
   visiblePageNumbers(): any[] {

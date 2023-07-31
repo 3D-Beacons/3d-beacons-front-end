@@ -52,4 +52,9 @@ describe('SearchHeaderComponent', () => {
     component.doSequenceSearch("GICPQDITSTLHHLRMLDFRSDQFVIIRREKLIQDHMAKLQLNLRPVDVDPECLRWTPVI")
     expect(component.showLoader).toBeTrue();
   });
+
+  it('should do sequence search', () => {
+    component.doSequenceSearch("GICPQDITSTLHHLRMLDFRSDQFVIIRREKLIQDHMAKLQLNLRPVDVDPECLRWTPVI")
+    expect(component.showLoader).toBeTrue();
+  });
 });
