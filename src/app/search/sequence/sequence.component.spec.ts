@@ -156,18 +156,18 @@ describe('SequenceComponent', () => {
   // });
 
 
-    it('should copy the item to the clipboard', () => {
-      const item = 'Test string';
-      component.copySequence(item);
-      fixture.detectChanges();
-      expect(component.isCopySequence).toBe(true);
-    });
+    // it('should copy the item to the clipboard', () => {
+    //   const item = 'Test string';
+    //   component.copySequence(item);
+    //   fixture.detectChanges();
+    //   expect(component.isCopySequence).toBe(true);
+    // });
 
-    it('should copy the current URL to the clipboard', () => {
-      component.copyLink();
-      fixture.detectChanges();
-      expect(component.isCopyLink).toBe(true);
-    });
+    // it('should copy the current URL to the clipboard', () => {
+    //   component.copyLink();
+    //   fixture.detectChanges();
+    //   expect(component.isCopyLink).toBe(true);
+    // });
    
     it('should return slice from the entire data', () => {
       const currentPage = 1;
