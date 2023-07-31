@@ -44,7 +44,7 @@
                     <div class="small-2 sequence_stat_query">Your query</div>
                     <div class="small-10 sequence_query">
                         <span class="sequence_stat_num">1</span>
-                        <span>{{ res.query_sequence | slice:0:60 }}</span>
+                        <span style="white-space:nowrap;">{{ res.query_sequence | slice:0:60 }}</span>
                         <span class="sequence_query_length">{{res.query_sequence.length}}</span>
                     </div>
                 </div>
@@ -53,7 +53,7 @@
                     <div class="small-2 sequence_stat_query">Match</div>
                     <div class="small-10 sequence_query">
                         <span class="sequence_stat_num"> &nbsp;</span>
-                        <span>{{ res.match_sequence | slice:0:60 }}</span>
+                        <span style="white-space:nowrap;">{{ res.match_sequence | slice:0:60 }}</span>
                         <span class="sequence_query_length">&nbsp;</span>
                     </div>
                 </div>
@@ -62,7 +62,7 @@
                     <div class="small-2 sequence_stat_query">{{res.accession}}</div>
                     <div class="small-10 sequence_query">
                         <span class="sequence_stat_num">1</span>
-                        <span>{{ res.match_accession | slice:0:60 }}</span>
+                        <span style="white-space:nowrap;">{{ res.match_accession | slice:0:60 }}</span>
                         <span class="sequence_query_length">{{res.match_accession.length}}</span>
                     </div>
                 </div>
@@ -74,7 +74,7 @@
                     <span class="sequence_stat_num">1</span>
                     <div class="small-10 sequence_query">
                         
-                        <p>{{ res.query_sequence | slice:0:60 }}</p>
+                        <p style="white-space:nowrap;">{{ res.query_sequence | slice:0:60 }}</p>
                         <span class="sequence_query_length">60</span>
                     </div>
                 </div>
@@ -84,7 +84,7 @@
                     <span class="sequence_stat_num"></span>
                     <div class="small-10 sequence_query">
                         
-                        <p>{{ res.match_sequence | slice:0:60 }}</p>
+                        <p style="white-space:nowrap;">{{ res.match_sequence | slice:0:60 }}</p>
                         <span class="sequence_query_length">&nbsp;</span>
                     </div>
                 </div>
@@ -94,7 +94,7 @@
                     <span class="sequence_stat_num">1</span>
                     <div class="small-10 sequence_query">
                         
-                        <p>{{ res.match_accession | slice:0:60 }}</p>
+                        <p style="white-space:nowrap;">{{ res.match_accession | slice:0:60 }}</p>
                         <span class="sequence_query_length">60</span>
                     </div>
                 </div>
@@ -107,7 +107,7 @@
                         <div class="small-2 sequence_stat_query">Your query</div>
                         <span class="small-1 sequence_stat_num">{{querystring.start}}</span>
                         <div class="small-10 sequence_query">
-                            <p>{{ querystring.query_chunk }}</p>
+                            <p style="white-space:nowrap;">{{ querystring.query_chunk }}</p>
                             <span class="sequence_query_length">{{querystring.counttoshow}}</span>
                         </div>
                     </div>
@@ -116,7 +116,7 @@
                         <div class="small-2 sequence_stat_query">Match</div>
                         <span class="sequence_stat_num"></span>
                         <div class="small-10 sequence_query">
-                            <p>{{ res.match_sequence | slice: querystring.start-1:querystring.counttoshow }}</p>
+                            <p style="white-space:nowrap;">{{ res.match_sequence | slice: querystring.start-1:querystring.counttoshow }}</p>
                             <span class="sequence_query_length">&nbsp;</span>
                         </div>
                     </div>
@@ -125,7 +125,7 @@
                         <div class="small-2 sequence_stat_query">{{res.accession}}</div>
                         <span class="sequence_stat_num">{{querystring.start}}</span>
                         <div class="small-10 sequence_query">
-                            <p>{{ res.match_accession | slice: querystring.start-1:querystring.counttoshow }}</p>
+                            <p style="white-space:nowrap;">{{ res.match_accession | slice: querystring.start-1:querystring.counttoshow }}</p>
                             <span class="sequence_query_length">{{querystring.counttoshow}}</span>
                         </div>
                     </div>
