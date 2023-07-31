@@ -59,7 +59,7 @@ export class SearchHeaderComponent implements OnInit  {
         const paramLength = Object.keys(currentParams).length;
         const currentUrl = window.location.pathname;
         if(currentUrl.includes("/sequence") && paramLength === 1){
-          this.el.nativeElement.querySelector('.search-input-field').value = localStorage[currentParams.id];
+          this.el.nativeElement.querySelector('.search-input-field').value = localStorage[currentParams.id] ? localStorage[currentParams.id] : '';
           this.el.nativeElement.querySelector('.category-select').value = 'sequence';
           this.searchBy = 'sequence';
           this.changeDetectorRef.detectChanges();
