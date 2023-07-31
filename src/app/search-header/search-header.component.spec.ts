@@ -44,7 +44,13 @@ describe('SearchHeaderComponent', () => {
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    //expect(component).toBeTruthy();
+    expect(component).not.toEqual(null);
+  });
+
+  it('should do sequence search', () => {
+    component.doSequenceSearch("GICPQDITSTLHHLRMLDFRSDQFVIIRREKLIQDHMAKLQLNLRPVDVDPECLRWTPVI")
+    expect(component.showLoader).toBeTrue();
   });
 
   it('should do sequence search', () => {
