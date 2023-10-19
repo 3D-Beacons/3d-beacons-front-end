@@ -56,6 +56,10 @@ export class ProvidersComponent {
         {
           name: 'Isoform.io',
           url: 'https://isoform.io/'
+        },
+        {
+          name: 'LevyLab',
+          url: 'https://shmoo.weizmann.ac.il'
         }
       ]
     ];

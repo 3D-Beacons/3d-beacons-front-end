@@ -41,6 +41,7 @@ export class SummaryService {
       'isoform.io': 'abinitio',
       'HEGELAB': 'abinitio',
       'ModelArchive': 'abinitio',
+      'levylab': 'abinitio',
     }
     return providerCategories[providerId];
   }
