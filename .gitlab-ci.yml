@@ -18,7 +18,7 @@ trigger_deploy:
     UPSTREAM_REF: $CI_COMMIT_REF_NAME
     IMAGE_PATHS: ${CI_REGISTRY_IMAGE}:${CI_COMMIT_SHORT_SHA}
     IMAGE_NAMES: beacons-front-end
-    APP_NAME: beacons-front-end
+    APP_NAME: 3d-beacons-front-end
   trigger:
     project: pdbe/backend/k8s-deploy-configs
     branch: main
