@@ -13,12 +13,8 @@ FROM nginx:latest
 COPY --from=build-stage /app/dist/out/ /usr/share/nginx/html
 # Copy default nginx configuration
 COPY ./nginx-custom.conf /etc/nginx/conf.d/default.conf
+COPY nginx-run.sh /tmp/nginx-run.sh
 
-STOPSIGNAL SIGTERM
+ENTRYPOINT [ "/tmp/nginx-run.sh" ]
+CMD ["nginx", "-g", "daemon off;"]
 
-# Create an entrypoint file by substituting from environment variables
-RUN echo "mainFileName=\"\$(ls /usr/share/nginx/html/main*.js)\" && \
-    envsubst '\$BEACONS_API_URL \$BEACONS_GA_TAG ' < \${mainFileName} > /tmp/main.tmp && \
-    mv /tmp/main.tmp \${mainFileName} && nginx -g 'daemon off;'" > /tmp/run.sh
-
-ENTRYPOINT [ "sh", "/tmp/run.sh" ]
