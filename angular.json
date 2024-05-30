@@ -58,18 +58,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "beacons-home:build"
+            "buildTarget": "beacons-home:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "beacons-home:build:production"
+              "buildTarget": "beacons-home:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "beacons-home:build"
+            "buildTarget": "beacons-home:build"
           }
         },
         "test": {
