@@ -19,7 +19,7 @@
             "outputPath": "dist/beacons-home",
             "index": "src/index.html",
             "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
+            "polyfills": ["zone.js"],
             "tsConfig": "src/tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
@@ -58,25 +58,25 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "beacons-home:build"
+            "buildTarget": "beacons-home:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "beacons-home:build:production"
+              "buildTarget": "beacons-home:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "beacons-home:build"
+            "buildTarget": "beacons-home:build"
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "main": "src/test.ts",
-            "polyfills": "src/polyfills.ts",
+            "polyfills": ["zone.js"],
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
             "styles": [
@@ -131,6 +131,5 @@
         }
       }
     }
-  },
-  "defaultProject": "beacons-home"
+  }
 }

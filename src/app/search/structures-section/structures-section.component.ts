@@ -152,8 +152,12 @@ export class StructuresSectionComponent implements OnDestroy {
   }
 
   prepareLabel(structure: Overview) {
+    const model_links = structure.summary.model_page_url ? 
+                        '<strong><a href="' + structure.summary.model_page_url + '" target="_blank">' + structure.summary.provider + '</a></strong>' : 
+                        '<strong>' + structure.summary.provider + '</strong>';
+                        
     return '' +
-      '<strong><a href="' + structure.summary.model_page_url + '" target="_blank">' + structure.summary.provider + '</a></strong>' +
+      model_links +
       '<span style="float: right; margin-right: 5px;">' +
       '<a data-url="' + (structure.summary.ensemble_sample_url ? structure.summary.ensemble_sample_url : structure.summary.model_url) + '" data-format="' +
       (structure.summary.ensemble_sample_format ? structure.summary.ensemble_sample_format.toLowerCase() : structure.summary.model_format.toLowerCase()) +'"' +
