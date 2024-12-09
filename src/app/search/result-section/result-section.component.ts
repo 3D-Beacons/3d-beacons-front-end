@@ -107,9 +107,9 @@ export class ResultSectionComponent {
         }
       );
     }
-    if (data.id) {
+    if (data.id && data.gene) {
       let geneName = data.gene[0].name?.value || data.gene[0].orfNames[0]?.value;
-      
+
       infoText.push(
         {
           label: 'Gene',
@@ -180,7 +180,7 @@ export class ResultSectionComponent {
         bioFunction.text = bioFunction.text.replace(re, '<a class="external-ref" href="https://www.uniprot.org/citations/$1" target="_blank">PubMed:$1</a>');
       }
       infoText.push(bioFunction);
-    } 
+    }
     return infoText;
   }
 
