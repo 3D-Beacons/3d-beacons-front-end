@@ -87,6 +87,13 @@
       }
     }
   </script>
+  
+  <!-- Added for user survey -->
+  <script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function (event) {
+      ebiInjectAnnouncements({ headline: '', message: '<h5>We need your help!</h5>Has 3D-Beacons saved you time or effort? Please take 15 minutes to fill in a survey and help EMBL-EBI make the case for why open data resources are critical to life science research.<br><a target="_blank" href="https://www.surveymonkey.com/r/QGFMBH8?channel=[webpage]">https://www.surveymonkey.com/r/QGFMBH8?channel=[webpage]</a>', link: 'https://www.surveymonkey.com/r/QGFMBH8?channel=[webpage] ', priority: 'warning' });
+    })
+  </script>
 
   <meta class="foundation-mq">
   <link rel="preconnect" href="https://fonts.gstatic.com">
