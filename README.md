@@ -12,7 +12,7 @@
 
 ## Getting started
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 21.2.7
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 21.2.17
 
 ## Before you start
 
