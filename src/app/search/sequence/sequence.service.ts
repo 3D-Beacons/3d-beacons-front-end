@@ -1,17 +1,16 @@
-import { Injectable } from '@angular/core';
-import { DataService } from '../../core/data.service';
-import { Observable } from 'rxjs';
+import { Injectable } from "@angular/core";
+import { DataService } from "../../core/data.service";
+import { Observable } from "rxjs";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
-
 export class SequenceService {
-  searchTermValue: string = '';
+  searchTermValue: string = "";
 
-  constructor(private dataService: DataService) { }
+  constructor(private dataService: DataService) {}
 
-  setSearchTermValue(searchterm){
+  setSearchTermValue(searchterm: string) {
     this.searchTermValue = searchterm;
   }
 

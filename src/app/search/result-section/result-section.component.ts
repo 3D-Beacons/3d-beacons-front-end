@@ -1,22 +1,22 @@
-import { Component, Input } from '@angular/core';
-import { ConfigurationService } from 'src/app/core/configuration.service';
-import { InfoText } from './info-text.model';
+import { Component, Input } from "@angular/core";
+import { InfoText } from "./info-text.model";
 
-import { SummaryService } from './summary-section/summary-section.service';
-import { UniProtEntry } from './uniprot-data.model';
+import { SummaryService } from "./summary-section/summary-section.service";
+import { UniProtEntry } from "./uniprot-data.model";
+import { ConfigurationService } from "../../core/configuration.service";
 
 @Component({
-    selector: 'app-result-section',
-    templateUrl: './result-section.component.html',
-    styleUrls: ['./result-section.component.css'],
-    standalone: false
+  selector: "app-result-section",
+  templateUrl: "./result-section.component.html",
+  styleUrls: ["./result-section.component.scss"],
+  standalone: false,
 })
 export class ResultSectionComponent {
-  summaryData: any[];
-  private _resultData: any;
+  summaryData: any[] = [];
+  private _resultData!: any;
   haveResults = false;
-  private _entryData: UniProtEntry;
-  infoText: any[];
+  private _entryData!: UniProtEntry;
+  infoText: any[] = [];
   textLimit = 26;
 
   @Input()
@@ -45,7 +45,10 @@ export class ResultSectionComponent {
     }
   }
 
-  constructor(private summaryService: SummaryService, private configService: ConfigurationService) { }
+  constructor(
+    private summaryService: SummaryService,
+    private configService: ConfigurationService,
+  ) {}
 
   getSum(): number {
     /**
@@ -53,7 +56,7 @@ export class ResultSectionComponent {
      * @returns sum - a number
      */
     let sum = 0;
-    this.summaryData.forEach(item => {
+    this.summaryData.forEach((item) => {
       if (item.count) {
         sum += item.count;
       }
@@ -68,8 +71,10 @@ export class ResultSectionComponent {
      */
     const categories = this.summaryService.getCategories();
 
-    this.resultData.structures.map((structure) => {
-      const categoryId = this.summaryService.getProviderCategory(structure.summary.provider);
+    this.resultData.structures.map((structure: any) => {
+      const categoryId = this.summaryService.getProviderCategory(
+        structure.summary.provider,
+      );
       const category = categories[categoryId];
 
       if (!category.count) {
@@ -78,15 +83,15 @@ export class ResultSectionComponent {
       category.count++;
     });
 
-    const tempList = [];
+    const tempList: any[] = [];
 
-    Object.keys(categories).forEach(c => {
+    Object.keys(categories).forEach((c) => {
       tempList.push(categories[c]);
     });
     return tempList;
   }
 
-  prepareInfoText(data) {
+  prepareInfoText(data: any) {
     /**
      * Parses the UniProt protein API response JSON, extracts relevant information (e.g. protein name, gene name) and saves it in
      * an array of dictionaries which powers the summary section of the page
@@ -96,92 +101,93 @@ export class ResultSectionComponent {
     const infoText = [];
 
     if (data.protein) {
-      let proteinName = data.protein.recommendedName?.fullName.value || data.protein.submittedName[0]?.fullName.value;
-      infoText.push(
-        {
-          label: 'Protein',
-          text: proteinName,
-          italic: false,
-          show_long: true,
-          source: 'UniProt',
-          source_url: 'https://www.uniprot.org/uniprot/' + data.accession
-        }
-      );
+      let proteinName =
+        data.protein.recommendedName?.fullName.value ||
+        data.protein.submittedName[0]?.fullName.value;
+      infoText.push({
+        label: "Protein",
+        text: proteinName,
+        italic: false,
+        show_long: true,
+        source: "UniProt",
+        source_url: "https://www.uniprot.org/uniprot/" + data.accession,
+      });
     }
     if (data.id) {
-      let geneName = data.gene[0].name?.value || data.gene[0].orfNames[0]?.value;
-      
-      infoText.push(
-        {
-          label: 'Gene',
-          text: geneName,
-          italic: false,
-          show_long: true,
-          source: '',
-          source_url: ''
-        }
-      );
+      let geneName =
+        data.gene[0].name?.value || data.gene[0].orfNames[0]?.value;
+
+      infoText.push({
+        label: "Gene",
+        text: geneName,
+        italic: false,
+        show_long: true,
+        source: "",
+        source_url: "",
+      });
     }
     if (data.organism) {
-      const scientificNames = data.organism.names.filter(name => name.type === 'scientific');
-      infoText.push(
-        {
-          label: 'Source organism',
-          text: scientificNames ? scientificNames[0].value : 'Not available',
-          italic: true,
-          show_long: true,
-          source: '',
-          source_url: ''
-        }
+      const scientificNames = data.organism.names.filter(
+        (name: any) => name.type === "scientific",
       );
+      infoText.push({
+        label: "Source organism",
+        text: scientificNames ? scientificNames[0].value : "Not available",
+        italic: true,
+        show_long: true,
+        source: "",
+        source_url: "",
+      });
     }
     if (data.uniprotAccession) {
-      infoText.push(
-        {
-          label: 'UniProt',
-          text: data.uniprotAccession,
-          italic: false,
-          show_long: true,
-          source: 'UniProt',
-          source_url: this.configService.getUniProtApiUrl() + data.uniprotAccession
-        }
-      );
+      infoText.push({
+        label: "UniProt",
+        text: data.uniprotAccession,
+        italic: false,
+        show_long: true,
+        source: "UniProt",
+        source_url:
+          this.configService.getUniProtApiUrl() + data.uniprotAccession,
+      });
     }
 
     if (data.comments) {
       // Default biological function text
       const bioFunction: InfoText = {
-        label: 'Biological function',
-        text: 'Not available',
+        label: "Biological function",
+        text: "Not available",
         italic: false,
         show_long: false,
-        source: '',
-        source_url: ''
+        source: "",
+        source_url: "",
       };
-      let catalyticActivity: string;
+      let catalyticActivity: string = "";
       // Set biological function and catalytic activity
       if (data.comments) {
-        data.comments.forEach(comment => {
-          if (comment.type === 'FUNCTION') {
+        data.comments.forEach((comment: any) => {
+          if (comment.type === "FUNCTION") {
             bioFunction.text = comment.text[0].value;
           }
-          if (comment.type === 'CATALYTIC_ACTIVITY') {
+          if (comment.type === "CATALYTIC_ACTIVITY") {
             catalyticActivity = comment.reaction.name;
           }
         });
-        bioFunction.text += '.';
+        bioFunction.text += ".";
       }
       //bioFunction.source_url += data.accession;
-      if (bioFunction.text === 'Not available' && catalyticActivity !== '') {
-        bioFunction.text = 'Catalytic activity: ' + catalyticActivity;
+      if (bioFunction.text === "Not available" && catalyticActivity !== "") {
+        bioFunction.text = "Catalytic activity: " + catalyticActivity;
       }
-      if (bioFunction.text !== 'Not available') {
-        const pubmed = 'PubMed:([0-9]+)';
-        const re = new RegExp(pubmed, 'g');
-        bioFunction.text = bioFunction.text.replace(re, '<a class="external-ref" href="https://www.uniprot.org/citations/$1" target="_blank">PubMed:$1</a>');
+      if (bioFunction.text !== "Not available") {
+        const pubmed = "PubMed:([0-9]+)";
+        const re = new RegExp(pubmed, "g");
+        bioFunction.text = bioFunction.text.replace(
+          re,
+          '<a class="external-ref" href="https://www.uniprot.org/citations/$1" target="_blank">PubMed:$1</a>',
+        );
       }
       infoText.push(bioFunction);
-    } 
+    }
     return infoText;
   }
 
@@ -191,14 +197,14 @@ export class ResultSectionComponent {
    */
   getShortenedText(text: string): string {
     if (!text) {
-      return;
+      return "";
     }
-    const words = text.split(' ');
+    const words = text.split(" ");
     if (words.length <= this.textLimit) {
       return text;
     }
     const wordSubset = words.slice(0, this.textLimit);
-    return wordSubset.join(' ') + ' ...';
+    return wordSubset.join(" ") + " ...";
   }
 
   /**
@@ -216,8 +222,7 @@ export class ResultSectionComponent {
    * @param text - a text object
    */
   checkIfHasToShowMore(text: InfoText): boolean {
-    const words = text.text.split(' ');
+    const words = text.text.split(" ");
     return !text.show_long && words.length >= this.textLimit;
   }
-
 }

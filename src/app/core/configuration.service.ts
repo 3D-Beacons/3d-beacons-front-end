@@ -1,44 +1,48 @@
-import { Injectable } from '@angular/core';
-
-import { environment } from 'src/environments/environment';
+import { Injectable } from "@angular/core";
+import { environment } from "../../environments/environment";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class ConfigurationService {
-
   private apiRoot: string = environment.apiHost;
 
-  constructor() { }
+  constructor() {}
 
   getUniProtSummaryUrl(): string {
-    return this.apiRoot + '/uniprot/summary/';
+    return this.apiRoot + "/uniprot/summary/";
   }
 
   getUniProtDetailsUrl(): string {
-    return this.apiRoot + '/uniprot/';
+    return this.apiRoot + "/uniprot/";
   }
 
   getSequenceSearchUrl(): string {
-    return this.apiRoot + '/sequence/search/';
+    return this.apiRoot + "/sequence/search/";
   }
 
   getSequenceSearchResultUrl(): string {
-    return this.apiRoot + '/sequence/result/';
+    return this.apiRoot + "/sequence/result/";
   }
 
   getEnsemblSearchResultUrl(): string {
-    return this.apiRoot + '/ensembl/summary/';
+    return this.apiRoot + "/ensembl/summary/";
   }
 
   getProviderColor(provider: string): string {
     switch (provider) {
-      case 'PDBe': return '#085f5c';
-      case 'SWISS-MODEL': return '#7474bf';
-      case 'PED': return '#2274a5';
-      case 'AlphaFold DB': return '#0053d6';
-      case 'SASBDB': return 'rgb(255,99,163)';
-      default: return 'rgb(100,100,100)';
+      case "PDBe":
+        return "#085f5c";
+      case "SWISS-MODEL":
+        return "#7474bf";
+      case "PED":
+        return "#2274a5";
+      case "AlphaFold DB":
+        return "#0053d6";
+      case "SASBDB":
+        return "rgb(255,99,163)";
+      default:
+        return "rgb(100,100,100)";
     }
   }
 
@@ -47,7 +51,6 @@ export class ConfigurationService {
   }
 
   getExampleAccessions(): string[] {
-    return ['P0DTD1', 'P38398'];
+    return ["P0DTD1", "P38398"];
   }
-
 }

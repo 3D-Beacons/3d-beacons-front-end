@@ -1,28 +1,27 @@
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Injectable } from "@angular/core";
+import { Observable } from "rxjs";
 
-import { DataService } from '../core/data.service';
-import { SummaryResponse } from './result-section/result-section.model';
-import { UniProtEntry } from './result-section/uniprot-data.model';
+import { DataService } from "../core/data.service";
+import { SummaryResponse } from "./result-section/result-section.model";
+import { UniProtEntry } from "./result-section/uniprot-data.model";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class SearchService {
+  searchTermValue: string = "";
+  searchByValue: string = "";
 
-  searchTermValue: string = '';
-  searchByValue: string = '';
+  constructor(private dataService: DataService) {}
 
-  constructor(private dataService: DataService) { }
-
-  setSearchTermValue(searchterm){
+  setSearchTermValue(searchterm: string) {
     this.searchTermValue = searchterm;
   }
 
-  getSearchByValue(){
+  getSearchByValue() {
     return this.searchByValue;
   }
-  setSearchByValue(searchby){
+  setSearchByValue(searchby: string) {
     this.searchByValue = searchby;
   }
 
@@ -35,7 +34,7 @@ export class SearchService {
   }
 
   submitSequenceSearch(sequence: string): Observable<any> {
-    return this.dataService.submitSequenceSearch(sequence);;
+    return this.dataService.submitSequenceSearch(sequence);
   }
 
   submitEnsemblSearch(ensmblid: string): Observable<UniProtEntry> {

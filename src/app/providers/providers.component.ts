@@ -1,69 +1,67 @@
-import { Component } from '@angular/core';
+import { Component } from "@angular/core";
 
 @Component({
-    selector: 'app-providers',
-    templateUrl: './providers.component.html',
-    styleUrls: ['./providers.component.css'],
-    standalone: false
+  selector: "app-providers",
+  templateUrl: "./providers.component.html",
+  styleUrls: ["./providers.component.scss"],
+  standalone: false,
 })
 export class ProvidersComponent {
-
   dataProviders: any;
 
   constructor() {
     this.dataProviders = [
       [
         {
-          name: 'PDBe-KB',
-          url: 'https://pdbe-kb.org'
+          name: "PDBe-KB",
+          url: "https://pdbe-kb.org",
         },
         {
-          name: 'Protein Data Bank in Europe',
-          url: 'https://www.ebi.ac.uk/pdbe/'
+          name: "Protein Data Bank in Europe",
+          url: "https://www.ebi.ac.uk/pdbe/",
         },
         {
-          name: 'AlphaFold Protein Structure Database',
-          url: 'https://www.alphafold.ebi.ac.uk/'
+          name: "AlphaFold Protein Structure Database",
+          url: "https://www.alphafold.ebi.ac.uk/",
         },
         {
-          name: 'Protein Ensemble Database',
-          url: 'https://proteinensemble.org/'
-        }
+          name: "Protein Ensemble Database",
+          url: "https://proteinensemble.org/",
+        },
       ],
       [
         {
-          name: 'SASBDB',
-          url: 'https://www.sasbdb.org/'
+          name: "SASBDB",
+          url: "https://www.sasbdb.org/",
         },
         {
-          name: 'SWISS-MODEL',
-          url: 'https://swissmodel.expasy.org/'
+          name: "SWISS-MODEL",
+          url: "https://swissmodel.expasy.org/",
         },
-        
+
         {
-          name: 'AlphaFill',
-          url: 'https://alphafill.eu/'
+          name: "AlphaFill",
+          url: "https://alphafill.eu/",
         },
         {
-          name: 'ModelArchive',
-          url: 'https://modelarchive.org/'
-        }
+          name: "ModelArchive",
+          url: "https://modelarchive.org/",
+        },
       ],
       [
         {
-          name: 'HegeLab.org',
-          url: 'http://www.hegelab.org/'
+          name: "HegeLab.org",
+          url: "http://www.hegelab.org/",
         },
         {
-          name: 'Isoform.io',
-          url: 'https://isoform.io/'
+          name: "Isoform.io",
+          url: "https://isoform.io/",
         },
         {
-          name: 'LevyLab',
-          url: 'https://shmoo.weizmann.ac.il'
-        }
-      ]
+          name: "LevyLab",
+          url: "https://shmoo.weizmann.ac.il",
+        },
+      ],
     ];
   }
-
 }
