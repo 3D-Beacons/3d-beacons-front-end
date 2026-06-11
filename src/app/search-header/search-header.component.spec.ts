@@ -1,4 +1,4 @@
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -8,6 +8,7 @@ import { of } from 'rxjs';
 import { SearchService } from '../search/search.service';
 import { SequenceService } from '../search/sequence/sequence.service';
 import { SearchHeaderComponent } from './search-header.component';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe('SearchHeaderComponent', () => {
   let component: SearchHeaderComponent;
@@ -17,19 +18,21 @@ describe('SearchHeaderComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [SearchHeaderComponent],
-      imports: [ReactiveFormsModule, HttpClientTestingModule, RouterTestingModule],
-      providers: [
+    declarations: [SearchHeaderComponent],
+    imports: [ReactiveFormsModule, RouterTestingModule],
+    providers: [
         SearchService,
         SequenceService,
         {
-          provide: ActivatedRoute,
-          useValue: {
-            params: of({id: 'P38398'})
-          }
-        }
-      ]
-    })
+            provide: ActivatedRoute,
+            useValue: {
+                params: of({ id: 'P38398' })
+            }
+        },
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting()
+    ]
+})
       .compileComponents();
   });
 

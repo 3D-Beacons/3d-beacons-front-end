@@ -1,4 +1,4 @@
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { VALID_UNIPROT } from 'mock-data/mock-input';
 import { MOCK_SUMMARY_RESPONSE } from 'mock-data/mock-summary-response';
@@ -6,6 +6,7 @@ import { MOCK_UNIPROT_RESPONSE } from 'mock-data/mock-uniprot-data-response';
 import { ConfigurationService } from './configuration.service';
 
 import { DataService } from './data.service';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe('DataService', () => {
   let service: DataService;
@@ -15,10 +16,9 @@ describe('DataService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        HttpClientTestingModule
-      ]
-    });
+    imports: [],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+});
     service = TestBed.inject(DataService);
     httpClientSpy = jasmine.createSpyObj('HttpClient', ['get']);
     httpTestingController = TestBed.inject(HttpTestingController);

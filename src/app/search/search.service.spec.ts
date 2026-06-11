@@ -1,10 +1,11 @@
 
 import { TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 
 import { SearchService } from './search.service';
 import { DataService } from '../core/data.service';
 import { VALID_UNIPROT } from 'mock-data/mock-input';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe('SearchService', () => {
   let service: SearchService;
@@ -12,9 +13,9 @@ describe('SearchService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [DataService],
-      imports: [HttpClientTestingModule]
-    });
+    imports: [],
+    providers: [DataService, provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+});
     service = TestBed.inject(SearchService);
     dataService = TestBed.inject(DataService);
   });

@@ -1,11 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SequenceComponent } from './sequence.component';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { ActivatedRoute } from '@angular/router';
 import { of } from 'rxjs';
 import { SearchService } from '../search.service';
 import { DataService } from 'src/app/core/data.service';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe('SequenceComponent', () => {
   let component: SequenceComponent;
@@ -16,16 +17,15 @@ describe('SequenceComponent', () => {
   
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SequenceComponent ],
-      imports: [ HttpClientTestingModule ],
-      providers: [{
-        provide: ActivatedRoute,
-        useValue: {
-          params: of({id: 'someJobId'})
-        }
-      }]
-    
-    })
+    declarations: [SequenceComponent],
+    imports: [],
+    providers: [{
+            provide: ActivatedRoute,
+            useValue: {
+                params: of({ id: 'someJobId' })
+            }
+        }, provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+})
     .compileComponents();
     service = TestBed.inject(SearchService);
     dataService = TestBed.inject(DataService);

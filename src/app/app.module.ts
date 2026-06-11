@@ -1,7 +1,7 @@
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { Routes, RouterModule } from '@angular/router';
 import { MatTableModule } from '@angular/material/table';
 import { MatSelectModule } from '@angular/material/select';
@@ -36,44 +36,38 @@ const routes: Routes = [
   { path: 'ensembl/:id', component: EnsemblComponent }
 ];
 
-@NgModule({
-  declarations: [
-    AppComponent,
-    SearchComponent,
-    ResultSectionComponent,
-    SummarySectionComponent,
-    HomeComponent,
-    StructuresSectionComponent,
-    StructuresSectionComponent,
-    DocsComponent,
-    ProvidersComponent,
-    GuidelinesComponent,
-    SequenceComponent,
-    AppHeaderComponent,
-    SearchHeaderComponent,
-    SequenceCardsComponent,
-    EnsemblComponent,
-    SearchPaginationComponent
-  ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    CoreModule,
-    RouterModule.forRoot(routes, { scrollOffset: [0, 0], scrollPositionRestoration: "top", anchorScrolling: 'enabled' }),
-    SharedModule,
-    BrowserAnimationsModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatSelectModule
-  ],
-  providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: BeaconsInterceptor, multi: true },
-    Title
-  ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  exports: [RouterModule],
-  bootstrap: [AppComponent]
-})
+@NgModule({ declarations: [
+        AppComponent,
+        SearchComponent,
+        ResultSectionComponent,
+        SummarySectionComponent,
+        HomeComponent,
+        StructuresSectionComponent,
+        StructuresSectionComponent,
+        DocsComponent,
+        ProvidersComponent,
+        GuidelinesComponent,
+        SequenceComponent,
+        AppHeaderComponent,
+        SearchHeaderComponent,
+        SequenceCardsComponent,
+        EnsemblComponent,
+        SearchPaginationComponent
+    ],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA],
+    exports: [RouterModule],
+    bootstrap: [AppComponent], imports: [BrowserModule,
+        FormsModule,
+        ReactiveFormsModule,
+        CoreModule,
+        RouterModule.forRoot(routes, { scrollOffset: [0, 0], scrollPositionRestoration: "top", anchorScrolling: 'enabled' }),
+        SharedModule,
+        BrowserAnimationsModule,
+        MatTableModule,
+        MatPaginatorModule,
+        MatSelectModule], providers: [
+        { provide: HTTP_INTERCEPTORS, useClass: BeaconsInterceptor, multi: true },
+        Title,
+        provideHttpClient(withInterceptorsFromDi())
+    ] })
 export class AppModule { }

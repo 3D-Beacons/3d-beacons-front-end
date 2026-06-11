@@ -1,4 +1,4 @@
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { DebugElement } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -16,6 +16,7 @@ import { MOCK_SUMMARY_RESPONSE } from 'mock-data/mock-summary-response';
 import { ConfigurationService } from '../core/configuration.service';
 import {ActivatedRoute} from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe('SearchComponent', () => {
   let component: SearchComponent;
@@ -31,18 +32,20 @@ describe('SearchComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [SearchComponent],
-      imports: [ReactiveFormsModule, HttpClientTestingModule, RouterTestingModule],
-      providers: [
+    declarations: [SearchComponent],
+    imports: [ReactiveFormsModule, RouterTestingModule],
+    providers: [
         SearchService,
         {
-          provide: ActivatedRoute,
-          useValue: {
-            params: of({id: 'P38398'})
-          }
-        }
-      ]
-    })
+            provide: ActivatedRoute,
+            useValue: {
+                params: of({ id: 'P38398' })
+            }
+        },
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting()
+    ]
+})
       .compileComponents();
   });
 

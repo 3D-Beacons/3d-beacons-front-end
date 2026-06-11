@@ -1,10 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 
 import { MOCK_SUMMARY_RESPONSE } from 'mock-data/mock-summary-response';
 import { MOCK_SUMMARY_CATEGORIES } from 'mock-data/mock-summary-categories';
 import { MOCK_UNIPROT_RESPONSE } from 'mock-data/mock-uniprot-data-response';
 import { ResultSectionComponent } from './result-section.component';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe('ResultSectionComponent', () => {
   let component: ResultSectionComponent;
@@ -12,9 +13,10 @@ describe('ResultSectionComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ResultSectionComponent],
-      imports: [HttpClientTestingModule]
-    })
+    declarations: [ResultSectionComponent],
+    imports: [],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+})
       .compileComponents();
   });
 
