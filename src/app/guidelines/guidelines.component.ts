@@ -1,16 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 
 @Component({
-    selector: 'app-guidelines',
-    templateUrl: './guidelines.component.html',
-    styleUrls: ['./guidelines.component.css'],
-    standalone: false
+  selector: "app-guidelines",
+  templateUrl: "./guidelines.component.html",
+  styleUrls: ["./guidelines.component.scss"],
+  standalone: false,
 })
 export class GuidelinesComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }
