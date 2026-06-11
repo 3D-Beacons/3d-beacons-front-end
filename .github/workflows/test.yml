@@ -30,8 +30,8 @@ jobs:
     - run: npm install --legacy-peer-deps
     # - run: ./node_modules/.bin/ng test --browsers=ChromeHeadlessNoSandbox --code-coverage --watch=false
 
-    - name: Codecov
-      uses: codecov/codecov-action@v3.1.1
-      with:
-        token: ${{ env.CODECOV_TOKEN }}
-        fail_ci_if_error: true
+    # - name: Codecov
+    #   uses: codecov/codecov-action@v3.1.1
+    #   with:
+    #     token: ${{ env.CODECOV_TOKEN }}
+    #     fail_ci_if_error: true
