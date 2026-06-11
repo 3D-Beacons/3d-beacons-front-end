@@ -11,9 +11,10 @@ import { SearchService } from '../search.service';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-sequence',
-  templateUrl: './sequence.component.html',
-  styleUrls: ['./sequence.component.css']
+    selector: 'app-sequence',
+    templateUrl: './sequence.component.html',
+    styleUrls: ['./sequence.component.css'],
+    standalone: false
 })
 export class SequenceComponent implements OnInit, OnDestroy {
 

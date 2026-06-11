@@ -1,10 +1,11 @@
 import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
-  selector: 'app-search-pagination',
-  templateUrl: './search-pagination.component.html',
-  styleUrls: ['./search-pagination.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'app-search-pagination',
+    templateUrl: './search-pagination.component.html',
+    styleUrls: ['./search-pagination.component.css'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class SearchPaginationComponent {
   @Input()  paginationData: any;

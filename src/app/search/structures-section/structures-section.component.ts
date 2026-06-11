@@ -5,9 +5,10 @@ import * as pvFormat from '../result-section/protvista.model';
 import { Overview, Structure, SummaryResponse } from '../result-section/result-section.model';
 
 @Component({
-  selector: 'app-structures-section',
-  templateUrl: './structures-section.component.html',
-  styleUrls: ['./structures-section.component.css']
+    selector: 'app-structures-section',
+    templateUrl: './structures-section.component.html',
+    styleUrls: ['./structures-section.component.css'],
+    standalone: false
 })
 export class StructuresSectionComponent implements OnDestroy {
   private _resultData: any;

@@ -6,9 +6,10 @@ import { SummaryService } from './summary-section/summary-section.service';
 import { UniProtEntry } from './uniprot-data.model';
 
 @Component({
-  selector: 'app-result-section',
-  templateUrl: './result-section.component.html',
-  styleUrls: ['./result-section.component.css']
+    selector: 'app-result-section',
+    templateUrl: './result-section.component.html',
+    styleUrls: ['./result-section.component.css'],
+    standalone: false
 })
 export class ResultSectionComponent {
   summaryData: any[];

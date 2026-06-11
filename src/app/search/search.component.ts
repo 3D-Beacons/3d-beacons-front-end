@@ -10,9 +10,10 @@ import { SearchHeaderComponent } from '../search-header/search-header.component'
 import { SequenceService } from './sequence/sequence.service';
 
 @Component({
-  selector: 'app-search',
-  templateUrl: './search.component.html',
-  styleUrls: ['./search.component.css']
+    selector: 'app-search',
+    templateUrl: './search.component.html',
+    styleUrls: ['./search.component.css'],
+    standalone: false
 })
 export class SearchComponent implements OnInit {
   searchForm: FormGroup = new FormGroup({

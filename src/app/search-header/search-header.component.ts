@@ -13,9 +13,10 @@ import { Subscription } from 'rxjs';
 declare var gtag;
 
 @Component({
-  selector: 'app-search-header',
-  templateUrl: './search-header.component.html',
-  styleUrls: ['./search-header.component.css']
+    selector: 'app-search-header',
+    templateUrl: './search-header.component.html',
+    styleUrls: ['./search-header.component.css'],
+    standalone: false
 })
 export class SearchHeaderComponent implements OnInit  {
 

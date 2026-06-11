@@ -2,10 +2,11 @@ import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core
 import { SearchPaginationComponent } from '../../search-pagination/search-pagination.component';
 
 @Component({
-  selector: 'app-sequence-cards',
-  templateUrl: './sequence-cards.component.html',
-  styleUrls: ['./sequence-cards.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'app-sequence-cards',
+    templateUrl: './sequence-cards.component.html',
+    styleUrls: ['./sequence-cards.component.css'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class SequenceCardsComponent implements OnInit {
   @Input() res: any;

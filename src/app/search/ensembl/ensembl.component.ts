@@ -10,9 +10,10 @@ import { MatPaginator } from '@angular/material/paginator';
 import { Title } from '@angular/platform-browser';
 
 @Component({
-  selector: 'app-ensembl',
-  templateUrl: './ensembl.component.html',
-  styleUrls: ['./ensembl.component.css']
+    selector: 'app-ensembl',
+    templateUrl: './ensembl.component.html',
+    styleUrls: ['./ensembl.component.css'],
+    standalone: false
 })
 export class EnsemblComponent {
   private sub: any;

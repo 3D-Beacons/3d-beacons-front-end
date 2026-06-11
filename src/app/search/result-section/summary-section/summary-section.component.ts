@@ -1,9 +1,10 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-summary-section',
-  templateUrl: './summary-section.component.html',
-  styleUrls: ['./summary-section.component.css']
+    selector: 'app-summary-section',
+    templateUrl: './summary-section.component.html',
+    styleUrls: ['./summary-section.component.css'],
+    standalone: false
 })
 export class SummarySectionComponent {
 
