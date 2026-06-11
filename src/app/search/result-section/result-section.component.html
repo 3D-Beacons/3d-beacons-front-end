@@ -1,12 +1,13 @@
-<div *ngIf="haveResults" class="start-info">
+@if (haveResults) {
+  <div class="start-info">
     <div class="row title-container">
-        <div class="small-12 columns">
-          <h3>
-            {{ resultData.uniprot_entry.ac }} ({{ resultData.uniprot_entry.id }}) - 
-            <span id="sum-count">{{getSum()}}</span>
-            Structures available
-          </h3>
-        </div>
+      <div class="small-12 columns">
+        <h3>
+          {{ resultData.uniprot_entry.ac }} ({{ resultData.uniprot_entry.id }}) -
+          <span id="sum-count">{{getSum()}}</span>
+          Structures available
+        </h3>
+      </div>
     </div>
     <div class="row" class="info-box-container">
       <div class="row">
@@ -14,48 +15,63 @@
           <p class="info-box-title">Information</p>
         </div>
       </div>
-      <div class="row info-box-row" *ngFor="let text of infoText">
-        <div class="columns columns small-5 medium-2 info-box-label">{{text.label}}</div>
-        <div class="columns small-7 medium-10 info-box-text">
-          <span>
-            <span *ngIf="text.show_long">
-              <span *ngIf="text.italic">
-                <i [innerHTML]="text.text"></i>
-              </span>
-              <span *ngIf="!text.italic">
-                <span [innerHTML]="text.text"></span>
-              </span>
-              <h3 class="break-line"></h3>
-              <a *ngIf="getShortenedText(text.text) != text.text" class="showMoreLink" (click)="switchText(text)">
-                Show less 
-                <svg class="showicon" viewBox="0 0 25 25">
-                  <path fill="currentColor"
-                    d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"/>
-                  </svg>  
-              </a>
+      @for (text of infoText; track text) {
+        <div class="row info-box-row">
+          <div class="columns columns small-5 medium-2 info-box-label">{{text.label}}</div>
+          <div class="columns small-7 medium-10 info-box-text">
+            <span>
+              @if (text.show_long) {
+                <span>
+                  @if (text.italic) {
+                    <span>
+                      <i [innerHTML]="text.text"></i>
+                    </span>
+                  }
+                  @if (!text.italic) {
+                    <span>
+                      <span [innerHTML]="text.text"></span>
+                    </span>
+                  }
+                  <h3 class="break-line"></h3>
+                  @if (getShortenedText(text.text) != text.text) {
+                    <a class="showMoreLink" (click)="switchText(text)">
+                      Show less
+                      <svg class="showicon" viewBox="0 0 25 25">
+                        <path fill="currentColor"
+                          d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"/>
+                      </svg>
+                    </a>
+                  }
+                </span>
+              }
+              @if (!text.show_long) {
+                <span>
+                  <span [innerHTML]="getShortenedText(text.text)"></span>
+                  <h3 class="break-line"></h3>
+                  @if (checkIfHasToShowMore(text)) {
+                    <a class="showMoreLink" (click)="switchText(text)">
+                      Show more
+                      <svg class="showicon" viewBox="0 0 25 25">
+                        <path fill="currentColor"
+                          d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"/>
+                      </svg>
+                    </a>
+                  }
+                </span>
+              }
             </span>
-            <span *ngIf="!text.show_long">
-              <span [innerHTML]="getShortenedText(text.text)"></span>
-              <h3 class="break-line"></h3>
-              <a class="showMoreLink" *ngIf="checkIfHasToShowMore(text)" (click)="switchText(text)">
-                Show more 
-                <svg class="showicon" viewBox="0 0 25 25">
-                  <path fill="currentColor"
-                    d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"/>
-                </svg>
-              </a>
-            </span>
-          </span>
-
-          <span *ngIf="text.source">
-            <h3 class="break-line"></h3>
-            <a target="_blank" href="{{text.source_url}}" class="external-ref">
-              Go to {{text.source}} &nbsp;<i class="icon icon-common" data-icon="&#xf35d;"></i>
-            </a>
-          </span>
-
+            @if (text.source) {
+              <span>
+                <h3 class="break-line"></h3>
+                <a target="_blank" href="{{text.source_url}}" class="external-ref">
+                  Go to {{text.source}} &nbsp;<i class="icon icon-common" data-icon="&#xf35d;"></i>
+                </a>
+              </span>
+            }
+          </div>
         </div>
-      </div>
+      }
     </div>
     <app-summary-section [summaryData]="summaryData"></app-summary-section>
-</div>
+  </div>
+}

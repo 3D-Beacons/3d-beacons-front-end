@@ -1,9 +1,11 @@
 <div class="row summary-boxes">
-  <div *ngFor="let data of summaryData" class="medium-3 small-6 columns summary-box">
-    <i class="{{ data.icon }}" [ngStyle]="getIconStyle(data.count)"></i>
-    <br>
-    <span class="summary-label">{{ data.count ? data.count : 0 }}</span>
-    <br>
-    <span class="summary-label">{{ data.displayName }}</span>
-  </div>
-</div>
+  @for (data of summaryData; track data) {
+    <div class="medium-3 small-6 columns summary-box">
+      <i class="{{ data.icon }}" [ngStyle]="getIconStyle(data.count)"></i>
+      <br>
+        <span class="summary-label">{{ data.count ? data.count : 0 }}</span>
+        <br>
+          <span class="summary-label">{{ data.displayName }}</span>
+        </div>
+      }
+    </div>
