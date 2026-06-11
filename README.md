@@ -6,13 +6,13 @@
 [![Code Coverage](https://codecov.io/gh/3D-Beacons/3d-beacons-front-end/branch/main/graph/badge.svg?token=3V3SG52F2D)](https://codecov.io/gh/3D-Beacons/3d-beacons-front-end)
 
 ## Publication
-**3D-Beacons: Decreasing the gap between protein sequences and structures through a federated network of protein structure data resources**<br> 
+**3D-Beacons: Decreasing the gap between protein sequences and structures through a federated network of protein structure data resources**<br>
 [Mihaly Varadi](https://github.com/mvaradi), [Sreenath Nair](https://github.com/sreenathnair), [Ian Sillitoe](https://github.com/orgs/3D-Beacons/people/sillitoe), [Gerardo Tauriello](https://github.com/orgs/3D-Beacons/people/gtauriello), Stephen Anyango, [Stefan Bienert](https://github.com/orgs/3D-Beacons/people/bienchen), Clemente Borges, Mandar Deshpande, Tim Green, Demis Hassabis, Andras Hatos, Tamas Hegedus, Maarten L Hekkelman, Robbie Joosten, John Jumper, Agata Laydon, Dmitry Molodenskiy, Damiano Piovesan, Edoardo Salladini, Steven L. Salzberg, Markus J Sommer, Martin Steinegger, Erzsebet Suhajda, Dmitri Svergun, Luiggi Tenorio-Ku, Silvio Tosatto, Kathryn Tunyasuvunakool, [Andrew Mark Waterhouse](https://github.com/orgs/3D-Beacons/people/awaterho), Augustin Žídek, Torsten Schwede, Christine Orengo, Sameer Velankar<br>
 3 August 2022; BioRxiv https://doi.org/10.1101/2022.08.01.501973
 
 ## Getting started
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.1.3.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 21.2.7
 
 ## Before you start
 
