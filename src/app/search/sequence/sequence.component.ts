@@ -6,7 +6,7 @@ import {
   ViewChild,
 } from "@angular/core";
 import { MatTableDataSource } from "@angular/material/table";
-import { ActivatedRoute, Router } from "@angular/router";
+import { ActivatedRoute } from "@angular/router";
 import { SequenceService } from "./sequence.service";
 import { SequenceDataFormatterService } from "./sequence-data-formatter.service";
 
