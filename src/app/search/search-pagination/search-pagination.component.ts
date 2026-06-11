@@ -1,21 +1,28 @@
-import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  Input,
+  Output,
+  EventEmitter,
+  ChangeDetectionStrategy,
+} from "@angular/core";
 
 @Component({
-  selector: 'app-search-pagination',
-  templateUrl: './search-pagination.component.html',
-  styleUrls: ['./search-pagination.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  selector: "app-search-pagination",
+  templateUrl: "./search-pagination.component.html",
+  styleUrls: ["./search-pagination.component.scss"],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class SearchPaginationComponent {
-  @Input()  paginationData: any;
+  @Input() paginationData: any;
   @Output() paginationDataChange = new EventEmitter<any>();
- 
+
   @Output()
-  selectedPage:EventEmitter<Object> = new EventEmitter();
+  selectedPage: EventEmitter<Object> = new EventEmitter();
 
-  constructor() { }
+  constructor() {}
 
-  paginateTo(pageIndex, source){
-    this.selectedPage.emit({pageIndex: pageIndex, source: source});
+  paginateTo(pageIndex: number, source: any) {
+    this.selectedPage.emit({ pageIndex: pageIndex, source: source });
   }
 }

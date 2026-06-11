@@ -1,48 +1,48 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from "@angular/core";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class SummaryService {
   private categories = {
     expr: {
-      id: 'expr',
-      displayName: 'Experimentally Determined Structures',
-      icon: 'icon icon-common icon-analyse-percent_100'
+      id: "expr",
+      displayName: "Experimentally Determined Structures",
+      icon: "icon icon-common icon-analyse-percent_100",
     },
     ensembl: {
-      id: 'ensembl',
-      displayName: 'Conformational Ensembles',
-      icon: 'icon icon-common icon-analyse-percent_40'
+      id: "ensembl",
+      displayName: "Conformational Ensembles",
+      icon: "icon icon-common icon-analyse-percent_40",
     },
     template: {
-      id: 'template',
-      displayName: 'Template-based models',
-      icon: 'icon icon-common icon-systems'
+      id: "template",
+      displayName: "Template-based models",
+      icon: "icon icon-common icon-systems",
     },
     abinitio: {
-      id: 'abinitio',
-      displayName: 'Ab-initio Models',
-      icon: 'icon icon-common icon-systems'
-    }
+      id: "abinitio",
+      displayName: "Ab-initio Models",
+      icon: "icon icon-common icon-systems",
+    },
   };
 
-  constructor() { }
+  constructor() {}
 
   getProviderCategory(providerId: string): string {
-    let providerCategories = {
-      'PDBe': 'expr',
-      'SWISS-MODEL': 'template',
-      'PED': 'ensembl',
-      'Genome3D': 'template',
-      'AlphaFold DB': 'abinitio',
-      'SASBDB': 'expr',
-      'AlphaFill': 'template',
-      'isoform.io': 'abinitio',
-      'HEGELAB': 'abinitio',
-      'ModelArchive': 'abinitio',
-      'levylab': 'abinitio',
-    }
+    let providerCategories: any = {
+      PDBe: "expr",
+      "SWISS-MODEL": "template",
+      PED: "ensembl",
+      Genome3D: "template",
+      "AlphaFold DB": "abinitio",
+      SASBDB: "expr",
+      AlphaFill: "template",
+      "isoform.io": "abinitio",
+      HEGELAB: "abinitio",
+      ModelArchive: "abinitio",
+      levylab: "abinitio",
+    };
     return providerCategories[providerId];
   }
 

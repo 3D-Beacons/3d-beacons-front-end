@@ -1,5 +1,6 @@
-
-<app-loading-dialog *ngIf="showLoader"></app-loading-dialog>
+@if (showLoader) {
+  <app-loading-dialog></app-loading-dialog>
+}
 
 <div class="header-search-section">
   <div class="row">
@@ -8,39 +9,61 @@
         <div class="vf-form__item category-select-container">
           <mat-form-field>
             <mat-select [(value)]="searchBy" class="category-select">
-              <mat-option value="UniProt accession">UniProt accession</mat-option>
+              <mat-option value="UniProt accession"
+                >UniProt accession</mat-option
+              >
               <mat-option value="sequence">Sequence search</mat-option>
               <!-- <mat-option value="Ensembl identifier">Ensembl identifier</mat-option> -->
             </mat-select>
           </mat-form-field>
-        </div>  
+        </div>
 
         <div class="columns small-10 no-left-padding float-left search-input">
-          <input [formControl]="searchTerm" class="search-input-field" type="search"
-            placeholder="Find structures by {{searchBy}}" (keyup.enter)="onSearch($event)">
+          <input
+            [formControl]="searchTerm"
+            class="search-input-field"
+            type="search"
+            placeholder="Find structures by {{ searchBy }}"
+            (keyup.enter)="onSearch($event)"
+          />
         </div>
 
         <div class="columns small-1 float-right search-button-wrapper">
-          <button class="vf-search__button | vf-button vf-button--secondary" (click)="onSearch($event)" id="search-button">
+          <button
+            class="vf-search__button | vf-button vf-button--secondary"
+            (click)="onSearch($event)"
+            id="search-button"
+          >
             <span class="vf-button__text search-button-text">Find</span>
           </button>
-        </div>  
-
+        </div>
       </form>
     </div>
     <div class="small-12 medium-10 large-8 columns search-examples last-column">
-      <span *ngIf="searchBy === 'UniProt accession' " class="examples-chip">UniProt accession examples: <br class="mobileviewbreak" />
-        <a routerLink="/search/P38398" class="search-example">P38398</a>
-        <a routerLink="/search/P01308" class="search-example">P01308</a>
-       </span>
+      @if (searchBy === "UniProt accession") {
+        <span class="examples-chip"
+          >UniProt accession examples: <br class="mobileviewbreak" />
+          <a routerLink="/search/P38398" class="search-example">P38398</a>
+          <a routerLink="/search/P01308" class="search-example">P01308</a>
+          <a routerLink="/search/P24666" class="search-example">P24666</a>
+          <a routerLink="/search/Q14676" class="search-example">Q14676</a>
+        </span>
+      }
 
-       <!-- <span *ngIf="searchBy === 'Ensembl identifier' " class="examples-chip">Ensembl identifier example: <br class="mobileviewbreak" />
-        <a routerLink="/ensembl/ENSG00000288864" class="search-example">ENSG00000288864</a>
-       </span> -->
+      <!-- <span *ngIf="searchBy === 'Ensembl identifier' " class="examples-chip">Ensembl identifier example: <br class="mobileviewbreak" />
+      <a routerLink="/ensembl/ENSG00000288864" class="search-example">ENSG00000288864</a>
+    </span> -->
 
-      <span  *ngIf="searchBy === 'sequence' " class="examples-chip">Sequence example: <br class="mobileviewbreak" />
-        <a (click)="doSequenceSearch('MNMLVINGTPRKHGRTRIAASYIAALYHTA')" class="search-example">MNMLVINGTPRKHGR...</a>
-       </span>
+      @if (searchBy === "sequence") {
+        <span class="examples-chip"
+          >Sequence example: <br class="mobileviewbreak" />
+          <a
+            (click)="doSequenceSearch('MNMLVINGTPRKHGRTRIAASYIAALYHTA')"
+            class="search-example"
+            >MNMLVINGTPRKHGR...</a
+          >
+        </span>
+      }
     </div>
   </div>
 </div>

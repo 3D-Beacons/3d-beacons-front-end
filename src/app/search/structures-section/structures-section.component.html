@@ -1,30 +1,34 @@
-<div class="viewer-row" *ngIf="resultData">
+@if (resultData) {
+  <div class="viewer-row">
     <p class="display-label-text">
       Structure <span class="name-text">{{displayedEntry}}</span>
     </p>
     <p class="functional-download-icon">
-      <a download target="_blank" href="{{displayedEntryUrl}}" class="download-link functional-download-icon"> Download mmCIF 
-      <i class="icon icon-common icon-download-alt functional-download-icon" data-icon="&#xf06e;"></i></a>
-    </p>
-    <!-- <p id="display-label">
+      <a download target="_blank" href="{{displayedEntryUrl}}" class="download-link functional-download-icon"> Download mmCIF
+        <i class="icon icon-common icon-download-alt functional-download-icon" data-icon="&#xf06e;"></i></a>
+      </p>
+      <!-- <p id="display-label">
       Now displaying structure <span class="display-label-text">{{displayedEntry}}</span>.
       Click to download: <a download target="_blank" href="{{displayedEntryUrl}}">
       <i class="icon icon-common icon-download functional-download-icon" data-icon="&#xf06e;"></i></a>
     </p> -->
-    <div *ngIf="help">
-      <p>
-        Please click on the <i class="icon icon-common example-icon" data-icon="&#xf06e;"></i>
-        eye icon on the sequence feature viewer below to display another structure.
-      </p>
-      <p>You can also download other structures by clicking on the
-        <i class="icon icon-common icon-download example-icon" data-icon="&#xf06e;"></i> icons
-        on the sequence feature viewer below.
-      </p>
-    </div>
-</div>
+    @if (help) {
+      <div>
+        <p>
+          Please click on the <i class="icon icon-common example-icon" data-icon="&#xf06e;"></i>
+          eye icon on the sequence feature viewer below to display another structure.
+        </p>
+        <p>You can also download other structures by clicking on the
+          <i class="icon icon-common icon-download example-icon" data-icon="&#xf06e;"></i> icons
+          on the sequence feature viewer below.
+        </p>
+      </div>
+    }
+  </div>
+}
 
 <div class="viewer-row">
-    <div id="molstar-container" class="small-12 medium-12 large-8 molstar-container"></div>
-    <div class="appPvContainer pvc-container small-12 medium-12 large-8"></div>
+  <div id="molstar-container" class="small-12 medium-12 large-8 molstar-container"></div>
+  <div class="appPvContainer pvc-container small-12 medium-12 large-8"></div>
 </div>
 

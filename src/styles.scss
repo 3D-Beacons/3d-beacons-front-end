@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 
 .masthead {
-    background-color: rgb(87 187 45) !important;
+  background-color: rgb(87 187 45) !important;
 }
 
 /* .padding-small {
@@ -11,52 +11,57 @@
 } */
 
 .main-search {
-    width: 100%;
-    max-width: 600px;
-    margin: 10px;
+  width: 100%;
+  max-width: 600px;
+  margin: 10px;
 }
 
-button:disabled, input:disabled {
-    opacity: 0.5 !important;
+button:disabled,
+input:disabled {
+  opacity: 0.5 !important;
 }
 
 a {
-    text-decoration: none !important;
+  text-decoration: none !important;
 }
 
-@media (max-width: 550px){
+@media (max-width: 550px) {
   .protvistaCol1 {
     width: 60% !important;
   }
 }
 
-@media (min-width: 551px) and (max-width: 700px){
+@media (min-width: 551px) and (max-width: 700px) {
   .protvistaCol1 {
     width: 38% !important;
   }
 }
 
-@media (min-width: 701px) and (max-width: 1000px){
+@media (min-width: 701px) and (max-width: 1000px) {
   .protvistaCol1 {
     width: 30% !important;
   }
 }
 
-@media (min-width: 1001px){
+@media (min-width: 1001px) {
   .protvistaCol1 {
     width: 25% !important;
   }
 }
 
-.external-ref{
+.external-ref {
   font-weight: 500;
-  color: #0F5C5A;
+  color: #0f5c5a;
   text-decoration: none;
-  border-bottom: 1px solid #0F5C5A;
+  border-bottom: 1px solid #0f5c5a;
   font-size: smaller;
 }
 
-.external-ref:hover{
+.external-ref:hover {
   color: #ffae00;
   border-bottom: 2px solid #ffae00;
+}
+
+.mat-mdc-form-field {
+  height: 44px !important;
 }

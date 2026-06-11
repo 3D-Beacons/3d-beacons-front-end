@@ -1,34 +1,34 @@
-import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import { Component, OnInit } from "@angular/core";
+import { FormControl, FormGroup, Validators } from "@angular/forms";
 
-import {ConfigurationService} from '../core/configuration.service';
-import { Overview, Structure, SummaryResponse} from './result-section/result-section.model';
-import {SearchService} from './search.service';
-import {ActivatedRoute, Router} from '@angular/router';
-import { UniProtEntry } from './result-section/uniprot-data.model';
-import { SearchHeaderComponent } from '../search-header/search-header.component';
-import { SequenceService } from './sequence/sequence.service';
+import { ConfigurationService } from "../core/configuration.service";
+import { SummaryResponse } from "./result-section/result-section.model";
+import { SearchService } from "./search.service";
+import { ActivatedRoute, Router } from "@angular/router";
+import { UniProtEntry } from "./result-section/uniprot-data.model";
+import { SequenceService } from "./sequence/sequence.service";
 
 @Component({
-  selector: 'app-search',
-  templateUrl: './search.component.html',
-  styleUrls: ['./search.component.css']
+  selector: "app-search",
+  templateUrl: "./search.component.html",
+  styleUrls: ["./search.component.scss"],
+  standalone: false,
 })
 export class SearchComponent implements OnInit {
   searchForm: FormGroup = new FormGroup({
-    searchTerm: new FormControl(null, Validators.required)
+    searchTerm: new FormControl(null, Validators.required),
   });
-  searchBy: string;
-  searchTermValue: string;
+  searchBy!: string;
+  searchTermValue!: string;
 
-  accession: string;
-  private sub: any;
-  error: string = null;
-  resultData: SummaryResponse = null;
+  accession!: string;
+  private sub!: any;
+  error: string | null = null;
+  resultData: SummaryResponse | null = null;
   isFetching: boolean = false;
-  exampleAccessions: string[];
-  entryData: UniProtEntry = null;
-  sequence: string = null;
+  exampleAccessions: string[] = [];
+  entryData: UniProtEntry | any = null;
+  sequence: string | any = null;
   isSequenceSearch: boolean = false;
   isEnsembl: boolean = false;
 
@@ -37,17 +37,19 @@ export class SearchComponent implements OnInit {
     private searchService: SearchService,
     private sequenceService: SequenceService,
     private configService: ConfigurationService,
-    private router: Router) {
-  }
+    private router: Router,
+  ) {}
 
   ngOnInit() {
-    this.sequenceService.setSearchTermValue(this.searchForm.controls.searchTerm.value);
+    this.sequenceService.setSearchTermValue(
+      this.searchForm.controls.searchTerm.value,
+    );
     this.searchBy = this.searchService.getSearchByValue();
-    this.sub = this.route.params.subscribe(params => {
-      if(params.id){
+    this.sub = this.route.params.subscribe((params) => {
+      if (params.id) {
         this.accession = params.id;
         this.doAccessionSearch(this.accession);
-      }else{
+      } else {
         return;
       }
     });
@@ -60,7 +62,7 @@ export class SearchComponent implements OnInit {
   // }
 
   doAccessionSearch(query?: string) {
-    this.searchTermValue = query;
+    this.searchTermValue = query ?? "";
     if (query == undefined) {
       query = this.searchForm.controls.searchTerm.value;
     } else {
@@ -69,30 +71,33 @@ export class SearchComponent implements OnInit {
     this.isFetching = true;
     this.searchForm.disable();
     this.error = null;
-    this.searchService.getUniProtEntry(query).subscribe(
-      entryData => {
+    this.searchService.getUniProtEntry(query ?? "").subscribe(
+      (entryData) => {
         this.entryData = entryData;
-        this.searchService.getUniProtSummary(query).subscribe(
-          summaryData => {
+        this.searchService.getUniProtSummary(query ?? "").subscribe(
+          (summaryData) => {
             let tempSummaryData: SummaryResponse = summaryData;
-            tempSummaryData.uniprot_entry.sequence_length = entryData.sequence.length;
-            tempSummaryData.uniprot_entry.sequence = entryData.sequence.sequence;
+            tempSummaryData.uniprot_entry.sequence_length =
+              entryData.sequence.length;
+            tempSummaryData.uniprot_entry.sequence =
+              entryData.sequence.sequence;
             tempSummaryData.uniprot_entry.id = entryData.id;
             this.isFetching = false;
             this.searchForm.enable();
             this.resultData = tempSummaryData;
             this.isSequenceSearch = false;
           },
-          err => {
+          (err) => {
             this.isFetching = false;
             this.isSequenceSearch = false;
             this.handleError("No Uniprot summary data found!");
-          });
+          },
+        );
       },
-      err => {
+      (err) => {
         this.isFetching = false;
         this.handleError("No Uniprot entry data found!");
-      }
+      },
     );
   }
 
@@ -103,5 +108,4 @@ export class SearchComponent implements OnInit {
     this.searchForm.enable();
     this.resultData = null;
   }
-
 }

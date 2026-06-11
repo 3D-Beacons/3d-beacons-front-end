@@ -1,138 +1,158 @@
-<div class="row title-container" *ngIf="!is_searchprogress && !is_noresult && !showErrorNoJobid && job_id">
-  <div class="small-12 columns">
-    <h3>
-      Search results for job ID  {{job_id}}
-    </h3>
-    <h4 *ngIf="card_data_length > 1" class="subtitle-heading">BLASTP - {{card_data_length}} results found in UniProtKB</h4>
-    <h4 *ngIf="card_data_length === 1" class="subtitle-heading">BLASTP - {{card_data_length}} result found in UniProtKB</h4>
-  </div>
-</div>
-
-<div *ngIf="!is_searchprogress && cardData">
-  <div *ngFor="let card of cardDataChunk; let indexOfelement=index;">
-    <app-sequence-cards [res]="card"></app-sequence-cards>
-    <div class="row" [ngClass]="indexOfelement < cardDataChunk.length - 1 ? '' : 'lastcard'">
-      <div class="small-12" *ngIf="indexOfelement < cardDataChunk.length - 1">
-          <hr class="cardhr">
-      </div>
+@if (!is_searchprogress && !is_noresult && !showErrorNoJobid && job_id) {
+  <div class="row title-container">
+    <div class="small-12 columns">
+      <h3>
+        Search results for job ID  {{job_id}}
+      </h3>
+      @if (card_data_length > 1) {
+        <h4 class="subtitle-heading">BLASTP - {{card_data_length}} results found in UniProtKB</h4>
+      }
+      @if (card_data_length === 1) {
+        <h4 class="subtitle-heading">BLASTP - {{card_data_length}} result found in UniProtKB</h4>
+      }
     </div>
   </div>
-  <div class="paginatelast medium-10">
-    <app-search-pagination [(paginationData)]="paginationData" (selectedPage)="paginateTo($event)"
-    (resPerPage)="updatePerPageVal($event)"></app-search-pagination>
-  </div>
-</div>
+}
 
-<div *ngIf="message && is_noresult" class="row error-container">
-  <div class="small-12 columns">
-    <h3 class="progress_tile">
-      {{message}} 
-    </h3>
-    <p class="progress-text1">We ran the search with BLASTP and couldn’t find any matches in UniProt KB. 
-     
-    <h4 class="progress-text2">Search details</h4>
-    <p class="progress-text4">
-      <span>Sequence query:</span>
-      <span class="mobile-view-copy"><a (click)="copySequence(localStorageSearchTerm)">Copy sequence <i class="icon icon-common icon-copy"></i></a>
-        <div class="label-tooltip" style="display: inline;">
-          <span *ngIf="isCopySequence" class="label-tooltip-text">
-            Sequence copied
-          </span>
+@if (!is_searchprogress && cardData) {
+  <div>
+    @for (card of cardDataChunk; track card; let indexOfelement = $index) {
+      <div>
+        <app-sequence-cards [res]="card"></app-sequence-cards>
+        <div class="row" [ngClass]="indexOfelement < cardDataChunk.length - 1 ? '' : 'lastcard'">
+          @if (indexOfelement < cardDataChunk.length - 1) {
+            <div class="small-12">
+              <hr class="cardhr">
+            </div>
+          }
         </div>
-      </span>
-      
-    </p>
-    <p class="progress-text3">
+      </div>
+    }
+    <div class="paginatelast medium-10">
+      <app-search-pagination [(paginationData)]="paginationData" (selectedPage)="paginateTo($event)"
+      (resPerPage)="updatePerPageVal($event)"></app-search-pagination>
+    </div>
+  </div>
+}
+
+@if (message && is_noresult) {
+  <div class="row error-container">
+    <div class="small-12 columns">
+      <h3 class="progress_tile">
+        {{message}}
+      </h3>
+      <p class="progress-text1">We ran the search with BLASTP and couldn’t find any matches in UniProt KB.
+        <h4 class="progress-text2">Search details</h4>
+        <p class="progress-text4">
+          <span>Sequence query:</span>
+          <span class="mobile-view-copy"><a (click)="copySequence(localStorageSearchTerm)">Copy sequence <i class="icon icon-common icon-copy"></i></a>
+          <div class="label-tooltip" style="display: inline;">
+            @if (isCopySequence) {
+              <span class="label-tooltip-text">
+                Sequence copied
+              </span>
+            }
+          </div>
+        </span>
+      </p>
+      <p class="progress-text3">
         <span>
           {{localStorageSearchTerm}}
         </span>
-    </p>
-    <p class="mobile-view-second">
-      <a (click)="copySequence(localStorageSearchTerm)">
-      Copy sequence
-      <i class="icon icon-common icon-copy"></i>
-      </a>
-    </p>
-    <div class="label-tooltip" style="display: inline;">
-      <span *ngIf="isCopySequence" class="label-tooltip-text">
-        Sequence copied
-      </span>
-    </div>
-
-    <p class="progress-text5">
-        For more information on the search parameters, please visit the  
+      </p>
+      <p class="mobile-view-second">
+        <a (click)="copySequence(localStorageSearchTerm)">
+          Copy sequence
+          <i class="icon icon-common icon-copy"></i>
+        </a>
+      </p>
+      <div class="label-tooltip" style="display: inline;">
+        @if (isCopySequence) {
+          <span class="label-tooltip-text">
+            Sequence copied
+          </span>
+        }
+      </div>
+      <p class="progress-text5">
+        For more information on the search parameters, please visit the
         <a href="https://www.ebi.ac.uk/Tools/sss/ncbiblast/" target="_blank">
           EBI sequence similarity search page.
         </a>
-    </p>
-  </div>
-</div>
-
-<div *ngIf="is_searchprogress" class="row error-container">
-  <div class="small-12 columns">
-    <h3 class="progress_tile">
-      Search in progress
-      <img src="assets/img/Loader-ALPHA.gif" width="30px" height="30px">
-    </h3>
-   
-    <p class="progress-text1">It usually takes 5-10 minutes to run a sequence search, please come back later.
-    <br/> <a (click)="copyLink()">Click to copy the link to results <i class="icon icon-common icon-copy"></i></a> to save it and view the results at a convenient time.</p>
-    <div class="label-tooltip-link" style="display: inline;">
-      <span *ngIf="isCopyLink" class="label-tooltip-link-text">
-        Link copied
-      </span>
+      </p>
     </div>
-    
-    <h4 class="progress-text2">Search details</h4>
-    <p class="progress-text4">
-      <span>Sequence query:</span>
-      <span class="mobile-view-copy">
-        <a (click)="copySequence(localStorageSearchTerm)">Copy sequence <i class="icon icon-common icon-copy"></i></a>
-        <div class="label-tooltip-seq" style="display: inline;">
-          <span *ngIf="isCopySequence" class="label-tooltip-seq-text">
-            Sequence copied
-          </span>
+  </div>
+}
+
+@if (is_searchprogress) {
+  <div class="row error-container">
+    <div class="small-12 columns">
+      <h3 class="progress_tile">
+        Search in progress
+        <img src="assets/img/Loader-ALPHA.gif" width="30px" height="30px">
+      </h3>
+      <p class="progress-text1">It usually takes 5-10 minutes to run a sequence search, please come back later.
+        <br/> <a (click)="copyLink()">Click to copy the link to results <i class="icon icon-common icon-copy"></i></a> to save it and view the results at a convenient time.</p>
+        <div class="label-tooltip-link" style="display: inline;">
+          @if (isCopyLink) {
+            <span class="label-tooltip-link-text">
+              Link copied
+            </span>
+          }
         </div>
-      </span>
-    </p>
-    <p class="progress-text3">
-        <span>
-          {{localStorageSearchTerm}} 
-        </span>
-    </p>
-
-    <p class="mobile-view-second">
-      <a (click)="copySequence(localStorageSearchTerm)">
-        Copy sequence
-        <i class="icon icon-common icon-copy"></i>
-      </a>
-    </p>
-    
-    <div class="label-tooltip-seq" style="display: inline;">
-      <span *ngIf="isCopySequence" class="label-tooltip-seq-text">
-        Sequence copied
-      </span>
+        <h4 class="progress-text2">Search details</h4>
+        <p class="progress-text4">
+          <span>Sequence query:</span>
+          <span class="mobile-view-copy">
+            <a (click)="copySequence(localStorageSearchTerm)">Copy sequence <i class="icon icon-common icon-copy"></i></a>
+            <div class="label-tooltip-seq" style="display: inline;">
+              @if (isCopySequence) {
+                <span class="label-tooltip-seq-text">
+                  Sequence copied
+                </span>
+              }
+            </div>
+          </span>
+        </p>
+        <p class="progress-text3">
+          <span>
+            {{localStorageSearchTerm}}
+          </span>
+        </p>
+        <p class="mobile-view-second">
+          <a (click)="copySequence(localStorageSearchTerm)">
+            Copy sequence
+            <i class="icon icon-common icon-copy"></i>
+          </a>
+        </p>
+        <div class="label-tooltip-seq" style="display: inline;">
+          @if (isCopySequence) {
+            <span class="label-tooltip-seq-text">
+              Sequence copied
+            </span>
+          }
+        </div>
+        <!-- <p class="mobile-view-second">
+        <a (click)="copyToClipboard(localStorageSearchTerm)">
+          Copy sequence
+          <i class="icon icon-common icon-copy"></i>
+        </a>
+      </p> -->
     </div>
-
-    <!-- <p class="mobile-view-second">
-      <a (click)="copyToClipboard(localStorageSearchTerm)">
-      Copy sequence
-      <i class="icon icon-common icon-copy"></i>
-      </a>
-    </p> -->
   </div>
-</div>
+}
 
-<div *ngIf="message && showErrorNoJobid" class="row error-container">
-  <div class="small-12 columns">
-    <h3 class="progress_tile">
-      {{message}}
-    </h3>
-    <p class="progress-text1">Something went wrong on our side. We are sorry for the inconvenience it may have caused. </p>
-    <p class="progress-suggestions">Suggestions:</p>
-    <ul class="msg_bullets">
-      <li>Please wait and try again later.</li>
-      <li>Check your Internet connection.</li>
-    </ul>
+@if (message && showErrorNoJobid) {
+  <div class="row error-container">
+    <div class="small-12 columns">
+      <h3 class="progress_tile">
+        {{message}}
+      </h3>
+      <p class="progress-text1">Something went wrong on our side. We are sorry for the inconvenience it may have caused. </p>
+      <p class="progress-suggestions">Suggestions:</p>
+      <ul class="msg_bullets">
+        <li>Please wait and try again later.</li>
+        <li>Check your Internet connection.</li>
+      </ul>
+    </div>
   </div>
-</div>
+}

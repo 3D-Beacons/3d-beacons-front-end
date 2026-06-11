@@ -1,33 +1,45 @@
 <app-result-section [entryData]="entryData" [resultData]="resultData"></app-result-section>
 
-<div class="row title-container" *ngIf="resultData">
-  <div class="small-12 columns">
-    <p class="info-box-title">Viewer</p>
+@if (resultData) {
+  <div class="row title-container">
+    <div class="small-12 columns">
+      <p class="info-box-title">Viewer</p>
+    </div>
   </div>
-</div>
+}
 
-<div class="row last-container" *ngIf="resultData">
-  <div class="small-12 medium-12 columns">
-    <app-structures-section [resultData]="resultData"></app-structures-section>
+@if (resultData) {
+  <div class="row last-container">
+    <div class="small-12 medium-12 columns">
+      <app-structures-section [resultData]="resultData"></app-structures-section>
+    </div>
   </div>
-</div>
+}
 
-<app-loading-dialog *ngIf="isFetching"></app-loading-dialog>
+@if (isFetching) {
+  <app-loading-dialog></app-loading-dialog>
+}
 
-<div *ngIf="error" class="row error-container">
-  <div class="small-12 columns">
-    <h3 class="message-title">No results found</h3>
-    <p class="progress-text1" *ngIf="searchTermValue.length > 10">
-      The UniProt accession you were searching with - {{searchTermValue | slice:0:10}}...  - doesn't have any models.
-    </p>
-    <p class="progress-text1"  *ngIf="searchTermValue.length < 10">
-      The UniProt accession you were searching with - {{searchTermValue}} - doesn't have any models.
-    </p>
-    <p class="progress-suggestions">Suggestions:</p>
-    <ul class="msg_bullets">
-      <li>Please check if you have entered a valid UniProt accession.</li>
-      <li>Try again later as more models will be provided in the future.</li>
-      <li>If you are trying to search with a sequence, please change the search type to Sequence search in the dropdown near the search field.</li>
-    </ul>
+@if (error) {
+  <div class="row error-container">
+    <div class="small-12 columns">
+      <h3 class="message-title">No results found</h3>
+      @if (searchTermValue.length > 10) {
+        <p class="progress-text1">
+          The UniProt accession you were searching with - {{searchTermValue | slice:0:10}}...  - doesn't have any models.
+        </p>
+      }
+      @if (searchTermValue.length < 10) {
+        <p class="progress-text1" >
+          The UniProt accession you were searching with - {{searchTermValue}} - doesn't have any models.
+        </p>
+      }
+      <p class="progress-suggestions">Suggestions:</p>
+      <ul class="msg_bullets">
+        <li>Please check if you have entered a valid UniProt accession.</li>
+        <li>Try again later as more models will be provided in the future.</li>
+        <li>If you are trying to search with a sequence, please change the search type to Sequence search in the dropdown near the search field.</li>
+      </ul>
+    </div>
   </div>
-</div>
+}
