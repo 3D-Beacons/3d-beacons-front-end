@@ -27,7 +27,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: npm install
+    - run: npm install --legacy-peer-deps
     - run: ./node_modules/.bin/ng test --browsers=ChromeHeadlessNoSandbox --code-coverage --watch=false
 
     - name: Codecov
