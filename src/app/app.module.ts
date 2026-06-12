@@ -1,11 +1,12 @@
 import { BrowserModule, Title } from "@angular/platform-browser";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
+import { HTTP_INTERCEPTORS } from "@angular/common/http";
 import { Routes, RouterModule } from "@angular/router";
 import { MatTableModule } from "@angular/material/table";
 import { MatSelectModule } from "@angular/material/select";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 import { AppComponent } from "./app.component";
 import { SearchComponent } from "./search/search.component";
@@ -59,7 +60,6 @@ const routes: Routes = [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule,
     CoreModule,
     RouterModule.forRoot(routes, {
       scrollOffset: [0, 0],
@@ -67,10 +67,11 @@ const routes: Routes = [
       anchorScrolling: "enabled",
     }),
     SharedModule,
-    BrowserAnimationsModule,
     MatTableModule,
     MatPaginatorModule,
     MatSelectModule,
+    MatFormFieldModule,
+    BrowserAnimationsModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: BeaconsInterceptor, multi: true },
