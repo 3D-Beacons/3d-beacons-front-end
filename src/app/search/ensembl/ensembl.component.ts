@@ -6,7 +6,7 @@ import { EnsemblDataFormatterService } from "./ensembl-data-formatter.service";
 import { MatPaginator } from "@angular/material/paginator";
 import { Title } from "@angular/platform-browser";
 import { CommonModule } from "@angular/common";
-import { LoadingDialogComponent } from "../../shared/components/loading-dialog/loading-dialog.component";
+import { LoadingDialogComponent } from "../../loading-dialog/loading-dialog.component";
 import { SearchPaginationComponent } from "../search-pagination/search-pagination.component";
 
 @Component({

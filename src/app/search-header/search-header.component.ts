@@ -19,7 +19,7 @@ import { UniProtEntry } from "../search//result-section/uniprot-data.model";
 import { SequenceService } from "../search/sequence/sequence.service";
 import { Subscription } from "rxjs";
 import { environment } from "../../environments/environment";
-import { LoadingDialogComponent } from "../shared/components/loading-dialog/loading-dialog.component";
+import { LoadingDialogComponent } from "../loading-dialog/loading-dialog.component";
 import { CommonModule } from "@angular/common";
 import { MaterialModule } from "../material.module";
 

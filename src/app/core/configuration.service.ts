@@ -7,8 +7,6 @@ import { environment } from "../../environments/environment";
 export class ConfigurationService {
   private apiRoot: string = environment.apiHost;
 
-  constructor() {}
-
   getUniProtSummaryUrl(): string {
     return this.apiRoot + "/uniprot/summary/";
   }

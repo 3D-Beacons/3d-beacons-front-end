@@ -10,7 +10,7 @@ import { SequenceService } from "./sequence/sequence.service";
 import { ResultSectionComponent } from "./result-section/result-section.component";
 import { CommonModule } from "@angular/common";
 import { StructuresSectionComponent } from "./structures-section/structures-section.component";
-import { LoadingDialogComponent } from "../shared/components/loading-dialog/loading-dialog.component";
+import { LoadingDialogComponent } from "../loading-dialog/loading-dialog.component";
 
 @Component({
   selector: "app-search",

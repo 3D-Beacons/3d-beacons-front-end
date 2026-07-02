@@ -1,10 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  DestroyRef,
-  inject,
-  signal,
-} from "@angular/core";
+import { Component, DestroyRef, inject, signal } from "@angular/core";
 import { NavigationEnd, Router, RouterModule } from "@angular/router";
 import { filter } from "rxjs/operators";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
