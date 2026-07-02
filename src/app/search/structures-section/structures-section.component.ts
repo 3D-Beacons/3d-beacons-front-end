@@ -4,7 +4,7 @@ import {
   ElementRef,
   Renderer2,
   OnDestroy,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
 } from "@angular/core";
 
 import * as pvFormat from "../result-section/protvista.model";
@@ -13,13 +13,14 @@ import {
   SummaryResponse,
 } from "../result-section/result-section.model";
 import { ConfigurationService } from "../../core/configuration.service";
+import { CommonModule } from "@angular/common";
 
 @Component({
   selector: "app-structures-section",
   templateUrl: "./structures-section.component.html",
+  imports: [CommonModule],
   styleUrls: ["./structures-section.component.scss"],
   changeDetection: ChangeDetectionStrategy.Eager,
-  standalone: false,
 })
 export class StructuresSectionComponent implements OnDestroy {
   private _resultData!: any;

@@ -1,16 +1,17 @@
+import { CommonModule } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
   Input,
   OnInit,
 } from "@angular/core";
+import { RouterModule } from "@angular/router";
 
 @Component({
   selector: "app-sequence-cards",
   templateUrl: "./sequence-cards.component.html",
+  imports: [CommonModule, RouterModule],
   styleUrls: ["./sequence-cards.component.scss"],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false,
 })
 export class SequenceCardsComponent implements OnInit {
   @Input() res: any;

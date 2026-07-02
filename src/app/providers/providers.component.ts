@@ -1,11 +1,12 @@
+import { CommonModule } from "@angular/common";
 import { Component, ChangeDetectionStrategy } from "@angular/core";
 
 @Component({
   selector: "app-providers",
   templateUrl: "./providers.component.html",
+  imports: [CommonModule],
   styleUrls: ["./providers.component.scss"],
   changeDetection: ChangeDetectionStrategy.Eager,
-  standalone: false,
 })
 export class ProvidersComponent {
   dataProviders: any;

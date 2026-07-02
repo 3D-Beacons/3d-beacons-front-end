@@ -7,13 +7,22 @@ import { SearchService } from "./search.service";
 import { ActivatedRoute, Router } from "@angular/router";
 import { UniProtEntry } from "./result-section/uniprot-data.model";
 import { SequenceService } from "./sequence/sequence.service";
+import { ResultSectionComponent } from "./result-section/result-section.component";
+import { CommonModule } from "@angular/common";
+import { StructuresSectionComponent } from "./structures-section/structures-section.component";
+import { LoadingDialogComponent } from "../shared/components/loading-dialog/loading-dialog.component";
 
 @Component({
   selector: "app-search",
   templateUrl: "./search.component.html",
+  imports: [
+    CommonModule,
+    ResultSectionComponent,
+    StructuresSectionComponent,
+    LoadingDialogComponent,
+  ],
   styleUrls: ["./search.component.scss"],
   changeDetection: ChangeDetectionStrategy.Eager,
-  standalone: false,
 })
 export class SearchComponent implements OnInit {
   searchForm: FormGroup = new FormGroup({

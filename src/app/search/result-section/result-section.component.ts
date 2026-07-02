@@ -4,13 +4,15 @@ import { InfoText } from "./info-text.model";
 import { SummaryService } from "./summary-section/summary-section.service";
 import { UniProtEntry } from "./uniprot-data.model";
 import { ConfigurationService } from "../../core/configuration.service";
+import { CommonModule } from "@angular/common";
+import { SummarySectionComponent } from "./summary-section/summary-section.component";
 
 @Component({
   selector: "app-result-section",
   templateUrl: "./result-section.component.html",
+  imports: [CommonModule, SummarySectionComponent],
   styleUrls: ["./result-section.component.scss"],
   changeDetection: ChangeDetectionStrategy.Eager,
-  standalone: false,
 })
 export class ResultSectionComponent {
   summaryData: any[] = [];
