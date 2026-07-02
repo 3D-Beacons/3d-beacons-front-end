@@ -3,6 +3,7 @@ import {
   OnInit,
   ChangeDetectorRef,
   ElementRef,
+  ChangeDetectionStrategy
 } from "@angular/core";
 import { FormControl, Validators } from "@angular/forms";
 import {} from "@angular/common/http/testing";
@@ -20,6 +21,7 @@ declare const gtag: any;
   selector: "app-search-header",
   templateUrl: "./search-header.component.html",
   styleUrls: ["./search-header.component.scss"],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class SearchHeaderComponent implements OnInit {

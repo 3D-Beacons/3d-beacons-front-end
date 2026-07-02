@@ -1,4 +1,4 @@
-import { Component, ViewChild } from "@angular/core";
+import { Component, ViewChild, ChangeDetectionStrategy } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { SearchService } from "../search.service";
 import { EnsemblDataFormatterService } from "./ensembl-data-formatter.service";
@@ -10,6 +10,7 @@ import { Title } from "@angular/platform-browser";
   selector: "app-ensembl",
   templateUrl: "./ensembl.component.html",
   styleUrls: ["./ensembl.component.scss"],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class EnsemblComponent {

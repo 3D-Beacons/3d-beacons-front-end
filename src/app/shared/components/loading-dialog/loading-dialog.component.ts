@@ -1,9 +1,10 @@
-import { Component } from "@angular/core";
+import { Component, ChangeDetectionStrategy } from "@angular/core";
 
 @Component({
   selector: "app-loading-dialog",
   templateUrl: "./loading-dialog.component.html",
   styleUrls: ["./loading-dialog.component.scss"],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class LoadingDialogComponent {}

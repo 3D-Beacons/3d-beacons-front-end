@@ -4,6 +4,7 @@ import {
   OnDestroy,
   OnInit,
   ViewChild,
+  ChangeDetectionStrategy
 } from "@angular/core";
 import { MatTableDataSource } from "@angular/material/table";
 import { ActivatedRoute } from "@angular/router";
@@ -20,6 +21,7 @@ import { Subscription } from "rxjs";
   selector: "app-sequence",
   templateUrl: "./sequence.component.html",
   styleUrls: ["./sequence.component.scss"],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class SequenceComponent implements OnInit, OnDestroy {

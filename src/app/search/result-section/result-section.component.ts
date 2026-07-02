@@ -1,4 +1,4 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input, ChangeDetectionStrategy } from "@angular/core";
 import { InfoText } from "./info-text.model";
 
 import { SummaryService } from "./summary-section/summary-section.service";
@@ -9,6 +9,7 @@ import { ConfigurationService } from "../../core/configuration.service";
   selector: "app-result-section",
   templateUrl: "./result-section.component.html",
   styleUrls: ["./result-section.component.scss"],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class ResultSectionComponent {

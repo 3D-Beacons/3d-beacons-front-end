@@ -4,6 +4,7 @@ import {
   ElementRef,
   Renderer2,
   OnDestroy,
+  ChangeDetectionStrategy
 } from "@angular/core";
 
 import * as pvFormat from "../result-section/protvista.model";
@@ -17,6 +18,7 @@ import { ConfigurationService } from "../../core/configuration.service";
   selector: "app-structures-section",
   templateUrl: "./structures-section.component.html",
   styleUrls: ["./structures-section.component.scss"],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class StructuresSectionComponent implements OnDestroy {
