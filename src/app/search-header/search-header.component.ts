@@ -7,7 +7,12 @@ import {
 } from "@angular/core";
 import { FormControl, ReactiveFormsModule, Validators } from "@angular/forms";
 import {} from "@angular/common/http/testing";
-import { NavigationEnd, Router, RoutesRecognized } from "@angular/router";
+import {
+  NavigationEnd,
+  Router,
+  RouterModule,
+  RoutesRecognized,
+} from "@angular/router";
 import { filter } from "rxjs/operators";
 import { SearchService } from "../search/search.service";
 import { UniProtEntry } from "../search//result-section/uniprot-data.model";
@@ -28,6 +33,7 @@ declare const gtag: any;
     LoadingDialogComponent,
     ReactiveFormsModule,
     MaterialModule,
+    RouterModule,
   ],
   styleUrls: ["./search-header.component.scss"],
   changeDetection: ChangeDetectionStrategy.Eager,
