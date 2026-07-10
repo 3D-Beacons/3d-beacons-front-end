@@ -19,7 +19,7 @@ RUN npm run build -- \
 # Runtime image
 FROM nginx:latest
 
-COPY --from=build-stage /app/dist/out/browser/ /usr/share/nginx/html
+COPY --from=build-stage /app/dist/out/browser /usr/share/nginx/html
 COPY ./nginx-custom.conf /etc/nginx/conf.d/default.conf
 COPY nginx-run.sh /tmp/nginx-run.sh
 
