@@ -1,15 +1,18 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input, ChangeDetectionStrategy } from "@angular/core";
 import { InfoText } from "./info-text.model";
 
 import { SummaryService } from "./summary-section/summary-section.service";
 import { UniProtEntry } from "./uniprot-data.model";
 import { ConfigurationService } from "../../core/configuration.service";
+import { CommonModule } from "@angular/common";
+import { SummarySectionComponent } from "./summary-section/summary-section.component";
 
 @Component({
   selector: "app-result-section",
   templateUrl: "./result-section.component.html",
+  imports: [CommonModule, SummarySectionComponent],
   styleUrls: ["./result-section.component.scss"],
-  standalone: false,
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 export class ResultSectionComponent {
   summaryData: any[] = [];
@@ -34,10 +37,10 @@ export class ResultSectionComponent {
   }
 
   @Input()
-  get entryData(): UniProtEntry {
+  get entryData(): any {
     return this._entryData;
   }
-  set entryData(data: UniProtEntry) {
+  set entryData(data: any) {
     this._entryData = data;
     if (data) {
       this.infoText = this.prepareInfoText(data);
@@ -70,6 +73,8 @@ export class ResultSectionComponent {
      * @returns tempList - A list of category counts
      */
     const categories = this.summaryService.getCategories();
+
+    console.log("resultData", this.resultData);
 
     this.resultData.structures.map((structure: any) => {
       const categoryId = this.summaryService.getProviderCategory(

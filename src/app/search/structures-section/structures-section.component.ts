@@ -4,6 +4,7 @@ import {
   ElementRef,
   Renderer2,
   OnDestroy,
+  ChangeDetectionStrategy,
 } from "@angular/core";
 
 import * as pvFormat from "../result-section/protvista.model";
@@ -12,12 +13,14 @@ import {
   SummaryResponse,
 } from "../result-section/result-section.model";
 import { ConfigurationService } from "../../core/configuration.service";
+import { CommonModule } from "@angular/common";
 
 @Component({
   selector: "app-structures-section",
   templateUrl: "./structures-section.component.html",
+  imports: [CommonModule],
   styleUrls: ["./structures-section.component.scss"],
-  standalone: false,
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 export class StructuresSectionComponent implements OnDestroy {
   private _resultData!: any;
@@ -26,7 +29,6 @@ export class StructuresSectionComponent implements OnDestroy {
   availableProviders: Set<string> = new Set();
   displayedEntry!: string;
   displayedEntryUrl!: string;
-  help!: boolean;
 
   @Input()
   get resultData(): any {
@@ -57,11 +59,6 @@ export class StructuresSectionComponent implements OnDestroy {
         e.detail.modelId + " from " + e.detail.modelProvider;
       this.displayedEntryUrl = e.detail.modelUrl;
     });
-    this.help = false;
-  }
-
-  toggleHelp() {
-    this.help = !this.help;
   }
 
   ngOnDestroy(): void {

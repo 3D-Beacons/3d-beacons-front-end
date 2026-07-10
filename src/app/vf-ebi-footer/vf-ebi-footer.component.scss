@@ -1,0 +1,56 @@
+@import "@visual-framework/vf-sass-config/index";
+@import "@visual-framework/vf-grid/vf-grid";
+@import "@visual-framework/vf-list/vf-list";
+@import "@visual-framework/vf-footer/vf-footer";
+
+.vf-footer__inner {
+  max-width: 90em !important;
+  width: 100% !important;
+}
+
+.vf-footer__logo-wrapper .vf-footer__notice {
+  padding-top: 0 !important;
+}
+
+section.vf-footer__legal {
+  gap: 2rem;
+
+  a,
+  span {
+    display: inline;
+  }
+
+  a {
+    text-decoration: underline !important;
+    border: none !important;
+  }
+}
+
+footer.vf-footer {
+  &::before,
+  &::after {
+    display: none !important;
+  }
+  @media screen and (width <= 768px) {
+    padding-left: 20px;
+  }
+
+  .vf-links.first-column-link {
+    @media screen and (width <= 768px) {
+      margin-top: 40px;
+    }
+  }
+
+  .hide-on-mobile {
+    @media screen and (width <= 768px) {
+      display: none;
+    }
+  }
+
+  .vf-list__item.show-only-on-mobile {
+    display: none;
+    @media screen and (width <= 768px) {
+      display: block;
+    }
+  }
+}

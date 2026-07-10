@@ -33,7 +33,7 @@
           </svg>
         }
 
-        @if (menuOpen) {
+        @if (menuOpen()) {
           <svg
             class="mobile-menu-icon"
             viewBox="0 0 24 24"
@@ -81,7 +81,7 @@
         </nav>
       </div>
 
-      @if (menuOpen) {
+      @if (menuOpen()) {
         <div class="columns small-7 mobile-wrapper">
           <nav class="masterhead-nav">
             <ul

@@ -1,13 +1,18 @@
-import { Component, OnInit } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { Component, ChangeDetectionStrategy } from "@angular/core";
+import { ContentNavigator } from "../content-navigator/content-navigator";
 
 @Component({
   selector: "app-docs",
   templateUrl: "./docs.component.html",
+  imports: [CommonModule, ContentNavigator],
   styleUrls: ["./docs.component.scss"],
-  standalone: false,
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
-export class DocsComponent implements OnInit {
-  constructor() {}
-
-  ngOnInit(): void {}
+export class DocsComponent {
+  protected readonly contentNavigatorLinks = [
+    { id: "programmatic", title: "Accessing data programmatically" },
+    { id: "infra", title: "Infrastructure" },
+    { id: "contact", title: "Contact us" },
+  ];
 }

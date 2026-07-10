@@ -1,3 +1,4 @@
+import { CommonModule } from "@angular/common";
 import {
   Component,
   Input,
@@ -9,9 +10,8 @@ import {
 @Component({
   selector: "app-search-pagination",
   templateUrl: "./search-pagination.component.html",
+  imports: [CommonModule],
   styleUrls: ["./search-pagination.component.scss"],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false,
 })
 export class SearchPaginationComponent {
   @Input() paginationData: any;

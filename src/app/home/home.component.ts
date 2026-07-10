@@ -1,15 +1,12 @@
-import { Component, OnInit } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { Component, ChangeDetectionStrategy } from "@angular/core";
+import { ProvidersComponent } from "../providers/providers.component";
 
 @Component({
   selector: "app-home",
   templateUrl: "./home.component.html",
+  imports: [CommonModule, ProvidersComponent],
   styleUrls: ["./home.component.scss"],
-  standalone: false,
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
-export class HomeComponent implements OnInit {
-  dataProviders: any;
-
-  constructor() {}
-
-  ngOnInit(): void {}
-}
+export class HomeComponent {}

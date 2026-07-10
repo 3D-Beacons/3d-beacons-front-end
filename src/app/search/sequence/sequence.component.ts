@@ -4,6 +4,7 @@ import {
   OnDestroy,
   OnInit,
   ViewChild,
+  ChangeDetectionStrategy,
 } from "@angular/core";
 import { MatTableDataSource } from "@angular/material/table";
 import { ActivatedRoute } from "@angular/router";
@@ -15,12 +16,16 @@ import { MatPaginator } from "@angular/material/paginator";
 import { Title } from "@angular/platform-browser";
 import { SearchService } from "../search.service";
 import { Subscription } from "rxjs";
+import { SearchPaginationComponent } from "../search-pagination/search-pagination.component";
+import { CommonModule } from "@angular/common";
+import { SequenceCardsComponent } from "./sequence-cards/sequence-cards.component";
 
 @Component({
   selector: "app-sequence",
   templateUrl: "./sequence.component.html",
+  imports: [CommonModule, SearchPaginationComponent, SequenceCardsComponent],
   styleUrls: ["./sequence.component.scss"],
-  standalone: false,
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 export class SequenceComponent implements OnInit, OnDestroy {
   private sub!: Subscription;

@@ -11,18 +11,18 @@
 
 a:hover {
   text-decoration: underline !important;
-  color: #0A5032 !important;
-  border-bottom: none !important;;
+  color: #0a5032 !important;
+  border-bottom: none !important;
 }
 
-.name-text{
-  font-weight: bold;;
+.name-text {
+  font-weight: bold;
 }
 
-.eye-icon{
+.eye-icon {
   background-color: #dff1f0;
   padding: 5px;
-  border: 1px solid black
+  border: 1px solid black;
 }
 
 .functional-download-icon {
@@ -35,27 +35,27 @@ a:hover {
 .example-icon {
   background-color: #dff1f0;
   padding: 2px;
-  border: 1px solid black
+  border: 1px solid black;
 }
 
 .functional-download-icon:hover {
   color: #056643;
 }
 
-.download-link{
+.download-link {
   text-decoration: none;
   border-bottom: none;
 }
 
-.download-link:hover{
+.download-link:hover {
   text-decoration: underline;
-  color: #0A5032;
+  color: #0a5032;
   border-bottom: none;
 }
 
 .help-link {
   font-weight: 500;
-  color: #0F5C5A;
+  color: #0f5c5a;
   text-decoration: none;
   border-bottom: none;
   font-size: smaller;
@@ -66,19 +66,20 @@ a:hover {
   border-bottom: 1px solid #ffae00;
 }
 
-.molstar-container {
-  float: left;
-  height: 377px;
-  margin-bottom: 15px;
-  position: relative;
-  width:100%
-}
-
-.pvc-container {
-  width:100%
-}
-
 .viewer-row {
   margin-right: 15px !important;
   max-width: unset !important;
+  display: flex;
+  gap: 20px;
+
+  .molstar-container {
+    height: 377px;
+    position: relative;
+    float: left;
+    width: 40%;
+  }
+
+  .pvc-container {
+    width: 60%;
+  }
 }

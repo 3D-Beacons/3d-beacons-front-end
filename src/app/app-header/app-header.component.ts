@@ -1,32 +1,37 @@
-import { ChangeDetectionStrategy, Component } from "@angular/core";
-import { NavigationEnd, Router } from "@angular/router";
+import { Component, DestroyRef, inject, signal } from "@angular/core";
+import { NavigationEnd, Router, RouterModule } from "@angular/router";
 import { filter } from "rxjs/operators";
-import { Subscription } from "rxjs";
+import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
+import { CommonModule } from "@angular/common";
+import { SearchHeaderComponent } from "../search-header/search-header.component";
 
 @Component({
   selector: "app-header",
   templateUrl: "./app-header.component.html",
+  imports: [CommonModule, SearchHeaderComponent, RouterModule],
   styleUrls: ["./app-header.component.scss"],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false,
 })
 export class AppHeaderComponent {
-  menuOpen: boolean;
-  homePage: boolean;
-  routeSubscribe: Subscription;
-  constructor(private router: Router) {
-    this.menuOpen = false;
-    this.homePage = false;
+  protected readonly menuOpen = signal(false);
+  protected readonly homePage = signal(false);
+  private readonly router = inject(Router);
+  private readonly destroyRef = inject(DestroyRef);
 
-    this.routeSubscribe = this.router.events
-      .pipe(filter((e): e is NavigationEnd => e instanceof NavigationEnd))
+  constructor() {
+    this.router.events
+      .pipe(
+        filter((e): e is NavigationEnd => e instanceof NavigationEnd),
+        takeUntilDestroyed(this.destroyRef),
+      )
       .subscribe((e) => {
-        this.homePage = false;
-        if (e.url && e.url === "/") this.homePage = true;
+        this.homePage.set(false);
+        if (e.url && e.url === "/") {
+          this.homePage.set(true);
+        }
       });
   }
 
-  toggleMenu() {
-    this.menuOpen = !this.menuOpen;
+  protected toggleMenu(): void {
+    this.menuOpen.update((value) => !value);
   }
 }

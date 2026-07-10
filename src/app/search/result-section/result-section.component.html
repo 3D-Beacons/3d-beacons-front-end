@@ -1,23 +1,26 @@
 @if (haveResults) {
   <div class="start-info">
-    <div class="row title-container">
+    <!-- <div class="row title-container">
       <div class="small-12 columns">
         <h3>
-          {{ resultData.uniprot_entry.ac }} ({{ resultData.uniprot_entry.id }}) -
-          <span id="sum-count">{{getSum()}}</span>
+          {{ resultData.uniprot_entry.ac }} ({{ resultData.uniprot_entry.id }})
+          -
+          <span id="sum-count">{{ getSum() }}</span>
           Structures available
         </h3>
       </div>
-    </div>
+    </div> -->
     <div class="row" class="info-box-container">
-      <div class="row">
+      <!-- <div class="row">
         <div class="small-12 columns">
           <p class="info-box-title">Information</p>
         </div>
-      </div>
+      </div> -->
       @for (text of infoText; track text) {
         <div class="row info-box-row">
-          <div class="columns columns small-5 medium-2 info-box-label">{{text.label}}</div>
+          <div class="columns columns small-5 medium-2 info-box-label">
+            {{ text.label }}
+          </div>
           <div class="columns small-7 medium-10 info-box-text">
             <span>
               @if (text.show_long) {
@@ -37,8 +40,10 @@
                     <a class="showMoreLink" (click)="switchText(text)">
                       Show less
                       <svg class="showicon" viewBox="0 0 25 25">
-                        <path fill="currentColor"
-                          d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"/>
+                        <path
+                          fill="currentColor"
+                          d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
+                        />
                       </svg>
                     </a>
                   }
@@ -52,8 +57,10 @@
                     <a class="showMoreLink" (click)="switchText(text)">
                       Show more
                       <svg class="showicon" viewBox="0 0 25 25">
-                        <path fill="currentColor"
-                          d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"/>
+                        <path
+                          fill="currentColor"
+                          d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"
+                        />
                       </svg>
                     </a>
                   }
@@ -63,8 +70,15 @@
             @if (text.source) {
               <span>
                 <h3 class="break-line"></h3>
-                <a target="_blank" href="{{text.source_url}}" class="external-ref">
-                  Go to {{text.source}} &nbsp;<i class="icon icon-common" data-icon="&#xf35d;"></i>
+                <a
+                  target="_blank"
+                  href="{{ text.source_url }}"
+                  class="external-ref"
+                >
+                  Go to {{ text.source }} &nbsp;<i
+                    class="icon icon-common"
+                    data-icon="&#xf35d;"
+                  ></i>
                 </a>
               </span>
             }

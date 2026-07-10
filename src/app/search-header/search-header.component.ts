@@ -3,24 +3,40 @@ import {
   OnInit,
   ChangeDetectorRef,
   ElementRef,
+  ChangeDetectionStrategy,
 } from "@angular/core";
-import { FormControl, Validators } from "@angular/forms";
+import { FormControl, ReactiveFormsModule, Validators } from "@angular/forms";
 import {} from "@angular/common/http/testing";
-import { NavigationEnd, Router, RoutesRecognized } from "@angular/router";
+import {
+  NavigationEnd,
+  Router,
+  RouterModule,
+  RoutesRecognized,
+} from "@angular/router";
 import { filter } from "rxjs/operators";
 import { SearchService } from "../search/search.service";
 import { UniProtEntry } from "../search//result-section/uniprot-data.model";
 import { SequenceService } from "../search/sequence/sequence.service";
 import { Subscription } from "rxjs";
 import { environment } from "../../environments/environment";
+import { LoadingDialogComponent } from "../loading-dialog/loading-dialog.component";
+import { CommonModule } from "@angular/common";
+import { MaterialModule } from "../material.module";
 
 declare const gtag: any;
 
 @Component({
   selector: "app-search-header",
   templateUrl: "./search-header.component.html",
+  imports: [
+    CommonModule,
+    LoadingDialogComponent,
+    ReactiveFormsModule,
+    MaterialModule,
+    RouterModule,
+  ],
   styleUrls: ["./search-header.component.scss"],
-  standalone: false,
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 export class SearchHeaderComponent implements OnInit {
   searchTerm = new FormControl("", Validators.required);
