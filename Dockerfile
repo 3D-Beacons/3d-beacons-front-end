@@ -1,8 +1,8 @@
 # Stage 0, "build-stage", based on Node.js, to build and compile the frontend
-FROM node:18-alpine as build-stage
+FROM node:22-alpine as build-stage
 WORKDIR /app
 COPY package*.json /app/
-RUN npm install
+RUN npm ci --legacy-peer-deps
 COPY ./ /app/
 
 ARG base_href=/
