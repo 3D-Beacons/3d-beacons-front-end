@@ -1,20 +1,30 @@
-import { Component, ViewChild, ChangeDetectionStrategy } from "@angular/core";
+import {
+  Component,
+  ViewChild,
+  ChangeDetectionStrategy,
+  DestroyRef,
+  inject,
+  signal,
+  computed,
+} from "@angular/core";
 import { ActivatedRoute, RouterModule } from "@angular/router";
 import { SearchService } from "../search.service";
 import { EnsemblDataFormatterService } from "./ensembl-data-formatter.service";
 
 import { MatPaginator } from "@angular/material/paginator";
-import { Title } from "@angular/platform-browser";
 import { CommonModule } from "@angular/common";
-import { LoadingDialogComponent } from "../../loading-dialog/loading-dialog.component";
 import { SearchPaginationComponent } from "../search-pagination/search-pagination.component";
+import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
+import { switchMap, forkJoin, catchError, EMPTY, tap, of } from "rxjs";
+import { LoadingState } from "../loading-state.enum";
+import { NgxSkeletonLoaderModule } from "ngx-skeleton-loader";
 
 @Component({
   selector: "app-ensembl",
   templateUrl: "./ensembl.component.html",
   imports: [
     CommonModule,
-    LoadingDialogComponent,
+    NgxSkeletonLoaderModule,
     RouterModule,
     SearchPaginationComponent,
   ],
@@ -22,19 +32,19 @@ import { SearchPaginationComponent } from "../search-pagination/search-paginatio
   changeDetection: ChangeDetectionStrategy.Eager,
 })
 export class EnsemblComponent {
-  private sub!: any;
-  ensembl_id!: string;
-  message: string | null = null;
-  is_searchprogress: boolean = false;
-  is_noresult: boolean = false;
-  searching: boolean = false;
-  ensembl_results = null;
-  ensembl_results_length = 0;
-  cardData: any = null;
-  card_data_length = 0;
-  isFetching: boolean = false;
+  private readonly destroyRef = inject(DestroyRef);
+  private readonly route = inject(ActivatedRoute);
+  private readonly searchService = inject(SearchService);
+  private readonly ensemblDataFormatterService = inject(
+    EnsemblDataFormatterService,
+  );
+  protected readonly accession = signal("");
+  protected readonly status = LoadingState;
+  protected readonly loadingState = signal<LoadingState>(LoadingState.LOADING);
 
-  searchTerm!: string;
+  protected readonly cardData = signal<any | null>(null);
+  protected readonly cardLength = computed(() => this.cardData()?.length || 0);
+
   paginationData: any = {
     perPage: 10,
     currentPage: 1,
@@ -47,51 +57,38 @@ export class EnsemblComponent {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(
-    private route: ActivatedRoute,
-    private searchService: SearchService,
-    private ensemblDataFormatterService: EnsemblDataFormatterService,
-    private titleService: Title,
-  ) {}
-
   ngOnInit(): void {
-    this.searchTerm = this.searchService.searchTermValue;
-    this.is_searchprogress = true;
-    this.isFetching = true;
-    this.message = "Search in progress";
-    this.paginationData.pages = this.visiblePageNumbers();
-    this.sub = this.route.params.subscribe((params) => {
-      this.ensembl_id = params.id;
-      this.searchTerm = params.id;
-      this.searchService.submitEnsemblSearch(this.ensembl_id).subscribe(
-        (response) => {
-          this.searching = false;
-          this.is_searchprogress = false;
-          this.isFetching = false;
-          this.message = "";
-          this.is_noresult = false;
-          this.titleService.setTitle("3D-Beacons");
-
-          this.cardData = this.ensemblDataFormatterService.formatData(response);
+    this.route.params
+      .pipe(
+        switchMap((params: { [x: string]: string }) => {
+          const accession = params["id"];
+          this.loadingState.set(LoadingState.LOADING);
+          this.accession.set(accession);
+          return forkJoin([
+            this.searchService.submitEnsemblSearch(accession),
+          ]).pipe(
+            catchError(() => {
+              this.loadingState.set(LoadingState.FAILURE);
+              return EMPTY;
+            }),
+          );
+        }),
+        tap(([data]) => {
+          this.cardData.set(this.ensemblDataFormatterService.formatData(data));
           this.cardDataChunk = this.getSlice(this.paginationData.currentPage);
-          this.card_data_length = this.cardData?.length;
 
           this.paginationData.totalPages = Math.ceil(
-            this.card_data_length / this.paginationData.perPage,
+            this.cardLength() / this.paginationData.perPage,
           );
-          this.paginationData.totalRecords = this.card_data_length;
+          this.paginationData.totalRecords = this.cardLength();
           this.paginationData.pages = this.visiblePageNumbers();
           this.paginationData = Object.assign({}, this.paginationData);
-        },
-        (err) => {
-          this.isFetching = false;
-          this.searching = false;
-          this.is_searchprogress = false;
-          this.is_noresult = true;
-          this.message = "No results found for this ENSEMBL id!";
-        },
-      );
-    });
+          this.loadingState.set(LoadingState.SUCCESS);
+          return of(null);
+        }),
+        takeUntilDestroyed(this.destroyRef),
+      )
+      .subscribe();
   }
 
   copyToClipboard(item: any) {
@@ -129,7 +126,7 @@ export class EnsemblComponent {
     const start =
       currentPage * this.paginationData.perPage - this.paginationData.perPage;
     const end = currentPage * this.paginationData.perPage;
-    return this.cardData?.slice(start, end);
+    return this.cardData()?.slice(start, end);
   }
 
   visiblePageNumbers(): any[] {

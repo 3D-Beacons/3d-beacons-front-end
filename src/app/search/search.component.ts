@@ -1,16 +1,29 @@
-import { Component, OnInit, ChangeDetectionStrategy } from "@angular/core";
-import { FormControl, FormGroup, Validators } from "@angular/forms";
-
-import { ConfigurationService } from "../core/configuration.service";
+import {
+  Component,
+  OnInit,
+  ChangeDetectionStrategy,
+  signal,
+  inject,
+  DestroyRef,
+} from "@angular/core";
 import { SummaryResponse } from "./result-section/result-section.model";
 import { SearchService } from "./search.service";
 import { ActivatedRoute, Router } from "@angular/router";
 import { UniProtEntry } from "./result-section/uniprot-data.model";
-import { SequenceService } from "./sequence/sequence.service";
 import { ResultSectionComponent } from "./result-section/result-section.component";
 import { CommonModule } from "@angular/common";
 import { StructuresSectionComponent } from "./structures-section/structures-section.component";
-import { LoadingDialogComponent } from "../loading-dialog/loading-dialog.component";
+import { catchError, EMPTY, forkJoin, of, switchMap, tap } from "rxjs";
+import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
+import { MaterialModule } from "../material.module";
+import { MatTabChangeEvent } from "@angular/material/tabs";
+import { NgxSkeletonLoaderModule } from "ngx-skeleton-loader";
+import { LoadingState } from "./loading-state.enum";
+
+const routeTabs = [
+  { label: "Information", id: "information" },
+  { label: "Structures", id: "structures" },
+];
 
 @Component({
   selector: "app-search",
@@ -19,103 +32,81 @@ import { LoadingDialogComponent } from "../loading-dialog/loading-dialog.compone
     CommonModule,
     ResultSectionComponent,
     StructuresSectionComponent,
-    LoadingDialogComponent,
+    MaterialModule,
+    NgxSkeletonLoaderModule,
   ],
   styleUrls: ["./search.component.scss"],
   changeDetection: ChangeDetectionStrategy.Eager,
 })
 export class SearchComponent implements OnInit {
-  searchForm: FormGroup = new FormGroup({
-    searchTerm: new FormControl(null, Validators.required),
-  });
-  searchBy!: string;
-  searchTermValue!: string;
+  private readonly route = inject(ActivatedRoute);
+  private readonly router = inject(Router);
+  private readonly searchService = inject(SearchService);
+  private readonly destroyRef = inject(DestroyRef);
 
-  accession!: string;
-  private sub!: any;
-  error: string | null = null;
-  resultData: SummaryResponse | null = null;
-  isFetching: boolean = false;
-  exampleAccessions: string[] = [];
-  entryData: UniProtEntry | any = null;
-  sequence: string | any = null;
-  isSequenceSearch: boolean = false;
-  isEnsembl: boolean = false;
+  protected readonly accession = signal("");
+  protected readonly status = LoadingState;
+  protected readonly loadingState = signal<LoadingState>(LoadingState.LOADING);
 
-  constructor(
-    private route: ActivatedRoute,
-    private searchService: SearchService,
-    private sequenceService: SequenceService,
-    private configService: ConfigurationService,
-    private router: Router,
-  ) {}
+  protected readonly resultData = signal<SummaryResponse | null>(null);
+  protected readonly entryData = signal<UniProtEntry | null>(null);
+  protected readonly isFetching = signal(false);
+  protected readonly sequence = signal<string | any>(null);
+  protected readonly error = signal(false);
+
+  public selectedTab = signal<number>(0);
+
+  constructor() {
+    this.route.queryParams.subscribe((params) => {
+      const tabName = params["activeTab"];
+      const tabIndex = routeTabs.findIndex((tab) => tab.id === tabName);
+      this.selectedTab.set(tabIndex);
+    });
+  }
 
   ngOnInit() {
-    this.sequenceService.setSearchTermValue(
-      this.searchForm.controls.searchTerm.value,
-    );
-    this.searchBy = this.searchService.getSearchByValue();
-    this.sub = this.route.params.subscribe((params) => {
-      if (params.id) {
-        this.accession = params.id;
-        this.doAccessionSearch(this.accession);
-      } else {
-        return;
-      }
+    this.route.params
+      .pipe(
+        switchMap((params: { [x: string]: string }) => {
+          const accession = params["id"];
+          this.loadingState.set(LoadingState.LOADING);
+          this.accession.set(accession);
+          return forkJoin([
+            this.searchService.getUniProtEntry(accession),
+            this.searchService.getUniProtSummary(accession),
+          ]).pipe(
+            catchError(() => {
+              this.loadingState.set(LoadingState.FAILURE);
+              return EMPTY;
+            }),
+          );
+        }),
+        tap(([entryData, summaryData]) => {
+          this.entryData.set(entryData);
+          const updatedSummaryData: SummaryResponse = {
+            ...summaryData,
+            uniprot_entry: {
+              ...summaryData.uniprot_entry,
+              sequence_length: entryData.sequence.length,
+              sequence: entryData.sequence.sequence,
+              id: entryData.id,
+            },
+          };
+          this.resultData.set(updatedSummaryData);
+          this.loadingState.set(LoadingState.SUCCESS);
+          return of(null);
+        }),
+        takeUntilDestroyed(this.destroyRef),
+      )
+      .subscribe();
+  }
+
+  protected selectTab(event: MatTabChangeEvent) {
+    const tabName = routeTabs[event.index].id;
+
+    this.router.navigate([], {
+      queryParams: { activeTab: tabName },
+      queryParamsHandling: "merge",
     });
-    this.exampleAccessions = this.configService.getExampleAccessions();
-    // this.onSearch('P38398');
-  }
-
-  // isUniprotAccession(term: string): boolean {
-  //   return RegExp('^[OPQ][0-9][A-Z0-9]{3}[0-9]|[A-NR-Z][0-9]([A-Z][A-Z0-9]{2}[0-9]){1,2}$').test(term);
-  // }
-
-  doAccessionSearch(query?: string) {
-    this.searchTermValue = query ?? "";
-    if (query == undefined) {
-      query = this.searchForm.controls.searchTerm.value;
-    } else {
-      this.searchForm.controls.searchTerm.setValue(null);
-    }
-    this.isFetching = true;
-    this.searchForm.disable();
-    this.error = null;
-    this.searchService.getUniProtEntry(query ?? "").subscribe(
-      (entryData) => {
-        this.entryData = entryData;
-        this.searchService.getUniProtSummary(query ?? "").subscribe(
-          (summaryData) => {
-            let tempSummaryData: SummaryResponse = summaryData;
-            tempSummaryData.uniprot_entry.sequence_length =
-              entryData.sequence.length;
-            tempSummaryData.uniprot_entry.sequence =
-              entryData.sequence.sequence;
-            tempSummaryData.uniprot_entry.id = entryData.id;
-            this.isFetching = false;
-            this.searchForm.enable();
-            this.resultData = tempSummaryData;
-            this.isSequenceSearch = false;
-          },
-          (err) => {
-            this.isFetching = false;
-            this.isSequenceSearch = false;
-            this.handleError("No Uniprot summary data found!");
-          },
-        );
-      },
-      (err) => {
-        this.isFetching = false;
-        this.handleError("No Uniprot entry data found!");
-      },
-    );
-  }
-
-  handleError(message: string): void {
-    this.error = message;
-    this.isSequenceSearch = false;
-    this.isFetching = false;
-    this.searchForm.enable();
-    this.resultData = null;
   }
 }

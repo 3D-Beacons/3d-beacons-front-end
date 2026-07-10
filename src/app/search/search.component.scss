@@ -1,3 +1,7 @@
+section {
+  margin-top: 20px;
+}
+
 .h2 {
   color: #ffae00 !important;
 }
@@ -12,7 +16,7 @@
 .info-box-title {
   font-size: 24px;
   font-weight: 500;
-  border-bottom: 1px solid #E8E7DF;
+  border-bottom: 1px solid #e8e7df;
   padding: 16px 0;
   font-weight: 500;
   font-size: 21px;
@@ -23,11 +27,11 @@
   max-width: unset !important;
 }
 
-.title-container{
+.title-container {
   text-align: left;
 }
 
-.last-container{
+.last-container {
   margin-bottom: 52px;
 }
 
@@ -112,7 +116,7 @@
   margin-bottom: 80px;
 }
 
-.mobile-view-copy{
-  float:right;
-  display:none;
+.mobile-view-copy {
+  float: right;
+  display: none;
 }

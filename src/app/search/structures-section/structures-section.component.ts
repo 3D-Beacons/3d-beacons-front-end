@@ -29,7 +29,6 @@ export class StructuresSectionComponent implements OnDestroy {
   availableProviders: Set<string> = new Set();
   displayedEntry!: string;
   displayedEntryUrl!: string;
-  help!: boolean;
 
   @Input()
   get resultData(): any {
@@ -60,11 +59,6 @@ export class StructuresSectionComponent implements OnDestroy {
         e.detail.modelId + " from " + e.detail.modelProvider;
       this.displayedEntryUrl = e.detail.modelUrl;
     });
-    this.help = false;
-  }
-
-  toggleHelp() {
-    this.help = !this.help;
   }
 
   ngOnDestroy(): void {

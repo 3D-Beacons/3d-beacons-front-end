@@ -20,6 +20,12 @@
     "@angular/platform-browser": "~22.0.5",
     "@angular/platform-browser-dynamic": "~22.0.5",
     "@angular/router": "~22.0.5",
+    "@visual-framework/vf-design-tokens": "^3.6.5",
+    "@visual-framework/vf-footer": "^1.2.3",
+    "@visual-framework/vf-grid": "^1.4.1",
+    "@visual-framework/vf-list": "^1.1.2",
+    "@visual-framework/vf-sass-config": "^2.7.3",
+    "ngx-skeleton-loader": "^13.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.5.0",
     "zone.js": "~0.15.1"

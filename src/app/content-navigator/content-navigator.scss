@@ -1,0 +1,31 @@
+nav {
+  padding-left: 10px;
+  border-left: 1px solid #0a5032;
+  margin-bottom: 40px;
+
+  li {
+    cursor: pointer;
+    margin-bottom: 10px;
+
+    span {
+      color: #0a5032;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 27.2px;
+      text-decoration: none;
+      border: none;
+
+      &:focus {
+        border: none;
+        outline: none;
+        text-shadow: none;
+      }
+
+      &:hover {
+        color: #0a5032;
+        text-decoration: underline;
+        border: none !important;
+      }
+    }
+  }
+}

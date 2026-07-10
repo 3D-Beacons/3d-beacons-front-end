@@ -37,10 +37,10 @@ export class ResultSectionComponent {
   }
 
   @Input()
-  get entryData(): UniProtEntry {
+  get entryData(): any {
     return this._entryData;
   }
-  set entryData(data: UniProtEntry) {
+  set entryData(data: any) {
     this._entryData = data;
     if (data) {
       this.infoText = this.prepareInfoText(data);
@@ -73,6 +73,8 @@ export class ResultSectionComponent {
      * @returns tempList - A list of category counts
      */
     const categories = this.summaryService.getCategories();
+
+    console.log("resultData", this.resultData);
 
     this.resultData.structures.map((structure: any) => {
       const categoryId = this.summaryService.getProviderCategory(

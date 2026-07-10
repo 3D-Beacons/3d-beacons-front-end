@@ -1,0 +1,7 @@
+<nav>
+  @for (link of navLinks(); track link) {
+  <li (click)="scrollToSection(link.id)">
+    <span>{{link.title}}</span>
+  </li>
+  }
+</nav>

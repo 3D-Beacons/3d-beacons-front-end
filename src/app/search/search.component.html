@@ -1,44 +1,81 @@
-<app-result-section [entryData]="entryData" [resultData]="resultData"></app-result-section>
+<section>
+  <div class="row">
+    <!-- Success -->
+    @if (loadingState() === status.SUCCESS) {
+      <h3>
+        {{ resultData()?.uniprot_entry?.ac }} ({{
+          resultData()?.uniprot_entry?.id
+        }})
+      </h3>
 
-@if (resultData) {
-  <div class="row title-container">
-    <div class="small-12 columns">
-      <p class="info-box-title">Viewer</p>
-    </div>
+      <mat-tab-group
+        mat-stretch-tabs="false"
+        mat-align-tabs="start"
+        [selectedIndex]="selectedTab()"
+        (selectedTabChange)="selectTab($event)"
+        #tabs
+      >
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <span>Information</span>
+          </ng-template>
+          <ng-template matTabContent>
+            <app-result-section
+              [entryData]="entryData()"
+              [resultData]="resultData()"
+            />
+          </ng-template>
+        </mat-tab>
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <span>Structures</span>
+          </ng-template>
+          <ng-template matTabContent>
+            <app-structures-section
+              [resultData]="resultData()"
+            ></app-structures-section>
+          </ng-template>
+        </mat-tab>
+      </mat-tab-group>
+    }
+    <!-- Loading -->
+    @else if (loadingState() === status.LOADING) {
+      <div class="loader">
+        <ngx-skeleton-loader
+          count="1"
+          [theme]="{ 'border-radius': '0', height: '450px' }"
+        ></ngx-skeleton-loader>
+      </div>
+    }
   </div>
-}
+</section>
 
-@if (resultData) {
-  <div class="row last-container">
-    <div class="small-12 medium-12 columns">
-      <app-structures-section [resultData]="resultData"></app-structures-section>
-    </div>
-  </div>
-}
+<!-- Failure -->
 
-@if (isFetching) {
-  <app-loading-dialog></app-loading-dialog>
-}
-
-@if (error) {
+@if (loadingState() === status.FAILURE) {
   <div class="row error-container">
     <div class="small-12 columns">
       <h3 class="message-title">No results found</h3>
-      @if (searchTermValue.length > 10) {
+      @if (accession().length > 10) {
         <p class="progress-text1">
-          The UniProt accession you were searching with - {{searchTermValue | slice:0:10}}...  - doesn't have any models.
+          The UniProt accession you were searching with -
+          {{ accession() | slice: 0 : 10 }}... - doesn't have any models.
         </p>
       }
-      @if (searchTermValue.length < 10) {
-        <p class="progress-text1" >
-          The UniProt accession you were searching with - {{searchTermValue}} - doesn't have any models.
+      @if (accession().length < 10) {
+        <p class="progress-text1">
+          The UniProt accession you were searching with - {{ accession() }} -
+          doesn't have any models.
         </p>
       }
       <p class="progress-suggestions">Suggestions:</p>
       <ul class="msg_bullets">
         <li>Please check if you have entered a valid UniProt accession.</li>
         <li>Try again later as more models will be provided in the future.</li>
-        <li>If you are trying to search with a sequence, please change the search type to Sequence search in the dropdown near the search field.</li>
+        <li>
+          If you are trying to search with a sequence, please change the search
+          type to Sequence search in the dropdown near the search field.
+        </li>
       </ul>
     </div>
   </div>

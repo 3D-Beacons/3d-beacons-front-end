@@ -3,13 +3,14 @@ import { NavigationEnd, Router, RouterModule } from "@angular/router";
 import { filter } from "rxjs/operators";
 import { environment } from "../environments/environment";
 import { AppHeaderComponent } from "./app-header/app-header.component";
+import { VfEbiFooterComponent } from "./vf-ebi-footer/vf-ebi-footer.component";
 
 declare const gtag: any;
 
 @Component({
   selector: "app-root",
   templateUrl: "./app.component.html",
-  imports: [RouterModule, AppHeaderComponent],
+  imports: [RouterModule, AppHeaderComponent, VfEbiFooterComponent],
   styleUrls: ["./app.component.scss"],
   changeDetection: ChangeDetectionStrategy.Eager,
 })

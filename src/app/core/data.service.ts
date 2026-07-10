@@ -13,7 +13,6 @@ export class DataService {
   apiUrls = {};
 
   constructor(
-    private http: HttpClient,
     private httpClient: HttpClient,
     private configService: ConfigurationService,
   ) {}
