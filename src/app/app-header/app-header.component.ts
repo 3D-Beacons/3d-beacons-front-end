@@ -1,9 +1,16 @@
-import { Component, DestroyRef, inject, signal } from "@angular/core";
+import {
+  afterNextRender,
+  Component,
+  DestroyRef,
+  inject,
+  signal,
+} from "@angular/core";
 import { NavigationEnd, Router, RouterModule } from "@angular/router";
 import { filter } from "rxjs/operators";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { CommonModule } from "@angular/common";
 import { SearchHeaderComponent } from "../search-header/search-header.component";
+import { heroAnimation } from "./gsap";
 
 @Component({
   selector: "app-header",
@@ -29,6 +36,10 @@ export class AppHeaderComponent {
           this.homePage.set(true);
         }
       });
+
+    afterNextRender(() => {
+      heroAnimation();
+    });
   }
 
   protected toggleMenu(): void {
