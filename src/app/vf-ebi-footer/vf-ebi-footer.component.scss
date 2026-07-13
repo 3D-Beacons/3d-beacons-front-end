@@ -16,6 +16,11 @@
   float: unset !important;
 }
 
+a {
+  text-decoration: none !important;
+  border: none !important;
+}
+
 section.vf-footer__legal {
   gap: 2rem;
 
@@ -25,7 +30,7 @@ section.vf-footer__legal {
   }
 
   a {
-    text-decoration: underline !important;
+    text-decoration: none !important;
     border: none !important;
   }
 }

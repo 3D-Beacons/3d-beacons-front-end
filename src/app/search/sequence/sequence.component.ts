@@ -1,24 +1,33 @@
 import {
-  ChangeDetectorRef,
   Component,
-  OnDestroy,
   OnInit,
   ViewChild,
   ChangeDetectionStrategy,
+  computed,
+  DestroyRef,
+  inject,
+  signal,
 } from "@angular/core";
-import { MatTableDataSource } from "@angular/material/table";
 import { ActivatedRoute } from "@angular/router";
 import { SequenceService } from "./sequence.service";
 import { SequenceDataFormatterService } from "./sequence-data-formatter.service";
 
 import { Hit } from "./search-result.model";
 import { MatPaginator } from "@angular/material/paginator";
-import { Title } from "@angular/platform-browser";
-import { SearchService } from "../search.service";
-import { Subscription } from "rxjs";
+import {
+  catchError,
+  EMPTY,
+  forkJoin,
+  of,
+  Subscription,
+  switchMap,
+  tap,
+} from "rxjs";
 import { SearchPaginationComponent } from "../search-pagination/search-pagination.component";
 import { CommonModule } from "@angular/common";
 import { SequenceCardsComponent } from "./sequence-cards/sequence-cards.component";
+import { LoadingState } from "../loading-state.enum";
+import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 
 @Component({
   selector: "app-sequence",
@@ -27,152 +36,101 @@ import { SequenceCardsComponent } from "./sequence-cards/sequence-cards.componen
   styleUrls: ["./sequence.component.scss"],
   changeDetection: ChangeDetectionStrategy.Eager,
 })
-export class SequenceComponent implements OnInit, OnDestroy {
-  private sub!: Subscription;
-  job_id!: string;
-  is_searchprogress: boolean = false;
-  isCopySequence: boolean = false;
-  isCopyLink: boolean = false;
-  is_noresult: boolean = false;
-  showErrorNoJobid: boolean = false;
-  message: string | any = null;
-  searching: boolean = false;
-  resultData: Hit[] | any = null;
-  cardData: any = null;
-  card_data_length = 0;
-  tableSource: MatTableDataSource<Hit> = new MatTableDataSource<Hit>();
-  displayedColumns: string[] = [
-    "accession",
-    "id",
-    "description",
-    "struct_count",
-    "hsp_align_length",
-    "hsp_identity",
-  ];
-  subTimeout!: any;
-  seqResultsRequest!: Subscription;
+export class SequenceComponent implements OnInit {
+  protected isCopySequence = signal(false);
+  protected isCopyLink = signal(false);
 
-  localStorageSearchTerm!: string;
-  searchTerm!: string;
-  paginationData: any = {
+  protected readonly localStorageSearchTerm = computed(() => {
+    const accession = this.accession();
+    return localStorage[accession];
+  });
+
+  private readonly destroyRef = inject(DestroyRef);
+  private readonly route = inject(ActivatedRoute);
+  private readonly sequenceService = inject(SequenceService);
+  private readonly sequenceDataFormatterService = inject(
+    SequenceDataFormatterService,
+  );
+  protected readonly accession = signal("");
+  protected readonly status = LoadingState;
+  protected readonly loadingState = signal<LoadingState>(LoadingState.LOADING);
+
+  protected readonly cardData = signal<any | null>(null);
+  protected readonly cardLength = computed(() => this.cardData()?.length || 0);
+
+  protected paginationData: any = {
     perPage: 10,
     currentPage: 1,
     totalPages: 0,
     pages: [],
     totalRecords: 0,
   };
-  cardDataChunk: [] = [];
-  searchTermValue!: string;
+  protected cardDataChunk: [] = [];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(
-    private route: ActivatedRoute,
-    private searchService: SearchService,
-    private sequenceService: SequenceService,
-    private sequenceDataFormatterService: SequenceDataFormatterService,
-    private titleService: Title,
-    private changeDetectorRef: ChangeDetectorRef,
-  ) {}
-
   ngOnInit(): void {
-    this.searchTermValue = this.searchService.searchTermValue;
-    this.paginationData.pages = this.visiblePageNumbers();
-    this.sub = this.route.params.subscribe((params) => {
-      if (params.id === "" || params.id === undefined || params.id === null) {
-        this.job_id = "";
-        this.message = "Error in submitting the job";
-        this.showErrorNoJobid = true;
-        this.is_noresult = false;
-        return;
-      } else {
-        this.is_noresult = false;
-        this.showErrorNoJobid = false;
-        this.job_id = params.id;
-        this.searchTerm = params.id;
-        this.localStorageSearchTerm = localStorage[this.job_id];
-        this.is_searchprogress = true;
-        this.getSequenceData(this.job_id);
-      }
-    });
+    this.route.params
+      .pipe(
+        switchMap((params: { [x: string]: string }) => {
+          const accession = params["id"];
+          if (!accession) {
+            this.loadingState.set(LoadingState.MISSING_ID);
+            return EMPTY;
+          }
+          this.loadingState.set(LoadingState.LOADING);
+          this.accession.set(accession);
+          return forkJoin([
+            this.sequenceService.getSequenceSearchResult(accession),
+          ]).pipe(
+            catchError(() => {
+              this.loadingState.set(LoadingState.FAILURE);
+              return EMPTY;
+            }),
+          );
+        }),
+        tap(([data]) => {
+          this.cardData.set(this.sequenceDataFormatterService.formatData(data));
+          this.cardDataChunk = this.getSlice(this.paginationData.currentPage);
+          this.paginationData.totalPages = Math.ceil(
+            this.cardLength() / this.paginationData.perPage,
+          );
+          this.paginationData.totalRecords = this.cardLength();
+          this.paginationData.pages = this.visiblePageNumbers();
+          this.paginationData = Object.assign({}, this.paginationData);
+          this.loadingState.set(LoadingState.SUCCESS);
+          return of(null);
+        }),
+        takeUntilDestroyed(this.destroyRef),
+      )
+      .subscribe();
   }
 
-  getSequenceData(jobId: string) {
-    if (jobId) {
-      this.is_noresult = false;
-      this.seqResultsRequest = this.sequenceService
-        .getSequenceSearchResult(jobId)
-        .subscribe(
-          (response) => {
-            let message = response.message;
-            if (message && message.startsWith("Search in progress")) {
-              this.message = "Search in progress";
-              this.is_searchprogress = true;
-              this.is_noresult = false;
-              this.titleService.setTitle("Search in progress");
-              this.searching = true;
-              this.subTimeout = setTimeout(() => {
-                this.getSequenceData(this.job_id);
-              }, 30000);
-            } else {
-              this.searching = false;
-              this.is_noresult = false;
-              this.titleService.setTitle("3D-Beacons");
-              this.is_searchprogress = false;
-              this.changeDetectorRef.markForCheck();
-              this.cardData =
-                this.sequenceDataFormatterService.formatData(response);
-              this.cardDataChunk = this.getSlice(
-                this.paginationData.currentPage,
-              );
-              this.card_data_length = (this.cardData ?? [])?.length;
-
-              this.paginationData.totalPages = Math.ceil(
-                this.card_data_length / this.paginationData.perPage,
-              );
-              this.paginationData.totalRecords = this.card_data_length;
-              this.paginationData.pages = this.visiblePageNumbers();
-              this.paginationData = Object.assign({}, this.paginationData);
-            }
-          },
-          (err) => {
-            this.searching = false;
-            this.is_searchprogress = false;
-            this.is_noresult = true;
-            this.cardData = null;
-            this.message = "No results found for this sequence!";
-          },
-        );
-    } else {
-      return;
-    }
-  }
-
-  getSlice(currentPage: any) {
+  private getSlice(currentPage: any) {
     const start =
       currentPage * this.paginationData.perPage - this.paginationData.perPage;
     const end = currentPage * this.paginationData.perPage;
-    return (this.cardData ?? [])?.slice(start, end);
+    return (this.cardData() ?? [])?.slice(start, end);
   }
 
-  copySequence(sequence: any) {
+  protected copySequence(sequence: any) {
     navigator.clipboard.writeText(sequence);
-    this.isCopySequence = true;
+    this.isCopySequence.set(true);
     setTimeout(() => {
-      this.isCopySequence = false;
+      this.isCopySequence.set(false);
     }, 5000);
   }
 
-  copyLink() {
+  protected copyLink() {
     const link = window.location.href;
     navigator.clipboard.writeText(link);
-    this.isCopyLink = true;
+    this.isCopyLink.set(true);
     setTimeout(() => {
-      this.isCopyLink = false;
+      this.isCopyLink.set(false);
     }, 5000);
   }
 
-  visiblePageNumbers(): any[] {
+  private visiblePageNumbers(): any[] {
     const innerWindow = 1;
     const outerWindow = 0;
     let windowFrom = this.paginationData.currentPage - innerWindow;
@@ -248,7 +206,7 @@ export class SequenceComponent implements OnInit, OnDestroy {
     return links;
   }
 
-  paginateTo(paginate: any): void {
+  protected paginateTo(paginate: any): void {
     if (paginate.source == "arrow") {
       if (paginate.pageIndex == -1 && this.paginationData.currentPage == 1) {
         return;
@@ -274,32 +232,11 @@ export class SequenceComponent implements OnInit, OnDestroy {
     this.cardDataChunk = this.getSlice(this.paginationData.currentPage);
   }
 
-  updatePerPageVal(ppgSelected: any): void {
+  protected updatePerPageVal(ppgSelected: any): void {
     // Reset to page 1
     this.paginationData.currentPage = 1;
     this.paginationData.perPage = ppgSelected.ppgValue;
     this.paginationData.pages = this.visiblePageNumbers();
     this.paginationData = Object.assign({}, this.paginationData);
-  }
-
-  getResultCountText(): string {
-    let title = "0 results";
-    if (this.paginationData.totalRecords > 0) {
-      const ppVal = this.paginationData.perPage;
-      const fromVal = (this.paginationData.currentPage - 1) * ppVal + 1;
-      let toVal = (this.paginationData.currentPage - 1) * ppVal + ppVal;
-      if (this.paginationData.currentPage == this.paginationData.totalPages) {
-        toVal = this.paginationData.totalRecords;
-      }
-      title = `${fromVal} - ${toVal} of ${this.paginationData.totalRecords} results`;
-    }
-    return title;
-  }
-
-  ngOnDestroy(): void {
-    this.job_id = "";
-    this.cardData = null;
-    this.is_noresult = false;
-    this.is_searchprogress = false;
   }
 }
