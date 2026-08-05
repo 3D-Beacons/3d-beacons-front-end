@@ -25,6 +25,7 @@
     "@visual-framework/vf-grid": "^1.4.1",
     "@visual-framework/vf-list": "^1.1.2",
     "@visual-framework/vf-sass-config": "^2.7.3",
+    "gsap": "^3.15.0",
     "ngx-skeleton-loader": "^13.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.5.0",

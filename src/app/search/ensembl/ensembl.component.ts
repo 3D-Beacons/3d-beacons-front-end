@@ -45,7 +45,7 @@ export class EnsemblComponent {
   protected readonly cardData = signal<any | null>(null);
   protected readonly cardLength = computed(() => this.cardData()?.length || 0);
 
-  paginationData: any = {
+  protected paginationData: any = {
     perPage: 10,
     currentPage: 1,
     totalPages: 3,
@@ -53,7 +53,7 @@ export class EnsemblComponent {
     totalRecords: 3,
   };
 
-  cardDataChunk: any[] = [];
+  protected cardDataChunk: any[] = [];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -91,45 +91,14 @@ export class EnsemblComponent {
       .subscribe();
   }
 
-  copyToClipboard(item: any) {
-    // 1. Define the listener as a named function
-    const listener = (e: ClipboardEvent) => {
-      e.clipboardData?.setData("text/plain", item);
-      e.preventDefault();
-
-      // 2. Properly remove the listener using its name
-      document.removeEventListener("copy", listener);
-    };
-
-    // 3. Add the listener and trigger the copy command
-    document.addEventListener("copy", listener);
-    document.execCommand("copy");
-  }
-
-  copyLink() {
-    const link = window.location.href;
-    // 1. Define the listener as a named function
-    const listener = (e: ClipboardEvent) => {
-      e.clipboardData?.setData("text/plain", link);
-      e.preventDefault();
-
-      // 2. Properly remove the listener using its name
-      document.removeEventListener("copy", listener);
-    };
-
-    // 3. Add the listener and trigger the copy command
-    document.addEventListener("copy", listener);
-    document.execCommand("copy");
-  }
-
-  getSlice(currentPage: any) {
+  private getSlice(currentPage: any) {
     const start =
       currentPage * this.paginationData.perPage - this.paginationData.perPage;
     const end = currentPage * this.paginationData.perPage;
     return this.cardData()?.slice(start, end);
   }
 
-  visiblePageNumbers(): any[] {
+  private visiblePageNumbers(): any[] {
     const innerWindow = 1;
     const outerWindow = 0;
     let windowFrom = this.paginationData.currentPage - innerWindow;
@@ -205,7 +174,7 @@ export class EnsemblComponent {
     return links;
   }
 
-  paginateTo(paginate: any): void {
+  protected paginateTo(paginate: any): void {
     if (paginate.source == "arrow") {
       if (paginate.pageIndex == -1 && this.paginationData.currentPage == 1) {
         return;
@@ -229,25 +198,11 @@ export class EnsemblComponent {
     this.cardDataChunk = this.getSlice(this.paginationData.currentPage);
   }
 
-  updatePerPageVal(ppgSelected: any): void {
+  protected updatePerPageVal(ppgSelected: any): void {
     // Reset to page 1
     this.paginationData.currentPage = 1;
     this.paginationData.perPage = ppgSelected.ppgValue;
     this.paginationData.pages = this.visiblePageNumbers();
     this.paginationData = Object.assign({}, this.paginationData);
-  }
-
-  getResultCountText(): string {
-    let title = "0 results";
-    if (this.paginationData.totalRecords > 0) {
-      const ppVal = this.paginationData.perPage;
-      const fromVal = (this.paginationData.currentPage - 1) * ppVal + 1;
-      let toVal = (this.paginationData.currentPage - 1) * ppVal + ppVal;
-      if (this.paginationData.currentPage == this.paginationData.totalPages) {
-        toVal = this.paginationData.totalRecords;
-      }
-      title = `${fromVal} - ${toVal} of ${this.paginationData.totalRecords} results`;
-    }
-    return title;
   }
 }
