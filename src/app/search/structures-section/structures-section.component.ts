@@ -5,6 +5,7 @@ import {
   Renderer2,
   OnDestroy,
   ChangeDetectionStrategy,
+  inject,
 } from "@angular/core";
 
 import * as pvFormat from "../result-section/protvista.model";
@@ -12,8 +13,8 @@ import {
   Overview,
   SummaryResponse,
 } from "../result-section/result-section.model";
-import { ConfigurationService } from "../../core/configuration.service";
 import { CommonModule } from "@angular/common";
+import { DataService } from "../../core/data.service";
 
 @Component({
   selector: "app-structures-section",
@@ -23,6 +24,10 @@ import { CommonModule } from "@angular/common";
   changeDetection: ChangeDetectionStrategy.Eager,
 })
 export class StructuresSectionComponent implements OnDestroy {
+  private readonly elm = inject(ElementRef);
+  private readonly renderer = inject(Renderer2);
+  private readonly dataService = inject(DataService);
+
   private _resultData!: any;
   haveResults = false;
   protvistaData: Partial<pvFormat.Accession> | null = null;
@@ -45,11 +50,7 @@ export class StructuresSectionComponent implements OnDestroy {
     }
   }
 
-  constructor(
-    private elm: ElementRef,
-    private renderer: Renderer2,
-    private configService: ConfigurationService,
-  ) {
+  constructor() {
     // document.addEventListener('protvista-click', (e: CustomEvent) => {
     //   var re = /(.*)\s\((.*)\)/;
     //   this.displayedEntry = e.detail.feature.labelTooltip.replace(re, "$1 from $2");
@@ -108,7 +109,7 @@ export class StructuresSectionComponent implements OnDestroy {
         accession: structure.summary.model_identifier,
         labelType: "text",
         label: this.prepareLabel(structure),
-        color: this.configService.getProviderColor(structure.summary.provider),
+        color: this.dataService.getProviderColor(structure.summary.provider),
         labelColor: "#C0DCDB",
         type: "Structure",
         tooltipContent: "Structure",
@@ -181,7 +182,7 @@ export class StructuresSectionComponent implements OnDestroy {
     let legendItems: pvFormat.LegendItem[] = [];
     for (let provider of providers) {
       let legend: pvFormat.LegendItem = {
-        color: this.configService.getProviderColor(provider),
+        color: this.dataService.getProviderColor(provider),
         text: provider,
       };
       legendItems.push(legend);

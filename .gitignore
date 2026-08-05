@@ -45,3 +45,7 @@ testem.log
 Thumbs.db
 
 .early.coverage
+
+.claude/commands/commit-message.md
+.claude/worktrees
+.claude/settings.local.json

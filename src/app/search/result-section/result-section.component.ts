@@ -1,11 +1,16 @@
-import { Component, Input, ChangeDetectionStrategy } from "@angular/core";
+import {
+  Component,
+  Input,
+  ChangeDetectionStrategy,
+  inject,
+} from "@angular/core";
 import { InfoText } from "./info-text.model";
 
 import { SummaryService } from "./summary-section/summary-section.service";
 import { UniProtEntry } from "./uniprot-data.model";
-import { ConfigurationService } from "../../core/configuration.service";
 import { CommonModule } from "@angular/common";
 import { SummarySectionComponent } from "./summary-section/summary-section.component";
+import { environment } from "../../../environments/environment";
 
 @Component({
   selector: "app-result-section",
@@ -15,6 +20,7 @@ import { SummarySectionComponent } from "./summary-section/summary-section.compo
   changeDetection: ChangeDetectionStrategy.Eager,
 })
 export class ResultSectionComponent {
+  private readonly summaryService = inject(SummaryService);
   summaryData: any[] = [];
   private _resultData!: any;
   haveResults = false;
@@ -48,11 +54,6 @@ export class ResultSectionComponent {
     }
   }
 
-  constructor(
-    private summaryService: SummaryService,
-    private configService: ConfigurationService,
-  ) {}
-
   getSum(): number {
     /**
      * Counts the number of models
@@ -74,18 +75,18 @@ export class ResultSectionComponent {
      */
     const categories = this.summaryService.getCategories();
 
-    console.log("resultData", this.resultData);
-
     this.resultData.structures.map((structure: any) => {
       const categoryId = this.summaryService.getProviderCategory(
         structure.summary.provider,
       );
       const category = categories[categoryId];
 
-      if (!category.count) {
-        category.count = 0;
+      if (category) {
+        if (!category.count) {
+          category.count = 0;
+        }
+        category.count++;
       }
-      category.count++;
     });
 
     const tempList: any[] = [];
@@ -151,8 +152,7 @@ export class ResultSectionComponent {
         italic: false,
         show_long: true,
         source: "UniProt",
-        source_url:
-          this.configService.getUniProtApiUrl() + data.uniprotAccession,
+        source_url: `${environment.uniprotApiUrl}${data.uniprotAccession}`,
       });
     }
 
