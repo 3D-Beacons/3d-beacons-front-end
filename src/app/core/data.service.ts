@@ -1,5 +1,5 @@
 import { HttpClient } from "@angular/common/http";
-import { Injectable } from "@angular/core";
+import { inject, Injectable } from "@angular/core";
 import {
   EMPTY,
   expand,
@@ -13,36 +13,33 @@ import {
 
 import { SummaryResponse } from "../search/result-section/result-section.model";
 import { UniProtEntry } from "../search/result-section/uniprot-data.model";
-import { ConfigurationService } from "./configuration.service";
+import { environment } from "../../environments/environment";
 
 @Injectable({
   providedIn: "root",
 })
 export class DataService {
-  apiUrls = {};
+  private readonly httpClient = inject(HttpClient);
+  private readonly BASE_URL = environment.apiHost;
+  private readonly UNIPROT_API_URL = environment.uniprotApiUrl;
 
   private readonly POLL_MS = 30000;
   private readonly MAX_POLLS = 20;
 
-  constructor(
-    private httpClient: HttpClient,
-    private configService: ConfigurationService,
-  ) {}
-
   getUniProtSummary(uniprotAccession: string): Observable<any> {
     return this.httpClient.get<SummaryResponse>(
-      this.configService.getUniProtSummaryUrl() + uniprotAccession + ".json",
+      `${this.BASE_URL}/uniprot/summary/${uniprotAccession}.json`,
     );
   }
 
   getUniProtEntry(uniprotAccession: string): Observable<any> {
     return this.httpClient.get<UniProtEntry>(
-      this.configService.getUniProtApiUrl() + uniprotAccession,
+      `${this.UNIPROT_API_URL}${uniprotAccession}`,
     );
   }
 
   submitSequenceSearch(sequence: string): Observable<any> {
-    return this.httpClient.post(this.configService.getSequenceSearchUrl(), {
+    return this.httpClient.post(`${this.BASE_URL}/sequence/search/`, {
       sequence: sequence,
     });
   }
@@ -50,7 +47,7 @@ export class DataService {
   getSequenceSearchResult(jobId: string): Observable<any> {
     const request$ = () =>
       this.httpClient.get<any>(
-        `${this.configService.getSequenceSearchResultUrl()}?job_id=${jobId}`,
+        `${this.BASE_URL}/sequence/result?job_id=${jobId}`,
       );
 
     return request$().pipe(
@@ -68,7 +65,24 @@ export class DataService {
 
   getEnsemblSearchResult(ensemblid: string): Observable<any> {
     return this.httpClient.get(
-      this.configService.getEnsemblSearchResultUrl() + ensemblid + ".json",
+      `${this.BASE_URL}/ensembl/summary/${ensemblid}.json`,
     );
+  }
+
+  getProviderColor(provider: string): string {
+    switch (provider) {
+      case "PDBe":
+        return "#085f5c";
+      case "SWISS-MODEL":
+        return "#7474bf";
+      case "PED":
+        return "#2274a5";
+      case "AlphaFold DB":
+        return "#0053d6";
+      case "SASBDB":
+        return "rgb(255,99,163)";
+      default:
+        return "rgb(100,100,100)";
+    }
   }
 }
