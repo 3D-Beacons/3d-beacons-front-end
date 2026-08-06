@@ -42,6 +42,7 @@ export class SummaryService {
       HEGELAB: "abinitio",
       ModelArchive: "abinitio",
       levylab: "abinitio",
+      Bindome: "abinitio",
     };
     return providerCategories[providerId];
   }
